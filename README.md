@@ -42,6 +42,20 @@ Install Quarto and a working LuaLaTeX/TeX distribution. The PDF uses the bundled
 
 Outputs are written to `_book/`. All scripts preserve other formats with `--no-clean`; use a fresh source copy for a clean release build so stale artifacts cannot be mistaken for current output. Rendering uses checked-in experiment outputs; rerunning experiments requires their own documented environments and inputs.
 
+## Citation
+
+```
+@book{hakimov2026turkicnlpbook,
+  title   = {Natural Language Processing Across
+             Turkic Languages: Methods and Applications},
+  author  = {Sherzod Hakimov},
+  year    = {2026},
+  version = {0.1.0},
+  doi     = {10.5281/zenodo.23324599},
+  url     = {https://github.com/turkic-nlp/book}
+}
+```
+
 ## Licences
 
 - **Text and figures:** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) (`LICENSE`), unless otherwise noted.
