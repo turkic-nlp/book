@@ -3,7 +3,7 @@
 Quarto sources for *Natural Language Processing Across Turkic Languages: Methods and Applications*, by Sherzod Hakimov. Draft version **0.1.0 (2026)**
 
 <p align="center">
-  <a href="Natural-Language-Processing-Across-Turkic-Languages--Methods-and-Applications.pdf"><img src="images/cover-web.jpg" alt="Book cover" width="260"></a>
+  <a href="Natural-Language-Processing-Across-Turkic-Languages--Methods-and-Applications.pdf"><img src="images/cover-web.jpg" alt="Book cover" width="460"></a>
 </p>
 
 ## Download the book
