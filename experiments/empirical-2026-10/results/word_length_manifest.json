@@ -1,0 +1,89 @@
+{
+  "archive_sha256": "b8b0b76783024b85797e5cc75064eb83fc5288b41e9654dabc7be6ae944011f6",
+  "inputs": {
+    "eng_Latn": {
+      "sha256": "612e9fbe87997617c0fa8fa8929654a4f49b728d96738112c2b86ef6a1d78d88",
+      "member": "./flores200_dataset/devtest/eng_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "rus_Cyrl": {
+      "sha256": "cdc706ed862d1d35d8d67cfda0b396766646885434958b18291aa760ff1bb59e",
+      "member": "./flores200_dataset/devtest/rus_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "tur_Latn": {
+      "sha256": "c0fe28cee25f77fbe8471bcd3c87d26c7a284f4f0420f4293c9ce004b9bef8f2",
+      "member": "./flores200_dataset/devtest/tur_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "azj_Latn": {
+      "sha256": "dd91acbcbe6cd5b7cad71c30513576ef482ee6a0caa401f8aa64aceaa726d650",
+      "member": "./flores200_dataset/devtest/azj_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "azb_Arab": {
+      "sha256": "e5f40dd9d93117432fefdcd3d7205e9ed1e9047c05e135ec67a222488fc5934e",
+      "member": "./flores200_dataset/devtest/azb_Arab.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "tuk_Latn": {
+      "sha256": "a68b64e7e10438717fec9be1cd78662eb4e350cd296824a9e4c2dc88e466de51",
+      "member": "./flores200_dataset/devtest/tuk_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "kaz_Cyrl": {
+      "sha256": "71e2301ba312faa8fc86624913e5bda576d4e5c6d33c48a59a1e899b36ea38ae",
+      "member": "./flores200_dataset/devtest/kaz_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "kir_Cyrl": {
+      "sha256": "35ff70e98c268355a1a55462373f39b5b3d177de3031944e29c3923369113b22",
+      "member": "./flores200_dataset/devtest/kir_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "tat_Cyrl": {
+      "sha256": "5fed1904996ebc0fa77a63193207b4e6323383ca70e79679c805160198367683",
+      "member": "./flores200_dataset/devtest/tat_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "bak_Cyrl": {
+      "sha256": "af1693e044543c94e8f1b686b90f0b5a8db4d476fff59dccf261c5f3d90f36fd",
+      "member": "./flores200_dataset/devtest/bak_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "crh_Latn": {
+      "sha256": "fdfc28a97f800f0ee910e78058fafbf0b9aae1398f1053c116b6113d815bedc2",
+      "member": "./flores200_dataset/devtest/crh_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "uzn_Latn": {
+      "sha256": "722b6d0cf62bbdd4b2ec2bd39721bff0d2021e948a2753a46b4af31ad9116beb",
+      "member": "./flores200_dataset/devtest/uzn_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "uig_Arab": {
+      "sha256": "490a31c8461bcf7bd78d81301f9a2ed2691e94d43b17d715347ab3320559568e",
+      "member": "./flores200_dataset/devtest/uig_Arab.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 1
+    }
+  },
+  "normalization": "NFC",
+  "primary_unit": "Whitespace-delimited token with at least one Unicode letter; count letters only within it",
+  "alternate_unit": "Contiguous Unicode letter runs, excluding digits and underscore",
+  "weighting": "Mean of sentence-level means, not pooled token mean",
+  "uncertainty": "2000 paired sentence bootstrap resamples, seed 20261017; descriptive conditional on the sample, not article-cluster or population uncertainty",
+  "scope": "Orthographic lengths on translations; not morphological complexity or filter quality."
+}

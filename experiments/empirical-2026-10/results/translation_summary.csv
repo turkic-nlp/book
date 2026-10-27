@@ -1,0 +1,3 @@
+src,tgt,sentences,bleu,chrf,chrfpp,outputs_without_eos,empty_outputs,source
+tur_Latn,kaz_Cyrl,1012,9.48367571833189,41.97123110368165,37.55479276266325,1,0,experiments/empirical-2026-10/run_translation.py; original FLORES-200 devtest
+kaz_Cyrl,tur_Latn,1012,12.02391862639355,45.248139008561914,41.03512210997253,1,0,experiments/empirical-2026-10/run_translation.py; original FLORES-200 devtest

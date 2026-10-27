@@ -1,0 +1,434 @@
+{
+ "Kazakh": {
+  "UD 2.17": {
+   "value": "1 tb, 10,536 w",
+   "status": "observed",
+   "source": "UD 2.17 inventory",
+   "query": "Kazakh",
+   "checked_utc": "2026-10-20T15:12:33.690986+00:00",
+   "error": null,
+   "ids": [
+    "Kazakh-KTB"
+   ]
+  },
+  "Apertium": {
+   "value": "repo 95c6dd0",
+   "status": "observed",
+   "source": "git ls-remote",
+   "query": "https://github.com/apertium/apertium-kaz",
+   "checked_utc": "2026-10-20T15:12:38.702675+00:00",
+   "error": null,
+   "ids": null
+  },
+  "TIL corpus": {
+   "value": "19 pairs, max 4,403,385 (kk-ru)",
+   "status": "observed",
+   "source": "TIL corpus README (pinned)",
+   "query": "kk",
+   "checked_utc": "2026-10-20T15:12:38.702757+00:00",
+   "error": null,
+   "ids": null
+  },
+  "X-WMT test": {
+   "value": "yes",
+   "status": "observed",
+   "source": "til-mt xwmt/test",
+   "query": "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/kk-en/kk-en.kk",
+   "checked_utc": "2026-10-20T15:12:39.017066+00:00",
+   "error": null,
+   "ids": null
+  },
+  "SIB-200": {
+   "value": "yes",
+   "status": "observed",
+   "source": "SIB-200 (pinned)",
+   "query": "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/kaz_Cyrl/dev.tsv",
+   "checked_utc": "2026-10-20T15:12:40.009742+00:00",
+   "error": null,
+   "ids": null
+  },
+  "NLLB-200": {
+   "value": "yes",
+   "status": "observed",
+   "source": "NLLB-200 tokenizer language codes",
+   "query": "kaz_Cyrl",
+   "checked_utc": "2026-10-20T15:12:40.262768+00:00",
+   "error": null,
+   "ids": null
+  },
+  "GlotLID": {
+   "value": "yes",
+   "status": "observed",
+   "source": "GlotLID v3 labels",
+   "query": "__label__kaz_Cyrl",
+   "checked_utc": "2026-10-20T15:12:40.275977+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Hub models": {
+   "value": null,
+   "status": "error",
+   "source": "Hugging Face Hub",
+   "query": [
+    "kk",
+    "kaz"
+   ],
+   "checked_utc": "2026-10-20T15:12:41.658640+00:00",
+   "error": "403 Forbidden",
+   "ids": null
+  },
+  "Common Voice": {
+   "value": null,
+   "status": "not_checked",
+   "source": "Common Voice release metadata (not queried here)",
+   "query": "kaz",
+   "checked_utc": "2026-10-20T15:12:41.658696+00:00",
+   "error": null,
+   "ids": null
+  }
+ },
+ "Kyrgyz": {
+  "UD 2.17": {
+   "value": "2 tb, 25,378 w",
+   "status": "observed",
+   "source": "UD 2.17 inventory",
+   "query": "Kyrgyz",
+   "checked_utc": "2026-10-20T15:12:41.658728+00:00",
+   "error": null,
+   "ids": [
+    "Kyrgyz-KTMU",
+    "Kyrgyz-TueCL"
+   ]
+  },
+  "Apertium": {
+   "value": "repo c5d15a1",
+   "status": "observed",
+   "source": "git ls-remote",
+   "query": "https://github.com/apertium/apertium-kir",
+   "checked_utc": "2026-10-20T15:12:42.784345+00:00",
+   "error": null,
+   "ids": null
+  },
+  "TIL corpus": {
+   "value": "20 pairs, max 312,644 (ky-en)",
+   "status": "observed",
+   "source": "TIL corpus README (pinned)",
+   "query": "ky",
+   "checked_utc": "2026-10-20T15:12:42.784417+00:00",
+   "error": null,
+   "ids": null
+  },
+  "X-WMT test": {
+   "value": "yes",
+   "status": "observed",
+   "source": "til-mt xwmt/test",
+   "query": "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/ky-en/ky-en.ky",
+   "checked_utc": "2026-10-20T15:12:43.304377+00:00",
+   "error": null,
+   "ids": null
+  },
+  "SIB-200": {
+   "value": "yes",
+   "status": "observed",
+   "source": "SIB-200 (pinned)",
+   "query": "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/kir_Cyrl/dev.tsv",
+   "checked_utc": "2026-10-20T15:12:43.800213+00:00",
+   "error": null,
+   "ids": null
+  },
+  "NLLB-200": {
+   "value": "yes",
+   "status": "observed",
+   "source": "NLLB-200 tokenizer language codes",
+   "query": "kir_Cyrl",
+   "checked_utc": "2026-10-20T15:12:44.028223+00:00",
+   "error": null,
+   "ids": null
+  },
+  "GlotLID": {
+   "value": "yes",
+   "status": "observed",
+   "source": "GlotLID v3 labels",
+   "query": "__label__kir_Cyrl",
+   "checked_utc": "2026-10-20T15:12:44.042543+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Hub models": {
+   "value": null,
+   "status": "error",
+   "source": "Hugging Face Hub",
+   "query": [
+    "ky",
+    "kir"
+   ],
+   "checked_utc": "2026-10-20T15:12:44.349144+00:00",
+   "error": "403 Forbidden",
+   "ids": null
+  },
+  "Common Voice": {
+   "value": null,
+   "status": "not_checked",
+   "source": "Common Voice release metadata (not queried here)",
+   "query": "kir",
+   "checked_utc": "2026-10-20T15:12:44.349233+00:00",
+   "error": null,
+   "ids": null
+  }
+ },
+ "Nogai": {
+  "UD 2.17": {
+   "value": 0,
+   "status": "observed",
+   "source": "UD 2.17 inventory (tables/tbl-ud217-inventory)",
+   "query": "Nogai",
+   "checked_utc": "2026-10-20T15:12:44.349262+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Apertium": {
+   "value": "repo 09fdef0",
+   "status": "observed",
+   "source": "git ls-remote",
+   "query": "https://github.com/apertium/apertium-nog",
+   "checked_utc": "2026-10-20T15:12:51.776094+00:00",
+   "error": null,
+   "ids": null
+  },
+  "TIL corpus": {
+   "value": null,
+   "status": "not_found",
+   "source": "TIL corpus README (pinned)",
+   "query": "no TIL language code",
+   "checked_utc": "2026-10-20T15:12:51.776126+00:00",
+   "error": null,
+   "ids": null
+  },
+  "X-WMT test": {
+   "value": null,
+   "status": "not_found",
+   "source": "til-mt xwmt/test",
+   "query": "no TIL code",
+   "checked_utc": "2026-10-20T15:12:51.776129+00:00",
+   "error": null,
+   "ids": null
+  },
+  "SIB-200": {
+   "value": null,
+   "status": "not_found",
+   "source": "SIB-200 (pinned)",
+   "query": "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/nog_Cyrl/dev.tsv",
+   "checked_utc": "2026-10-20T15:12:52.060589+00:00",
+   "error": null,
+   "ids": null
+  },
+  "NLLB-200": {
+   "value": null,
+   "status": "not_found",
+   "source": "NLLB-200 tokenizer language codes",
+   "query": "nog_Cyrl",
+   "checked_utc": "2026-10-20T15:12:52.266980+00:00",
+   "error": null,
+   "ids": null
+  },
+  "GlotLID": {
+   "value": "yes",
+   "status": "observed",
+   "source": "GlotLID v3 labels",
+   "query": "__label__nog_Cyrl",
+   "checked_utc": "2026-10-20T15:12:52.279637+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Hub models": {
+   "value": null,
+   "status": "error",
+   "source": "Hugging Face Hub",
+   "query": [
+    "nog"
+   ],
+   "checked_utc": "2026-10-20T15:12:52.569069+00:00",
+   "error": "403 Forbidden",
+   "ids": null
+  },
+  "Common Voice": {
+   "value": null,
+   "status": "not_checked",
+   "source": "Common Voice release metadata (not queried here)",
+   "query": "nog",
+   "checked_utc": "2026-10-20T15:12:52.569125+00:00",
+   "error": null,
+   "ids": null
+  }
+ },
+ "Tuvan": {
+  "UD 2.17": {
+   "value": 0,
+   "status": "observed",
+   "source": "UD 2.17 inventory (tables/tbl-ud217-inventory)",
+   "query": "Tuvan",
+   "checked_utc": "2026-10-20T15:12:52.569147+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Apertium": {
+   "value": "repo 038f717",
+   "status": "observed",
+   "source": "git ls-remote",
+   "query": "https://github.com/apertium/apertium-tyv",
+   "checked_utc": "2026-10-20T15:12:53.395181+00:00",
+   "error": null,
+   "ids": null
+  },
+  "TIL corpus": {
+   "value": "10 pairs, max 12,531 (tyv-ba)",
+   "status": "observed",
+   "source": "TIL corpus README (pinned)",
+   "query": "tyv",
+   "checked_utc": "2026-10-20T15:12:53.395260+00:00",
+   "error": null,
+   "ids": null
+  },
+  "X-WMT test": {
+   "value": null,
+   "status": "not_found",
+   "source": "til-mt xwmt/test",
+   "query": "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/tyv-en/tyv-en.tyv",
+   "checked_utc": "2026-10-20T15:12:53.669052+00:00",
+   "error": null,
+   "ids": null
+  },
+  "SIB-200": {
+   "value": null,
+   "status": "not_found",
+   "source": "SIB-200 (pinned)",
+   "query": "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/tyv_Cyrl/dev.tsv",
+   "checked_utc": "2026-10-20T15:12:54.071440+00:00",
+   "error": null,
+   "ids": null
+  },
+  "NLLB-200": {
+   "value": null,
+   "status": "not_found",
+   "source": "NLLB-200 tokenizer language codes",
+   "query": "tyv_Cyrl",
+   "checked_utc": "2026-10-20T15:12:54.306731+00:00",
+   "error": null,
+   "ids": null
+  },
+  "GlotLID": {
+   "value": "yes",
+   "status": "observed",
+   "source": "GlotLID v3 labels",
+   "query": "__label__tyv_Cyrl",
+   "checked_utc": "2026-10-20T15:12:54.318579+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Hub models": {
+   "value": null,
+   "status": "error",
+   "source": "Hugging Face Hub",
+   "query": [
+    "tyv"
+   ],
+   "checked_utc": "2026-10-20T15:12:54.653280+00:00",
+   "error": "403 Forbidden",
+   "ids": null
+  },
+  "Common Voice": {
+   "value": null,
+   "status": "not_checked",
+   "source": "Common Voice release metadata (not queried here)",
+   "query": "tyv",
+   "checked_utc": "2026-10-20T15:12:54.653355+00:00",
+   "error": null,
+   "ids": null
+  }
+ },
+ "Shor": {
+  "UD 2.17": {
+   "value": 0,
+   "status": "observed",
+   "source": "UD 2.17 inventory (tables/tbl-ud217-inventory)",
+   "query": "Shor",
+   "checked_utc": "2026-10-20T15:12:54.653384+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Apertium": {
+   "value": null,
+   "status": "not_found",
+   "source": "git ls-remote",
+   "query": "https://github.com/apertium/apertium-cjs",
+   "checked_utc": "2026-10-20T15:12:55.066122+00:00",
+   "error": "tal: could not read Username for 'https://github.com': terminal prompts disabled",
+   "ids": null
+  },
+  "TIL corpus": {
+   "value": "1 pairs, max 2,294 (cjs-ru)",
+   "status": "observed",
+   "source": "TIL corpus README (pinned)",
+   "query": "cjs",
+   "checked_utc": "2026-10-20T15:12:55.066200+00:00",
+   "error": null,
+   "ids": null
+  },
+  "X-WMT test": {
+   "value": null,
+   "status": "not_found",
+   "source": "til-mt xwmt/test",
+   "query": "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/cjs-en/cjs-en.cjs",
+   "checked_utc": "2026-10-20T15:12:55.332027+00:00",
+   "error": null,
+   "ids": null
+  },
+  "SIB-200": {
+   "value": null,
+   "status": "not_found",
+   "source": "SIB-200 (pinned)",
+   "query": "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/cjs_Cyrl/dev.tsv",
+   "checked_utc": "2026-10-20T15:12:55.854956+00:00",
+   "error": null,
+   "ids": null
+  },
+  "NLLB-200": {
+   "value": null,
+   "status": "not_found",
+   "source": "NLLB-200 tokenizer language codes",
+   "query": "cjs_Cyrl",
+   "checked_utc": "2026-10-20T15:12:56.048676+00:00",
+   "error": null,
+   "ids": null
+  },
+  "GlotLID": {
+   "value": "yes",
+   "status": "observed",
+   "source": "GlotLID v3 labels",
+   "query": "__label__cjs_Cyrl",
+   "checked_utc": "2026-10-20T15:12:56.061048+00:00",
+   "error": null,
+   "ids": null
+  },
+  "Hub models": {
+   "value": null,
+   "status": "error",
+   "source": "Hugging Face Hub",
+   "query": [
+    "cjs"
+   ],
+   "checked_utc": "2026-10-20T15:12:56.387239+00:00",
+   "error": "403 Forbidden",
+   "ids": null
+  },
+  "Common Voice": {
+   "value": null,
+   "status": "not_checked",
+   "source": "Common Voice release metadata (not queried here)",
+   "query": "cjs",
+   "checked_utc": "2026-10-20T15:12:56.387304+00:00",
+   "error": null,
+   "ids": null
+  }
+ }
+}

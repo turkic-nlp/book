@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-15",
+  "checks": [
+    "split IDs/source groups/text leakage guards",
+    "entropy/perplexity, stable softmax, F1, pivot and sampling arithmetic",
+    "full-stream sampling, denominators, script shares, FST unknowns and stratum weights",
+    "retrieval shuffled IDs, coverage, duplicates, ties and zero vectors",
+    "BIO schema/spans and ambiguous conversion boundaries",
+    "Hub filter signature; observed zero, unknown, error and ID deduplication",
+    "ASR duration/rate/channel guards and raw/normalised error arithmetic",
+    "TUMLU schema/gold isolation, padding/EOS-compatible sum scoring and analytic chance",
+    "tiny XLM-R LoRA classifier gradients/step/adapter reload; tied embedding resize/gradient/reload",
+    "real pinned Whisper processor + tiny Whisper collator/forward/backward",
+    "all pinned TUMLU Kazakh rows schema/choices/duplicate/split audit"
+  ],
+  "n_check_groups": 11,
+  "pretrained_training_run": false,
+  "quality_claims": false
+}

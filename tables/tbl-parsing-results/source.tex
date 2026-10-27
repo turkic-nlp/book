@@ -1,0 +1,37 @@
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}ll r  rrr r  rrr@{}}
+    \toprule
+    & & & \multicolumn{3}{c}{\textbf{Stanza (per-language)}} & & \multicolumn{3}{c}{\textbf{Glot500 (multilingual)}} \\
+    \cmidrule(lr){4-6} \cmidrule(lr){8-10}
+    \textbf{Language} & \textbf{ISO} & $n$ &
+    \textbf{UPOS} & \textbf{UAS} & \textbf{LAS} & &
+    \textbf{UPOS} & \textbf{UAS} & \textbf{LAS} \\
+    \midrule
+    Turkish        & tur & 877  & 85.1 & 75.3 & 63.5 & & \textbf{86.9} & \textbf{84.5} & \textbf{70.1} \\
+    Azerbaijani    & aze & 869  & 84.9 & 72.3 & 60.8 & & \textbf{87.0} & \textbf{76.2} & \textbf{64.5} \\
+    Turkmen$^\ddagger$ & tuk & 825  & \textbf{86.1} & 76.8 & 67.8 & & 85.8 & \textbf{77.9} & \textbf{68.4} \\
+    \cmidrule(lr){1-10}
+    Kazakh         & kaz & 851  & 87.9 & 67.4 & 57.4 & & \textbf{88.8} & \textbf{71.9} & \textbf{59.9} \\
+    Kyrgyz         & kir & 1166 & 71.1 & 50.2 & 29.4 & & \textbf{79.0} & \textbf{63.9} & \textbf{41.0} \\
+    Bashkir$^\ddagger$ & bak & 814  & 87.0 & 72.8 & 62.5 & & \textbf{89.6} & \textbf{75.8} & \textbf{63.8} \\
+    Tatar          & tat &  29  & \textbf{86.2} & 69.2 & 57.7 & & 79.3 & \textbf{77.8} & \textbf{70.4} \\
+    \cmidrule(lr){1-10}
+    Uyghur         & uig & 758  & 76.9 & 77.1 & 62.3 & & \textbf{79.7} & \textbf{81.5} & \textbf{66.7} \\
+    Uzbek          & uzb & 905  & 71.8 & 67.2 & 46.3 & & \textbf{87.6} & \textbf{81.5} & \textbf{68.3} \\
+    \cmidrule(lr){1-10}
+    \rowcolor{codebg}
+    Karakalpak$^\dagger$     & kaa &  235 & --- & --- & --- & & 77.5 & 61.7 & 45.8 \\
+    \rowcolor{codebg}
+    Kumyk$^\dagger$          & kum & 144  & --- & --- & --- & & 78.5 & 60.4 & 45.5 \\
+    \rowcolor{codebg}
+    Sakha$^\dagger$          & sah &  16  & --- & --- & --- & & 93.8 & 60.0 & 46.7 \\
+    \midrule
+    \textbf{Avg (9 shared)} & & & 81.9 & 69.8 & 56.4 & & \textbf{84.9} & \textbf{76.8} & \textbf{63.7} \\
+    \bottomrule
+  \end{tabular}
+  \caption{POS tagging and dependency parsing. Both backends receive the same automatic tokenization; $n$: test words whose boundaries match the gold tokenization, over which UPOS is computed; UAS and LAS are computed over those of these words whose gold and predicted heads are also matched. Bold: better backend per language and metric. $^\dagger$Zero-shot (shaded): no training data and no Stanza model; Glot500 uses a proxy language embedding (Karakalpak$\to$Uzbek, Kumyk$\to$Tatar, Sakha$\to$Bashkir). $^\ddagger$Silver test set (translated and automatically annotated). Averages: nine shared languages.}
+  \label{tab:parsing-eval}
+\end{table*}

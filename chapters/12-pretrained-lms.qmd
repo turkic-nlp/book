@@ -1,0 +1,266 @@
+---
+short-title: "Pretrained Language Models"
+---
+
+# Pretrained Language Models for Turkic {#sec-book-12-pretrained-lms}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Survey the encoder-only (BERT-class) models for Turkic languages and compare monolingual and multilingual models for a task
+- Distinguish changes in tokeniser fertility from measured changes in task performance
+- Identify the major generative language models for Turkish and Kazakh and how they were built
+- Describe the strategies for adapting a pretrained model to a new Turkic language (continued pretraining, vocabulary extension, LoRA) and the steps of adapting a decoder LLM, from tokeniser extension to instruction tuning and evaluation
+- Explain the vocabulary overlap problem and its consequence for cross-lingual transfer across script boundaries within the Turkic family
+- Reason about the implications of high tokeniser fertility for context window consumption and deployment cost in Turkic-language applications
+:::
+
+@sec-book-07-neural-morphology introduced neural morphology and tokenisation. This chapter builds on that foundation: selecting pretrained encoders, adapting generative models and evaluating the results. It separates language coverage, tokenisation and task accuracy.
+
+The chapter covers encoders (@sec-encoder-only), generative models (@sec-generative), adaptation (@sec-building) and context budgeting (@sec-tokeniser-llm). The hands-on provides an XLM-R classification recipe with LoRA. The exercises report separate experiments with Glot500 on SIB-200.
+
+
+## Encoder-Only Models for Turkic Languages {#sec-encoder-only}
+
+### The BERT Architecture as Infrastructure
+
+BERT-style encoders [@devlin2019bert] learn contextual token representations through masked language modelling: predict selected tokens from their surrounding text. A task-specific head then maps those representations to labels or answer spans.
+
+For POS tagging and NER, a classification head predicts labels from token representations. Sequence classifiers use a pooled representation, often the first special token. Extractive question-answering heads predict answer boundaries in the supplied context. Token alignment and label conventions still need task-specific handling, as in @sec-ch09-hands-on.
+
+The training pattern is reusable across languages, but changing the model name and dataset is not enough. Check the tokeniser, input length, annotation scheme and evaluation procedure for each model and task.
+
+### BERTurk
+
+BERTurk has four main BERT variants: cased and uncased models, each with a 32K or 128K vocabulary [@schweter2020berturk]. The release README reports a 35 GB, 4.4-billion-token training corpus drawn from Turkish OSCAR, Wikipedia, OPUS and material supplied by Kemal Oflazer. Cased models preserve capitalisation; uncased models lowercase the input. Check how each normaliser handles Turkish dotted and dotless letters (@sec-book-03-scripts-orthography).
+
+A larger vocabulary increases the embedding matrix and may shorten token sequences (@sec-morph-aware-tok). Exercise 1 compares published BERTurk task scores. Its recorded run did not measure the BERTurk tokenisers, which were unavailable locally.
+
+| Model identifier | Vocabulary | Cased |
+|-----------------|:----------:|:-----:|
+| `dbmdz/bert-base-turkish-cased` | 32K | yes |
+| `dbmdz/bert-base-turkish-uncased` | 32K | no |
+| `dbmdz/bert-base-turkish-128k-cased` | 128K | yes |
+| `dbmdz/bert-base-turkish-128k-uncased` | 128K | no |
+
+: The main BERTurk variants. The family also includes DistilBERTurk, ConvBERTurk, ELECTRA and T5 models, some trained on the Turkish part of mC4 (242 GB). {#tbl-berturk-variants}
+
+The 32K and 128K vocabularies require different-sized embedding matrices, so the models also differ in parameter count. To compare monolingual and multilingual encoders, use the same splits, preprocessing and search budget.
+
+The BERTurk repository's five-run evaluations show that the preferred model depends on the task. On WikiANN NER, cased BERTurk 128K has the best BERTurk test F1: 93.90, compared with 92.96 for XLM-R base. On BOUN POS tagging, XLM-R base scores highest at 91.86% accuracy, followed by cased BERTurk 32K at 91.49 and cased 128K at 91.02 (`OLD_EVALUATIONS.md` in `stefan-it/turkish-bert`, commit `0ab49e2`).
+
+### Multilingual Models: mBERT and XLM-R
+
+**Multilingual BERT (mBERT)** [@devlin2019bert] uses a shared WordPiece vocabulary and multilingual masked-language pretraining. Current Wikipedia article counts cannot reconstruct the training distribution of a historical checkpoint. Record the checkpoint and its documented training coverage, then measure tokenisation on the actual target corpus.
+
+**XLM-R** [@conneau2020xlmr] is trained on 2.5 terabytes of filtered CommonCrawl data in 100 languages and reported large gains over mBERT on cross-lingual benchmarks such as XNLI, which includes Turkish. The model is available in two sizes: `xlm-roberta-base` and `xlm-roberta-large` (approximately 270M and 550M parameters in the original paper; exact counts depend on the loaded task head).
+
+XLM-R's CC-100 training corpus includes Turkish, Azerbaijani, Uzbek, Kazakh, Kyrgyz and Uyghur. It excludes Tatar, Bashkir, Turkmen, Chuvash, Sakha and the smaller Turkic languages. Related languages and shared scripts may still support transfer to them; measure the resulting representation quality.
+
+Glot500 extends XLM-R to 500+ languages and expands its vocabulary from 250,002 to 401,145 entries [@imanigooghari-etal-2023-glot500]. All but one of XLM-R's pieces retain their IDs (Exercise 1). It covers many more Turkic languages and supplies the frozen encoder for TurkicNLP's multilingual POS tagger and dependency parser (@sec-book-08-syntax-ud).
+
+For cross-lingual work, include a multilingual encoder as a baseline. Kardeş-NLU reports gains from Turkish intermediate training and fine-tuning on its tested NLU tasks in Azerbaijani, Kazakh, Kyrgyz, Uzbek and Uyghur [@senel2024kardes]. The parsing results in @sec-book-08-syntax-ud use different tasks and reference sets; they should be interpreted separately.
+
+### Language-Specific Models and Model Selection
+
+BERTbek [@kuriyozov-etal-2024-bertbek] is a set of three Uzbek BERT models trained on different text sources and corpus sizes; the authors report that they outperform mBERT on sentiment analysis, multi-label topic classification and NER. Script, casing, training domain and released weights must be checked for each model separately; "Uzbek" alone does not specify its input conventions. The catalogue is selective; many more models have been released.
+
+For within-language work, compare a suitable monolingual encoder with a multilingual baseline. For transfer, include a multilingual model whose language coverage and tokeniser fit the target. Keep mBERT where it is relevant to a historical comparison or deployment constraint. Neither monolingual specialisation nor a larger corpus guarantees superiority on every task. @tbl-verified-models records exact configurations used in the book's experiments.
+
+## Generative Language Models for Turkic {#sec-generative}
+
+### Turkish Generative Models
+
+TURNA is a Turkish encoder-decoder model pretrained with UL2 on a corpus curated for the project [@uludogan-etal-2024-turna]. The authors evaluate three generation and five understanding tasks. They report gains over several multilingual models and competitive understanding results against monolingual Turkish models. Those comparisons support conclusions about the tested datasets and baselines; they leave broader comparisons with decoder-only models open.
+
+For any additional academic, community or commercial checkpoint, record its exact model card, base revision, tokeniser, adaptation data and licence before adding it to an experiment. A name without a verified release is not a reproducible baseline.
+
+### Kazakh: KAZ-LLM and Sherkala
+
+KAZ-LLM [@issai2024kazllm], released by ISSAI in December 2024, comes in 8-billion and 70-billion-parameter versions built on Llama 3.1. ISSAI reports training on more than 150 billion tokens of Kazakh, Russian and English text, with additional support for Turkish; the weights are licensed CC BY-NC 4.0. Its evaluation code (the `IS2AI/KazLLM_Benchmark` repository) runs MMLU, Winogrande, HellaSwag, ARC, GSM8K and DROP in Kazakh, Russian and English.
+
+Sherkala-Chat [@koto2025sherkala] is an 8-billion-parameter Kazakh chat model built by adapting Llama 3.1 8B in a "moderately resourced" setting: continued pretraining on 45.3 billion tokens of Kazakh, English, Russian and Turkish text, instruction tuning on translated data plus an automatically built, manually checked Kazakhstan-specific instruction set, and Kazakh safety data. Its paper is a documented recipe for adapting an existing LLM to a Turkic language.
+
+### Other Generative Models and the Multilingual Fallback
+
+**Other languages.** This catalogue is selective. A missing entry means that a release has not been verified here, not that no dedicated model exists.
+
+**Multilingual models.** Where no dedicated model fits the task, evaluate a multilingual model. TUMLU [@isbarov2025tumlu] tests multiple-choice performance on native questions in the listed Turkic languages (@sec-book-15-evaluation-benchmarks). It does not directly measure grammaticality, generation quality or cultural adequacy.
+
+Exercise 4 gives a narrower comparison: Qwen2.5-1.5B-Instruct [@qwen2024qwen25] scores 84.2% on 500 English COPA test items and 52.2% on their Kazakh translations from Kardeş-NLU [@ponti2020xcopa; @senel2024kardes]. The Kazakh score's 95% interval, 47.8–56.5%, includes the 50% random-choice baseline. This result concerns one model and scoring protocol; it does not identify the cause of the language gap.
+
+**Combining an LLM with toolkit analyses.** TurkicNLP offers LLM backends for morphology, NER, translation, sentiment and spelling correction (@sec-ner-toolkit, @sec-neural-mt). With `morph_backend="apertium_llm"`, the LLM selects among the analyser's candidate readings for ambiguous words. This constrains the selection, but the candidates may be incomplete and the chosen reading may be wrong. A free-form explanation from `llm.ask` is a separate output and needs checking:
+
+```python
+import turkicnlp
+
+llm = dict(llm_model="qwen2.5:7b", llm_base_url="http://localhost:11434/v1", llm_api_key="ollama")
+
+nlp = turkicnlp.Pipeline("kaz", processors=["tokenize", "morph"], morph_backend="apertium_llm", **llm)
+doc = nlp("Ол кітабымды оқып жатыр.")
+print([(w.text, w.lemma, w.upos, w.feats) for w in doc.words])
+
+print(turkicnlp.llm.ask("Explain the verb form in this sentence.", doc=doc, **llm))
+```
+
+The same `llm_*` options work with an OpenAI-compatible server (vLLM, Ollama), OpenAI, Claude (`llm_provider="anthropic"`) or an in-process Hugging Face model (`llm_provider="hf"`). `doc._processor_log` records the model and prompt version used, which you need when reporting results.
+
+
+## Building Turkic Language Models {#sec-building}
+
+### Continued Pretraining
+
+**Continued pretraining** updates a pretrained model on additional text. For BERT-style encoders, it continues masked language modelling. Decoder LLMs instead continue their next-token prediction objective. Compare the adapted checkpoint with the original on the intended tasks.
+
+Continued pretraining can adapt a model even when the target language was absent from its documented training data. Glot500 is an example of extending multilingual coverage. Gains, forgetting and preservation of cross-lingual alignment must be measured; compare downstream validation performance before and after adaptation, including a retained source-language task.
+
+Use audited, deduplicated target-language text and document the effective token count. @sec-corpora-inventory provides dated corpus measurements with their units; raw web totals are not a guarantee of clean usable training data.
+
+### Vocabulary Extension
+
+Measure full-text fertility, unknown-token behaviour and downstream performance before adding tokens. Adding an already representable word can shorten sequences; byte fallback means missing whole words need not be unrepresentable. Tokeniser `add_tokens` adds matching rules and entries; it does not train new BPE merges.
+
+Keep existing token IDs when adding vocabulary entries. Resize the input and output embeddings as needed, check weight tying and initialise each new row from its old-token decomposition or another documented method.
+
+Make sure the new rows receive gradients. If every base parameter is frozen, attention LoRA alone leaves them untrained. Either train and save the full embedding module, including its parameters in the count, or use a tested method that updates selected rows. Save the tokeniser, resized embeddings/output head and adapter together. After reloading, compare logits and token IDs. Renumbering old IDs to merge independently trained vocabularies breaks their association with the learned embeddings.
+
+Exercise 5 carries out these checks for 300 Kazakh words added to Glot500: the old IDs survive, only the new rows receive gradients when PEFT's `trainable_token_indices` is used, and the checked logits match after reload. In that recorded PEFT version and configuration, saving also writes the whole resized embedding matrix, producing a 1.2 GB adapter file. The extension shortened the Kazakh test text by 2.5% and gave a lower mean classification score (mean macro-F1 0.818 against 0.837 without it, over three seeds).
+
+### Training from Scratch
+
+Decide between training from scratch and adaptation using the cleaned data volume, compute budget and deployment requirements. Compare adaptation with a smaller model trained from scratch on the same held-out tasks. Keep benchmark text out of tokeniser training and pretraining as well as supervised fine-tuning.
+
+### Adapting a Decoder LLM to a Turkic Language
+
+Adapting an existing open-weight LLM is one route; KAZ-LLM and Sherkala are documented examples. The following workflow separates the main decisions:
+
+1. **Tokeniser extension.** Measure the base tokeniser's fertility on your language (@tbl-fertility). If extension is justified, follow the ID, embedding and reload checks above and measure the resulting full-text token counts.
+2. **Continued pretraining.** Continue training on target-language text mixed with a share of the base model's original languages (often English, and for Central Asian languages Russian) and test whether the mixture reduces forgetting. Turkish is another candidate to compare, although Kardeş-NLU's NLU results say little about the best mixture for decoder pretraining.
+3. **Instruction tuning.** Audit the available native, translated and generated instruction data. Check meaning, language and relevance to the intended users. Compare data sources at matched training budgets; the Sherkala recipe above provides one documented example.
+4. **Preference tuning and safety.** Check what preference data and evaluations exist for the selected language. Test both appropriate assistance and refusal behaviour with target-language prompts; behaviour in English may not carry over.
+5. **Evaluation.** Use native benchmarks (TUMLU, KazMMLU, and others in @sec-book-15-evaluation-benchmarks), measure retention on any source languages the application needs, and use unrestricted language identification to flag outputs for manual review (@sec-lid).
+
+### LoRA: Parameter-Efficient Fine-tuning
+
+For an adapted projection $W\in\mathbb{R}^{d_{out}\times d_{in}}$, standard LoRA uses
+
+$$W'=W+\frac{\alpha}{r}BA,\qquad A\in\mathbb{R}^{r\times d_{in}},\quad B\in\mathbb{R}^{d_{out}\times r}.$$
+
+The added parameter count is $r(d_{in}+d_{out})$ **per projection**, not per transformer layer. Count every adapted projection plus any trainable classifier, embedding or bias parameters. Target module names depend on the architecture: XLM-R uses `query` and `value`, unlike models whose projections are named `q_proj` and `v_proj` [@hu2022lora]. For an XLM-R-base-sized model with rank 8 on `query` and `value`, that is 12 × 2 × 8 × (768 + 768) = 294,912 adapter weights; the seven-class classification head adds 595,975.
+
+In Exercise 2, LoRA with ranks 2, 8 and 32 on Glot500 gave Kazakh SIB-200 test macro-F1 between 0.807 and 0.861; a comparator with frozen word embeddings gave 0.792. Although the saved output calls it `full`, only the other encoder weights and classifier were updated: 86,047,495 parameters. It is partial fine-tuning. Only rank 8 has three seeds, so the runs are too few to rank training methods or ranks reliably.
+
+QLoRA quantises frozen base weights. Ideal four-bit weight storage is one quarter of sixteen-bit storage, but scales, unquantised modules, gradients, optimiser states and activations also occupy memory. Measure peak memory and throughput for the actual batch and sequence lengths; a nominal GPU capacity does not guarantee a configuration will fit.
+
+## The Tokeniser Problem for Large Language Models {#sec-tokeniser-llm}
+
+### Estimating Context Use
+
+@sec-subword-tok defines fertility. For context budgeting, the relevant quantity is the token count of the complete prompt, including formatting and special tokens. This applies to encoders as well as decoder LLMs.
+
+A model's context limit is measured in tokens. How much text fits depends on the language, tokeniser and text itself. A larger limit also does not guarantee that the model uses all parts of a long input effectively.
+
+The table below estimates word counts by dividing a token budget by the isolated-word fertility values in @tbl-fertility. This arithmetic describes token consumption; evaluating long-context reasoning requires a separate task.
+
+| Language | Fertility range | Words in 4,096 tokens | Words in 32,768 tokens |
+|----------|:----------------------:|:------------------:|:-------------------:|
+| English (reference) | 1.08–1.09 | 3,757–3,792 | 30,062–30,340 |
+| Turkish | 1.95–2.33 | 1,757–2,100 | 14,063–16,804 |
+| Kazakh | 2.37–4.05 | 1,011–1,728 | 8,090–13,826 |
+| Kyrgyz | 2.52–3.80 | 1,077–1,625 | 8,623–13,003 |
+| Tatar | 2.51–4.46 | 918–1,631 | 7,347–13,054 |
+| Uyghur | 3.38–6.85 | 597–1,211 | 4,783–9,694 |
+
+: Approximate number of words that fit into a context window, computed as window size divided by the lowest and highest fertility measured among the four tokenisers in @tbl-fertility. {#tbl-context-window}
+
+Autoregressive models generate tokens sequentially. For a fixed text, higher fertility can increase decoding work, though elapsed time also depends on architecture, batching, hardware, prompt processing and output length. The estimates above use isolated words, omit chat-template and special tokens, and leave no response space. Treat them as rough capacity calculations.
+
+Running-text counts can differ. In Exercise 1's SIB-200 sentence sample, including punctuation, the Llama 3 tokeniser uses 4.77 tokens per Kazakh whitespace word and 2.15 per Turkish one. The isolated-word figures in @tbl-fertility are 3.51 and 2.03, measured on a different sample.
+
+You can measure fertility for your own text and tokeniser in a few lines, in the native script and after conversion to the toolkit's Common Turkic Script (CTS):
+
+```python
+from transformers import AutoTokenizer
+import turkicnlp
+from turkicnlp.scripts import Script
+from turkicnlp.scripts.transliterator import Transliterator
+
+tok = AutoTokenizer.from_pretrained("FacebookAI/xlm-roberta-base",
+    revision="e73636d4f797dec63c3081bb6ed5c7b0bb3f2089")  # public encoder tokenizer diagnostic
+words = [w.text for w in turkicnlp.Pipeline("kaz", processors=["tokenize"], tokenize_backend="rule")(
+             "Мен мектептерімізде оқыдым. Алматы — Қазақстанның ең үлкен қаласы.").words
+         if w.text.isalpha()]
+to_cts = Transliterator("kaz", Script.CYRILLIC, Script.COMMON_TURKIC)
+
+def fertility(ws):
+    if not ws:
+        raise ValueError("no words to measure")
+    return sum(len(tok.encode(w, add_special_tokens=False)) for w in ws) / len(ws)
+
+print(f"native {fertility(words):.2f}   CTS {fertility([to_cts.transliterate(w) for w in words]):.2f}")
+```
+
+Use `add_special_tokens=False` for this isolated-word diagnostic. Context budgeting requires encoding the complete prompt with the actual model tokeniser and template, including any required access to gated checkpoints.
+
+### The Vocabulary Overlap Problem
+
+A shared vocabulary reuses character sequences across languages, but context determines their meaning. Models can also learn relationships between forms with different token IDs.
+
+Different scripts reduce literal overlap, but do not prevent a multilingual encoder from learning aligned representations. The overlap study in @fig-cts-overlap is a diagnostic on its stated sample, not proof that all cross-script trigrams are absent or that Turkish knowledge cannot transfer to Kazakh.
+
+Script conversion can increase literal overlap while changing the input distribution (@sec-cts, @sec-script-norm). Exercise 3 illustrates why the task result must be measured: Glot500 fine-tuned on Turkish SIB-200 topic classification [@adelani2024sib] reaches a Kazakh macro-F1 of 0.838 on Cyrillic test sentences but 0.694 on the same sentences in CTS (means over three seeds), although conversion raises the share of Kazakh subword pieces seen in the Turkish training text from 9% to 52%.
+
+### LoRA for Vocabulary and Script Adaptation
+
+Treat script conversion, vocabulary extension and LoRA as separate factors. Compare the native-script baseline, conversion alone, extension alone and their combinations under a matched update budget. Follow the embedding-saving contract above whenever the vocabulary changes. Evaluate task accuracy alongside fertility (@sec-evaluation-principles).
+
+## Hands-On: A LoRA Fine-Tuning Procedure for Kazakh Text Classification with XLM-R {#sec-ch12-hands-on}
+
+**Question.** Does LoRA improve Kazakh text classification on source-disjoint data?
+
+**Inputs.** Licensed JSONL train/dev/test files in the documented schema and XLM-R.
+
+**Compute.** Checkpoint download and training memory; record the selected trainable modules and hardware.
+
+**Output.** Saved adapters and task head, label mappings, predictions and scores.
+
+**Interpretation.** Select the checkpoint on development data and compare the reserved test predictions with a baseline.
+
+The complete runner is [classify.py](../code/ch12-classify/classify.py). Supply `train.jsonl`, `dev.jsonl` and `test.jsonl` with `id`, `group_id`, `text` and a string `label`; `group_id` identifies the original article or source group across excerpts and variants. The runner rejects cross-split IDs, source groups and exact normalised texts, unknown evaluation labels and overlength examples. Define document chunking before using long articles.
+
+```bash
+python code/ch12-classify/classify.py data/kazakh-news runs/kazakh-lora --lora
+```
+
+The tokeniser and base model share a pinned revision. LoRA adapts XLM-R's `query` and `value` projections with rank 8 and scaling 16/8. The randomly initialised classifier is explicitly trainable and saved using `modules_to_save=["classifier"]`. The run manifest counts actual trainable and total parameters rather than printing a fixed percentage.
+
+Development macro-F1 selects the checkpoint. The runner saves the model/adapter and tokeniser, reloads onto a fresh base model, and checks evaluation logits before scoring the reserved test split. It saves per-item predictions, label mappings, input hashes and seed. The inference checkpoint includes the classifier; loading the base encoder alone creates an untrained task head.
+
+The local mechanics checks use a tiny randomly initialised encoder and balanced synthetic labels to test loss, gradients and adapter reload. They provide no evidence of classification accuracy. The exercises instead use Glot500 on SIB-200, selecting checkpoints on development data. Their separate runner truncates at 256 tokens, while this hands-on rejects overlength inputs. Record affected items when interpreting those exercise scores.
+
+**Status: procedure only.** No licensed news corpus with source-disjoint splits was prepared for this run, so no Kazakh news-classification score is reported.
+
+## What to Take Forward {#sec-ch12-synthesis .unnumbered}
+
+Choose a pretrained model for the task, then test whether adaptation improves task performance or meets a justified cost, latency or deployment requirement. Exercise 4 shows why evaluation matters: Qwen2.5-1.5B-Instruct scores 52.2% on the Kazakh COPA translations, with a 95% interval of 47.8–56.5% that includes the 50% chance baseline. Use token counts to plan context and cost, and task scores to assess an adaptation. @sec-book-13-meaning-retrieval applies these models to representations and search.
+
+
+## Further Reading {#sec-ch12-further-reading .unnumbered}
+
+The BERTurk model family is documented in its release [@schweter2020berturk], whose repository describes the training corpora and compares the BERTurk variants with mBERT and XLM-R on Turkish POS tagging, NER and question answering; no variant wins every task. For multilingual encoders more generally, @conneau2020xlmr describes the training data, language coverage and cross-lingual transfer properties of XLM-R, including its XNLI results for Turkish.
+
+@hu2022lora introduces LoRA and compares it with full fine-tuning on the paper's tasks. Use those results as motivation for a matched comparison on the target task. For Turkic-specific LLM evaluation, @isbarov2025tumlu is a primary reference for native multiple-choice evaluation, with results by language, subject and script. See @sec-book-15-evaluation-benchmarks for the release-count caveat.
+
+The fertility analysis underlying the context window calculations in @sec-tokeniser-llm is from @hakimov2025turkicnlp, which provides measurements across 20 Turkic languages and four LLM tokenisers. The same paper shows the effect of a common script on fertility and lexical overlap (@sec-tokeniser-llm). @senel2024kardes shows how a high-resource relative improves sentence-level transfer within the family; @koto2025sherkala documents the adaptation of an open LLM to Kazakh.
+
+
+## Exercises {#sec-ch12-exercises .unnumbered}
+
+1. Compare vocabulary variants of one model family on the same documents. For BERTurk's 32K and 128K models, use the scores published in its repository; measure full-text tokens per word and embedding parameters for XLM-R and Glot500 (whose vocabulary extends XLM-R's), and compare them with LLM tokenisers.
+2. Compare classifier-only training, full fine-tuning and several LoRA ranks; report any frozen modules explicitly. Use the same real train/dev/test splits and training budget. Report macro-F1, class support, trainable parameters, peak memory and measured time.
+3. Test native script and CTS as separate treatments for zero-shot transfer from Turkish to Kazakh and Kyrgyz. Keep original IDs and labels, and freeze the protocol on development data.
+4. Evaluate Kazakh multiple-choice items with a conditional scorer, as in @sec-ch15-hands-on, and compare it with an encoder whose multiple-choice head is randomly initialised. The latter is not a zero-shot reasoning model.
+5. Extend a tokeniser without changing old IDs. Verify new embedding gradients and save/reload equivalence, then test whether reduced fertility improves downstream performance.

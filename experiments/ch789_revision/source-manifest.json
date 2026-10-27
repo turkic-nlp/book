@@ -1,0 +1,90 @@
+{
+  "kaznerd-commit.json": {
+    "url": "https://api.github.com/repos/IS2AI/KazNERD/commits/bd4333d",
+    "sha256": "d37b26e5810411d18fd140ce89f41bd201fab72bbc40d6752e445b1436568a35"
+  },
+  "KazNERD/IOB2_train.txt": {
+    "url": "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_train.txt",
+    "sha256": "e5a80f6d4bbff499a4bf7cbf96a169feb761411151fb45abebeaae06995ff647"
+  },
+  "KazNERD/IOB2_valid.txt": {
+    "url": "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_valid.txt",
+    "sha256": "29d584d1a0d9aca6d58b39eb8a93e154791d303ecff56ef93f12b3c889239bf1"
+  },
+  "KazNERD/IOB2_test.txt": {
+    "url": "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_test.txt",
+    "sha256": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a"
+  },
+  "wmt.bib": {
+    "url": "https://aclanthology.org/2021.wmt-1.60.bib",
+    "sha256": "771d311f5a515a700ab242623ac9738b9d39d939cb7151950d71b4a4b08d6ed7"
+  },
+  "xlmr-info.json": {
+    "url": "https://huggingface.co/api/models/FacebookAI/xlm-roberta-large",
+    "sha256": "bd5b361cc9fd603bcf0ea64772146eb76dc346d889d622613d56b53bb8e755cd"
+  },
+  "xlmr/config.json": {
+    "url": "https://huggingface.co/FacebookAI/xlm-roberta-large/resolve/c23d21b0620b635a76227c604d44e43a9f0ee389/config.json",
+    "sha256": "ec7c3a99c58a38ebb702a2297f1c4586944e841b5eb29d201ff87e0f9c9abe0e"
+  },
+  "xlmr/tokenizer.json": {
+    "url": "https://huggingface.co/FacebookAI/xlm-roberta-large/resolve/c23d21b0620b635a76227c604d44e43a9f0ee389/tokenizer.json",
+    "sha256": "a898ea75433890f6610f4e470b8ebeb0c21dce5c8dd61f892eb09eb5919d2e2c"
+  },
+  "xlmr/tokenizer_config.json": {
+    "url": "https://huggingface.co/FacebookAI/xlm-roberta-large/resolve/c23d21b0620b635a76227c604d44e43a9f0ee389/tokenizer_config.json",
+    "sha256": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce"
+  },
+  "xlmr/sentencepiece.bpe.model": {
+    "url": "https://huggingface.co/FacebookAI/xlm-roberta-large/resolve/c23d21b0620b635a76227c604d44e43a9f0ee389/sentencepiece.bpe.model",
+    "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+  },
+  "nllb-info.json": {
+    "url": "https://huggingface.co/api/models/facebook/nllb-200-distilled-600M",
+    "sha256": "972ae1fa5aeb2b779da21d32c36be2214a468b03c6dc6d9b64e48ac7ed17dac4"
+  },
+  "nllb/config.json": {
+    "url": "https://huggingface.co/facebook/nllb-200-distilled-600M/resolve/f8d333a098d19b4fd9a8b18f94170487ad3f821d/config.json",
+    "sha256": "f9b4081d3d108e9d06532ea8d92b932c04ed3a15ff2f87e6982f8e14db51fbc5"
+  },
+  "nllb/tokenizer.json": {
+    "url": "https://huggingface.co/facebook/nllb-200-distilled-600M/resolve/f8d333a098d19b4fd9a8b18f94170487ad3f821d/tokenizer.json",
+    "sha256": "e316b82de11d0f951f370943b3c438311629547285129b0b81dadabd01bca665"
+  },
+  "nllb/tokenizer_config.json": {
+    "url": "https://huggingface.co/facebook/nllb-200-distilled-600M/resolve/f8d333a098d19b4fd9a8b18f94170487ad3f821d/tokenizer_config.json",
+    "sha256": "d1aa8c3697d3e35674f97b5b7e9c99d22b010f528e80140257d97316be90d044"
+  },
+  "nllb/special_tokens_map.json": {
+    "url": "https://huggingface.co/facebook/nllb-200-distilled-600M/resolve/f8d333a098d19b4fd9a8b18f94170487ad3f821d/special_tokens_map.json",
+    "sha256": "992bd4ed610d644d6823081937bcc91bb8878dd556cea4ae5327f2480361330e"
+  },
+  "nllb/sentencepiece.bpe.model": {
+    "url": "https://huggingface.co/facebook/nllb-200-distilled-600M/resolve/f8d333a098d19b4fd9a8b18f94170487ad3f821d/sentencepiece.bpe.model",
+    "sha256": "14bb8dfb35c0ffdea7bc01e56cea38b9e3d5efcdcb9c251d6b40538e1aab555a"
+  },
+  "UD_Turkish-IMST/README.md": {
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-IMST/r2.17/README.md",
+    "sha256": "08028bb9a83cd7b08d971485b1f810302690fd8c903e5e2357e44d205b64f256"
+  },
+  "UD_Turkish-IMST/LICENSE.txt": {
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-IMST/r2.17/LICENSE.txt",
+    "sha256": "446deff834665054c41eff659e9a7f22b62c00879574dde2aebb1d5db83b842b"
+  },
+  "UD_Turkish-BOUN/README.md": {
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-BOUN/r2.17/README.md",
+    "sha256": "38b91ff42a16fef90e4b3ddd5f4f8cb77b2666070c8e7f14ee04064ddd05e9ce"
+  },
+  "UD_Turkish-BOUN/LICENSE.txt": {
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-BOUN/r2.17/LICENSE.txt",
+    "sha256": "899b1804a12ebc090b96339614eede1b64b686721b650a71430b55b5235f7f79"
+  },
+  "UD_Old_Turkish-Clausal/README.md": {
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Old_Turkish-Clausal/r2.17/README.md",
+    "sha256": "1c93058e1d745e13cc519379f00aabfc04ec587c771b26a1d4ff7e202f0b1fe9"
+  },
+  "UD_Old_Turkish-Clausal/LICENSE.txt": {
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Old_Turkish-Clausal/r2.17/LICENSE.txt",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-14",
+  "python": "3.13.5",
+  "torch": "2.10.0",
+  "transformers": "5.3.0",
+  "sentencepiece": "0.2.1",
+  "accelerate": "1.12.0",
+  "checks": [
+    "whole-word overflow chunks preserve every label",
+    "first-piece loss masks",
+    "tiny random BERT forward/backward/optimizer and chunked inference",
+    "Trainer one-step run and checkpoint reload",
+    "unseen bundles count in accuracy",
+    "length and empty-set rejection",
+    "canonical feature ordering",
+    "CoNLL-U structure preserved",
+    "SentencePiece ID round-trip with bytes and whitespace sidecar",
+    "reserved-marker and surface-change rejection"
+  ],
+  "scope": "Mechanical tests with synthetic fixtures; no pretrained-model fine-tuning or measured linguistic accuracy.",
+  "source_hashes": {
+    "morph_tagging.py": "f0dc1b80a2a1688b30ed7c0a3e2aa6986d4d609b2cbaf3765342705424354b85",
+    "fine_tune.py": "02118eacf39ec2e2dad639fb648a4ebc906bf1af759b61d16c25c453ade083d5",
+    "boundary_tokenizer.py": "c0aa6365f76ce67ce056f6a04247cabc3ee4de08306ac67447b4f81283e24061",
+    "check_examples.py": "949e19fa6090dd068c504b20958197d7fca346f48689eee25e594d9d365eadd0",
+    "check_ud_alignment.py": "bfacf11b3b6da2a5f78b3ea4a23d8b684e2a63b67b2d333d45bdd7d9bde7607d"
+  }
+}

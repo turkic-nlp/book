@@ -1,0 +1,95 @@
+project:
+  type: book
+
+book:
+  title: "Natural Language Processing Across Turkic Languages: Methods and Applications"
+  description: "A practical introduction to NLP across Turkic languages: linguistic structure, scripts, corpora, models, and evaluation, with worked exercises and documented evidence."
+  author: "Sherzod Hakimov"
+  date: "10/31/2026"
+  doi: "10.5281/zenodo.23324599"
+  chapters:
+    - index.qmd
+    - book-info.qmd
+    - preface.qmd
+    - part: "The Language Family"
+      chapters:
+        - chapters/01-turkic-world.qmd
+        - chapters/02-computational-phenotype.qmd
+    - part: "Writing Systems and Corpora"
+      chapters:
+        - chapters/03-scripts-orthography.qmd
+        - chapters/04-corpora-at-scale.qmd
+    - part: "Morphology"
+      chapters:
+        - chapters/05-morphological-structure.qmd
+        - chapters/06-finite-state-morphology.qmd
+        - chapters/07-neural-morphology.qmd
+    - part: "Syntax"
+      chapters:
+        - chapters/08-syntax-ud.qmd
+    - part: "Applications"
+      chapters:
+        - chapters/09-sequence-labeling.qmd
+        - chapters/10-machine-translation.qmd
+        - chapters/11-speech-technologies.qmd
+    - part: "Language Models"
+      chapters:
+        - chapters/12-pretrained-lms.qmd
+        - chapters/13-meaning-retrieval.qmd
+        - chapters/14-generation-dialogue.qmd
+        - chapters/15-evaluation-benchmarks.qmd
+    - part: "Cross-Lingual Methods and the Resource Frontier"
+      chapters:
+        - chapters/16-cross-lingual-transfer.qmd
+        - chapters/17-endangered-ethics.qmd
+    - references.qmd
+  appendices:
+    - chapters/appendix-a.qmd
+    - chapters/appendix-b.qmd
+    - chapters/appendix-c.qmd
+    - chapters/appendix-d.qmd
+
+bibliography: references.bib
+
+# Red placeholders for missing experiments and data: [text]{.placeholder} or ::: {.placeholder}
+filters:
+  - filters/publication-page.lua
+  - filters/epub-publication.lua
+  - path: filters/epub-xhtml.lua
+    at: post-render
+  - filters/placeholder.lua
+  - filters/pdf-inline-code.lua
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    default-image-extension: png
+  pdf:
+    documentclass: scrreprt
+    pdf-engine: lualatex  # includes/header.tex uses \directlua
+    papersize: letter  # 8.5 × 11 in; matches the 17:22 cover artwork
+    keep-tex: true
+    latex-clean: false
+    toc-depth: 2
+    mainfont: DejaVuSerif
+    sansfont: DejaVuSans
+    monofont: DejaVuSansMono
+    mainfontoptions: [Path=fonts/, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Italic, BoldItalicFont=*-BoldItalic]
+    sansfontoptions: [Path=fonts/, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Oblique, BoldItalicFont=*-BoldOblique]
+    monofontoptions: [Path=fonts/, Extension=.ttf, UprightFont=*, BoldFont=*-Bold, ItalicFont=*-Oblique, BoldItalicFont=*-BoldOblique]
+    fontsize: 10pt
+    code-block-font-size: \scriptsize
+    titlepage: false
+    toc: false   # the table of contents is placed after the preface (end of preface.qmd)
+    include-in-header: includes/header.tex
+    include-before-body:
+      - includes/cover.tex
+      - includes/publication.tex
+    default-image-extension: pdf
+  epub:
+    lang: en
+    rights: "© 2026 Sherzod Hakimov. CC BY-SA 4.0, except where otherwise noted. https://creativecommons.org/licenses/by-sa/4.0/"
+    cover-image: "images/cover.png"
+    default-image-extension: png

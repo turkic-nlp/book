@@ -1,0 +1,40 @@
+{
+  "checks": [
+    "Analytic ties, no-overlap chance, shuffled alignment and duplicate-target credit",
+    "BM25 term matching and Turkish case handling",
+    "Changing gold answer/explanation cannot change TUMLU input",
+    "bitext_items.csv: every condition has its full denominator and rescored means match",
+    "retrieval_items.csv: every condition has its full denominator and rescored means match",
+    "KazNERD exact entity counts independently match Stanza decoder",
+    "Cached task checkpoints match declared Stanza resource MD5s",
+    "Direct coarse LAS counts match official scorer on all four gold-segmented tests",
+    "TUMLU labels rescore to 226/797; dev-majority baseline to 304/797; two exclusions retained",
+    "All four automatic-tokenization tests rescore with identical official UD alignment and denominators",
+    "Kazakh split-swap exposure is explicit; no held-out interpretation attached",
+    "Both complete MT directions rescore exactly with saved signatures and EOS/empty-output audits",
+    "All 13,156 orthographic-length rows independently recompute; frozen script-query hash matches"
+  ],
+  "verified_stanza_checkpoints": [
+    "kk/tokenize/ktb.pt",
+    "kk/pos/ktb_charlm.pt",
+    "kk/depparse/ktb_charlm.pt",
+    "kk/lemma/ktb_nocharlm.pt",
+    "kk/mwt/ktb.pt",
+    "kk/ner/kazNERD.pt",
+    "ky/tokenize/ktmu.pt",
+    "ky/pos/ktmu_nocharlm.pt",
+    "ky/depparse/ktmu_nocharlm.pt",
+    "ky/lemma/ktmu_nocharlm.pt",
+    "tr/tokenize/imst.pt",
+    "tr/pos/imst_charlm.pt",
+    "tr/depparse/imst_charlm.pt",
+    "tr/lemma/imst_nocharlm.pt",
+    "tr/mwt/imst.pt",
+    "ug/tokenize/udt.pt",
+    "ug/pos/udt_nocharlm.pt",
+    "ug/depparse/udt_nocharlm.pt",
+    "ug/lemma/udt_nocharlm.pt"
+  ],
+  "passed": true,
+  "scope": "Empirical mechanics, saved predictions, complete denominators and checkpoint integrity; not human validation or a contamination audit"
+}

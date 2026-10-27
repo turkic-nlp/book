@@ -1,0 +1,131 @@
+{
+  "dataset": "Original FLORES-200",
+  "split": "devtest",
+  "sentences_per_language": 1012,
+  "license": "CC-BY-SA-4.0",
+  "source_documentation": "https://github.com/facebookresearch/flores/blob/main/flores200/README.md",
+  "archive_url": "https://dl.fbaipublicfiles.com/nllb/flores200_dataset.tar.gz",
+  "archive_sha256": "b8b0b76783024b85797e5cc75064eb83fc5288b41e9654dabc7be6ae944011f6",
+  "inputs": {
+    "eng_Latn": {
+      "archive_member": "./flores200_dataset/devtest/eng_Latn.devtest",
+      "sha256": "612e9fbe87997617c0fa8fa8929654a4f49b728d96738112c2b86ef6a1d78d88",
+      "rows": 1012,
+      "edge_trimmed_rows": 0
+    },
+    "tur_Latn": {
+      "archive_member": "./flores200_dataset/devtest/tur_Latn.devtest",
+      "sha256": "c0fe28cee25f77fbe8471bcd3c87d26c7a284f4f0420f4293c9ce004b9bef8f2",
+      "rows": 1012,
+      "edge_trimmed_rows": 17
+    },
+    "azj_Latn": {
+      "archive_member": "./flores200_dataset/devtest/azj_Latn.devtest",
+      "sha256": "dd91acbcbe6cd5b7cad71c30513576ef482ee6a0caa401f8aa64aceaa726d650",
+      "rows": 1012,
+      "edge_trimmed_rows": 48
+    },
+    "azb_Arab": {
+      "archive_member": "./flores200_dataset/devtest/azb_Arab.devtest",
+      "sha256": "e5f40dd9d93117432fefdcd3d7205e9ed1e9047c05e135ec67a222488fc5934e",
+      "rows": 1012,
+      "edge_trimmed_rows": 58
+    },
+    "tuk_Latn": {
+      "archive_member": "./flores200_dataset/devtest/tuk_Latn.devtest",
+      "sha256": "a68b64e7e10438717fec9be1cd78662eb4e350cd296824a9e4c2dc88e466de51",
+      "rows": 1012,
+      "edge_trimmed_rows": 0
+    },
+    "kaz_Cyrl": {
+      "archive_member": "./flores200_dataset/devtest/kaz_Cyrl.devtest",
+      "sha256": "71e2301ba312faa8fc86624913e5bda576d4e5c6d33c48a59a1e899b36ea38ae",
+      "rows": 1012,
+      "edge_trimmed_rows": 32
+    },
+    "kir_Cyrl": {
+      "archive_member": "./flores200_dataset/devtest/kir_Cyrl.devtest",
+      "sha256": "35ff70e98c268355a1a55462373f39b5b3d177de3031944e29c3923369113b22",
+      "rows": 1012,
+      "edge_trimmed_rows": 18
+    },
+    "tat_Cyrl": {
+      "archive_member": "./flores200_dataset/devtest/tat_Cyrl.devtest",
+      "sha256": "5fed1904996ebc0fa77a63193207b4e6323383ca70e79679c805160198367683",
+      "rows": 1012,
+      "edge_trimmed_rows": 3
+    },
+    "bak_Cyrl": {
+      "archive_member": "./flores200_dataset/devtest/bak_Cyrl.devtest",
+      "sha256": "af1693e044543c94e8f1b686b90f0b5a8db4d476fff59dccf261c5f3d90f36fd",
+      "rows": 1012,
+      "edge_trimmed_rows": 21
+    },
+    "crh_Latn": {
+      "archive_member": "./flores200_dataset/devtest/crh_Latn.devtest",
+      "sha256": "fdfc28a97f800f0ee910e78058fafbf0b9aae1398f1053c116b6113d815bedc2",
+      "rows": 1012,
+      "edge_trimmed_rows": 302
+    },
+    "uzn_Latn": {
+      "archive_member": "./flores200_dataset/devtest/uzn_Latn.devtest",
+      "sha256": "722b6d0cf62bbdd4b2ec2bd39721bff0d2021e948a2753a46b4af31ad9116beb",
+      "rows": 1012,
+      "edge_trimmed_rows": 1
+    },
+    "uig_Arab": {
+      "archive_member": "./flores200_dataset/devtest/uig_Arab.devtest",
+      "sha256": "490a31c8461bcf7bd78d81301f9a2ed2691e94d43b17d715347ab3320559568e",
+      "rows": 1012,
+      "edge_trimmed_rows": 0
+    }
+  },
+  "tokenizers": {
+    "qwen": {
+      "repo_id": "Qwen/Qwen3.5-35B-A3B-FP8",
+      "revision": "0b2752837483aa34b3db6e83e151b150c0e00e49",
+      "file": "tokenizer.json",
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "llama": {
+      "repo_id": "meta-llama/Meta-Llama-3-8B",
+      "revision": "8cde5ca8380496c9a6cc7ef3a8b46a0372a1d920",
+      "file": "tokenizer.json",
+      "sha256": "e134af98b985517b4f068e3755ae90d4e9cd2d45d328325dc503f1c6b2d06cc7"
+    },
+    "olmo": {
+      "repo_id": "allenai/Olmo-3-1025-7B",
+      "revision": "0a15c289b17ad4f27aabc863276ec525d5312c01",
+      "file": "tokenizer.json",
+      "sha256": "73fd5254624f39a88e3faac6a8e11300fc3c735ed37880d4f4f08db898eaecca"
+    },
+    "o200k": {
+      "encoding": "o200k_base",
+      "mergeable_ranks_sha256": "18e62c4341406e298da46fd10a15860dd54b4c4c1cc896d5fee3a89f7f020b3b",
+      "special_tokens_sha256": "dea77ce604db86d3dbf8a95c76fc6cbe1583b22e46b587854e5a8e83d11af14c",
+      "vocabulary_url": "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken"
+    }
+  },
+  "budget": 512,
+  "preprocessing": "strip leading/trailing whitespace per source row; preserve internal text",
+  "joiner": "one ASCII space",
+  "order": "published sentence order",
+  "word_definition": "nonempty whitespace-delimited units (Python regex \\S+)",
+  "special_tokens": false,
+  "chat_template": false,
+  "truncation": false,
+  "summary_population": "all closed chunks, excluding the single final tail per language/tokenizer",
+  "scope": "Sentence-stream packing probe; boundaries may cross source articles. Not retrieval quality or a document-level RAG evaluation.",
+  "versions": {
+    "tokenizers": "0.22.2",
+    "tiktoken": "0.14.0",
+    "regex": "2024.11.6"
+  },
+  "python_version": "3.13.5",
+  "metadata_sha256": "8edac47f861fcf6b54dad2068c10ba8f741da8b8676861c6bc27fcd9f5483b36",
+  "outputs": {
+    "chunk_content_measured.csv": "c10f39607edfb9f3b06f8107d3dcc0a42b5f76866c970ca5c652584c3f4e9222",
+    "chunk_content_chunks.csv": "aba1ec339f664de5c8fddd6af6d7bf66bcd73dc298d92f19ab4fe9f17e48cc3d"
+  },
+  "script_sha256": "f5d46306a280bf0265f76ac0c3d1d50b69aa51d7bdd693095c40a14a3f61d09e"
+}

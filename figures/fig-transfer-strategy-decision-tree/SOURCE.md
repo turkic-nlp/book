@@ -1,0 +1,1 @@
+Author-created workflow synthesising Chapter 13, revised 2026-10-13. This is methodological guidance, not measured performance or a universal ranking. Label availability determines the initial comparison; an FST is optional, and target evaluation is required on both branches.

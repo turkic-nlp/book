@@ -1,0 +1,12 @@
+| Treebank | Sentences | Arcs | Mean | Median | P90 |
+|:--|--:|--:|--:|--:|--:|
+| Azerbaijani-TueCL | 148 | 582 | 2.04 | 1 | 4 |
+| Kazakh-KTB | 1,047 | 6,978 | 2.61 | 1 | 6 |
+| Kyrgyz-KTMU | 1,222 | 8,965 | 2.30 | 1 | 6 |
+| Tatar-NMCTT | 148 | 1,764 | 3.07 | 1 | 8 |
+| Turkish-BOUN | 979 | 9,205 | 2.76 | 1 | 6 |
+| Turkish-IMST | 1,100 | 6,999 | 2.53 | 1 | 5 |
+| Uyghur-UDT | 900 | 7,386 | 2.89 | 1 | 7 |
+| Uzbek-UT | 500 | 4,570 | 2.66 | 1 | 6 |
+
+: Basic dependency distance in selected official UD 2.17 test sets, measured in integer-ID word positions. Root and punctuation-dependent arcs are excluded; intervening punctuation still occupies a position. P90 uses nearest rank. All 25 treebanks and source hashes are in the accompanying CSV. These are corpus diagnostics, not parser scores or matched language comparisons. {#tbl-ud-arc-lengths}

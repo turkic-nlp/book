@@ -1,0 +1,11 @@
+| Language(s) | Resource | Annotation | Labels | Domain | Size | Access / licence |
+| --- | --- | --- | --- | --- | --- | --- |
+| Kazakh | KazNERD [@yeshpanov2022kaznerd] | human | 25 classes (IOB2) | TV news transcripts | 90,228 / 11,167 / 11,307 sentences (train/dev/test) | CC BY 4.0; github.com/IS2AI/KazNERD; HF issai/kaznerd |
+| Kyrgyz | KyrgyzNER [@turatali2025kyrgyzner] | human | 27 classes (25 occur in the release) | news (24.kg, 2017–2022) | 10,900 sentences: 7,033 train / 3,867 test, no dev; 16,819 entity spans (the paper's 39,075 "mentions" count entity-tagged tokens) | Dataset CC BY-NC-SA 4.0; code and models MIT (README); github.com/Akyl-AI/KyrgyzNER |
+| Uzbek | Uzbek Legal NER [@saidov2026uzbekner] | semi-automatic candidates + staged human review; synthetic records for rare labels | 12 classes | legal | 14,036 records; splits not reported | CC BY 4.0; Zenodo 10.5281/zenodo.19682709 |
+| Azerbaijani | LocalDoc azerbaijani-ner-dataset [@localdoc2024azner] | not stated on the dataset card | includes PERSON, LOCATION, ORGANISATION (full list not checked) | not stated on the dataset card | 99,545 examples, single split | CC BY-NC 4.0; HF LocalDoc/azerbaijani-ner-dataset |
+| Uyghur | Azmat et al. [@azmat2020uyghurner] | automatic (tags projected from Chinese through MT) | not stated in the abstract | not stated in the abstract | not stated in the abstract | release not stated |
+| Turkish | several datasets [@safaya2022mukayese; @coltekin2022resources] | human | mostly PER, ORG, LOC (+MISC/DATE) | news and other | see sources | see sources |
+| Turkish, Azerbaijani, Kazakh, Uzbek, Tatar, Kyrgyz, Uyghur, Turkmen, Sakha, Bashkir, Chuvash, Crimean Tatar | WikiANN [@pan2017wikiann] | automatic (Wikipedia links) | PER, ORG, LOC | Wikipedia | tr 20,000 / 10,000 / 10,000; az 10,000 / 1,000 / 1,000; kk, uz, tt 1,000 / 1,000 / 1,000; ky, ug, tk, sah, ba, cv, crh 100 / 100 / 100 sentences | see the HF dataset card (unimelb-nlp/wikiann) |
+
+: Turkic NER resources identified in this survey (searched 2026-10-13; not exhaustive). Human annotation, weak supervision and automatic projection are kept apart; fields the source does not state are marked as such. WikiANN sizes are those of the commonly used Hugging Face splits. {#tbl-turkic-ner-resources}

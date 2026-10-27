@@ -1,0 +1,27 @@
+group,label,train,valid,test,source
+People and groups,PERSON,10893,1352,1332,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+People and groups,NORP,2972,370,372,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+People and groups,POSITION,4937,601,603,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Organisations and places,ORGANISATION,6093,759,735,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Organisations and places,GPE,14108,1693,1742,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Organisations and places,LOCATION,1759,204,212,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Organisations and places,FACILITY,1752,195,198,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Time,DATE,20226,2609,2611,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Time,TIME,1874,212,230,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Numbers and measures,CARDINAL,23551,2886,2824,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Numbers and measures,ORDINAL,3105,379,386,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Numbers and measures,QUANTITY,3094,407,407,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Numbers and measures,MONEY,3678,441,441,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Numbers and measures,PERCENTAGE,3384,443,456,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,ADAGE,159,18,19,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,ART,1953,225,229,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,CONTACT,161,18,20,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,DISEASE,1032,118,123,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,EVENT,1352,150,156,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,LANGUAGE,352,45,46,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,LAW,425,54,55,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,NON_HUMAN,6,1,1,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,PRODUCT,592,73,73,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,PROJECT,1694,206,211,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+Other,MISCELLANEOUS,194,24,26,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py
+_sentences,_sentences,90228,11167,11307,IS2AI/KazNERD@bd4333d KazNERD/IOB2_*.txt; counted by tables/tbl-kaznerd-types/generate.py

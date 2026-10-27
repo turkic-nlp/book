@@ -1,0 +1,247 @@
+{
+  "dataset": "original FLORES-200",
+  "split": "devtest",
+  "archive_sha256": "b8b0b76783024b85797e5cc75064eb83fc5288b41e9654dabc7be6ae944011f6",
+  "input_files": {
+    "eng_Latn": {
+      "sha256": "612e9fbe87997617c0fa8fa8929654a4f49b728d96738112c2b86ef6a1d78d88",
+      "member": "./flores200_dataset/devtest/eng_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "rus_Cyrl": {
+      "sha256": "cdc706ed862d1d35d8d67cfda0b396766646885434958b18291aa760ff1bb59e",
+      "member": "./flores200_dataset/devtest/rus_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "tur_Latn": {
+      "sha256": "c0fe28cee25f77fbe8471bcd3c87d26c7a284f4f0420f4293c9ce004b9bef8f2",
+      "member": "./flores200_dataset/devtest/tur_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "azj_Latn": {
+      "sha256": "dd91acbcbe6cd5b7cad71c30513576ef482ee6a0caa401f8aa64aceaa726d650",
+      "member": "./flores200_dataset/devtest/azj_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "azb_Arab": {
+      "sha256": "e5f40dd9d93117432fefdcd3d7205e9ed1e9047c05e135ec67a222488fc5934e",
+      "member": "./flores200_dataset/devtest/azb_Arab.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "tuk_Latn": {
+      "sha256": "a68b64e7e10438717fec9be1cd78662eb4e350cd296824a9e4c2dc88e466de51",
+      "member": "./flores200_dataset/devtest/tuk_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "kaz_Cyrl": {
+      "sha256": "71e2301ba312faa8fc86624913e5bda576d4e5c6d33c48a59a1e899b36ea38ae",
+      "member": "./flores200_dataset/devtest/kaz_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "kir_Cyrl": {
+      "sha256": "35ff70e98c268355a1a55462373f39b5b3d177de3031944e29c3923369113b22",
+      "member": "./flores200_dataset/devtest/kir_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "tat_Cyrl": {
+      "sha256": "5fed1904996ebc0fa77a63193207b4e6323383ca70e79679c805160198367683",
+      "member": "./flores200_dataset/devtest/tat_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "bak_Cyrl": {
+      "sha256": "af1693e044543c94e8f1b686b90f0b5a8db4d476fff59dccf261c5f3d90f36fd",
+      "member": "./flores200_dataset/devtest/bak_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "crh_Latn": {
+      "sha256": "fdfc28a97f800f0ee910e78058fafbf0b9aae1398f1053c116b6113d815bedc2",
+      "member": "./flores200_dataset/devtest/crh_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "uzn_Latn": {
+      "sha256": "722b6d0cf62bbdd4b2ec2bd39721bff0d2021e948a2753a46b4af31ad9116beb",
+      "member": "./flores200_dataset/devtest/uzn_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "uig_Arab": {
+      "sha256": "490a31c8461bcf7bd78d81301f9a2ed2691e94d43b17d715347ab3320559568e",
+      "member": "./flores200_dataset/devtest/uig_Arab.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 1
+    }
+  },
+  "model_training": false,
+  "candidate_scope": "all 1012 target rows per direction",
+  "tie_tolerance": 1e-06,
+  "tie_credit": "fraction of maximum-score ties whose target text exactly equals the aligned target text",
+  "conditions": "native text only",
+  "models": {
+    "minilm": {
+      "repo_id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+      "device": "mps",
+      "max_length": 128,
+      "pooling": "attention-mask mean over all retained tokens including specials, then L2 normalization",
+      "weights_sha256": "eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b",
+      "tokenizer_sha256": "2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8",
+      "torch": "2.10.0",
+      "transformers": "5.3.0"
+    },
+    "xlmr": {
+      "repo_id": "sentence-transformers/paraphrase-xlm-r-multilingual-v1",
+      "revision": "c2e19453aae46f98a865abfdf173f35f2e119f5a",
+      "device": "mps",
+      "max_length": 128,
+      "pooling": "attention-mask mean over all retained tokens including specials, then L2 normalization",
+      "weights_sha256": "871b945ddd827539cbc585ea52a497b27c0f8e1c4425cc734d4a288773386adf",
+      "tokenizer_sha256": "96ef91dd5d1c3b157a0437e85ff1f29d0eb3cf32fd40f863dab45baa5e839fad",
+      "torch": "2.10.0",
+      "transformers": "5.3.0"
+    }
+  },
+  "truncation": {
+    "minilm/eng_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 86
+    },
+    "minilm/rus_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 99
+    },
+    "minilm/tur_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 91
+    },
+    "minilm/azj_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 99
+    },
+    "minilm/azb_Arab": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 121
+    },
+    "minilm/tuk_Latn": {
+      "rows": 1012,
+      "truncated_rows": 8,
+      "max_untruncated_tokens": 155
+    },
+    "minilm/kaz_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 114
+    },
+    "minilm/kir_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 104
+    },
+    "minilm/tat_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 5,
+      "max_untruncated_tokens": 140
+    },
+    "minilm/bak_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 13,
+      "max_untruncated_tokens": 174
+    },
+    "minilm/crh_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 126
+    },
+    "minilm/uzn_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 112
+    },
+    "minilm/uig_Arab": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 116
+    },
+    "xlmr/eng_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 86
+    },
+    "xlmr/rus_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 99
+    },
+    "xlmr/tur_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 91
+    },
+    "xlmr/azj_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 99
+    },
+    "xlmr/azb_Arab": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 121
+    },
+    "xlmr/tuk_Latn": {
+      "rows": 1012,
+      "truncated_rows": 8,
+      "max_untruncated_tokens": 155
+    },
+    "xlmr/kaz_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 114
+    },
+    "xlmr/kir_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 104
+    },
+    "xlmr/tat_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 5,
+      "max_untruncated_tokens": 140
+    },
+    "xlmr/bak_Cyrl": {
+      "rows": 1012,
+      "truncated_rows": 13,
+      "max_untruncated_tokens": 174
+    },
+    "xlmr/crh_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 126
+    },
+    "xlmr/uzn_Latn": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 112
+    },
+    "xlmr/uig_Arab": {
+      "rows": 1012,
+      "truncated_rows": 0,
+      "max_untruncated_tokens": 116
+    }
+  },
+  "source": "https://github.com/facebookresearch/flores/blob/main/flores200/README.md"
+}

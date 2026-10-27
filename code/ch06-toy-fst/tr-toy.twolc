@@ -1,0 +1,18 @@
+! Two rules for the toy lexicon: backness harmony of {A} and voicing of {D}.
+
+Alphabet
+a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z
+%{A%}:a %{A%}:e %{D%}:d %{D%}:t ;
+
+Sets
+FrontV = e i ö ü ;
+Cons = b c ç d f g ğ h j k l m n p r s ş t v y z ;
+Voiceless = ç f h k p s ş t ;
+
+Rules
+
+"{A} is e after a front vowel, otherwise a"
+%{A%}:e <=> :FrontV [ :Cons ]* _ ;
+
+"{D} is t after a voiceless consonant, otherwise d"
+%{D%}:t <=> :Voiceless _ ;

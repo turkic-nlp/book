@@ -1,0 +1,240 @@
+---
+short-title: "Resources and Tools"
+---
+
+# Computational Resources and Tools {#sec-book-appendix-b}
+
+
+::: {.callout-note appearance="simple"}
+## What This Appendix Covers {.unnumbered}
+
+This appendix catalogues resources used in the book: environments and libraries (@sec-appb-environment, @sec-appb-libraries), datasets (@sec-appb-datasets), pretrained models (@sec-appb-models) and community infrastructure (@sec-appb-community). Reproduction notes follow in @sec-appb-reproducing. Entries refer to the sources and revisions checked; newer and unlisted resources need their own verification.
+:::
+
+The resources include rule-based tools from Apertium and HFST, corpora from OPUS and Common Voice, models from the Hugging Face Hub, and language-specific datasets from groups such as ISSAI and SIGTURK. This appendix gives starting points; the task chapters describe the relevant releases and limitations.
+
+
+## Environment Setup {#sec-appb-environment}
+
+### Tested Profiles and Installation
+
+Use separate environments for HFST/toolkit work, transformer experiments and Omnilingual ASR. The book's runs used Python 3.11 to 3.13, with packages varying by chapter. Each run records Python and package versions and downloaded-file SHA-256 hashes. Reuse those records when reproducing a result, and check other platform or package combinations before relying on them.
+
+For a fresh environment, choose a supported Python/runtime and the platform-specific PyTorch installation from its official instructions, then install the pinned direct dependencies in `code/common/requirements-tested.txt`. That file records the checked package versions; it is not a complete cross-platform lock or evidence of a clean install on every OS. Save the resolved environment for a published experiment.
+
+Install only the toolkit extras needed by the chosen example. HFST availability and native dependencies differ by platform; a Windows environment may need WSL for those tools. The Omnilingual wrapper's environment is separate from the Whisper recipe in @sec-book-11-speech-technologies. Do not install conflicting speech stacks into an existing working text environment.
+
+Memory and runtime depend on the exact configuration, so measure them on the planned run; each exercise README records the runtime of the book's run. The exercises run on a CPU; the procedure-only fine-tuning recipes are faster on a GPU.
+
+## Key Libraries and Frameworks {#sec-appb-libraries}
+
+### Hugging Face Ecosystem
+
+The Hugging Face ecosystem is the primary software infrastructure used throughout this book. Four libraries are central.
+
+**`transformers`** provides a unified API for loading, fine-tuning, and running pretrained models. Models are identified by a Hub ID string (e.g., `dbmdz/bert-base-turkish-cased`); the appropriate model class and input conventions depend on whether the task uses an encoder, a causal language model or a sequence-to-sequence model. Pin the revision of every checkpoint, as the exercises do; a newly added task head is random until trained.
+
+**`datasets`** loads corpora and benchmarks from the Hugging Face Hub or from local files, with streaming for large datasets. The book's exercises instead read most datasets from commit-pinned GitHub files and check their SHA-256 hashes (for KazNERD and KyrgyzNER, see @sec-book-09-sequence-labeling), so that a rerun uses exactly the same release.
+
+**`peft`** implements parameter-efficient fine-tuning methods including LoRA and QLoRA, which reduce the memory needed to adapt large models. Use the complete XLM-R sequence-classification recipe in @sec-ch12-hands-on. Target names are architecture-specific, and a new classifier head must be trainable and saved with its adapter. Copying `q_proj/v_proj` from a decoder into a BERT example is not a valid universal setup.
+
+**`evaluate`** wraps standard metrics such as `seqeval` for BIO entity spans, `sacrebleu` and `chrf` for machine translation and `rouge` for summarisation. Feature and exact-bundle accuracy for morphology are computed by the book's own code (@sec-book-15-evaluation-benchmarks); report the metric signature with every score.
+
+The Hugging Face Hub at [huggingface.co](https://huggingface.co) hosts models, datasets and spaces relevant to Turkic NLP. Language tags (e.g. `kk` or `kaz` for Kazakh) are self-reported metadata: a tag search can miss resources and count copies, so record the query and date, as the resource audit in @sec-ch17-hands-on does.
+
+### TurkicNLP Toolkit
+
+The TurkicNLP toolkit [@hakimov2025turkicnlp] provides one pipeline for 24 Turkic languages, with interchangeable rule-based, finite-state (Apertium), per-language neural (Stanza), and multilingual neural (Glot500) backends, plus script detection, transliteration, Common Turkic Script (CTS) conversion, language identification (GlotLID), morpheme segmentation, and NLLB-based embeddings and translation.
+
+- **GitHub**: [github.com/turkic-nlp/turkicnlp](https://github.com/turkic-nlp/turkicnlp)
+- **Installation**: `pip install turkicnlp` (extras such as `turkicnlp[hfst]` add heavier backends)
+- **Languages**: 24 (coverage per component differs; see the model catalogue)
+- **Processors**: `tokenize`, `mwt`, `morph`, `morph_neural`, `pos`, `feats`, `lemma`, `depparse`, `ner`, `embeddings`, `translate`, `sentiment`, `spellcheck`, `sp_tokenize`, `asr`
+- **Other entry points**: `LanguageDetection`, `SpeechRecognizer`, `MorphemeTokenizer`, `Transliterator`, `turkicnlp.llm.ask`, `list_processors`, `list_asr_languages`
+- **LLM backends**: `morph`, `ner`, `translate`, `sentiment` and `spellcheck` can use any LLM (vLLM, Ollama, OpenAI, Claude, or a local Hugging Face model) for all 24 languages
+- **Licences**: the library is Apache-2.0; Apertium transducers (GPL-3.0) and NLLB weights (CC-BY-NC-4.0) are downloaded separately
+
+```python
+# pip install "turkicnlp[stanza]==0.5.0"   # list_processors works without it; loading Stanza models needs it
+import turkicnlp
+
+print(sorted(turkicnlp.list_processors("kaz")))   # what the catalog offers for Kazakh
+turkicnlp.download("kaz", processors=["tokenize", "morph"])
+kz = turkicnlp.Pipeline("kaz", processors=["tokenize", "morph"])
+doc = kz("Үйлерімізден өте алыс кеткенбіз.")
+for word in doc.words:
+    print(word.text, word.lemma, word.upos, word.feats)
+print(doc._processor_log)                          # which backend produced what
+print(doc.to_conllu())
+```
+
+Three behaviours are worth knowing. **Field ownership**: when several processors provide the same field, the last one in the pipeline owns it, and the others' values are kept in `word._provenance`. **Script bridging**: input in a script without models (Kazakh Latin, Uzbek Cyrillic) is transliterated, processed, and mapped back to the original text. **Batching**: `nlp.batch(texts, batch_size=32)` hands whole batches to the neural and LLM backends.
+
+### Apertium
+
+Apertium [@forcada2011apertium; @khanna2021apertium] is an open-source rule-based machine translation and morphological analysis platform. For Turkic NLP, its primary value is the collection of finite-state morphological analysers for 20+ Turkic languages, whose coverage and ambiguity should be evaluated against independent gold data.
+
+- **Website**: [apertium.org](https://apertium.org)
+- **GitHub**: [github.com/apertium](https://github.com/apertium)
+- **Turkic language modules**: [github.com/apertium/apertium-tur](https://github.com/apertium/apertium-tur) (Turkish), [github.com/apertium/apertium-kaz](https://github.com/apertium/apertium-kaz) (Kazakh), and equivalents for other languages
+
+@sec-rbmt-apertium gives a dated inventory of Apertium translation pairs and their development stages. Check the selected pair's release and supported direction before use; a repository listing does not guarantee support in both directions.
+
+### HFST (Helsinki Finite-State Toolkit)
+
+HFST [@linden2011hfst] is a toolkit for compiling and running finite-state transducers. The Apertium Turkic analysers used in this book are compiled with HFST; Apertium also supports other finite-state toolchains.
+
+- **Website**: [hfst.github.io](http://hfst.github.io)
+- **Installation**: `pip install hfst` (Python bindings) or system packages
+
+HFST supports the standard finite-state operations (composition, intersection, minimisation); @sec-book-06-finite-state-morphology shows how to load and query the Apertium transducers with its Python bindings.
+
+### Stanza (Stanford NLP)
+
+Stanza [@qi2020stanza] provides neural NLP pipelines for tokenisation, POS tagging, morphological analysis, and dependency parsing. Its 1.11.0 model catalogue has models for five Turkic languages with UD data: Turkish, Kazakh, Kyrgyz, Uyghur and Ottoman Turkish (later catalogues add Uzbek; @sec-book-08-syntax-ud); TurkicNLP adds Stanza models for Azerbaijani, Uzbek, Turkmen, Tatar, and Bashkir.
+
+TurkicNLP exposes Stanza backends through its pipeline (@sec-ch08-hands-on). Check the catalogue for the requested language and processor: a parsing model does not imply that a dedicated NER model is available.
+
+Use Stanza 1.11 (`pip install "turkicnlp[stanza]"` enforces `stanza>=1.8,<1.12`): the custom Azerbaijani, Uzbek, Turkmen, Tatar and Bashkir models were trained with it, and newer Stanza versions fail to load their parsers.
+
+The measured Stanza baselines, including the caveat on the Kazakh replay score, are in @sec-book-08-syntax-ud. For other languages, TurkicNLP's multilingual Glot500 tagger and parser and its Apertium backend are the alternatives.
+
+### Zemberek-NLP (Turkish)
+
+Zemberek [@akin2007zemberek] is an open-source Java library for Turkish morphological analysis, disambiguation, tokenisation, spell-checking and normalisation ([github.com/ahmetaa/zemberek-nlp](https://github.com/ahmetaa/zemberek-nlp)); community Python wrappers exist. Verify the maintained implementation and evaluate it on the intended domain.
+
+
+## Datasets and Corpora {#sec-appb-datasets}
+
+### Parallel Corpora
+
+| Corpus | Languages | Size | URL |
+|--------|-----------|------|-----|
+| TIL corpus | 22 Turkic languages | release-specific totals and direction counts in @sec-book-10-machine-translation | github.com/turkic-interlingua/til-mt |
+| OPUS | Many, incl. all major Turkic | Varies by subcorpus | opus.nlpl.eu |
+| FLORES-200 | 200 languages | 997 dev; 1,012 devtest sentences | huggingface.co/datasets/facebook/flores |
+
+: Parallel corpora covering Turkic languages {#tbl-parallel-corpora}
+
+The **TIL corpus** [@mirzakhalov2021large] provides parallel data for 22 Turkic languages; release-specific counts, directions and split-overlap cautions are discussed in @sec-book-10-machine-translation. **FLORES-200** provides the same evaluation sentences for the eleven Turkic varieties in NLLB-200 and is one possible MT evaluation source, provided language coverage, contamination and domain fit are checked.
+
+### Monolingual Corpora
+
+| Corpus | Language | Approx. Size | URL |
+|--------|----------|:------------:|-----|
+| HPLT v3.0 | many, incl. 11 Turkic subsets | per-language sizes in @sec-corpora-inventory | hplt-project.org |
+| FineWeb2 | many, incl. Turkic | per-language sizes in @sec-corpora-inventory | huggingface.co/datasets/HuggingFaceFW/fineweb-2 |
+| CulturaX | 167 languages | per-language sizes in @sec-corpora-inventory | huggingface.co/datasets/uonlp/CulturaX |
+| OSCAR | 160+ languages incl. Turkic | release-specific | huggingface.co/datasets/oscar-corpus/OSCAR-2301 |
+| CC-100 | 100 languages | release-specific | data.statmt.org/cc-100 |
+| Turkish National Corpus | tur | 50M words (2012 description) | [Corpus description](https://aclanthology.org/L12-1590/) |
+
+: Monolingual corpora for Turkic languages {#tbl-mono-corpora}
+
+The **Turkish National Corpus (TNC)** [@aksan2012tnc] was designed as a balanced, general-purpose corpus of 50 million words. This is the size reported in the 2012 description. **HPLT**, **FineWeb2** and **CulturaX** are automatically labelled web collections. Their per-language sizes differ substantially; @sec-book-04-corpora-at-scale compares their releases and explains how to audit a subset before use.
+
+### Treebanks
+
+UD 2.17 has treebanks for Turkish, Ottoman Turkish, Kazakh, Kyrgyz, Uzbek, Uyghur, Tatar, Azerbaijani, Sakha (UD: Yakut) and Old Turkic (UD: Old Turkish), plus Turkish–German and Turkish–English code-switching treebanks (@sec-book-08-syntax-ud, @tbl-turkish-treebanks and @tbl-other-treebanks). They provide reference annotations for tokenisation, POS tagging, morphological features and dependency structure in CoNLL-U format. Annotation methods and quality vary by treebank; check the release documentation and the examples in @sec-book-08-syntax-ud.
+
+- **Download**: [universaldependencies.org](https://universaldependencies.org) (all treebanks, versioned releases)
+- **Parallel UD-Turkic sentences**: [github.com/ud-turkic/parallel](https://github.com/ud-turkic/parallel) [@eslami2025parallel]
+- **Format**: CoNLL-U (tab-separated syntactic-word records, with additional records for multiword tokens and empty nodes)
+- **Python loading**: `pip install conllu`
+
+In the audited official UD 2.17 inventory, languages without a dedicated released treebank include Turkmen, Bashkir, Chuvash, Crimean Tatar, Gagauz, Karakalpak, Kumyk, Nogai, Karachay-Balkar, and all Siberian Turkic languages except Sakha.
+
+### NER Datasets
+
+| Dataset | Language | Entity Types | Source | Reference |
+|---------|----------|:------------:|----------------|-----------|
+| KazNERD | Kazakh | 25 classes; 112,702 sentences | github.com/IS2AI/KazNERD | @yeshpanov2022kaznerd |
+| KyrgyzNER | Kyrgyz | 27 classes; 7,033 training and 3,867 test sentences | github.com/Akyl-AI/KyrgyzNER | @turatali2025kyrgyzner |
+| WikiANN | 10+ Turkic | PER, ORG, LOC | Hub configuration per language | @pan2017wikiann |
+
+: Named entity recognition datasets for Turkic languages {#tbl-ner-datasets}
+
+**KazNERD** reports 112,702 sentences from Kazakh television news, with 136,333 annotations in 25 classes [@yeshpanov2022kaznerd]. It supplies the NER examples in @sec-book-09-sequence-labeling. **WikiANN** derives silver-standard annotations from Wikipedia in many languages. Its original publication and later releases differ in coverage; use the pinned configurations in that chapter and assess label quality for the chosen language and task.
+
+### Benchmarks
+
+| Benchmark | Languages | Tasks | Reference |
+|-----------|-----------|-------|-----------|
+| TUMLU | 9 listed; release caveat in @sec-benchmarks | Native MCQs | @isbarov2025tumlu |
+| Kardeş-NLU | az, kk, ky, uz, ug | Cross-lingual NLU | @senel2024kardes |
+| Mukayese | Turkish | Multiple NLP tasks | @safaya2022mukayese |
+| KazQAD | Kazakh | QA (reading comprehension) | @yeshpanov2024kazqad |
+| X-WMT | 8 Turkic + en, ru | MT (88 directions) | @mirzakhalov2021large |
+| KazMMLU | Kazakh, Russian | Native MCQs | @togmanov2025kazmmlu |
+| FLORES-200 / SIB-200 | 11 Turkic varieties | MT / topic classification | @costa2022nllb; @adelani2024sib |
+
+: Evaluation benchmarks for Turkic NLP {#tbl-benchmarks-appendix}
+
+**TUMLU** [@isbarov2025tumlu] lists Azerbaijani, Crimean Tatar, Karakalpak, Kazakh, Kyrgyz, Tatar, Turkish, Uyghur and Uzbek, with school questions in 11 subjects; its conflicting language counts require release-specific checks (@sec-book-15-evaluation-benchmarks). **Kardeş-NLU** [@senel2024kardes] evaluates cross-lingual NLU for five Turkic languages with Turkish as a high-resource relative. **Mukayese** [@safaya2022mukayese] is a multi-task benchmark suite for Turkish.
+
+### Speech Datasets
+
+| Dataset | Language | Size | Source |
+|---------|----------|:----:|--------|
+| KSC2 | Kazakh | >1,000 hours | issai.nu.edu.kz [@mussakhojayeva2022ksc2] |
+| KazakhTTS2 | Kazakh | ~271 hours, 5 speakers | issai.nu.edu.kz |
+| FLEURS | tr, az, kk, ky, uz, … | n-way parallel read speech | google/fleurs |
+| KazEmoTTS | Kazakh | Emotional speech | issai.nu.edu.kz |
+| Common Voice | Multiple Turkic | Per release; validated and training hours differ | Mozilla Data Collective; see @sec-book-11-speech-technologies |
+
+: Speech corpora for Turkic languages {#tbl-speech-data}
+
+ISSAI (Nazarbayev University) [@mussakhojayeva2023turkicasr; @mussakhojayeva2022kazakhtts2] has produced Kazakh speech resources including the KSC2 ASR corpus and the KazakhTTS2 synthesis corpus. **Common Voice** has datasets for several Turkic languages whose sizes depend on volunteer activity; check the current release statistics.
+
+
+## Pretrained Models {#sec-appb-models}
+
+### Verified Configurations
+
+{{< include ../tables/tbl-verified-models/output.md >}}
+
+The table counts base-model parameters from pinned configurations on a meta device, without downloading weights. BERTurk vocabulary variants have different embedding sizes; XLM-R base is not the 125M-parameter monolingual RoBERTa base. A task head changes the count. The CSV preserves model class, source URL, revision and licence metadata.
+
+### Additional Models
+
+Glot500, NLLB, BERTbek, TURNA, KAZ-LLM and Sherkala are discussed with their publications and task results in @sec-book-07-neural-morphology, @sec-book-10-machine-translation and @sec-book-12-pretrained-lms. Use each experiment's pinned checkpoint and verify any additional Hub release. Choose by measured performance and model purpose: NLLB is trained for translation, while base mT5 uses span-corruption pretraining. Instruction-following chat requires further adaptation or evaluation.
+
+
+
+
+
+### Speech Models
+
+| Model | Coverage | Source |
+|-------|----------|----------------|
+| Whisper large-v3 | 100 language tokens, including seven Turkic languages | [openai/whisper-large-v3 configuration](https://huggingface.co/openai/whisper-large-v3/blob/main/generation_config.json) |
+| TurkicASR | 10 Turkic languages | github.com/IS2AI/TurkicASR |
+| TurkicTTS | Kazakh-trained, zero-shot for other Turkic languages | github.com/IS2AI/TurkicTTS |
+| Söyle | 11 Turkic and other languages | github.com/IS2AI/Soyle |
+| MMS | 1,100+ languages | facebook/mms-1b-all |
+| Omnilingual ASR | 20 Turkic languages through TurkicNLP | via `turkicnlp[asr]`; see @sec-book-11-speech-technologies |
+
+: Speech models for Turkic languages {#tbl-speech-models}
+
+**Whisper** (OpenAI) covers seven Turkic languages (tr, az, uz, kk, tt, tk, ba) but not Kyrgyz or Uyghur. **TurkicASR** [@mussakhojayeva2023turkicasr] covers Azerbaijani, Bashkir, Chuvash, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Uyghur, and Uzbek; **TurkicTTS** [@yeshpanov2023turkictts] synthesises Turkic languages zero-shot from a Kazakh-trained model (@sec-book-11-speech-technologies).
+
+
+## Community and Infrastructure {#sec-appb-community}
+
+The organisations behind most of these resources (Apertium, SIGTURK, ISSAI, Universal Dependencies, Turkic Interlingua, the UD-Turkic group, TurkLang and the Turkic Academy) are described in @sec-institutions. Two practical points for contributors:
+
+- **Universal Dependencies** publishes two releases a year; new treebanks are submitted through the UD GitHub organisation, and language-specific guidelines are in the UD documentation. For a language without a treebank, see @sec-build-treebank.
+- **Apertium** modules are separate GitHub repositories (`apertium-kaz`, `apertium-kir`, `apertium-nog`, …) documented on [wiki.apertium.org](https://wiki.apertium.org); extending an existing module is the route described in @sec-bootstrapping.
+
+
+## Reproducing Results from This Book {#sec-appb-reproducing}
+
+### Local Reproduction Manifest
+
+The code is organised by chapter: `code/ch04-corpus/`, `code/ch05-ambiguity/`, `code/ch06-toy-fst/`, `code/ch07-neural/`, `code/ch09-ner/`, `code/ch10-mt/`, `code/ch11-speech/`, `code/ch12-classify/`, `code/ch13-retrieval/`, `code/ch14-generation/`, `code/ch15-tumlu/`, `code/ch16-transfer/` and `code/ch17-resources/`. Shared helpers, the mechanical checks and the tested package versions are in `code/common/`, whose README documents inputs, commands, outputs and limits for classification, speech, TUMLU, corpus auditing, retrieval, transfer and resource observations. The exercise notebooks are in `exercises/`.
+
+Run `python code/common/check.py` in the recorded test environment. This checks fixtures, tiny models and artefact reload; it does not reproduce pretrained-model task accuracy. Full data/model downloads, dataset access conditions and independent human labels are separate prerequisites. Code-block extraction alone is not an adequate end-to-end reproduction test.
+
+### Setting Up Chapter by Chapter
+
+The reading routes in the Preface give the order of chapters. Install only the extras a chapter uses, and keep the speech environment separate.

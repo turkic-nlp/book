@@ -1,0 +1,13 @@
+{
+  "toolkit_source_files": {
+    "turkicnlp/turkicnlp/scripts/detector.py": "426de63a008ae1172341e145d071e628987471216540a2deb0786a7e21cf773d",
+    "turkicnlp/turkicnlp/scripts/__init__.py": "1af284cf3483ffacc6af8a308104c7e20b31828d86512b882dbc8f1378333afb",
+    "turkicnlp/turkicnlp/scripts/transliterator.py": "f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2"
+  },
+  "git_head": "1a16cacfd694895896d2526b042a307e2ed23cb8",
+  "mapping": "uzb LATIN\u2192CYRILLIC\u2192LATIN",
+  "queries": 900,
+  "changed_queries": 900,
+  "exact_roundtrip_queries": 888,
+  "human_validated": false
+}

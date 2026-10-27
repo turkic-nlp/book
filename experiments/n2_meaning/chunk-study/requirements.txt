@@ -1,0 +1,4 @@
+tokenizers==0.22.2
+tiktoken==0.14.0
+regex==2024.11.6
+huggingface_hub==1.6.0

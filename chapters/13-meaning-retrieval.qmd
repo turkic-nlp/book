@@ -1,0 +1,288 @@
+---
+short-title: "Meaning and Retrieval"
+---
+
+# Meaning: Embeddings, Semantic Resources, and Retrieval {#sec-book-13-meaning-retrieval}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Survey the lexical-semantic resources for Turkic languages (WordNets, PropBanks, discourse and coreference corpora) and identify the gaps
+- Explain how agglutination and the use of several scripts affect word and sentence embeddings
+- Evaluate multilingual sentence encoders on Turkic languages with parallel-sentence retrieval and semantic similarity
+- Choose how to reduce word forms (surface form, prefix, stem, lemma, subword) for keyword search in an agglutinative language
+- Design a retrieval-augmented generation system for a multilingual collection, such as Turkic-language questions over Russian documents
+- Account for script-dependent tokenisation when splitting documents into chunks
+:::
+
+@sec-book-12-pretrained-lms introduced pretrained models and adaptation. This chapter turns to semantic resources and retrieval: representing text, comparing meanings and finding relevant passages. It then connects retrieval to generation, which @sec-book-14-generation-dialogue examines in more detail.
+
+Inflection and script variation both affect matching. Turkish *ev* 'house', *evler* and *evimiz* are related forms, but exact matching treats them as different strings. Script differences can also hide shared forms (@sec-cts). The chapter compares lexical and dense retrieval, including queries and documents in different languages.
+
+
+## Lexical-Semantic Resources {#sec-meaning-resources}
+
+Lexical-semantic resources describe what words mean and how they relate: synonymy and hypernymy in a WordNet, predicate–argument structure in a PropBank, relations between clauses in a discourse treebank. The selected inventory below includes several Turkish resources, WordNets for Tatar and Uzbek, and a Kyrgyz word-similarity set (@tbl-semantic-resources):
+
+- **WordNet.** The Turkish WordNet KeNet [@bakay2021kenet], TatWordNet for Tatar [@kirillovich2021tatwordnet], and UZWORDNET for Uzbek [@agostini2021uzwordnet].
+- **Semantic roles.** The Turkish PropBank [@sahin2018propbank] and TRopBank, published as Turkish PropBank v2.0 [@kara2020tropbank].
+- **Discourse and coreference.** The Turkish Discourse Bank [@zeyrek2013tdb] and the Marmara Turkish Coreference Corpus [@schuller2017marmara].
+- **Inference and similarity.** NLI-TR [@budur2020nlitr] and STSb-TR [@bekenfikri2021stsbtr], both machine-translated from English datasets.
+
+Other lexical sources include Wiktionary, the Apertium bilingual dictionaries used by the translation pairs in @sec-book-10-machine-translation, and lemma/POS outputs from @sec-book-06-finite-state-morphology. These supply lexical features. Sense relations, coreference and semantic roles require their own annotation.
+
+{{< include ../tables/tbl-semantic-resources/output.md >}}
+
+TRopBank's paper reports 17,673 verbs; @sec-book-09-sequence-labeling counts 17,531 framesets in the inspected release. The two figures come from different source descriptions and cannot be swapped for each other. A frame inventory also does not substitute for sense-annotated sentences.
+
+
+## Word Embeddings and Morphology {#sec-meaning-words}
+
+Whole-word static embeddings assign a vector to each word form. Rare inflected forms may have little training evidence. Character n-gram embeddings share information across forms and can construct vectors for unseen words; useful task performance still needs to be tested. Lemma-based embeddings instead collapse forms to an analyser's selected lemma, losing explicit inflectional distinctions and inheriting analysis errors.
+
+Static embeddings for several Turkic languages can be aligned into a shared space with a bilingual dictionary. @kuriyozov-etal-2020-cross built new monolingual embeddings and bilingual dictionaries for Turkish, Uzbek, Azerbaijani, Kazakh and Kyrgyz and aligned the embedding spaces with established, weakly supervised mapping methods. In bilingual dictionary induction, the authors report that the embeddings of the lower-resourced languages benefit from alignment with a closely related, better-resourced language; in Uzbek sentiment analysis, aligned embeddings gave a slight improvement over monolingual ones.
+
+
+## Sentence Encoders {#sec-meaning-encoders}
+
+### Models
+
+Sentence encoders map text to vectors for comparison. Whether vector similarity reflects the intended meaning or relevance must be tested. Four multilingual model families are:
+
+- **LaBSE** [@feng2022labse], trained on translation pairs;
+- **LASER3** [@heffernan2022laser3], with encoders for low-resource languages;
+- **multilingual E5** [@wang2024me5];
+- **BGE-M3** [@chen2024bgem3].
+
+TurkicNLP adds a fifth option: sentence vectors from the encoder of NLLB-200, which was trained on translation between 200 languages, including the eleven Turkic varieties of FLORES-200 (@tbl-nllb-codes):
+
+```python
+import numpy as np
+import turkicnlp
+
+def embed(lang, text):
+    return np.array(turkicnlp.Pipeline(lang, processors=["embeddings"])(text).embedding)
+
+tr = embed("tur", "Bugün hava çok güzel.")
+kk = embed("kaz", "Бүгін ауа райы өте жақсы.")
+print(tr @ kk / (np.linalg.norm(tr) * np.linalg.norm(kk)))   # cosine similarity
+```
+
+In real use, build each language's pipeline once and reuse it.
+
+Training coverage differs across encoders. LaBSE's 109 languages include Turkish, Azerbaijani, Kazakh, Kyrgyz, Uzbek, Turkmen, Tatar and Uyghur, but exclude Bashkir, Chuvash and Sakha [@feng2022labse]. The LASER repository lists a separate LASER3 encoder for each of the eleven Turkic varieties in FLORES-200.
+
+Multilingual E5 starts from XLM-R and lists support for its 100 languages. Its Turkic members are Turkish, Azerbaijani, Uzbek, Kazakh, Kyrgyz and Uyghur (@sec-book-12-pretrained-lms). BGE-M3 extends XLM-R-large to 8,192-token inputs and reports "more than 100 working languages", without a separate Turkic list [@chen2024bgem3]. Models may accept languages outside their documented coverage, but their vectors need direct evaluation. Dedicated Turkish encoders are also evaluated on TR-MTEB, the Turkish version of the MTEB embedding benchmark [@trmteb2025].
+
+### Evaluation
+
+Three kinds of evaluation are available for Turkic languages:
+
+- **Semantic textual similarity.** Kardeş-NLU includes an STS task for Azerbaijani, Kazakh, Kyrgyz, Uzbek, and Uyghur [@senel2024kardes]: 800 test pairs per language, translated from English STS pairs that keep their English gold scores. In Exercise 3, the NLLB encoder has the highest point estimates among the three tested systems for Kazakh, Kyrgyz, Uzbek and Uyghur (Spearman's ρ 0.58–0.75) and the XLM-R paraphrase encoder for Azerbaijani, while the two paraphrase encoders lead on the English originals (0.83–0.84). TR-MTEB includes Turkish similarity and retrieval tasks [@trmteb2025].
+- **Natural language inference.** Kardeş-NLU and the Turkish part of XNLI test entailment, contradiction and neutrality (@sec-book-15-evaluation-benchmarks). Evaluating an encoder on this task needs a declared classifier or scoring method; cosine similarity alone does not distinguish those relations.
+- **Parallel-sentence retrieval.** Given a sentence in one language, find its translation among all sentences in another. FLORES-200 provides the same 1,012 test sentences in eleven Turkic varieties (@tbl-nllb-codes), so it supports a full matrix of language pairs within the family. What it tests is translation matching. General search relevance is a different question.
+
+### Measured native-script sentence retrieval
+
+The October empirical suite evaluates two released paraphrase encoders, `paraphrase-multilingual-MiniLM-L12-v2` and `paraphrase-xlm-r-multilingual-v1`, on original FLORES-200 devtest [@costa2022nllb]. Each of thirteen varieties supplies 1,012 queries against all 1,012 sentences in each other variety: **156 directed comparisons per encoder, 312 in total**. The release's aligned row order is retained and its files are checksummed; this is separate from the FLORES+ ID-based loader in the hands-on section.
+
+Both pinned checkpoints use attention-mask mean pooling, L2 normalisation, cosine similarity and their configured **128-token ceiling**. Per-language truncation counts are saved, so this is a comparison of the complete encoder configurations rather than unlimited-context representations. Exact duplicate target strings count as additional positives; top-score ties within $10^{-6}$ receive fractional credit instead of favouring an earlier row.
+
+{{< include ../tables/tbl-flores-native-probe/output.md >}}
+
+![Measured XLM-R paraphrase-encoder top-1 retrieval accuracy on original FLORES-200 devtest. Rows are query varieties and columns are target candidates; self-retrieval is omitted. Codes follow the dataset's language identifiers. Each cell uses 1,012 queries.](../figures/fig-flores-native-probe/output){#fig-flores-native-probe fig-alt="Heatmap of top-1 retrieval accuracy for 13 query and target languages: English, Russian, Turkish, Azerbaijani, Kazakh and Kyrgyz pairs mostly above 90%, while South Azerbaijani, Turkmen, Tatar and Bashkir rows and columns are mostly between 20 and 55%."}
+
+The equally weighted mean over directed pairs is **36.70% for MiniLM and 59.49% for XLM-R** (`run_bitext.py`). These descriptive scores do not isolate script, genealogy or training exposure. The original release also contains spacing anomalies in South Azerbaijani, documented in @sec-book-04-corpora-at-scale; all rows are retained. There is no independent pretraining-overlap audit, and semantically equivalent nonidentical alternatives have not been manually labelled. Exercise 1 adds CTS conditions and the NLLB encoder on a different FLORES-200 sample; independent evaluation material is still lacking.
+
+### Script and morphology in embedding space
+
+Compare native text with the toolkit's common-script representation (CTS; @sec-cts) on the same retrieval task. Conversion changes tokenisation and the model's input distribution. The direction of any benefit cannot be inferred from shared letters alone.
+
+Exercise 1 uses 1,004 SIB-200 sentences derived from FLORES-200 [@adelani2024sib]. For Kazakh→Kyrgyz, converting both sides to CTS reduces top-1 accuracy from 93.7% to 46.1% with the XLM-R paraphrase encoder and from 99.6% to 46.0% with NLLB. MiniLM rises from 41.7% to 45.4%. These outcomes do not identify the mechanism behind the changes.
+
+The exercise uses 128-token limits for the paraphrase encoders and 512 for NLLB, retains the original NLLB language token after conversion, and resolves score ties by the first candidate. It sorts each language's rows by ID but does not perform the hands-on's explicit alignment checks. These protocol differences matter when comparing it with the full FLORES baseline. NLLB's 98.9–100% native-script scores motivate an independent evaluation, yet high scores and FLORES's origin together still fall short of proving contamination. LaBSE, LASER3, E5 and BGE-M3 were not run here.
+
+
+## Keyword Search in Agglutinative Languages {#sec-meaning-keyword}
+
+### The problem
+
+Keyword search ranks documents by the terms they share with the query, weighted by how rare each term is (BM25 is the standard formula). A query *ev fiyatları* 'house prices' should match a document containing *evlerin fiyatı* 'the price of the houses'. With exact surface-word matching, neither query word matches either document word. Five representations of word forms before indexing are available:
+
+| Method | Example: *evlerimizden* | Needs |
+|--------|-------------------------|-------|
+| Surface form (lower-cased) | *evlerimizden* | nothing |
+| Fixed-length prefix (first *k* letters) | *evler* (*k* = 5) | nothing |
+| Stemmer | *ev* | a stemmer for the language |
+| Lemma from the analyser | *ev* | a morphological analyser |
+| Subword units | *ev ##ler ##imiz ##den* (depends on the model) | a subword vocabulary |
+
+: Ways to reduce Turkic word forms for keyword search. {#tbl-meaning-reduction}
+
+Lower-casing itself needs care: Turkish and Azerbaijani have dotted and dotless *i* (*İ/i*, *I/ı*), and locale-independent lowercasing may not preserve the intended distinctions (@sec-unicode).
+
+Prefix truncation is a cheap baseline motivated by Turkish retrieval work [@can2008turkishir]. Choose *k* on development relevance judgements; truncation can merge unrelated roots as well as recover inflections. The result for one collection is not a universal adequacy guarantee.
+
+Exercise 2 searches 825,309 Kazakh Wikipedia passages for 1,929 KazQAD test questions, using BM25 with $k_1=1.2$ and $b=0.75$ [@yeshpanov2024kazqad]. Surface forms score 0.140 nDCG@10. Five-letter prefixes score 0.198, context-free Apertium lemmas 0.200 and Glot500 subwords 0.204. Prefix length was selected on 548 validation questions before testing.
+
+Paired sign-flip tests compare each alternative with surface forms over the 1,929 test questions. None of 10,000 random draws reaches the observed absolute gain for any alternative. The two-sided Monte Carlo estimate is therefore $p \le 1/10{,}001 \approx 10^{-4}$, rather than exactly zero. The comparisons remain clear after Bonferroni correction for six alternatives: four prefix lengths, lemmas and subwords. Questions are the sampling unit, so these tests support conclusions about this question set and collection.
+
+The tests do not distinguish the three leading alternatives from one another: lemma vs. prefix, subword vs. prefix and subword vs. lemma give $p = 0.63$, $0.18$ and $0.38$, respectively. Their relative performance stays unresolved, which is different from showing that they are equivalent.
+
+Apertium returns analyses for 82.1% of the collection's word tokens. Some queries losing retrieval accuracy contain merged or ambiguous lemma forms: *жүзін* and *жүзіп*, for example, both map to *жүз*. They are candidates for manual error analysis; on their own they do not explain the rank change. Dense and hybrid retrieval were not run on this collection.
+
+```python
+import turkicnlp
+
+# Rule-based tokenizer and Apertium lemmas: fast, no neural model. For Kazakh,
+# processors=["tokenize", "lemma"] with the default backends gives Stanza lemmas instead.
+nlp = turkicnlp.Pipeline("kaz", processors=["tokenize", "morph"], tokenize_backend="rule", morph_backend="apertium")
+
+def index_terms(text: str, mode: str = "lemma", k: int = 5) -> list[str]:
+    if mode not in {"surface", "prefix", "lemma"} or k < 1:
+        raise ValueError("invalid mode or prefix length")
+    words = [w for w in nlp(text).words if w.upos != "PUNCT"]
+    if mode == "surface":
+        return [w.text.lower() for w in words]
+    if mode == "prefix":
+        return [w.text.lower()[:k] for w in words]
+    return [(w.lemma if w.lemma and w.lemma != "_" else w.text).lower() for w in words]   # unknown words keep their surface form
+
+query = "Мектептерімізден кітаптар алдық."     # 'We took books from our schools.'
+for mode in ["surface", "prefix", "lemma"]:
+    print(mode, index_terms(query, mode))
+# surface ['мектептерімізден', 'кітаптар', 'алдық']
+# prefix ['мекте', 'кітап', 'алдық']
+# lemma ['мектеп', 'кітап', 'ал']
+```
+
+The example shows the trade-off in miniature. The five-letter prefix happens to give the right stem for *кітаптар* 'books', cuts *мектеп* 'school' short, and leaves the short verb *алдық* 'we took' unchanged; the analyser gets all three lemmas right. For fair baselines, cache the same token boundaries once; surface/prefix indexing need not run a lemmatiser. Apply the identical normalisation to queries and documents. For Turkish and Azerbaijani, lower-case with `turkicnlp.utils.unicode_utils.normalize_turkish_i(text).lower()` so that *İ* and *I* are handled correctly.
+
+
+### Measured passage-recovery baseline
+
+Belebele supplies questions and translated source passages [@bandarkar2024belebele]. Here it is repurposed as **source-passage retrieval**, not the benchmark's multiple-choice task: each of seven languages contributes 900 questions and 488 candidate passages. The gold candidate is the passage attached to that question. Passage links and question numbers are checked for uniqueness and joined across languages. Other potentially relevant passages are not exhaustively judged.
+
+{{< include ../tables/tbl-belebele-passage-probe/output.md >}}
+
+BM25 uses fixed $k_1=1.2$, $b=0.75$, NFC normalisation and Unicode alphanumeric tokens, with Turkish/Azerbaijani case handling. The fixed prefix-five condition clips each token after five code points; it is not a morphological analyser. The dense systems use the same pinned encoders and 128-token ceiling as the sentence experiment. All systems receive the same candidate collection. Metrics average expected rank credit over gold-score ties, including queries with no lexical overlap.
+
+![Exploratory sensitivity of BM25 source-passage retrieval to prefix length on the seven Belebele language collections. Each point is nDCG@10 over 900 questions. The test grid is descriptive; no best prefix is selected as a tuned result.](../figures/fig-belebele-prefix-probe/output){#fig-belebele-prefix-probe fig-alt="Line chart of BM25 nDCG@10 against prefix length 3 to 8 for seven languages: every line rises from length 3, peaks at 4 or 5, and falls by length 8; English and Russian stay highest, Kazakh and North Azerbaijani lowest."}
+
+The fixed five-character prefix baseline scores higher nDCG@10 than either dense model in all seven collections. Both dense encoders truncate 1,570 of the 3,416 passage inputs at 128 tokens. Their scores therefore reflect this length limit as well as the learned representations; statistical significance has not been established.
+
+@fig-belebele-prefix-probe tests lengths three through eight on the same test questions. Selecting a length for deployment would require separate development data. These lexical conditions, dense baselines and the script/language probes below make up the 77-condition run. Exercise 2 compares lemmas and subwords on KazQAD; hybrid systems remain untested.
+
+## Retrieval across Scripts and Languages {#sec-meaning-retrieval}
+
+### Across scripts
+
+A Kazakh user may type a query in Cyrillic while some documents are in Latin; an Uzbek user may search in Cyrillic over a collection in Latin. Literal keyword overlap may fall sharply, though names, numbers, shared symbols and mixed-script text can still match. Dense retrieval may partly bridge the gap if the encoder has seen both scripts. Query transliteration is one condition to test (@sec-transliteration); preserve the original and check ambiguous mappings.
+
+### Across languages: Turkic queries and Russian documents
+
+A collection may contain Russian documents that answer questions asked in Kazakh, Kyrgyz or Uzbek. Two candidate designs are:
+
+- **Multilingual dense retrieval.** Encode the question and the Russian documents with the same multilingual encoder.
+- **Query translation.** Translate the question into Russian (for example with NLLB, @sec-neural-mt) and use Russian keyword or dense search.
+
+Exercise 1 offers a translation-matching diagnostic: the XLM-R paraphrase encoder retrieves the aligned Russian sentence for 97.8% of Kazakh SIB-200 queries, compared with 93.7% for Kyrgyz candidates. MiniLM scores 43.9% on Kazakh→Russian. Matching translations is different from finding an answer passage in an independently collected Russian corpus. Query translation and hybrid retrieval remain untested here.
+
+
+### Measured script and language probes
+
+The Uzbek script probe keeps the 488 Latin candidate passages fixed and transforms the same 900 questions with the recorded toolkit Latin→Cyrillic mapping. A third condition converts those generated questions back to Latin. This is a **synthetic query transformation**, with source hashes retained; it has not been validated by native speakers and does not represent a naturally occurring Cyrillic query collection.
+
+{{< include ../tables/tbl-uzbek-script-probe/output.md >}}
+
+BM25 nDCG@10 falls from **0.703 to 0.028** with Cyrillic queries and returns to **0.702** after round-trip conversion. Both dense models also lose accuracy. This result measures sensitivity to the chosen mapping; meaning preservation needs a separate review.
+
+{{< include ../tables/tbl-belebele-crosslanguage-probe/output.md >}}
+
+The cross-language probe joins the same question/source-passage identities across translations and searches the target-language collection directly with each dense encoder. It includes Kazakh→Russian, Russian→Kazakh, Turkish→English and Uzbek→Russian. No query-translation or hybrid retriever is run here, and performance on translated parallel passages need not transfer to independent Russian documents. Human mapping checks and comparisons with query translation and hybrid retrieval remain to be completed.
+
+## Retrieval-Augmented Generation for Turkic Languages {#sec-meaning-rag}
+
+Retrieval-augmented generation (RAG) gives a language model retrieved passages as context and asks it to answer from them. Three design decisions connect the earlier sections.
+
+**A token budget holds different amounts of text.** Language variety, writing system, tokeniser and the text itself affect capacity. Isolated-word fertility (@tbl-fertility) and corpus characters per token (@fig-hplt-chars-per-token) provide useful diagnostics. To estimate document capacity, measure running text directly; separating script effects requires a controlled comparison.
+
+@tbl-chunk-content and @fig-chunk-content report the sentence-stream packing experiment on the **original FLORES-200 devtest release**, using 1,012 aligned sentence rows for each of 11 Turkic varieties plus English [@costa2022nllb]. This release is distinct from the subsequently revised FLORES+ dataset. The tokenisers are pinned snapshots of Qwen3.5-35B-A3B-FP8, Meta-Llama-3-8B and Olmo-3-1025-7B, plus `o200k_base`; the experiment records their hashes and library versions. No model weights, chat templates or special tokens are used.
+
+The packing procedure takes sentences in release order, trims outer whitespace and joins them with one space. It re-tokenises each proposed chunk as a whole. If the next sentence would push the chunk beyond **512 tokens**, it closes the chunk and starts another. Every individual sentence fits; the largest takes 388 tokens.
+
+Means cover closed chunks and exclude each language/tokeniser's final tail. The saved audit still accounts for all 1,012 rows, including the tail. Here, "words" means nonempty whitespace-delimited units and "sentences" means aligned dataset rows.
+
+{{< include ../tables/tbl-chunk-content/output.md >}}
+
+![Measured mean words and aligned sentence rows per closed chunk under a 512-token ceiling, using four pinned tokenisers on original FLORES-200 devtest. Counts exclude the final tail. Exact inputs and per-chunk counts accompany the sentence-stream packing experiment.](../figures/fig-chunk-content/output){#fig-chunk-content fig-alt="Two-panel dot plot of mean words and aligned sentences per 512-token chunk for four tokenisers: about 400 English words per chunk, 165 to 230 for Turkish, and the fewest for Uyghur and Bashkir, where OLMo 3 fits about 55 to 70 words."}
+
+On this sample, English holds approximately **397–405 words** per closed chunk across tokenisers, Turkish **164–229**, Kazakh **77–201**, and Uyghur **54–124**. Whole-sentence packing leaves unused space: mean utilisation ranges from **84.4% to 97.4%** across the 48 language/tokeniser combinations. Thus, the observed capacity reflects both tokenisation and the packing rule. The figure also reports aligned sentence counts so that differences in translated word counts are visible alongside differences in shared sentence coverage.
+
+This experiment measures **sentence-stream packing**. Chunks may cross the source articles from which FLORES sampled its sentences, so retrieval relevance, chunk coherence and answer quality need separate evaluation (@sec-evaluation-principles). Translations differ in length, whitespace conventions affect word counts, and the design does not vary language and script independently. In deployment, budget indexing chunks with the embedding tokeniser and final context with the generator's tokeniser, allowing space for prompts, citations and output.
+
+A separate probe uses the ten longest Kazakh Wikipedia articles of KazQAD (13,700–43,000 words each). A 512-token chunk holds on average 95 words with the Llama 3 tokeniser, 76 with OLMo 3 and 126 with Qwen3.6, against 203 with Glot500's tokeniser, an encoder-side vocabulary that splits Kazakh far less (Exercise 4). A system that retrieves with one model and generates with another must therefore budget chunks for each tokeniser separately. Whether token-based or sentence-based chunking retrieves better on KazQAD has not been measured.
+
+**The answer must stay in the user's language.** Check whether Russian context changes the language of an answer requested in a Turkic language. Evaluate this separately from correctness, using the language-fidelity checks in @sec-gen-failures.
+
+**Evaluate each stage.** Measure retrieval relevance, answer correctness, citation support, language fidelity and abstention on unanswerable questions separately. Retain document provenance and permissions, remove duplicate candidates and record all judged relevant passage IDs for each query. A translated parallel sentence may have other relevant alternatives.
+
+Tune prefix length, BM25 parameters and fusion weights on development data. Report collection size, MRR cutoff, nDCG gains and the treatment of queries without relevant items. Set evaluation sample size according to the precision the study needs.
+
+
+## Hands-On: A Procedure for Finding Translations Across the Family {#sec-ch-meaning-hands-on}
+
+**Question.** Can an encoder retrieve the aligned translation among candidate sentences?
+
+**Inputs.** An authorised FLORES+ export with stable IDs and the chosen encoder.
+
+**Compute.** CPU inference is possible; model size and candidate count determine memory needs.
+
+**Output.** Ranked candidates, retrieval scores and input/encoder metadata.
+
+**Interpretation.** Compare native and CTS conditions with the same candidate set and explicit tie handling.
+
+[FLORES+](https://huggingface.co/datasets/openlanguagedata/flores_plus) requires acceptance of its access conditions. Use an authorised local export and save its revision, selected language/script/variety, split and file hashes; keep it evaluation-only. The loader must preserve `id`, `split` and `text` rather than discarding metadata and assuming row-order alignment.
+
+The tested helpers in [retrieval.py](../code/ch13-retrieval/retrieval.py) require unique `(id, split)` keys, equal coverage and nonempty text, then join and sort the two varieties by those keys. They validate embedding dimensions, finite values and nonzero norms. Exact duplicate target strings count as additional positives; tied highest scores receive fractional credit across all ties. Semantically equivalent but nonidentical alternatives need separate relevance judgements.
+
+```python
+from retrieval import align, top1  # code/ch13-retrieval on PYTHONPATH
+# source_rows and target_rows are authorised exports retaining IDs and split.
+source_rows, target_rows = align(source_rows, target_rows)
+a = encoder.encode([r["text"] for r in source_rows], normalize_embeddings=True)
+b = encoder.encode([r["text"] for r in target_rows], normalize_embeddings=True)
+result = top1(source_rows, target_rows, a, b)
+```
+
+Build and cache each embedding matrix once per model revision, variety, condition and preprocessing hash. For larger candidate sets, score in blocks. Record truncation rate and maximum length; do not silently compare different retained subsets.
+
+A model comparison needs its own interface specification. LaBSE uses its sentence embedding interface; [multilingual E5](https://huggingface.co/intfloat/multilingual-e5-base) uses the documented `query: ` and `passage: ` prefixes for retrieval, including non-English text. Select a LASER language encoder explicitly. BGE-M3 dense, sparse and multi-vector modes are different systems: start with a declared dense mode. Record pooling, normalisation, similarity and training-language evidence for each checkpoint.
+
+Test native/native, CTS/CTS and native/CTS separately. Every included variety needs an intentional supported mapping, including native Latin and Arabic inputs; do not return Latin unchanged while labelling it CTS. Unsupported mappings are missing conditions. Preserve originals, converter versions and checked examples.
+
+**Status: procedure only.** The full FLORES+ protocol is not run here. Exercise 1 records a separate SIB-200 retrieval diagnostic with different alignment, tie and length policies.
+
+## What to Take Forward {#sec-ch13-synthesis .unnumbered}
+
+Representation quality depends on the retrieval task, candidate set and input conventions. In Exercise 1, converting both sides of the Kazakh–Kyrgyz task to CTS sharply reduces retrieval accuracy for the XLM-R paraphrase and NLLB encoders, while MiniLM improves slightly in this sample. Test input changes, including conversion and chunking, with the same queries and candidate set. For a retrieval-augmented system, check retrieval before judging the generated answer. @sec-book-14-generation-dialogue turns to models that write Turkic text.
+
+
+## Further Reading {#sec-ch13-further-reading .unnumbered}
+
+- @feng2022labse, @heffernan2022laser3, @wang2024me5, and @chen2024bgem3 describe the multilingual encoders surveyed in this chapter, and @artetxe2019margin the margin criterion for mining parallel sentences.
+- @trmteb2025 describes TR-MTEB, the Turkish embedding benchmark.
+- @kuriyozov-etal-2020-cross builds cross-lingual word embeddings for Turkic languages.
+- @yeshpanov2024kazqad describes KazQAD, the Kazakh open-domain QA dataset with a retrieval component.
+- @can2008turkishir is the classic study of stemming for Turkish information retrieval.
+
+
+## Exercises {#sec-ch13-exercises .unnumbered}
+
+1. **Russian documents and scripts.** Extend the hands-on to SIB-200: for Kazakh, Kyrgyz and Tatar queries, retrieve the Russian translation of each sentence and compare with Turkic neighbours. Then test native/native, CTS/CTS and native→CTS conditions for four pairs.
+2. **Lemmatisation errors.** On KazQAD, compare BM25 over surface forms, prefixes (choose *k* on validation), analyser lemmas and subwords. Inspect the test queries where lemmas lose most: how many losses come from wrong or merging lemmas?
+3. **STS.** Compare encoders on the Kardeş-NLU STS test sets with Spearman's ρ and bootstrap intervals. Then design a 50-pair STS set for a Turkic language without one: two native raters, a 0–5 scale, and quadratic-weighted κ for their agreement.
+4. **Chunking.** Take the ten longest Kazakh articles in KazQAD and split them into 512-token chunks with three LLM tokenisers and one embedding tokeniser. How many words does a chunk hold on average with each? What does this mean for a RAG system's context budget?

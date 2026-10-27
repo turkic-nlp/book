@@ -1,0 +1,170 @@
+---
+short-title: "Cross-Lingual Transfer"
+---
+
+# Cross-Lingual Transfer within the Turkic Family {#sec-book-16-cross-lingual-transfer}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Form testable hypotheses about within-family transfer using morphological and lexical evidence
+- Design comparisons that distinguish script, relatedness and resource effects
+- Evaluate proxy-language configurations where target task training data are unavailable
+- Choose transfer methods to compare using the available target-language evidence
+- Explain pooled training and test how temperature sampling changes language exposure
+- Compare language-specific adapters with separate models and pooled training
+- Distinguish pivot translation, back-translation and synthetic-data filtering
+- Recognise the challenges of code-switched Turkic text
+:::
+
+Earlier chapters tested transfer in morphology, parsing, NER, translation and speech. @sec-book-12-pretrained-lms and @sec-book-13-meaning-retrieval also compared native and converted text for classification and retrieval. This chapter brings those methods together: choosing source languages, controlling script conversion, pooling training data and evaluating target-language results.
+
+## Why Related Languages Can Help {#sec-why-transfer}
+
+### Structural and Lexical Hypotheses
+
+Transfer reuses a model trained on one language to make predictions in another. Shared suffix patterns can help a tagger recognise similar grammatical functions; shared words can give an encoder familiar inputs. Multilingual pretraining offers another route: it can place texts from different languages in a shared representation space. A source language is therefore a candidate to test, using the target task and data to judge its usefulness.
+
+The morphology in @sec-book-05-morphological-structure suggests which constructions to compare. Written overlap may come from inherited cognates or shared loans, such as *kitap/kitab* 'book'. Script conversion changes that overlap. Compare sources on the same target sentences and record script, training size and domain alongside the score (@sec-evaluation-principles).
+
+### Evidence from Tasks
+
+Kardeş-NLU reports benefits from Turkish intermediate training in its evaluated settings [@senel2024kardes]. The parser comparison in @sec-book-08-syntax-ud and TurkicASR in @sec-book-11-speech-technologies provide further task-specific evidence. The parser table uses matched words and includes very small target samples, especially Sakha; interpret its scores under that evaluation convention.
+
+"Zero-shot" here means applying a model without target task-labelled training. The model may have encountered the target language during multilingual pretraining. A proxy language is a chosen model input or routing configuration. Evaluate that choice on independent target annotations.
+
+## Script Conversion as an Experimental Condition {#sec-script-norm}
+
+Script conversion supplies an alternative written input to the same task. The conversion conventions and their losses are explained in @sec-transliteration and @sec-cts. Here the question is whether conversion helps transfer: compare it with native text under the model's documented input conventions. @muller2021unseen motivates testing this for unseen scripts.
+
+1. Identify the language and script on the original text.
+2. Record the converter, version and supported direction. Native Latin is not automatically CTS.
+3. Preserve original strings, whitespace, item IDs and an explicit character-boundary map.
+4. Run the model, recording any additional automatic script bridging.
+5. Map predictions back only where the alignment is unambiguous; report failures and coverage.
+
+Digraphs, deletions and context-sensitive mappings can shift character offsets even when word counts stay the same. Rebuilding text with `split()`/`join()` can also change its spacing. Preserve a map to the original boundaries; a lossy conversion may have no exact inverse.
+
+## Transfer Strategy by Available Evidence {#sec-strategy}
+
+Available annotation, domain match, model coverage and cost jointly determine which comparisons are feasible. No fixed sentence count marks the point at which a larger model or training from scratch becomes preferable.
+
+| Available evidence | Initial comparisons | What to reserve |
+|---|---|---|
+| No target task labels | Native multilingual/proxy baseline; optional conversion; existing FST where relevant | Obtain independent target evaluation before claiming quality |
+| Small labelled collection | Zero-shot, head/adapter tuning, pooled training | Source-disjoint development and test items |
+| Labelled data plus unlabelled text | Continued pretraining vs. task tuning alone | Exclude all evaluation texts from adaptation |
+| Larger task data and compute budget | Monolingual vs. multilingual; model-size and scratch-training controls | Same test set and comparable tuning budgets |
+
+: Candidate comparisons, not measured resource thresholds. {#tbl-strategy-matrix}
+
+Check existing resources before adapting a neighbouring language's system. Nogai, for example, already has an Apertium module whose lexicon and rules can be extended. For translation, verify NLLB's supported codes: adding a pivot cannot supply a missing language interface. Use development learning curves to estimate the value of further annotation or parallel data, and reserve separate gold sentences for final evaluation.
+
+## Multilingual Turkic Training {#sec-multilingual}
+
+### Pooling Data Across Languages
+
+Pool only after checking label conventions, tokenisation and split provenance. Language tags, language embeddings and separate adapters are alternative design choices; none is required by multilingual training. Compare a language-conditioned model with an otherwise matched shared model. A dominant corpus can influence training, but raw language percentages alone do not identify which linguistic mechanism produced a gain.
+
+### Evidence from Speech and Parsing
+
+Speech and parsing provide two task-specific comparisons. In speech, the TurkicASR system [@mussakhojayeva2023turkicasr] trains a single model jointly on transcribed speech in ten Turkic languages and reports improvements for languages with little data; these results do not isolate the contribution of shared phonetics. In parsing, TurkicNLP's multilingual parser, trained on twenty UD-format treebanks of ten Turkic languages, is evaluated in the frozen matched-word comparison in @sec-book-08-syntax-ud. Its gold/silver reference mixture and small samples limit interpretation [@hakimov2025turkicnlp].
+
+Transfer failures should be analysed by language, domain and task. Report branch and script alongside the results, without treating them as explanations by themselves.
+
+### Language-Specific Adapters
+
+State each training stage. One recipe begins with a shared pretrained encoder, optionally updates it on pooled text, then freezes it while training a target adapter **and task head**. Another trains shared weights and adapters jointly. Compare these as separate experiments. Distinguish bottleneck adapters from LoRA and report the modules trained, parameter counts and measured inference overhead.
+
+Freezing shared weights prevents those weights from being overwritten during that stage, but does not guarantee preservation of end-to-end predictions: adapters and heads change outputs. Save all trained components and check reload equivalence.
+
+### Addressing Data Imbalance
+
+Temperature sampling chooses language $i$ with probability
+
+$$p_i=\frac{n_i^{1/T}}{\sum_j n_j^{1/T}}.$$
+
+With a synthetic 9:1 corpus-size ratio, $T=1$ samples 90%/10% and $T=2$ samples 75%/25%. The figures are illustrative arithmetic. In an actual run, track examples and updates per language. Choosing one language per batch controls exposure across steps; mixing all languages into every batch needs a compatible batch design. Select temperature on development data and check both smaller and larger languages.
+
+## Pivot Translation as Data Augmentation {#sec-pivot}
+
+A pivot translates source→pivot→target when both component directions are supported. Verify the actual released pair/model and script for each leg; a development repository is evidence neither of released coverage nor of translation quality. Compare direct translation, pivoting and any synthetic-data adaptation on the same independent target test set (@sec-book-10-machine-translation).
+
+Evaluate the complete source→pivot→target output. Scores for the two legs cannot simply be combined: the second model may preserve, introduce or repair errors.
+
+Back-translation uses a target→source system to pair real target sentences with synthetic source text. Document filtering and keep source-document groups intact across splits. Check the real text too. Round-trip consistency can reward copying or repeatable mistakes, so combine it with language checks, alignment diagnostics and independent human review.
+
+Compare filtered data with random subsets of equal size. Exercise 4 measures reference overlap on such subsets without training on them. To test their value for adaptation, generate separate training data and reserve the benchmark test set for final evaluation.
+
+![An evaluation workflow for choosing a cross-lingual transfer strategy. Target task labels determine the initial comparison. Script conversion and an available finite-state transducer are options to test; final selection depends on held-out target performance, coverage, cost and error analysis.](../figures/fig-transfer-strategy-decision-tree/output){#fig-transfer-strategy-decision-tree fig-alt="Flowchart branching on target labels, optional conversion and rule-based comparisons, ending in target evaluation." width="100%"}
+
+## Code-Switched and Mixed Text {#sec-code-switching}
+
+Distinguish an established borrowing from an active switch between languages, and state the annotation convention for ambiguous cases. A shared script cannot identify language boundaries. Preserve mixed-language segments and evaluate token-level language labels, task labels and segment boundaries separately. Turkish–German SAGT and Turkish–English BUTR resources must be named according to the exact released treebank; consult the official inventory in @sec-book-08-syntax-ud rather than treating every Turkish treebank as monolingual.
+
+Inserting words synthetically perturbs the input. Natural code-switching may look quite different. Have proficient speakers check naturalness and preservation of the task label, and report real mixed-language evaluation separately.
+
+## Hands-On: Comparing Native Text and Script Conversion {#sec-ch16-hands-on}
+
+**Question.** Does consistent script conversion change Kazakh-to-Kyrgyz NER?
+
+**Inputs.** Source training and independent target annotations, converter metadata and a declared entity schema.
+
+**Compute.** The Exercise 1 CRF runs on CPU; the full protocol also needs original character offsets.
+
+**Output.** Span scores by script condition and a mapping-failure report.
+
+**Interpretation.** Compare matched conditions and keep token-level results distinct from original-offset validation.
+
+Use a source-trained model and independently annotated target sentences with immutable IDs and original character spans. Keep source training data and target development/test groups disjoint. Harmonise entity schemas **before** scoring: map PERSON/PER to PER, ORGANIZATION/ORG to ORG, and GPE/LOCATION/LOC to LOC; excluded types become O under this explicitly reduced task.
+
+The tested helpers in [transfer.py](../code/ch16-transfer/transfer.py) reconstruct BIO spans from original offsets, reject orphan `I` tags, and map converted spans through unique stable character boundaries. A span cutting a digraph or ambiguous deleted unit is rejected and counted, not silently moved. The conservative prefix-probing converter is intended for short diagnostics and is quadratic in text length.
+
+```python
+from transfer import conversion_map, restore_span  # code/ch16-transfer on PYTHONPATH
+from turkicnlp.scripts import Script
+from turkicnlp.scripts.transliterator import Transliterator
+converter = Transliterator("kir", Script.CYRILLIC, Script.COMMON_TURKIC)
+original = "Бишкекте жыйын өттү."
+converted, boundaries = conversion_map(original, converter.transliterate)
+# For each model-predicted (start, end, type) span in converted text:
+# original_span = restore_span(predicted_span, boundaries)
+```
+
+Log the checkpoint, converter and processor trace. If the pipeline automatically bridges the input to a different model script, the nominal native/CTS labels do not describe the actual model inputs; inspect those inputs before comparing results. Score strict entity spans on the same original gold annotations, with mapping failures included in the coverage report.
+
+To investigate genealogy, add related and unrelated source languages under comparable training sizes and tuning budgets. A descriptive regression across a few dependent language pairs cannot isolate a causal script effect. Use paired item-level comparisons, multiple seeds and an independently collected set in addition to potentially exposed parallel benchmarks.
+
+Exercise 1 compares token-aligned versions of Kazakh→Kyrgyz NER. A CRF with the @sec-book-09-sequence-labeling features is trained on 20,000 KazNERD training sentences and evaluated on 3,867 KyrgyzNER test sentences. The reduced schema also maps KyrgyzNER's INSTITUTION and BUSINESS types to ORG, as in @sec-book-09-sequence-labeling. Native Cyrillic gives span F1 31.9; converting both sides to the toolkit's Common Turkic Script (CTS) gives 34.6. Training on native text and testing on CTS gives 6.9. This single-sample comparison describes one feature set; uncertainty across training samples remains unmeasured (@sec-evaluation-principles).
+
+Word-by-word conversion preserves token indices, so the exercise scores token-level entity boundaries. It does not restore predictions to the source's original character offsets. Its span parser ignores orphan `I` tags.
+
+A separate diagnostic uses the stricter `bio_spans` helper, which rejects one sentence. It restores 3,090 gold spans and fails on one. However, it reconstructs sentences with spaces, so those offsets belong to reconstructed text. The full Hands-On requires original offsets and an explicit policy for malformed BIO sequences.
+
+**Status: completed.** Exercise 1 records the token-aligned comparison: strict entity-span F1 is 31.9 native/native and 34.6 CTS/CTS. The original-character-offset protocol remains a procedure; its mapping diagnostic is described above.
+
+## What to Take Forward {#sec-ch16-synthesis .unnumbered}
+
+Transfer reuses supervision, representations or tools across languages, and each method changes a different part of the system. The Kazakh–Kyrgyz NER comparison shows how much the input convention matters: matching scripts on both sides gave span F1 31.9 (native) and 34.6 (CTS), while a native-trained model tested on converted text fell to 6.9. Choose candidate sources from linguistic and resource evidence, keep the input conditions explicit, and decide on target-language scores with a budget for annotation and review. @sec-book-17-endangered-ethics asks what to build when target data are scarce and the community decides.
+
+## Further Reading {#sec-ch16-further-reading .unnumbered}
+
+Kardeş-NLU [@senel2024kardes] studies sentence-level transfer to Turkic languages with Turkish as a high-resource relative. @hakimov2025turkicnlp measures transfer of morphology and parsing through proxy languages, and the effect of a common script on tokenisation and lexical overlap. For choosing transfer languages in general, see @lin-etal-2019-choosing.
+
+For multilingual training methodology, the TurkicASR paper [@mussakhojayeva2023turkicasr] provides a case study of Turkic multilingual pooling, with experiments comparing combinations of training languages. For text, @hakimov2025turkicnlp evaluates multilingual Turkic morphology and parsing with proxy languages and temperature sampling, and @muller2021unseen studies transliteration as a way to help multilingual models with unseen scripts.
+
+@conneau2020xlmr introduces XLM-R and reports multilingual transfer experiments. For translation, @costa2022nllb discusses low-resource training, back-translation and filtering. The TIL corpus [@mirzakhalov2021large] supplies parallel data; a separate multiway study reports multilingual experiments [@mirzakhalov-etal-2021-evaluating].
+
+@forcada2011apertium and @khanna2021apertium describe Apertium. The Kazakh and Kyrgyz FST papers [@washington2014finite; @washington2016kyrgyz] give examples of rule-based morphology that can be extended or combined with other methods.
+
+
+## Exercises {#sec-ch16-exercises .unnumbered}
+
+1. Compare native/native, converted/converted and native/converted conditions using declared converter directions. Record failed mappings and actual model input scripts.
+2. Compare related and unrelated source training at matched data and compute budgets. Keep target test data out of proxy and hyperparameter selection.
+3. Test temperature sampling on an imbalanced multilingual training set and report effective exposure and per-language development scores.
+4. Compare unfiltered, quality-filtered and randomly reduced synthetic parallel data at the same retained size, scoring each retained set against real target references and checking what the filter selects for.
+5. Evaluate real code-switched text separately from synthetic perturbations, with borrowing conventions and label-preservation checks.

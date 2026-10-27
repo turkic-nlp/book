@@ -1,0 +1,60 @@
+{
+  "model": "facebook/nllb-200-distilled-600M",
+  "revision": "f8d333a098d19b4fd9a8b18f94170487ad3f821d",
+  "weights": {
+    "pytorch_model.bin": "c266c2cfd19758b6d09c1fc31ecdf1e485509035f6b51dfe84f1ada83eefcc42"
+  },
+  "tokenizer_sha256": "e316b82de11d0f951f370943b3c438311629547285129b0b81dadabd01bca665",
+  "archive_sha256": "b8b0b76783024b85797e5cc75064eb83fc5288b41e9654dabc7be6ae944011f6",
+  "dataset": "original FLORES-200 devtest",
+  "inputs": {
+    "tur_Latn": {
+      "sha256": "c0fe28cee25f77fbe8471bcd3c87d26c7a284f4f0420f4293c9ce004b9bef8f2",
+      "member": "./flores200_dataset/devtest/tur_Latn.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    },
+    "kaz_Cyrl": {
+      "sha256": "71e2301ba312faa8fc86624913e5bda576d4e5c6d33c48a59a1e899b36ea38ae",
+      "member": "./flores200_dataset/devtest/kaz_Cyrl.devtest",
+      "rows": 1012,
+      "exact_duplicate_rows": 0
+    }
+  },
+  "decoding": {
+    "num_beams": 1,
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "forced_bos": "explicit target language token",
+    "batch_size": 8
+  },
+  "device": "mps",
+  "dtype": "float32",
+  "torch": "2.10.0",
+  "transformers": "5.3.0",
+  "fine_tuning": false,
+  "source_truncation": false,
+  "scope": "Greedy pretrained baseline, not reproduction of the published beam-search NLLB scores. No independent contamination audit.",
+  "runs": {
+    "tur_Latn->kaz_Cyrl": {
+      "metric_signatures": {
+        "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.5.1",
+        "chrf": "nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.5.1",
+        "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.5.1"
+      },
+      "predictions_sha256": "844c5675736579128eb4bb662a42ed9985c5922c93cfa971ddcb884dd2bf2421",
+      "max_source_tokens": 107,
+      "seconds": 701.1313841342926
+    },
+    "kaz_Cyrl->tur_Latn": {
+      "metric_signatures": {
+        "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.5.1",
+        "chrf": "nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.5.1",
+        "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.5.1"
+      },
+      "predictions_sha256": "89e33f9f5f2813b0cf0ddcfce9802ddbc1d744f920885d3ee4c6f16d4003cb61",
+      "max_source_tokens": 113,
+      "seconds": 696.5461239814758
+    }
+  }
+}

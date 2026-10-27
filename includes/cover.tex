@@ -1,0 +1,12 @@
+% Center the artwork and preserve its proportions. The 17:22 image fills Letter.
+\begin{titlepage}
+\thispagestyle{empty}
+\AddToShipoutPictureBG*{%
+  \AtPageCenter{%
+    \makebox(0,0){%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{\detokenize{images/cover.png}}%
+    }%
+  }%
+}
+\null
+\end{titlepage}

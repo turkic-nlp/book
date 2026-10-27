@@ -1,0 +1,106 @@
+{
+  "release": "2.17",
+  "files": {
+    "UD_Azerbaijani-TueCL/az_tuecl-ud-test.conllu": {
+      "sha256": "8b315f8b065f094e38482465706ba44a9caf1b082fc8bbc94908f6fdeee8c3b5",
+      "url": "https://github.com/UniversalDependencies/UD_Azerbaijani-TueCL/blob/r2.17/az_tuecl-ud-test.conllu"
+    },
+    "UD_Kazakh-KTB/kk_ktb-ud-test.conllu": {
+      "sha256": "1100846ee50c2f970562a21dca8415a381c470ea06bdb8496ae213d59c3a3c4e",
+      "url": "https://github.com/UniversalDependencies/UD_Kazakh-KTB/blob/r2.17/kk_ktb-ud-test.conllu"
+    },
+    "UD_Kyrgyz-KTMU/ky_ktmu-ud-test.conllu": {
+      "sha256": "843061f0ad2204d5d65ee77edf2e576fa54887415ec8e1bb0cd928fd7b23877b",
+      "url": "https://github.com/UniversalDependencies/UD_Kyrgyz-KTMU/blob/r2.17/ky_ktmu-ud-test.conllu"
+    },
+    "UD_Kyrgyz-TueCL/ky_tuecl-ud-test.conllu": {
+      "sha256": "08224be6b74346f582234f54527412dd6265c8d8b42e7d6ef463aade85bdcd9b",
+      "url": "https://github.com/UniversalDependencies/UD_Kyrgyz-TueCL/blob/r2.17/ky_tuecl-ud-test.conllu"
+    },
+    "UD_Old_Turkish-Clausal/otk_clausal-ud-test.conllu": {
+      "sha256": "5e3faa1555cdbeece7ea52948101825b2972760d1fad3b8eee2dda238d953724",
+      "url": "https://github.com/UniversalDependencies/UD_Old_Turkish-Clausal/blob/r2.17/otk_clausal-ud-test.conllu"
+    },
+    "UD_Ottoman_Turkish-BOUN/ota_boun-ud-test.conllu": {
+      "sha256": "361a24fcf6103e4e7cddd02aea78ac79920dd0da857c1fbbe54f50326a9be36c",
+      "url": "https://github.com/UniversalDependencies/UD_Ottoman_Turkish-BOUN/blob/r2.17/ota_boun-ud-test.conllu"
+    },
+    "UD_Ottoman_Turkish-DUDU/ota_dudu-ud-test.conllu": {
+      "sha256": "d7d98be243d6640ccbd0b7c29419e8ea07bb212629b08eb9a0294d29addb5d80",
+      "url": "https://github.com/UniversalDependencies/UD_Ottoman_Turkish-DUDU/blob/r2.17/ota_dudu-ud-test.conllu"
+    },
+    "UD_Tatar-NMCTT/tt_nmctt-ud-test.conllu": {
+      "sha256": "94ed206be1ef7f91580598947e1d05542a694ab09a8cecad500142abb27c6bb8",
+      "url": "https://github.com/UniversalDependencies/UD_Tatar-NMCTT/blob/r2.17/tt_nmctt-ud-test.conllu"
+    },
+    "UD_Turkish-Atis/tr_atis-ud-test.conllu": {
+      "sha256": "9b7dc45033e0c491c882b171236a27fbbfc30ef7b12054e0ece5dea1d81a99d4",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-Atis/blob/r2.17/tr_atis-ud-test.conllu"
+    },
+    "UD_Turkish-BOUN/tr_boun-ud-test.conllu": {
+      "sha256": "4f74fc0f9efdd1285d781f3efd1e98cbf39cf4433df9eb4dc14162e8ed36773b",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-BOUN/blob/r2.17/tr_boun-ud-test.conllu"
+    },
+    "UD_Turkish-FrameNet/tr_framenet-ud-test.conllu": {
+      "sha256": "f2d63b9200d56daa134b0fa06d87db7ecb3628f7b8d09008715bdf0ac3fa65e0",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-FrameNet/blob/r2.17/tr_framenet-ud-test.conllu"
+    },
+    "UD_Turkish-GB/tr_gb-ud-test.conllu": {
+      "sha256": "c1c422c19238b49185a818968354d5dffdf94b2148639b818f3fca598d051dd5",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-GB/blob/r2.17/tr_gb-ud-test.conllu"
+    },
+    "UD_Turkish-IMST/tr_imst-ud-test.conllu": {
+      "sha256": "fc9269bd598489b942a025b678779557266ce0c054a843e47c7db386d76d6459",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-IMST/blob/r2.17/tr_imst-ud-test.conllu"
+    },
+    "UD_Turkish-Kenet/tr_kenet-ud-test.conllu": {
+      "sha256": "814e21b8ddde066489d06d52228f40067f4e7dc89e147548bbba94f776a9a6fd",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-Kenet/blob/r2.17/tr_kenet-ud-test.conllu"
+    },
+    "UD_Turkish-PUD/tr_pud-ud-test.conllu": {
+      "sha256": "7c1b6fe01662a7617758fbecdda6af6fc3914ace46b1809d6514af0a1c1df88c",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-PUD/blob/r2.17/tr_pud-ud-test.conllu"
+    },
+    "UD_Turkish-Penn/tr_penn-ud-test.conllu": {
+      "sha256": "7e3706785a00effb775842f9e09768cf7d0b022923070983f49fd169dafe871d",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-Penn/blob/r2.17/tr_penn-ud-test.conllu"
+    },
+    "UD_Turkish-Tourism/tr_tourism-ud-test.conllu": {
+      "sha256": "16815bebb64fbcb84604c7ed3d6947cf4c9a6140bbe3401c755b7bc90c71cd31",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-Tourism/blob/r2.17/tr_tourism-ud-test.conllu"
+    },
+    "UD_Turkish-TueCL/tr_tuecl-ud-test.conllu": {
+      "sha256": "2508f47e57b9b6a1d7241d0ab4a918d84c5cbb0455bbd961ac5231e31a1d311e",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish-TueCL/blob/r2.17/tr_tuecl-ud-test.conllu"
+    },
+    "UD_Turkish_English-BUTR/qti_butr-ud-test.conllu": {
+      "sha256": "9f0984c7f5162d4daf6dbefc3edaa3ab3287e8825d26a62a9df7d9348e092b74",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish_English-BUTR/blob/r2.17/qti_butr-ud-test.conllu"
+    },
+    "UD_Turkish_German-SAGT/qtd_sagt-ud-test.conllu": {
+      "sha256": "0bbb06de66a490bfbb93d103a03d0d89e3835baf0af755a57b5fa5f885ae01bc",
+      "url": "https://github.com/UniversalDependencies/UD_Turkish_German-SAGT/blob/r2.17/qtd_sagt-ud-test.conllu"
+    },
+    "UD_Uyghur-UDT/ug_udt-ud-test.conllu": {
+      "sha256": "e0884a71a6e01ca24e175fce25f2e47a4ae750d734cae24fe974598b3aafd293",
+      "url": "https://github.com/UniversalDependencies/UD_Uyghur-UDT/blob/r2.17/ug_udt-ud-test.conllu"
+    },
+    "UD_Uzbek-TueCL/uz_tuecl-ud-test.conllu": {
+      "sha256": "23257711196df0bbfaf5b25397d7c6102fbc8800ed83b15eb77342929ee0e469",
+      "url": "https://github.com/UniversalDependencies/UD_Uzbek-TueCL/blob/r2.17/uz_tuecl-ud-test.conllu"
+    },
+    "UD_Uzbek-UT/uz_ut-ud-test.conllu": {
+      "sha256": "6297430a3ac34275eefeab74d3b074618894704082e73e9d048ade561271a03a",
+      "url": "https://github.com/UniversalDependencies/UD_Uzbek-UT/blob/r2.17/uz_ut-ud-test.conllu"
+    },
+    "UD_Uzbek-UzUDT/uz_uzudt-ud-test.conllu": {
+      "sha256": "1010b15d14a0afab93a041511206de85af5ed6528eeb6e9252dfe3ff82097b80",
+      "url": "https://github.com/UniversalDependencies/UD_Uzbek-UzUDT/blob/r2.17/uz_uzudt-ud-test.conllu"
+    },
+    "UD_Yakut-YKTDT/sah_yktdt-ud-test.conllu": {
+      "sha256": "ecb202e2c652e5ddcdb84413a5a2a23b32f2e5a824ccb6dd67bbc8ea7db92bf0",
+      "url": "https://github.com/UniversalDependencies/UD_Yakut-YKTDT/blob/r2.17/sah_yktdt-ud-test.conllu"
+    }
+  },
+  "method": "Recompute descriptive basic-arc distances from hash-verified UD 2.17 test files.\nUsage: python generate.py /path/to/ud217-official\nNo parser is run. Root and PUNCT-dependent arcs excluded; punctuation positions\nremain in distance. Range IDs and empty nodes are skipped. Quantiles use nearest\nrank. Separate treebanks are not pooled as representative language samples.\n"
+}

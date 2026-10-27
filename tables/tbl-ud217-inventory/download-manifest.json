@@ -1,0 +1,304 @@
+[
+  {
+    "file": "UD_Uzbek-UT/uz_ut-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uzbek-UT/r2.17/uz_ut-ud-test.conllu",
+    "sha256": "6297430a3ac34275eefeab74d3b074618894704082e73e9d048ade561271a03a",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish_English-BUTR/qti_butr-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish_English-BUTR/r2.17/qti_butr-ud-test.conllu",
+    "sha256": "9f0984c7f5162d4daf6dbefc3edaa3ab3287e8825d26a62a9df7d9348e092b74",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Azerbaijani-TueCL/az_tuecl-ud-train.conllu",
+    "error": "HTTP Error 404: Not Found",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Azerbaijani-TueCL/r2.17/az_tuecl-ud-train.conllu"
+  },
+  {
+    "file": "UD_Azerbaijani-TueCL/az_tuecl-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Azerbaijani-TueCL/r2.17/az_tuecl-ud-test.conllu",
+    "sha256": "8b315f8b065f094e38482465706ba44a9caf1b082fc8bbc94908f6fdeee8c3b5",
+    "local_matches_official": false
+  },
+  {
+    "file": "UD_Turkish-GB/tr_gb-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-GB/r2.17/tr_gb-ud-test.conllu",
+    "sha256": "c1c422c19238b49185a818968354d5dffdf94b2148639b818f3fca598d051dd5",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Kenet/tr_kenet-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Kenet/r2.17/tr_kenet-ud-test.conllu",
+    "sha256": "814e21b8ddde066489d06d52228f40067f4e7dc89e147548bbba94f776a9a6fd",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Kenet/tr_kenet-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Kenet/r2.17/tr_kenet-ud-dev.conllu",
+    "sha256": "436be71c52a0fcaefc6ff1fe862f793701745f87be385a3cbbfdbfa6d7091094",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Kenet/tr_kenet-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Kenet/r2.17/tr_kenet-ud-train.conllu",
+    "sha256": "3a0d33f9c6a957193a9d299ddf87c73e2be69b68f3ae98fb2817b2045e3bce45",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Kazakh-KTB/kk_ktb-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Kazakh-KTB/r2.17/kk_ktb-ud-test.conllu",
+    "sha256": "1100846ee50c2f970562a21dca8415a381c470ea06bdb8496ae213d59c3a3c4e",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Kazakh-KTB/kk_ktb-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Kazakh-KTB/r2.17/kk_ktb-ud-train.conllu",
+    "sha256": "6297597914a3f319db573573f927a6577c702f5fa00dcd653162aab46026aeaa",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-FrameNet/tr_framenet-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-FrameNet/r2.17/tr_framenet-ud-test.conllu",
+    "sha256": "f2d63b9200d56daa134b0fa06d87db7ecb3628f7b8d09008715bdf0ac3fa65e0",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-FrameNet/tr_framenet-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-FrameNet/r2.17/tr_framenet-ud-train.conllu",
+    "sha256": "3540c6acc3ca3dc69dd5ba8b755e8ba3940e211eac9b36aa5101e596530dbd99",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-FrameNet/tr_framenet-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-FrameNet/r2.17/tr_framenet-ud-dev.conllu",
+    "sha256": "6ffff54ce16d47c5153650b48df4f81219847b8ac07ea629523378142df0fce1",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Atis/tr_atis-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Atis/r2.17/tr_atis-ud-dev.conllu",
+    "sha256": "7f9057da8f54e63036efd4bdf80a5fd8cdcaf7a7961a6d8351fc351a6665ea40",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Atis/tr_atis-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Atis/r2.17/tr_atis-ud-train.conllu",
+    "sha256": "3a6a5c04219fc303c6b006e6008681b1684e6a610f85a235e6135ea49d3a98a9",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Atis/tr_atis-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Atis/r2.17/tr_atis-ud-test.conllu",
+    "sha256": "9b7dc45033e0c491c882b171236a27fbbfc30ef7b12054e0ece5dea1d81a99d4",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Kyrgyz-TueCL/ky_tuecl-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Kyrgyz-TueCL/r2.17/ky_tuecl-ud-test.conllu",
+    "sha256": "08224be6b74346f582234f54527412dd6265c8d8b42e7d6ef463aade85bdcd9b",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Tatar-NMCTT/tt_name-ud-test.conllu",
+    "error": "HTTP Error 404: Not Found",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Tatar-NMCTT/r2.17/tt_name-ud-test.conllu"
+  },
+  {
+    "file": "UD_Tatar-NMCTT/tt_name-ud-train.conllu",
+    "error": "HTTP Error 404: Not Found",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Tatar-NMCTT/r2.17/tt_name-ud-train.conllu"
+  },
+  {
+    "file": "UD_Turkish-IMST/tr_imst-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-IMST/r2.17/tr_imst-ud-dev.conllu",
+    "sha256": "3bdaab362b7a9af7cbf8944aee5c1c1d077970ad4bcafcf23c5c062d4cf93801",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-IMST/tr_imst-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-IMST/r2.17/tr_imst-ud-test.conllu",
+    "sha256": "fc9269bd598489b942a025b678779557266ce0c054a843e47c7db386d76d6459",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-IMST/tr_imst-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-IMST/r2.17/tr_imst-ud-train.conllu",
+    "sha256": "8d8b8b581dab9362e6f2e4328aef77b9fabec1d189a199e320ba136710c7bd83",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Uzbek-UzUDT/uz_uzudt-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uzbek-UzUDT/r2.17/uz_uzudt-ud-train.conllu",
+    "sha256": "2b930c97c71245905caef39627fc5cde750ef0023e546c7ac8ded9c674a8efef",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Uzbek-UzUDT/uz_uzudt-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uzbek-UzUDT/r2.17/uz_uzudt-ud-test.conllu",
+    "sha256": "1010b15d14a0afab93a041511206de85af5ed6528eeb6e9252dfe3ff82097b80",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Ottoman_Turkish-DUDU/ota_dudu-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Ottoman_Turkish-DUDU/r2.17/ota_dudu-ud-train.conllu",
+    "sha256": "52ee97deb37c240bb142ec27fe19394470f3da2305837990394301ce4177ff66",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Ottoman_Turkish-DUDU/ota_dudu-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Ottoman_Turkish-DUDU/r2.17/ota_dudu-ud-test.conllu",
+    "sha256": "d7d98be243d6640ccbd0b7c29419e8ea07bb212629b08eb9a0294d29addb5d80",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-TueCL/tr_tuecl-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-TueCL/r2.17/tr_tuecl-ud-test.conllu",
+    "sha256": "2508f47e57b9b6a1d7241d0ab4a918d84c5cbb0455bbd961ac5231e31a1d311e",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Penn/tr_penn-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Penn/r2.17/tr_penn-ud-train.conllu",
+    "sha256": "f4d1692ebd5f19520ad1a9e272c89abb10382b5dcab2b6d4917127a570d202bc",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Penn/tr_penn-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Penn/r2.17/tr_penn-ud-dev.conllu",
+    "sha256": "c19fce76c5393a01c0c7a5759bdf8adb1652d2a4cfbc27a2cd18b17772dc5b42",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Penn/tr_penn-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Penn/r2.17/tr_penn-ud-test.conllu",
+    "sha256": "7e3706785a00effb775842f9e09768cf7d0b022923070983f49fd169dafe871d",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Uzbek-TueCL/uz_tuecl-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uzbek-TueCL/r2.17/uz_tuecl-ud-test.conllu",
+    "sha256": "23257711196df0bbfaf5b25397d7c6102fbc8800ed83b15eb77342929ee0e469",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish_German-SAGT/qtd_sagt-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish_German-SAGT/r2.17/qtd_sagt-ud-test.conllu",
+    "sha256": "0bbb06de66a490bfbb93d103a03d0d89e3835baf0af755a57b5fa5f885ae01bc",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish_German-SAGT/qtd_sagt-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish_German-SAGT/r2.17/qtd_sagt-ud-dev.conllu",
+    "sha256": "d06630f3937b595596ec6ee87db2bd8a2a35b11577eb8a1df0f66bdd08bb9dcb",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish_German-SAGT/qtd_sagt-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish_German-SAGT/r2.17/qtd_sagt-ud-train.conllu",
+    "sha256": "6fc9d5c2a4b3df31fac2810ae0824d48bfc1d7c7617d0f1884422d7357156c45",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-PUD/tr_pud-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-PUD/r2.17/tr_pud-ud-test.conllu",
+    "sha256": "7c1b6fe01662a7617758fbecdda6af6fc3914ace46b1809d6514af0a1c1df88c",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Kyrgyz-KTMU/ky_ktmu-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Kyrgyz-KTMU/r2.17/ky_ktmu-ud-train.conllu",
+    "sha256": "7652f9b54ec96a778133cb1528769ceb2de83d0812076495f9943704b9672ea9",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Kyrgyz-KTMU/ky_ktmu-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Kyrgyz-KTMU/r2.17/ky_ktmu-ud-test.conllu",
+    "sha256": "843061f0ad2204d5d65ee77edf2e576fa54887415ec8e1bb0cd928fd7b23877b",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Ottoman_Turkish-BOUN/ota_boun-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Ottoman_Turkish-BOUN/r2.17/ota_boun-ud-train.conllu",
+    "sha256": "f500562db6aea177c2ba95cdbad0ae77c2fe2765cf2845b2f5929fd41efe021d",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Ottoman_Turkish-BOUN/ota_boun-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Ottoman_Turkish-BOUN/r2.17/ota_boun-ud-test.conllu",
+    "sha256": "361a24fcf6103e4e7cddd02aea78ac79920dd0da857c1fbbe54f50326a9be36c",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Yakut-YKTDT/sah_yktdt-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Yakut-YKTDT/r2.17/sah_yktdt-ud-test.conllu",
+    "sha256": "ecb202e2c652e5ddcdb84413a5a2a23b32f2e5a824ccb6dd67bbc8ea7db92bf0",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Tourism/tr_tourism-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Tourism/r2.17/tr_tourism-ud-test.conllu",
+    "sha256": "16815bebb64fbcb84604c7ed3d6947cf4c9a6140bbe3401c755b7bc90c71cd31",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Tourism/tr_tourism-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Tourism/r2.17/tr_tourism-ud-train.conllu",
+    "sha256": "41eb0c1319713072a3c9e6c64f34110b1585f57fbc229b307c0ff25beaebece4",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-Tourism/tr_tourism-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-Tourism/r2.17/tr_tourism-ud-dev.conllu",
+    "sha256": "9324242d2bf040c852a98654d99d7549fac4621d7714531a6899050d671b79f2",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-BOUN/tr_boun-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-BOUN/r2.17/tr_boun-ud-test.conllu",
+    "sha256": "4f74fc0f9efdd1285d781f3efd1e98cbf39cf4433df9eb4dc14162e8ed36773b",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-BOUN/tr_boun-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-BOUN/r2.17/tr_boun-ud-train.conllu",
+    "sha256": "373fe39e3acdba3219521f54fa5ae768851fbb4bf9a31079ad1ca6590410650c",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Turkish-BOUN/tr_boun-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-BOUN/r2.17/tr_boun-ud-dev.conllu",
+    "sha256": "f6d1ed6e3b57b4e658177eb16089e9fb616bc68fb110eb0894c2b409e41b5c76",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Uyghur-UDT/ug_udt-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uyghur-UDT/r2.17/ug_udt-ud-test.conllu",
+    "sha256": "e0884a71a6e01ca24e175fce25f2e47a4ae750d734cae24fe974598b3aafd293",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Uyghur-UDT/ug_udt-ud-train.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uyghur-UDT/r2.17/ug_udt-ud-train.conllu",
+    "sha256": "8b41b86261138009342b6c4b5f6a51fa45746079712e37a74afeab841600d285",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Uyghur-UDT/ug_udt-ud-dev.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Uyghur-UDT/r2.17/ug_udt-ud-dev.conllu",
+    "sha256": "ae2ea20117e509bc9af19b80df58a911aba5d0e61f332c22b9aab2a47934dc90",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Old_Turkish-Clausal/otk_clausal-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Old_Turkish-Clausal/r2.17/otk_clausal-ud-test.conllu",
+    "sha256": "5e3faa1555cdbeece7ea52948101825b2972760d1fad3b8eee2dda238d953724",
+    "local_matches_official": true
+  },
+  {
+    "file": "UD_Tatar-NMCTT/tt_nmctt-ud-test.conllu",
+    "url": "https://raw.githubusercontent.com/UniversalDependencies/UD_Tatar-NMCTT/r2.17/tt_nmctt-ud-test.conllu",
+    "sha256": "94ed206be1ef7f91580598947e1d05542a694ab09a8cecad500142abb27c6bb8"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "conditions": 48,
+  "reencoded_chunks": 6458,
+  "input_rows_per_condition": 1012,
+  "all_chunks_within_budget": true,
+  "all_closed_chunks_maximal_for_next_sentence": true,
+  "summary_means_recomputed": true,
+  "all_input_and_output_hashes_checked": true,
+  "validator_sha256": "8979a44040de8c50bb8ba87afa596fd49c2cd7bbccf2962608938bc4c4afad9b"
+}

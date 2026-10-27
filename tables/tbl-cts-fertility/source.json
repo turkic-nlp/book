@@ -1,0 +1,1607 @@
+{
+  "source": "TurkicNLP paper results file cts_fertility.csv",
+  "source_sha256": "ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167",
+  "captured": "2026-10-13",
+  "rows": [
+    {
+      "tokenizer": "qwen",
+      "lang": "tur",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "1.9508196721311475"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tur",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.0327868852459017"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tur",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.3278688524590163"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tur",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "1.9508196721311475"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tur",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "1.9508196721311475"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tur",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.0327868852459017"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tur",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.3278688524590163"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tur",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "1.9508196721311475"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tur",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "1.9508196721311475"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tur",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.0327868852459017"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tur",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.3278688524590163"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tur",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "1.9508196721311475"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "aze",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.5625"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "aze",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "3.046875"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "aze",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "3.25"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "aze",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.421875"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "aze",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.625"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "aze",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.859375"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "aze",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "3.078125"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "aze",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.484375"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "aze",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.5625"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "aze",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "3.046875"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "aze",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "3.25"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "aze",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.421875"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tuk",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.2096774193548385"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tuk",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.3548387096774195"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tuk",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.5"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tuk",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.161290322580645"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tuk",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.1129032258064515"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tuk",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.2903225806451615"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tuk",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.5"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tuk",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.1774193548387095"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tuk",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.2096774193548385"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tuk",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.3548387096774195"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tuk",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.5"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tuk",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "62",
+      "fertility": "2.161290322580645"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "gag",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.03125"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "gag",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.125"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "gag",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.34375"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "gag",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.03125"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "gag",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.03125"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "gag",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.125"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "gag",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.34375"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "gag",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.03125"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "gag",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.03125"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "gag",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.125"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "gag",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.34375"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "gag",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "64",
+      "fertility": "2.03125"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kaz",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.8615384615384616"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kaz",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "3.5076923076923077"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kaz",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "4.046153846153846"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kaz",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.3692307692307693"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kaz",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.276923076923077"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kaz",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.3230769230769233"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kaz",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.5538461538461537"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kaz",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.292307692307692"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kaz",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.476923076923077"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kaz",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.5538461538461537"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kaz",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.753846153846154"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kaz",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.523076923076923"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kir",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "2.84375"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kir",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "3.484375"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kir",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "3.796875"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kir",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "2.515625"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kir",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "2.15625"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kir",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "2.3125"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kir",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "2.59375"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kir",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "64",
+      "fertility": "2.125"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tat",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "3.126984126984127"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tat",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "4.126984126984127"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tat",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "4.4603174603174605"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tat",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.507936507936508"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tat",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.365079365079365"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tat",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.5873015873015874"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tat",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.7142857142857144"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tat",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.3968253968253967"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tat",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.380952380952381"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tat",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.5873015873015874"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tat",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.7301587301587302"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tat",
+      "condition": "latin",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.4126984126984126"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "bak",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "3.3492063492063493"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "bak",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "4.682539682539683"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "bak",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "5.0"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "bak",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.5396825396825395"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "bak",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.3333333333333335"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "bak",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.5714285714285716"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "bak",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.6825396825396823"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "bak",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.3492063492063493"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "crh",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "1.9848484848484849"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "crh",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0303030303030303"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "crh",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.303030303030303"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "crh",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "1.9848484848484849"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "crh",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "1.9848484848484849"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "crh",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0303030303030303"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "crh",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.303030303030303"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "crh",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "1.9848484848484849"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "crh",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "1.9848484848484849"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "crh",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0303030303030303"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "crh",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.303030303030303"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "crh",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "1.9848484848484849"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kaa",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0757575757575757"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kaa",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.212121212121212"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kaa",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.378787878787879"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kaa",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0757575757575757"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kaa",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0757575757575757"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kaa",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.121212121212121"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kaa",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.3636363636363638"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kaa",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0757575757575757"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kaa",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0757575757575757"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kaa",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.212121212121212"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kaa",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.378787878787879"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kaa",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "66",
+      "fertility": "2.0757575757575757"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "nog",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.9193548387096775"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "nog",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "3.0806451612903225"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "nog",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "3.4838709677419355"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "nog",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.6451612903225805"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "nog",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.0161290322580645"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "nog",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.0806451612903225"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "nog",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.274193548387097"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "nog",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "1.9838709677419355"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kum",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.7580645161290325"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kum",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "3.064516129032258"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kum",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "3.6129032258064515"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kum",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.564516129032258"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kum",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.096774193548387"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kum",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.225806451612903"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kum",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.4193548387096775"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kum",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "62",
+      "fertility": "2.0806451612903225"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "krc",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "2.246913580246914"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "krc",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "2.5185185185185186"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "krc",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "2.9382716049382718"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "krc",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "2.234567901234568"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "krc",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "1.8518518518518519"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "krc",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "1.876543209876543"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "krc",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "2.0123456790123457"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "krc",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "81",
+      "fertility": "1.8024691358024691"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "uzb",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.123076923076923"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "uzb",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.1846153846153844"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "uzb",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.1846153846153844"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "uzb",
+      "condition": "native",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.1076923076923078"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "uzb",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.2950819672131146"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "uzb",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.377049180327869"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "uzb",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.4098360655737703"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "uzb",
+      "condition": "cts",
+      "native_script": "Latn",
+      "word_count": "61",
+      "fertility": "2.278688524590164"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "uzb",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.123076923076923"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "uzb",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.1846153846153844"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "uzb",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.1846153846153844"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "uzb",
+      "condition": "latin",
+      "native_script": "Latn",
+      "word_count": "65",
+      "fertility": "2.1076923076923078"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "uig",
+      "condition": "native",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "4.508196721311475"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "uig",
+      "condition": "native",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "5.622950819672131"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "uig",
+      "condition": "native",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "6.852459016393443"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "uig",
+      "condition": "native",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "3.377049180327869"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "uig",
+      "condition": "cts",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.262295081967213"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "uig",
+      "condition": "cts",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.377049180327869"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "uig",
+      "condition": "cts",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.639344262295082"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "uig",
+      "condition": "cts",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.262295081967213"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "uig",
+      "condition": "latin",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.2295081967213113"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "uig",
+      "condition": "latin",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.3442622950819674"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "uig",
+      "condition": "latin",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.5245901639344264"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "uig",
+      "condition": "latin",
+      "native_script": "Arab",
+      "word_count": "61",
+      "fertility": "2.2131147540983607"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "sah",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "3.6507936507936507"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "sah",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "4.2063492063492065"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "sah",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "4.777777777777778"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "sah",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "3.4761904761904763"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "sah",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.3492063492063493"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "sah",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.4285714285714284"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "sah",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.634920634920635"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "sah",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.365079365079365"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "alt",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.830769230769231"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "alt",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "3.076923076923077"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "alt",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "3.6307692307692307"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "alt",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.6307692307692307"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "alt",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.0615384615384613"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "alt",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.1846153846153844"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "alt",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.3846153846153846"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "alt",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "1.9692307692307693"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tyv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "2.6666666666666665"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tyv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "3.090909090909091"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tyv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "3.590909090909091"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tyv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "2.4393939393939394"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "tyv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "2.106060606060606"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "tyv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "2.1818181818181817"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "tyv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "2.227272727272727"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "tyv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "66",
+      "fertility": "2.015151515151515"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kjh",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.7936507936507935"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kjh",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "3.1587301587301586"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kjh",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "3.9365079365079363"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kjh",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.6666666666666665"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "kjh",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.126984126984127"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "kjh",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.1587301587301586"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "kjh",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.365079365079365"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "kjh",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "63",
+      "fertility": "2.0952380952380953"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "chv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "3.523076923076923"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "chv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "3.6615384615384614"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "chv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "4.092307692307692"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "chv",
+      "condition": "native",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "3.4153846153846152"
+    },
+    {
+      "tokenizer": "qwen",
+      "lang": "chv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.0307692307692307"
+    },
+    {
+      "tokenizer": "llama",
+      "lang": "chv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.1846153846153844"
+    },
+    {
+      "tokenizer": "olmo",
+      "lang": "chv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.292307692307692"
+    },
+    {
+      "tokenizer": "openai",
+      "lang": "chv",
+      "condition": "cts",
+      "native_script": "Cyrl",
+      "word_count": "65",
+      "fertility": "2.0307692307692307"
+    }
+  ]
+}

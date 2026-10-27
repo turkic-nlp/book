@@ -1,0 +1,23 @@
+# Build outputs
+/_book/
+/.quarto/
+**/*.quarto_ipynb
+/index.aux
+/index.lof
+/index.log
+/index.lot
+/index.toc
+/*.tex
+/site_libs/
+/*_files/
+
+# Python and OS files
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
+
+# Downloaded data (Chapter 15 Exercise 4)
+/data/
+
+# Restored UD Turkish-IMST text (CC BY-NC-SA 4.0); never commit
+*.restored.conllu

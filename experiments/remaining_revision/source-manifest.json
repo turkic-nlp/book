@@ -1,0 +1,134 @@
+{
+  "whisper/info.json": {
+    "url": "https://huggingface.co/api/models/openai/whisper-small",
+    "sha256": "a8ce9b7d6ef5b02b300ca9eff6adbdebce7c7e97239603743e1fe77c9194c783"
+  },
+  "whisper/README.md": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/README.md",
+    "sha256": "967fa44eefe5d3436e040b0f171fc54da67aad96923bae10af37dac9be5bb6b0"
+  },
+  "whisper/added_tokens.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/added_tokens.json",
+    "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+  },
+  "whisper/config.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/config.json",
+    "sha256": "e6a2b489da1b5aed65a8eb8d1e7466fa867ad5643a8bc138ba708bd56b2875c4"
+  },
+  "whisper/generation_config.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/generation_config.json",
+    "sha256": "71565b8ef50d0bf7a1193ed4bbed195b94e70c18894d81bba2f1233dcec3ab53"
+  },
+  "whisper/merges.txt": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/merges.txt",
+    "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+  },
+  "whisper/normalizer.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/normalizer.json",
+    "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+  },
+  "whisper/preprocessor_config.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/preprocessor_config.json",
+    "sha256": "9b5cd03a36fbb8a627c64d98a5b5b126ead95a77720723944487311f0110b666"
+  },
+  "whisper/special_tokens_map.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/special_tokens_map.json",
+    "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+  },
+  "whisper/tokenizer.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/tokenizer.json",
+    "sha256": "27fc476bfe7f17299480be2273fc0608e4d5a99aba2ab5dec5374b4482d1a566"
+  },
+  "whisper/tokenizer_config.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/tokenizer_config.json",
+    "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+  },
+  "whisper/vocab.json": {
+    "url": "https://huggingface.co/openai/whisper-small/resolve/973afd24965f72e36ca33b3055d56a652f456b4d/vocab.json",
+    "sha256": "8f680bba319e01a653d2e8a5dbc17a9157179e0576e6ce74ce0c06356c6e24f9"
+  },
+  "xlmr/info.json": {
+    "url": "https://huggingface.co/api/models/FacebookAI/xlm-roberta-base",
+    "sha256": "92814443b4d5d60ac812d23e7069be20d26a68455f2cdf89b41e96deab17fca2"
+  },
+  "xlmr/README.md": {
+    "url": "https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089/README.md",
+    "sha256": "bec9f2cd81f7396a64ee474145117d81139906443a21480cbe4993c97cb499aa"
+  },
+  "xlmr/config.json": {
+    "url": "https://huggingface.co/FacebookAI/xlm-roberta-base/resolve/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089/config.json",
+    "sha256": "d66ed8cd4f2a93b358c245e50736fa389ed4f35c0bae7aad0b32abb20c62b579"
+  },
+  "mt5/info.json": {
+    "url": "https://huggingface.co/api/models/google/mt5-base",
+    "sha256": "9b52bad93010478f6bf9e561f9b02bbde756b3c906ce76b177a38d783887146b"
+  },
+  "mt5/README.md": {
+    "url": "https://huggingface.co/google/mt5-base/resolve/2eb15465c5dd7f72a8f7984306ad05ebc3dd1e1f/README.md",
+    "sha256": "f7a22cd51c2a1b0e75275f19f64b06ca3f24415b27f648f8338b88effb6700d2"
+  },
+  "mt5/config.json": {
+    "url": "https://huggingface.co/google/mt5-base/resolve/2eb15465c5dd7f72a8f7984306ad05ebc3dd1e1f/config.json",
+    "sha256": "7ce360bdccf5b665dbb8c32f6912f1d8fd394aa553c133863283a16503d6d550"
+  },
+  "berturk/info.json": {
+    "url": "https://huggingface.co/api/models/dbmdz/bert-base-turkish-cased",
+    "sha256": "50c8415e22f135496db61db1fe19ca262fdd3cdd5e1bf8ff822a4b637f0d0263"
+  },
+  "berturk/README.md": {
+    "url": "https://huggingface.co/dbmdz/bert-base-turkish-cased/resolve/b6e1de16c983e0f2c70664591ea3f22810072608/README.md",
+    "sha256": "6bdd0b67b77452990ef18e02d381f1abb9289e040f28ac9acb44c9ae04fe4b1d"
+  },
+  "berturk/config.json": {
+    "url": "https://huggingface.co/dbmdz/bert-base-turkish-cased/resolve/b6e1de16c983e0f2c70664591ea3f22810072608/config.json",
+    "sha256": "3be8dbe74813f59a252773db34bd67640166d36c507ded3b06b55f91f05ce78a"
+  },
+  "tts-chv/info.json": {
+    "url": "https://huggingface.co/api/models/facebook/mms-tts-chv",
+    "sha256": "429dd86940ecf7db05f00ffef808d0379593bae71b3ace502b8c0f780c7380dc"
+  },
+  "tts-chv/README.md": {
+    "url": "https://huggingface.co/facebook/mms-tts-chv/resolve/0f0b3060bfd5d341265b4aaec6d75689ccbcf509/README.md",
+    "sha256": "9f35ae094eaab6f0e74ac5b48efff1b7813f8acb430576222008449c9644fb91"
+  },
+  "tts-chv/config.json": {
+    "url": "https://huggingface.co/facebook/mms-tts-chv/resolve/0f0b3060bfd5d341265b4aaec6d75689ccbcf509/config.json",
+    "sha256": "8695749d49be938a0d4cd233a9a22f554064de7cae6c41cf48f0317bd4b86686"
+  },
+  "tts-crh/info.json": {
+    "url": "https://huggingface.co/api/models/facebook/mms-tts-crh",
+    "sha256": "55810ac931384eed55eeb750fdb62ca7dd55566700d110b40cdde06534a5fbc6"
+  },
+  "tts-crh/README.md": {
+    "url": "https://huggingface.co/facebook/mms-tts-crh/resolve/a805ba2fff7e83ed2f366d2392862a017fd4a892/README.md",
+    "sha256": "a869fad16d2c4a94cc61fda1df317aba9477015cef035bbdfee05339aae21261"
+  },
+  "tts-crh/config.json": {
+    "url": "https://huggingface.co/facebook/mms-tts-crh/resolve/a805ba2fff7e83ed2f366d2392862a017fd4a892/config.json",
+    "sha256": "d76f3cad35e24a6d10f9d65d833555b7ab8020d8fa8d30eb5d70070ef15ae315"
+  },
+  "tumlu/info.json": {
+    "url": "https://huggingface.co/api/datasets/jafarisbarov/TUMLU-mini",
+    "sha256": "24e4fe91bd9b1864397a51ecb01c5dcf27976d113e9a08d711f66c5b100efec4"
+  },
+  "tumlu/README.md": {
+    "url": "https://huggingface.co/datasets/jafarisbarov/TUMLU-mini/resolve/3523de73e1d1d784118d328f40b49d53afd6f334/README.md",
+    "sha256": "4fc2960fb75be38966af866706c86babbff183b0ce6880aecd372362ff7f6218"
+  },
+  "tumlu/kazakh/dev-00000-of-00001.parquet": {
+    "url": "https://huggingface.co/datasets/jafarisbarov/TUMLU-mini/resolve/3523de73e1d1d784118d328f40b49d53afd6f334/kazakh/dev-00000-of-00001.parquet",
+    "sha256": "cd73f20ccd71b24c37114410868ba9db9aafcd8f488456885d11ec561618560a"
+  },
+  "tumlu/kazakh/test-00000-of-00001.parquet": {
+    "url": "https://huggingface.co/datasets/jafarisbarov/TUMLU-mini/resolve/3523de73e1d1d784118d328f40b49d53afd6f334/kazakh/test-00000-of-00001.parquet",
+    "sha256": "015331251fb36819de4468909acc2d1517ffd620e46af22f9de928120ae411c2"
+  },
+  "fleurs/info.json": {
+    "url": "https://huggingface.co/api/datasets/google/fleurs",
+    "sha256": "715cf52130e42544a0c4a811f4e3baa4cb9e7e91b1a457db2d46cab90d7f18a8"
+  },
+  "fleurs/README.md": {
+    "url": "https://huggingface.co/datasets/google/fleurs/resolve/70bb2e84b976b7e960aa89f1c648e09c59f894dd/README.md",
+    "sha256": "688f79f2a5c731af3796e9f683eb02f9b3f09d040decd8c5625d0f37098e71c6"
+  }
+}

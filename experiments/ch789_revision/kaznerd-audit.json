@@ -1,0 +1,131 @@
+{
+  "kaznerd_revision": "bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f",
+  "tokenizer_revision": "c23d21b0620b635a76227c604d44e43a9f0ee389",
+  "splits": {
+    "train": {
+      "sentences": 90228,
+      "words": 1043305,
+      "max_words": 71,
+      "max_subwords_including_special": 139,
+      "invalid_sentences": 14,
+      "orphan_tags": 16,
+      "sha256": "e5a80f6d4bbff499a4bf7cbf96a169feb761411151fb45abebeaae06995ff647"
+    },
+    "valid": {
+      "sentences": 11167,
+      "words": 129223,
+      "max_words": 51,
+      "max_subwords_including_special": 91,
+      "invalid_sentences": 0,
+      "orphan_tags": 0,
+      "sha256": "29d584d1a0d9aca6d58b39eb8a93e154791d303ecff56ef93f12b3c889239bf1"
+    },
+    "test": {
+      "sentences": 11307,
+      "words": 129824,
+      "max_words": 70,
+      "max_subwords_including_special": 108,
+      "invalid_sentences": 0,
+      "orphan_tags": 0,
+      "sha256": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a"
+    }
+  },
+  "training_repairs": [
+    {
+      "sentence": 10196,
+      "word": 16,
+      "old": "I-ORGANISATION",
+      "new": "B-ORGANISATION"
+    },
+    {
+      "sentence": 10806,
+      "word": 3,
+      "old": "I-ORGANISATION",
+      "new": "B-ORGANISATION"
+    },
+    {
+      "sentence": 11720,
+      "word": 14,
+      "old": "I-DATE",
+      "new": "B-DATE"
+    },
+    {
+      "sentence": 16952,
+      "word": 4,
+      "old": "I-CONTACT",
+      "new": "B-CONTACT"
+    },
+    {
+      "sentence": 16952,
+      "word": 6,
+      "old": "I-CONTACT",
+      "new": "B-CONTACT"
+    },
+    {
+      "sentence": 24318,
+      "word": 0,
+      "old": "I-DATE",
+      "new": "B-DATE"
+    },
+    {
+      "sentence": 25525,
+      "word": 6,
+      "old": "I-ORGANISATION",
+      "new": "B-ORGANISATION"
+    },
+    {
+      "sentence": 27921,
+      "word": 3,
+      "old": "I-FACILITY",
+      "new": "B-FACILITY"
+    },
+    {
+      "sentence": 39431,
+      "word": 9,
+      "old": "I-CONTACT",
+      "new": "B-CONTACT"
+    },
+    {
+      "sentence": 46487,
+      "word": 9,
+      "old": "I-POSITION",
+      "new": "B-POSITION"
+    },
+    {
+      "sentence": 51257,
+      "word": 5,
+      "old": "I-FACILITY",
+      "new": "B-FACILITY"
+    },
+    {
+      "sentence": 75458,
+      "word": 4,
+      "old": "I-ADAGE",
+      "new": "B-ADAGE"
+    },
+    {
+      "sentence": 78173,
+      "word": 10,
+      "old": "I-MONEY",
+      "new": "B-MONEY"
+    },
+    {
+      "sentence": 78173,
+      "word": 12,
+      "old": "I-MONEY",
+      "new": "B-MONEY"
+    },
+    {
+      "sentence": 80492,
+      "word": 8,
+      "old": "I-ORGANISATION",
+      "new": "B-ORGANISATION"
+    },
+    {
+      "sentence": 90071,
+      "word": 7,
+      "old": "I-ORGANISATION",
+      "new": "B-ORGANISATION"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "source": "pycountry",
+  "version": "26.2.16",
+  "direct_registry_download": "403; unavailable",
+  "rows": [
+    {
+      "book_name": "Turkish",
+      "code": "tur",
+      "registry_name": "Turkish",
+      "scope": "I"
+    },
+    {
+      "book_name": "Azerbaijani",
+      "code": "aze",
+      "registry_name": "Azerbaijani",
+      "scope": "M"
+    },
+    {
+      "book_name": "Turkmen",
+      "code": "tuk",
+      "registry_name": "Turkmen",
+      "scope": "I"
+    },
+    {
+      "book_name": "Gagauz",
+      "code": "gag",
+      "registry_name": "Gagauz",
+      "scope": "I"
+    },
+    {
+      "book_name": "Kazakh",
+      "code": "kaz",
+      "registry_name": "Kazakh",
+      "scope": "I"
+    },
+    {
+      "book_name": "Kyrgyz",
+      "code": "kir",
+      "registry_name": "Kirghiz",
+      "scope": "I"
+    },
+    {
+      "book_name": "Tatar",
+      "code": "tat",
+      "registry_name": "Tatar",
+      "scope": "I"
+    },
+    {
+      "book_name": "Bashkir",
+      "code": "bak",
+      "registry_name": "Bashkir",
+      "scope": "I"
+    },
+    {
+      "book_name": "Kumyk",
+      "code": "kum",
+      "registry_name": "Kumyk",
+      "scope": "I"
+    },
+    {
+      "book_name": "Nogai",
+      "code": "nog",
+      "registry_name": "Nogai",
+      "scope": "I"
+    },
+    {
+      "book_name": "Karachay-Balkar",
+      "code": "krc",
+      "registry_name": "Karachay-Balkar",
+      "scope": "I"
+    },
+    {
+      "book_name": "Crimean Tatar",
+      "code": "crh",
+      "registry_name": "Crimean Tatar",
+      "scope": "I"
+    },
+    {
+      "book_name": "Karakalpak",
+      "code": "kaa",
+      "registry_name": "Kara-Kalpak",
+      "scope": "I"
+    },
+    {
+      "book_name": "Uzbek",
+      "code": "uzb",
+      "registry_name": "Uzbek",
+      "scope": "M"
+    },
+    {
+      "book_name": "Uyghur",
+      "code": "uig",
+      "registry_name": "Uighur",
+      "scope": "I"
+    },
+    {
+      "book_name": "Sakha (Yakut)",
+      "code": "sah",
+      "registry_name": "Yakut",
+      "scope": "I"
+    },
+    {
+      "book_name": "Tuvan",
+      "code": "tyv",
+      "registry_name": "Tuvinian",
+      "scope": "I"
+    },
+    {
+      "book_name": "Khakas",
+      "code": "kjh",
+      "registry_name": "Khakas",
+      "scope": "I"
+    },
+    {
+      "book_name": "Southern Altai",
+      "code": "alt",
+      "registry_name": "Southern Altai",
+      "scope": "I"
+    },
+    {
+      "book_name": "Shor",
+      "code": "cjs",
+      "registry_name": "Shor",
+      "scope": "I"
+    },
+    {
+      "book_name": "Chulym",
+      "code": "clc",
+      "registry_name": "Chilcotin",
+      "scope": "I"
+    },
+    {
+      "book_name": "Chuvash",
+      "code": "chv",
+      "registry_name": "Chuvash",
+      "scope": "I"
+    },
+    {
+      "book_name": "Khalaj",
+      "code": "klj",
+      "registry_name": "Khalaj",
+      "scope": "I"
+    }
+  ]
+}

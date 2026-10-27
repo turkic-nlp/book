@@ -1,0 +1,226 @@
+---
+short-title: "Evaluation and Benchmarks"
+---
+
+# Evaluation, Benchmarks, and Responsible Deployment {#sec-book-15-evaluation-benchmarks}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Explain how task definitions and scoring conventions affect the interpretation of accuracy, BLEU and F1
+- Compare selected Turkic NLP benchmarks by task, language, script and data provenance
+- Combine task scores with human evaluation, language-fidelity checks and interactive tests
+- Identify gaps between benchmark coverage and an application's needs
+- Plan human evaluation for the intended variety and domain, and report annotator agreement
+- Assess deployment risks from uneven performance, domain shift and inadequate community involvement
+- Set deployment criteria based on the consequences of errors
+:::
+
+The preceding chapters report task scores and describe their limits. @sec-book-14-generation-dialogue also examines generation and dialogue, where a single score can hide different kinds of failure. This chapter brings the evaluation methods together: choosing metrics, checking benchmark exposure, estimating uncertainty and assessing errors in the intended use.
+
+A score on exam questions, news text or translated sentences answers a specific question. Deployment may involve other domains, varieties and error costs. Human evaluation and task-specific checks connect those scores to the application; @sec-book-17-endangered-ethics develops the community and governance questions.
+
+
+## Principles for Reading and Reporting Results {#sec-evaluation-principles}
+
+Start with the decision an experiment should support. A useful report makes five things clear:
+
+1. **Task and data.** Name the language, variety, script, domain, release and split. Keep evaluation items and their source groups out of training and model selection.
+2. **Comparison.** Include a simple baseline and use the same evaluation items. Record differences in training size, tuning budget, input length and inference settings.
+3. **Measurement.** Define the unit, denominator, label mapping and exclusions. Coverage measures how often a system supplies an output; accuracy requires an appropriate reference. Human review supplies evidence about meaning and acceptability.
+4. **Uncertainty.** Report sample size, variation across runs where measured, and paired uncertainty when comparing systems. A difference observed in one configuration motivates replication on other data.
+5. **Scope and provenance.** Link the claim to its predictions, table or worked exercise. Identify model and dataset revisions, known training exposure and unresolved exposure. A diagnostic illustrates behaviour under its stated conditions; a deployment claim needs evidence from the intended use.
+
+These principles apply throughout the book. The following sections develop the task-specific metrics, contamination checks and human-evaluation choices. Community authority, consent and maintenance have their main treatment in @sec-ethics.
+
+## Evaluation Challenges for Agglutinative Languages {#sec-eval-challenges}
+
+### Features, Bundles and Sentences
+
+Different metrics answer different questions. For gold `Case=Acc|Number=Sing` and predicted `Case=Nom|Number=Sing`, one of the two values is correct: feature accuracy is 50%, while exact-bundle accuracy is 0%. Predicting nominative **plural** instead gives 0/2, not 50%. Specify how absent and extra features count. Lemma accuracy and lemma-plus-bundle accuracy are separate measures.
+
+If word analyses were independent and each had correctness probability 0.9, a ten-word sentence would be entirely correct with probability $0.9^{10}\approx0.349$. Real errors need not be independent or equally likely. Measure sentence-exact accuracy directly.
+
+Exercise 1 compares these measures using gold word boundaries, including punctuation. Stanza's Turkish IMST predictions achieve 91.3% exact-bundle accuracy and 50.7% sentence-exact bundle accuracy. The sentence measure requires every feature bundle to match, leaving lemmas and syntax untested. Applying the same per-word probability to each sentence's actual length gives a mean estimate of 50.3%. Its closeness to the observed rate cannot validate the independence assumption. The notebook's length-bin estimates are rougher because they substitute one representative length per bin.
+
+Kazakh's observed and estimated rates are 89.0% and 84.0%. Treat both as replay diagnostics: checkpoint preparation creates a concrete test-exposure risk, and historical training membership has not been reconstructed (@sec-book-08-syntax-ud).
+
+### Surface and Lemma Novelty
+
+Surface-form OOV includes unseen inflections of familiar lemmas. Lemma OOV tracks unfamiliar lemmas themselves. Define the training vocabulary and use gold lemmas consistent with the annotation scheme. Then separate four cases: seen surface/seen lemma, unseen surface/seen lemma, seen surface/unseen lemma (possible with ambiguity), and unseen surface/unseen lemma. Report counts and error rates for each; leave empty cells undefined. Subword unknown-token rates measure a different property.
+
+On the Turkish IMST test set (Exercise 2), 33.2% of the non-punctuation words are surface-unseen in training but only 10.2% lemma-unseen; the feature-bundle error rate is 6.3% for seen forms with seen lemmas and 20.5% for unseen forms with seen lemmas. These cells show where errors occur; they do not isolate the cause of the difference.
+
+### Translation Metrics
+
+BLEU compares **token** n-grams under a specified tokenisation; chrF compares character n-grams. A suffix error can break a word match while preserving some character overlap. Neither metric decides whether the changed suffix preserves meaning. Exercise 3 adds negation to one verb in each of 100 Turkish X-WMT references, for example *söyledi* 'said' → *söylemedi* 'did not say'. Mean sentence chrF remains 97.7. Word deletion gives 92.3 on a separately selected set. Both edits can change meaning; these scores measure overlap, not the severity of the change. The generated edits still need contextual review.
+
+Report the metric signatures and reference policy from @sec-book-10-machine-translation, and validate learned metrics such as COMET against judgements in the target language/domain rather than assuming training-language coverage guarantees reliability.
+
+Choose human-evaluation sample size for the desired interval width, error prevalence and subgroup analysis. A fixed sample of 100–200 outputs is not a universal adequacy threshold. Preserve paired outputs when comparing systems.
+
+### Benchmark Contamination
+
+Native exam questions, translations and public games can appear in pretraining or adaptation data, including for languages with a small web presence. Save benchmark release and model cutoff information where available, search for overlap in accessible training sources, and distinguish known exposure from unknown exposure. A performance drop on rewritten questions can reflect changed difficulty as well as memorisation. Use independently authored held-out material as a complementary test [@isbarov2025tumlu].
+
+## Existing Benchmarks {#sec-benchmarks}
+
+### TUMLU: Native Multiple-Choice Evaluation
+
+TUMLU collects native middle- and high-school multiple-choice questions in 11 subjects [@isbarov2025tumlu]. Its abstract and tables list nine languages: Azerbaijani, Crimean Tatar, Karakalpak, Kazakh, Kyrgyz, Tatar, Turkish, Uyghur and Uzbek. Other passages describe eight languages and a total of 38,139 questions. Because these descriptions conflict, base experiments on audited counts from a pinned release. The Hands-On uses only Kazakh TUMLU-mini.
+
+The TUMLU paper compares proprietary and open models by language and subject. Use the model-specific tables; differences in question content, subject coverage and training exposure prevent a language-level score from isolating a resource effect.
+
+### Kardeş-NLU: Cross-Lingual Transfer Evaluation
+
+Kardeş-NLU [@senel2024kardes] covers Azerbaijani, Kazakh, Kyrgyz, Uzbek and Uyghur. Its tasks are natural language inference from XNLI, semantic textual similarity from STS-Benchmark and causal reasoning from XCOPA. English items were machine-translated and post-edited by one native speaker per target language. The Uyghur set uses Cyrillic, which matters when choosing a model or comparing it with Arabic-script data.
+
+The paper tests Turkish as a source for intermediate training and downstream fine-tuning, reporting gains in its evaluated settings. These results motivate the source-language comparisons in @sec-book-12-pretrained-lms and @sec-book-16-cross-lingual-transfer.
+
+### Turkish Benchmark Suites
+
+**Mukayese** [@safaya2022mukayese] groups Turkish datasets and baselines for language modelling, translation, named entity recognition, sentence segmentation, spell checking and correction, summarisation, and text classification. Each task has its own metric, and adding them up would not yield a measure of Turkish proficiency. Reading comprehension is also covered by Turkish XQuAD and Kazakh KazQAD, discussed in @sec-book-13-meaning-retrieval.
+
+### Kazakh and Multilingual Benchmarks
+
+KAZ-LLM reports evaluation in Kazakh, Russian and English [@issai2024kazllm]. KazMMLU [@togmanov2025kazmmlu] provides 23,000 questions (10,969 in Kazakh and 12,031 in Russian) from authentic educational material, validated by native speakers and educators, on general and Kazakhstan-specific knowledge. These are not matched translations: KazMMLU's university-level section is Russian-only. Language-level scores therefore also reflect differences in subject and education level.
+
+Broader multilingual datasets include FLORES-200 for MT (11 Turkic varieties), SIB-200 for topic classification (11 Turkic varieties), and Belebele for reading comprehension [@bandarkar2024belebele] (Turkish, North Azerbaijani, Kazakh, Kyrgyz, and Northern Uzbek).
+
+### X-WMT: Turkic Machine Translation Evaluation
+
+X-WMT, produced as part of the Turkic Interlingua (TIL) project, provides machine translation test sets of at least 300 sentences for 88 translation directions involving eight Turkic languages (Azerbaijani, Bashkir, Karakalpak, Kazakh, Kyrgyz, Sakha, Turkish and Uzbek) plus English and Russian [@mirzakhalov2021large]. The release covers intra-Turkic pairs (Kazakh–Uzbek, Turkish–Azerbaijani, and others) as well as Turkic-to-Russian and Turkic-to-English directions.
+
+FLORES-200 complements X-WMT with aligned evaluation sentences for the eleven Turkic varieties in NLLB-200. Use the split and overlap checks in @sec-book-10-machine-translation.
+
+### Beyond Multiple Choice: Generation and Interaction
+
+Multiple-choice benchmarks measure answer selection under a specified protocol. Complement them with the methods in @sec-book-14-generation-dialogue:
+
+- **Human review of generation:** assess meaning, fluency and use of the requested language on answers, summaries or rewrites.
+- **Automatic language checks:** use unrestricted language identification to select outputs for review. Keep predicted labels separate from confirmed language drift.
+- **Interactive tests:** use dialogue games with explicit rules, validated local word lists and recorded failures. Fresh instances help test beyond public examples, but do not by themselves rule out training exposure.
+
+Exercise 5 illustrates the limits of automatic checks. It selects an abstention threshold from Kazakh-labelled news sentences, then applies it to whole model answers. The threshold is provisional, and it has not been validated as a multilingual detector: the sample lacks labelled non-Kazakh and mixed-language controls. One example per predicted category is a starting point for annotation, not enough to estimate error rates.
+
+### The Benchmark Gap
+
+The catalogue verifies selected releases and leaves gaps in language coverage. For languages without a suitable public benchmark, work with the community on a domain-specific evaluation and document its sampling frame and limits. Check for overlooked or newer resources before concluding that a benchmark is unavailable.
+
+| Benchmark | Languages | Task | Venue |
+|-----------|-----------|------|-------|
+| TUMLU | 9 listed; see release caveat above | Native multiple-choice QA | ACL 2025 |
+| Kardeş-NLU | 5 Turkic (az, kk, ky, uz, ug) | Cross-lingual NLU | EACL 2024 |
+| Mukayese | Turkish | Multiple NLP tasks | Findings of ACL 2022 |
+| X-WMT | 8 Turkic + en, ru | MT (88 directions) | TIL [@mirzakhalov2021large] |
+| KazMMLU | Kazakh, Russian | Native multiple-choice QA | ACL 2025 |
+| Belebele | 5 Turkic | Reading comprehension | ACL 2024 |
+| FLORES-200 / SIB-200 | 11 Turkic varieties | MT / topic classification | NLLB; EACL 2024 |
+| UD-Turkic parallel treebanks | Release-specific inventory in @sec-book-08-syntax-ud | Tagging and parsing | UDW 2025; UD 2.17 |
+
+: Selected benchmarks covering Turkic languages. {#tbl-benchmarks}
+
+
+## Human Evaluation for Turkic NLP {#sec-human-eval}
+
+### Evaluator Competence and Agreement
+
+Recruit evaluators who know the target variety, register and domain. Native-speaker status alone may leave gaps in that expertise. Work with community partners, pay for expertise and annotation time, and pilot the guidelines before scaling. Seek representation beyond a single institution, and verify the competence of evaluators who speak a neighbouring language.
+
+Report agreement before adjudication, along with category frequencies and a table of disagreements. State how the agreement statistic accounts for chance. There is no universal kappa cutoff or inherent agglutinative-language agreement ceiling. Feature-level agreement, exact bundles and span/attachment agreement expose different disagreements. Revise unclear guidelines on development material, keeping the final evaluation independent.
+
+### Scale and Uncertainty
+
+Specify the population from which items and evaluators were sampled. Use paired uncertainty estimates for model differences and account for clustering by document, speaker or annotator. Small sets can support a pilot. They are too small to measure performance for every variety or rare error type. Plan sample size and annotation effort from a timed pilot rather than asserting a fixed limit on community capacity.
+
+## Responsible Deployment {#sec-responsible}
+
+### Resource Imbalance and Model Quality
+
+Training volume, sampling, tokenisation, domain and adaptation can all affect quality. Temperature sampling, for example, changes language exposure relative to raw corpus size (@sec-multilingual). Report results by task and subgroup. A single language comparison cannot separate these factors or justify predicting quality from speaker population or web volume.
+
+### Precision, Recall and Consequences
+
+An entity F1 of 0.70 does **not** mean that 30% of entities were missed. For example, 7 true positives, 0 false positives and 6 false negatives give precision 1, recall 7/13 and F1 0.70: 6/13 of gold entities were missed. Swapping the false-positive and false-negative counts gives the same F1 with recall 1 and no missed entities. These arithmetic examples are checked by `code/common/check.py`.
+
+Set acceptance criteria for the intended task: which false positives or omissions matter, when the system should abstain, and which outputs need review. Test those criteria on representative data, record who handles failures, and reassess after changes to the model or input domain. Aggregate F1 alone cannot make that decision.
+
+### Domain, Script and Variety
+
+Good results on news say little about private messages, legal records, medical text or speech transcripts. Evaluate script variants and mixed-language inputs explicitly; a Cyrillic-trained model may degrade on informal Latin input, but failure is not guaranteed merely by the script difference. Preserve community names and variety distinctions instead of reducing language boundaries to a technical convenience.
+
+### Environmental and Community Costs
+
+Record hardware, runtime and measured energy where available, stating the assumptions of any emissions estimate. Fewer trainable parameters do not automatically imply proportionally less compute. Discuss who sets the priorities, who bears annotation and maintenance work, and who can access the result; do not infer the geographic distribution of costs and benefits without project evidence.
+
+## Hands-On: Evaluating a Multilingual Model on TUMLU {#sec-ch15-hands-on}
+
+**Question.** How does a small model compare with simple answer-choice baselines?
+
+**Inputs.** The pinned Kazakh TUMLU-mini release and schema audit. The procedure uses mT5; the measured comparison below uses Qwen.
+
+**Compute.** Model download and inference memory. The mT5 procedure is not run in full; the two Qwen probes use different precision/runtime settings.
+
+**Output.** Per-item scores, exclusions, accuracy, uncertainty and answer-label distributions.
+
+**Interpretation.** Compare the development-selected baseline and inspect option-order sensitivity.
+
+Use the released [TUMLU-mini](https://huggingface.co/datasets/jafarisbarov/TUMLU-mini), pinned at `3523de73e1d1d784118d328f40b49d53afd6f334`. The verified Kazakh configuration contains **40 development and 799 test rows**; the audit found **two test rows with empty choices**, leaving 797 schema-valid test questions under an explicit exclusion policy. Only one language subset of the mini release is used here; the full benchmark is larger.
+
+```bash
+python code/ch15-tumlu/tumlu.py --config kazakh --audit-only --output runs/tumlu-audit
+python code/ch15-tumlu/tumlu.py --config kazakh --split dev --output runs/tumlu-dev
+# Freeze the prompt and scoring rule before this final evaluation:
+python code/ch15-tumlu/tumlu.py --config kazakh --split test --exclude-invalid --output runs/tumlu-test
+```
+
+The [scorer](../code/ch15-tumlu/tumlu.py) reads `question`, `choices`, `answer` and `subject`. It checks the number of choices and the letter-to-choice mapping, creates stable hashes and rejects exact question-and-ordered-choice duplicates within or across development and test. Paraphrases and reordered duplicates require further checks. The prompt excludes the released `CoT` explanation.
+
+`audit.json` identifies invalid rows by original index and content hash. Scoring stops when invalid rows are present unless `--exclude-invalid` is supplied. That option selects the audited 797-item subset and records its denominator; the score covers that subset of the 799-row release.
+
+The prompt contains the question and all labelled options. For each possible answer letter, mT5 computes the **sum** of conditional token log probabilities, including EOS and excluding padded positions. This differs from the negative mean loss returned by the model. The predicted letter maximises that sum; exact score ties use the first option. Test robustness to option permutation on development data and freeze the policy. Inputs are not silently truncated.
+
+Base mT5 was pretrained for span corruption, not instruction following. The result diagnoses one fixed conditional-likelihood protocol. It is not a validated measure of how instruction-tuned models reason. Report the exact checkpoint, prompt, length rule and scoring method when comparing it with another model.
+
+The output includes every item's scores and prediction, overall and per-subject support, accuracy, a Wilson interval and the analytical uniform-random expectation $\frac{1}{N}\sum_i1/K_i$. The interval is descriptive under an independent-item assumption; source-clustered uncertainty requires source metadata. Never substitute a random simulation for the analytical baseline or describe below-expectation accuracy as significant without uncertainty analysis.
+
+The book reports no mT5 score: the release schema and all Kazakh rows were audited and tiny-model tests verify the scoring arithmetic, but the full mT5 run and an independently authored contamination check are left to the reader.
+
+### A measured pretrained TUMLU-mini baseline
+
+A separate zero-shot run uses **Qwen2.5-1.5B-Instruct** on the pinned Kazakh TUMLU-mini test split [@isbarov2025tumlu]. Of 799 rows, two have empty choice lists (zero-based indices 362 and 390); the explicitly defined valid subset therefore contains **797 questions**. The user message contains the native question and four choices, preceded by "Select the correct option. Reply with only its letter." The model's chat template is applied without a gold answer or explanation.
+
+The score is the next-token log probability of each single-token answer label A–D, selecting the highest. This constrained-letter protocol differs from free generation, full-choice likelihood and the mT5 example above. Inputs are not truncated. The pinned weights, prompt, per-item label scores and exclusions are recorded with the run.
+
+{{< include ../tables/tbl-tumlu-pretrained-probe/output.md >}}
+
+Qwen answers **226/797 correctly: 28.36%, with a Wilson 95% interval of 25.34–31.58%**. The most frequent answer in the 40 development items is D. Always choosing D scores **304/797 (38.14%)** on test. That beats the model, even though the model itself clears the 25% uniform-choice expectation. Report this answer-label imbalance: uniform guessing is a weaker baseline than the simple strategy selected on development data.
+
+The Wilson interval assumes independent items and excludes variation from prompts, option order and subjects. These results describe one small checkpoint on the valid Kazakh mini subset. They leave full TUMLU performance and independent contamination assessment open.
+
+Exercise 4 uses an 8-bit version of the same model with a different inference implementation (230/797 correct, 28.9%) and measures option-order sensitivity on development data: under four cyclic rotations of the options, the model picks the same option content for only 4 of the 40 development questions, and it answers B in half of the 160 rotated prompts.
+
+**Status: completed for the Qwen probe; the mT5 scoring procedure is not run.** The table above records the 226/797 main probe. Exercise 4 records a separate 8-bit probe (230/797) that also tests option order.
+
+## What to Take Forward {#sec-ch15-synthesis .unnumbered}
+
+An evaluation starts from the decision the score must support. The unit matters: all morphological feature bundles match in 50.7% of the Turkish sentences; this says nothing about whether their lemmas or syntax are correct. Across 100 automatically negated references, mean sentence chrF remains 97.7, illustrating why overlap alone cannot assess meaning. Define the task, denominator, baseline and held-out data before scoring, report uncertainty, and inspect consequential errors. @sec-book-16-cross-lingual-transfer applies these principles to choosing source languages and transfer methods.
+
+
+## Further Reading {#sec-ch15-further-reading .unnumbered}
+
+@isbarov2025tumlu describes TUMLU's construction and evaluation; @senel2024kardes studies transfer through Turkish. @safaya2022mukayese provides task-specific datasets and baselines for Turkish. For resource availability and limitations, see @coltekin2022resources.
+
+@demarneffe2021universal describes the Universal Dependencies annotation framework. Shared feature names support comparisons, but treebank conventions and reference quality still need checking (@sec-book-08-syntax-ud). For generation and dialogue evaluation, return to @sec-book-14-generation-dialogue.
+
+
+## Exercises {#sec-ch15-exercises .unnumbered}
+
+1. Compare feature, exact-bundle and observed sentence-exact accuracy on the same morphological predictions, for Kazakh and Turkish UD test sets. Explain the independence assumption behind a product estimate and where it fails.
+2. Partition tagging errors by surface and gold-lemma novelty, reporting counts and undefined empty cells.
+3. Measure how BLEU and chrF react to single-suffix changes that alter meaning (negation, case, person) in correct English→Turkish references, then compare two decoding settings of an MT model and prepare a blinded sheet for human judges. Document metric signatures.
+4. Test TUMLU option-order sensitivity on development data, then freeze the scoring protocol before running the audited test subset.
+5. Audit generated language with unrestricted LID, using human text to choose a provisional abstention threshold, and prepare a sample for fluent reviewers. Include Russian, other languages, code-switching and indeterminate short answers.

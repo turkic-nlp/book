@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-14",
+  "ud_release": "2.17",
+  "tokenizer": "dbmdz/bert-base-turkish-cased",
+  "revision": "b6e1de16c983e0f2c70664591ea3f22810072608",
+  "transformers": "5.3.0",
+  "tokenizer_files_sha256": {
+    "tokenizer_config.json": "abb7cc8c813870875157e0dff63bc21bb521d4b5d3c35c2eb9facaee4fd9532f",
+    "revision.txt": "ff05f5ea27f50c5357fb46e3b4511a84125a27a7bfa9dddba2c9d10b48607ef7",
+    "config.json": "3be8dbe74813f59a252773db34bd67640166d36c507ded3b06b55f91f05ce78a",
+    "vocab.txt": "ca72d2012b1e46ed42f5df2dc9675f9da0b37a481601785cb4dff91f67fcca65"
+  },
+  "label_classes": 981,
+  "splits": {
+    "train": {
+      "sentences": 3435,
+      "words": 37522,
+      "chunks": 3435,
+      "sentences_chunked": 0,
+      "max_chunk_tokens": 73,
+      "unseen_gold_bundles": 0,
+      "sha256": "8d8b8b581dab9362e6f2e4328aef77b9fabec1d189a199e320ba136710c7bd83"
+    },
+    "dev": {
+      "sentences": 1100,
+      "words": 10542,
+      "chunks": 1100,
+      "sentences_chunked": 0,
+      "max_chunk_tokens": 91,
+      "unseen_gold_bundles": 79,
+      "sha256": "3bdaab362b7a9af7cbf8944aee5c1c1d077970ad4bcafcf23c5c062d4cf93801"
+    },
+    "test": {
+      "sentences": 1100,
+      "words": 10032,
+      "chunks": 1100,
+      "sentences_chunked": 0,
+      "max_chunk_tokens": 70,
+      "unseen_gold_bundles": 112,
+      "sha256": "fc9269bd598489b942a025b678779557266ce0c054a843e47c7db386d76d6459"
+    }
+  },
+  "scope": "Tokenization/alignment only; no pretrained model loaded or accuracy measured."
+}

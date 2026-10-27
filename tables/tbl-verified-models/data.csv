@@ -1,0 +1,7 @@
+model,task,parameters,class_name,revision,source,licence,checked,weights_tested
+dbmdz/bert-base-turkish-cased,Turkish encoder,110617344,BertModel,b6e1de16c983e0f2c70664591ea3f22810072608,https://huggingface.co/dbmdz/bert-base-turkish-cased/blob/b6e1de16c983e0f2c70664591ea3f22810072608/config.json,mit,2026-10-15,no
+FacebookAI/xlm-roberta-base,Multilingual encoder,278043648,XLMRobertaModel,e73636d4f797dec63c3081bb6ed5c7b0bb3f2089,https://huggingface.co/FacebookAI/xlm-roberta-base/blob/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089/config.json,mit,2026-10-15,no
+google/mt5-base,Multilingual encoder-decoder,390315264,MT5Model,2eb15465c5dd7f72a8f7984306ad05ebc3dd1e1f,https://huggingface.co/google/mt5-base/blob/2eb15465c5dd7f72a8f7984306ad05ebc3dd1e1f/config.json,apache-2.0,2026-10-15,no
+openai/whisper-small,Speech encoder-decoder,241734912,WhisperModel,973afd24965f72e36ca33b3055d56a652f456b4d,https://huggingface.co/openai/whisper-small/blob/973afd24965f72e36ca33b3055d56a652f456b4d/config.json,apache-2.0,2026-10-15,no
+facebook/mms-tts-chv,Chuvash TTS,36284784,VitsModel,0f0b3060bfd5d341265b4aaec6d75689ccbcf509,https://huggingface.co/facebook/mms-tts-chv/blob/0f0b3060bfd5d341265b4aaec6d75689ccbcf509/config.json,cc-by-nc-4.0,2026-10-15,no
+facebook/mms-tts-crh,Crimean Tatar TTS,36285744,VitsModel,a805ba2fff7e83ed2f366d2392862a017fd4a892,https://huggingface.co/facebook/mms-tts-crh/blob/a805ba2fff7e83ed2f366d2392862a017fd4a892/config.json,cc-by-nc-4.0,2026-10-15,no

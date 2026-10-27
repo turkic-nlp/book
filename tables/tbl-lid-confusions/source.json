@@ -1,0 +1,109 @@
+{
+  "challenge_turkic": {
+    "micro": 0.6925,
+    "macro": 0.6925,
+    "n": 400,
+    "per_lang": {
+      "alt": 0.55,
+      "bak": 1.0,
+      "chv": 0.95,
+      "crh": 0.45,
+      "gag": 0.1,
+      "kaa": 0.0,
+      "kaz": 1.0,
+      "kir": 1.0,
+      "kjh": 0.35,
+      "krc": 0.8,
+      "kum": 0.25,
+      "nog": 0.35,
+      "sah": 0.95,
+      "tat": 0.95,
+      "tuk": 0.8,
+      "tur": 1.0,
+      "tyv": 0.45,
+      "uig": 1.0,
+      "uzb": 1.0,
+      "aze": 0.9
+    },
+    "top_confusions": [
+      {
+        "gold": "gag_Latn",
+        "pred": "tur_Latn",
+        "count": 18
+      },
+      {
+        "gold": "kaa_Latn",
+        "pred": "tur_Latn",
+        "count": 11
+      },
+      {
+        "gold": "crh_Latn",
+        "pred": "tur_Latn",
+        "count": 9
+      },
+      {
+        "gold": "kjh_Cyrl",
+        "pred": "kaz_Cyrl",
+        "count": 9
+      },
+      {
+        "gold": "alt_Cyrl",
+        "pred": "kir_Cyrl",
+        "count": 8
+      },
+      {
+        "gold": "nog_Cyrl",
+        "pred": "kir_Cyrl",
+        "count": 8
+      },
+      {
+        "gold": "kum_Cyrl",
+        "pred": "krc_Cyrl",
+        "count": 7
+      },
+      {
+        "gold": "tyv_Cyrl",
+        "pred": "kir_Cyrl",
+        "count": 6
+      },
+      {
+        "gold": "kaa_Latn",
+        "pred": "crh_Latn",
+        "count": 5
+      },
+      {
+        "gold": "tuk_Latn",
+        "pred": "tur_Latn",
+        "count": 4
+      },
+      {
+        "gold": "krc_Cyrl",
+        "pred": "kir_Cyrl",
+        "count": 3
+      },
+      {
+        "gold": "kum_Cyrl",
+        "pred": "tat_Cyrl",
+        "count": 3
+      },
+      {
+        "gold": "tyv_Cyrl",
+        "pred": "sah_Cyrl",
+        "count": 3
+      },
+      {
+        "gold": "crh_Latn",
+        "pred": "azj_Latn",
+        "count": 2
+      },
+      {
+        "gold": "kaa_Latn",
+        "pred": "tuk_Latn",
+        "count": 2
+      }
+    ]
+  },
+  "sentences_per_language": 20,
+  "denominator_source": "the LaTeX source of the TurkicNLP paper (section 6, evaluation), language identification: 400 native challenge sentences; parallel set of 20 sentences translated into 20 languages",
+  "source_sha256": "c1317bcd74f95366c81228ca9247f2f3599b5f311d7958402ba34dba1df791d9"
+}

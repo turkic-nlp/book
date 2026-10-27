@@ -1,0 +1,207 @@
+---
+short-title: "Mathematical Foundations"
+---
+
+# Mathematical Foundations {#sec-book-appendix-a}
+
+
+::: {.callout-note appearance="simple"}
+## What This Appendix Covers {.unnumbered}
+
+This appendix reviews the linear algebra, probability and machine-learning concepts used in the book. It defines the notation needed for tokenisation, morphology, parsing, retrieval and language modelling. Use it as a reference or a refresher alongside a fuller treatment of each subject.
+:::
+
+Four areas recur: vectors and similarity (embeddings and retrieval), probability and information theory (language models and evaluation), optimisation (fine-tuning) and the building blocks of neural architectures (attention and sequence models).
+
+
+## Linear Algebra {#sec-appa-linear-algebra}
+
+### Vectors and Matrices
+
+A **vector** $\mathbf{v} \in \mathbb{R}^d$ is an ordered sequence of $d$ real numbers, written as a column:
+
+$$\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_d \end{pmatrix}$$
+
+In NLP, **embeddings** represent tokens, words and sentences as vectors. Each vocabulary token has a fixed-dimensional vector: $d$ is 384 for the MiniLM sentence encoder, 768 for XLM-R base and Glot500, and 1,024 for the NLLB-200 600M encoder used here. The **embedding matrix** $\mathbf{E} \in \mathbb{R}^{|V| \times d}$ stores one vector per row for vocabulary $V$. Looking up token $i$ retrieves row $i$ of $\mathbf{E}$.
+
+The **dot product** of two vectors $\mathbf{u}, \mathbf{v} \in \mathbb{R}^d$ is the scalar:
+
+$$\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^{d} u_i v_i$$
+
+The dot product measures the component-wise alignment between two vectors. In attention mechanisms (@sec-appa-neural-networks), dot products between query and key vectors determine how much attention is paid to each position.
+
+A **matrix** $\mathbf{M} \in \mathbb{R}^{m \times n}$ has $m$ rows and $n$ columns. The **transpose** $\mathbf{M}^\top \in \mathbb{R}^{n \times m}$ swaps rows and columns. **Matrix multiplication** $\mathbf{A}\mathbf{B}$ is defined when $\mathbf{A} \in \mathbb{R}^{m \times k}$ and $\mathbf{B} \in \mathbb{R}^{k \times n}$, producing $\mathbf{C} \in \mathbb{R}^{m \times n}$ where $C_{ij} = \sum_{l=1}^k A_{il} B_{lj}$.
+
+### Norms and Distances
+
+The **L2 norm** (Euclidean norm) of a vector measures its length:
+
+$$\|\mathbf{v}\|_2 = \sqrt{\sum_{i=1}^{d} v_i^2}$$
+
+A vector is **normalised** when its L2 norm equals 1. The **L1 norm** sums absolute values: $\|\mathbf{v}\|_1 = \sum_i |v_i|$.
+
+**Cosine similarity** measures the angle between two vectors, ignoring their magnitudes:
+
+$$\text{sim}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \, \|\mathbf{v}\|_2}$$
+
+For nonzero vectors, cosine similarity ranges from $-1$ to $1$ and is invariant to their positive rescaling. Zero vectors need an explicit exclusion policy. On unit vectors, squared Euclidean distance is $2-2\,\mathrm{sim}(\mathbf u,\mathbf v)$, so the rankings agree. Embedding norms are model-dependent; they are not universally word-frequency measures. For the analogy "Istanbul is to Turkey as Almaty is to ____", the usual offset query is $\mathbf v_{\mathrm{Turkey}}-\mathbf v_{\mathrm{Istanbul}}+\mathbf v_{\mathrm{Almaty}}$. Whether it retrieves Kazakhstan is an empirical property of the embedding.
+
+## Probability and Information Theory {#sec-appa-probability}
+
+### Probability Basics
+
+A **probability distribution** over a discrete set $\mathcal{X}$ assigns a non-negative value $P(x)$ to each outcome $x \in \mathcal{X}$ such that $\sum_{x \in \mathcal{X}} P(x) = 1$.
+
+**Conditional probability** defines the probability of event $A$ given that $B$ has occurred:
+
+$$P(A \mid B) = \frac{P(A, B)}{P(B)}$$
+
+where $P(A, B)$ is the joint probability and $P(B)>0$. **Bayes' theorem** inverts the conditioning when $P(A)>0$:
+
+$$P(B \mid A) = \frac{P(A \mid B) \, P(B)}{P(A)}$$
+
+In NLP, Bayes' theorem underlies naive Bayes classifiers for text categorisation: the prior $P(B)$ is the class prior and $P(A \mid B)$ is the likelihood of the observed features given the class. This framework appears in text classification and in the HMM formulation for morphological disambiguation (@sec-book-07-neural-morphology).
+
+The **chain rule of probability** decomposes joint probabilities into a product of conditionals:
+
+$$P(x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} P(x_i \mid x_1, \ldots, x_{i-1})$$
+
+Autoregressive language models use this identity to factor a token sequence's probability into next-token probabilities. The probability of a complete sentence also includes its end-of-sequence marker; otherwise the product describes a prefix.
+
+### Distributions
+
+The **categorical distribution** is a generalisation of the Bernoulli distribution to $k$ outcomes. A random variable $X$ follows $\text{Cat}(\boldsymbol{\pi})$ if $P(X = k) = \pi_k$ where $\sum_k \pi_k = 1$. Autoregressive language model outputs are categorical: at each position, the model produces a probability distribution over the entire vocabulary, and the next token is drawn (or selected via argmax) from this distribution.
+
+### Information Theory
+
+**Entropy** measures the average uncertainty of a distribution:
+
+$$H(X) = -\sum_{x \in \mathcal{X}} P(x) \log P(x)$$
+
+Here $\log$ is the natural logarithm, so entropy is in nats; use $\log_2$ for bits. Adopt $0\log0=0$. On a fixed finite support, entropy is maximised by the uniform distribution and is zero for a point mass. Lower predictive entropy means greater concentration, not better calibration: a confidently wrong model can have very low entropy.
+
+**Cross-entropy** measures how well a model distribution $Q$ approximates a true distribution $P$:
+
+$$H(P, Q) = -\sum_{x} P(x) \log Q(x)$$
+
+Cross-entropy is the standard training objective for neural language models and classifiers: minimising $H(P, Q)$ encourages $Q$ to concentrate probability on the outcomes that $P$ assigns high probability. When $P$ is the one-hot encoding of the correct class (for classification) or the empirical distribution over the training corpus (for language modelling), cross-entropy reduces to the negative log-likelihood of the correct labels.
+
+**Perplexity** converts cross-entropy to a more interpretable scale:
+
+$$\text{PPL} = \exp(H_{\mathrm{nats}}(P,Q)) = 2^{H_{\mathrm{bits}}(P,Q)}$$
+
+A uniform four-outcome distribution has entropy $\ln4$ nats or 2 bits, giving perplexity 4 under either consistent convention. Held-out language-model perplexity is exponentiated average negative log likelihood per declared prediction unit. Compare it only under compatible tokenisation, text and context policies. Cross-language differences cannot be attributed to morphology alone when these conditions differ.
+
+**KL divergence** (Kullback-Leibler divergence) measures the information cost of using $Q$ to approximate $P$:
+
+$$D_\text{KL}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}$$
+
+If $P(x)>0$ but $Q(x)=0$, the divergence is infinite; zero-$P$ terms contribute zero. Use the same log base throughout the entropy identity. KL divergence is non-negative and equals zero only when $P = Q$. It is asymmetric: $D_\text{KL}(P \| Q) \neq D_\text{KL}(Q \| P)$ in general. The cross-entropy decomposes as $H(P, Q) = H(P) + D_\text{KL}(P \| Q)$, showing that minimising cross-entropy is equivalent to minimising KL divergence when the true distribution $P$ is fixed. KL divergence appears in variational inference and in preference-tuning objectives such as RLHF and DPO, which keep a tuned model close to a reference model; @sec-book-12-pretrained-lms places preference tuning in the adaptation workflow.
+
+
+## Optimisation {#sec-appa-optimisation}
+
+### Gradient Descent
+
+Neural network training is an optimisation problem: find the parameter vector $\boldsymbol{\theta}$ that minimises a scalar loss function $\mathcal{L}(\boldsymbol{\theta})$ defined over the training data.
+
+The **gradient** $\nabla_{\boldsymbol{\theta}} \mathcal{L}$ is the vector of partial derivatives of the loss with respect to each parameter. It points in the direction of steepest ascent. **Gradient descent** takes a step in the opposite direction:
+
+$$\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \alpha \nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta})$$
+
+where $\alpha > 0$ is the **learning rate**. If $\alpha$ is too large, updates overshoot minima; if too small, convergence is slow.
+
+In practice, computing the gradient over the whole training set at every update is expensive. **Stochastic Gradient Descent (SGD)** estimates it from a randomly sampled **minibatch** of $B$ examples. Larger batches generally reduce sampling noise and use more memory per update. Their throughput depends on the model and hardware. An **epoch** is one pass through the training set.
+
+**Adam** (Adaptive Moment Estimation) maintains running estimates of the first and second moments of the gradient to adaptively scale the learning rate for each parameter:
+
+$$m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$$
+$$v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$$
+$$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
+$$\boldsymbol{\theta}_t = \boldsymbol{\theta}_{t-1} - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \varepsilon}$$
+
+where $g_t$ is the gradient at step $t$ and the vector operations are element-wise. Common defaults are $\beta_1 = 0.9$, $\beta_2 = 0.999$ and $\varepsilon = 10^{-8}$; the small positive $\varepsilon$ keeps the denominator nonzero. AdamW, with decoupled weight decay, is used in many of the book's transformer examples; the equations above define Adam. Fine-tuning recipes often pair it with a learning-rate warmup followed by linear or cosine decay; record the schedule actually used, as the exercises do.
+
+### Regularisation
+
+A model can fit the training data while performing poorly on new examples. Regularisation aims to reduce this overfitting. Three common techniques follow.
+
+**L2 regularisation** adds $\lambda\|\theta\|_2^2$ to the loss. In plain SGD it corresponds to a shrinkage update with a matching coefficient. **AdamW** applies weight decay separately from the adaptive gradient update; adding an L2 penalty to Adam is not generally equivalent.
+
+**Dropout** in PyTorch uses inverted dropout: with independent $m_i\sim\mathrm{Bernoulli}(1-p)$, training uses $y_i=m_ix_i/(1-p)$ for $0\le p<1$. Evaluation uses $y_i=x_i$ with no further scaling. Call `model.eval()` for inference.
+
+**Early stopping** monitors a declared development metric with a chosen patience and minimum improvement. Restore the best development checkpoint and use the reserved test set only after selection. A single noisy increase need not trigger stopping, and validation loss need not be the task's selection metric.
+
+
+## Neural Network Basics {#sec-appa-neural-networks}
+
+### The Feedforward Layer
+
+The building block of neural networks is the **feedforward (fully connected) layer**:
+
+$$\mathbf{y} = \sigma(\mathbf{W}\mathbf{x} + \mathbf{b})$$
+
+where $\mathbf{x} \in \mathbb{R}^{d_\text{in}}$ is the input, $\mathbf{W} \in \mathbb{R}^{d_\text{out} \times d_\text{in}}$ is the weight matrix, $\mathbf{b} \in \mathbb{R}^{d_\text{out}}$ is the bias, and $\sigma$ is an element-wise nonlinear **activation function**.
+
+Stacking affine layers without nonlinear activations is equivalent to a single affine transformation. Nonlinear activations give deeper networks the ability to represent more complex functions.
+
+### The Attention Mechanism
+
+The **scaled dot-product attention** mechanism [@jurafsky2024slp, ch. 9] computes a weighted average of value vectors, where weights are determined by the compatibility between query and key vectors:
+
+$$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\!\left(\frac{\mathbf{Q}\mathbf{K}^\top}{\sqrt{d_k}}\right)\mathbf{V}$$
+
+Here $\mathbf{Q} \in \mathbb{R}^{n \times d_k}$ is the query matrix (one row per query position), $\mathbf{K} \in \mathbb{R}^{m \times d_k}$ is the key matrix, $\mathbf{V} \in \mathbb{R}^{m \times d_v}$ is the value matrix, and $d_k$ is the dimension of the query/key vectors. The division by $\sqrt{d_k}$ prevents the dot products from growing too large in magnitude as $d_k$ increases, which would push the softmax into regions of very small gradients.
+
+**Multi-head attention** projects $\mathbf{Q}$, $\mathbf{K}$, $\mathbf{V}$ into $h$ separate lower-dimensional subspaces, computes attention independently in each head, and concatenates the results:
+
+$$\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\,\mathbf{W}^O$$
+$$\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)$$
+
+Multiple heads provide separate learned projections. Claims that particular heads track syntax, semantics or morphological agreement need a probe or intervention on the specific trained model; the architecture alone cannot show that they do.
+
+### Softmax and Cross-Entropy
+
+The **softmax** function converts a vector of raw scores (logits) $\mathbf{z} \in \mathbb{R}^k$ to a probability distribution:
+
+$$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^k e^{z_j}}$$
+
+Implement softmax and log-sum-exp stably by subtracting $\max_j z_j$ before exponentiation. The attention softmax is applied row-wise over permitted keys; padding and causal masks exclude prohibited positions. Softmax is used at the output layer of classifiers (morphological taggers, NER models, dependency parsers) and at every decoding step of a language model. The **cross-entropy loss** for a single example with correct class $y$ and predicted distribution $\hat{\mathbf{p}} = \text{softmax}(\mathbf{z})$ is:
+
+$$\mathcal{L} = -\log \hat{p}_y = -z_y + \log \sum_j e^{z_j}$$
+
+Minimising this loss encourages the model to assign high probability to the correct class. For sequence labelling (morphological tagging, NER), sum or average the loss over labelled, unmasked positions and state which reduction is used. Padding or ignored positions must not enter the denominator.
+
+### Sequence Models
+
+**Recurrent Neural Networks (RNNs)** process sequences by maintaining a hidden state $\mathbf{h}_t$ that is updated at each time step:
+
+$$\mathbf{h}_t = \sigma(\mathbf{W}_h \mathbf{h}_{t-1} + \mathbf{W}_x \mathbf{x}_t + \mathbf{b})$$
+
+RNNs can represent long dependencies, but learning them can be difficult. During backpropagation through time, repeated transformations can make gradients shrink (**vanishing gradients**) or grow (**exploding gradients**). The former weakens the training signal from distant positions.
+
+**LSTMs (Long Short-Term Memory)** use a cell state and gates to help preserve information. In the equations below, $\sigma$ is the logistic sigmoid and $[\mathbf h;\mathbf x]$ concatenates the two vectors. Three gates control information flow:
+
+- **Forget gate** $\mathbf{f}_t = \sigma(\mathbf{W}_f [\mathbf{h}_{t-1}; \mathbf{x}_t] + \mathbf{b}_f)$: decides what to erase from the cell state
+- **Input gate** $\mathbf{i}_t = \sigma(\mathbf{W}_i [\mathbf{h}_{t-1}; \mathbf{x}_t] + \mathbf{b}_i)$: decides what new information to write
+- **Output gate** $\mathbf{o}_t = \sigma(\mathbf{W}_o [\mathbf{h}_{t-1}; \mathbf{x}_t] + \mathbf{b}_o)$: decides what to expose as the hidden state
+
+The candidate state is $\tilde c_t=\tanh(W_c[h_{t-1};x_t]+b_c)$; the cell update is $c_t=f_t\odot c_{t-1}+i_t\odot\tilde c_t$ and the hidden state is $h_t=o_t\odot\tanh(c_t)$. The additive path can mitigate vanishing gradients but does not guarantee perfect long-range memory. BiLSTM-CRF remains a useful sequence-labelling baseline to compare with transformers.
+
+Transformer training can compute representations in parallel across positions subject to attention masks; autoregressive generation remains sequential. Full self-attention has $O(n^2d)$ arithmetic for sequence length $n$ and total representation width $d$. Explicit attention-score matrices use $O(hn^2)$ storage for $h$ heads, in addition to activations; efficient kernels can avoid materialising that matrix without eliminating the quadratic arithmetic of full attention. High fertility increases $n$ for a given text, motivating the context-budget checks in @sec-book-12-pretrained-lms.
+
+
+## Further Reading {#sec-appa-further-reading .unnumbered}
+
+For a self-contained and pedagogically careful treatment of all the material in this appendix (probability for NLP, neural networks, backpropagation, the attention mechanism and language model evaluation), Chapters 5 to 10 of @jurafsky2024slp are the recommended starting point. The notation used throughout this book follows @jurafsky2024slp wherever possible.
+
+Stanford CS229's online lecture notes and Goodfellow, Bengio and Courville's *Deep Learning* cover linear algebra and optimisation for machine learning. Cover and Thomas's *Elements of Information Theory* develops the information-theoretic foundations. For transformers, read the original architecture in @vaswani2017attention alongside the explanation in @jurafsky2024slp.
+
+## Worked Checks {#sec-appa-worked-checks .unnumbered}
+
+1. Uniform four-way prediction: $H=\ln4$ nats, $H=2$ bits, perplexity 4.
+2. A confidently wrong binary prediction $Q=(0.99,0.01)$ for gold class 2 has low predictive entropy but loss $-\ln0.01$; confidence and calibration are different things.
+3. Two orthogonal unit vectors have cosine 0 and squared Euclidean distance 2.
+4. For dropout rate 0.25, a retained activation of 3 becomes 4 during training and remains 3 at evaluation. Its expectation across masks is 3.
+
+These arithmetic identities, stable-softmax behaviour and loss masking are checked in `code/common/check.py`.

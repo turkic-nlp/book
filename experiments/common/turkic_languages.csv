@@ -1,0 +1,25 @@
+iso639_3,language,branch,primary_script,status,hplt_codes_to_check
+tur,Turkish,Oghuz,Latn,living,tur_Latn
+aze,Azerbaijani (North),Oghuz,Latn,living,azj_Latn;aze_Latn
+azb,South Azerbaijani,Oghuz,Arab,living,azb_Arab
+tuk,Turkmen,Oghuz,Latn,living,tuk_Latn;tuk_Cyrl
+gag,Gagauz,Oghuz,Latn,living,gag_Latn;gag_Cyrl
+ota,Ottoman Turkish,Oghuz (historical),Arab,historical,ota_Arab
+kaz,Kazakh,Kipchak,Cyrl,living,kaz_Cyrl;kaz_Latn
+kir,Kyrgyz,Kipchak,Cyrl,living,kir_Cyrl
+tat,Tatar,Kipchak,Cyrl,living,tat_Cyrl;tat_Latn
+bak,Bashkir,Kipchak,Cyrl,living,bak_Cyrl
+crh,Crimean Tatar,Kipchak,Latn,living,crh_Latn;crh_Cyrl
+kaa,Karakalpak,Kipchak,Latn,living,kaa_Latn;kaa_Cyrl
+nog,Nogai,Kipchak,Cyrl,living,nog_Cyrl
+kum,Kumyk,Kipchak,Cyrl,living,kum_Cyrl
+krc,Karachay-Balkar,Kipchak,Cyrl,living,krc_Cyrl
+uzb,Uzbek,Karluk,Latn,living,uzn_Latn;uzn_Cyrl;uzb_Latn;uzs_Arab
+uig,Uyghur,Karluk,Arab,living,uig_Arab;uig_Latn;uig_Cyrl
+sah,Sakha,Siberian,Cyrl,living,sah_Cyrl
+alt,Altai,Siberian,Cyrl,living,alt_Cyrl
+tyv,Tuvan,Siberian,Cyrl,living,tyv_Cyrl
+kjh,Khakas,Siberian,Cyrl,living,kjh_Cyrl
+chv,Chuvash,Oghur,Cyrl,living,chv_Cyrl
+klj,Khalaj,Arghu,Arab,living,klj_Arab
+otk,Old Turkic,Old Turkic (historical),Orkh,historical,otk_Orkh

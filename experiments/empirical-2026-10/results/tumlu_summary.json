@@ -1,0 +1,169 @@
+{
+  "dataset": "jafarisbarov/TUMLU-mini",
+  "dataset_revision": "3523de73e1d1d784118d328f40b49d53afd6f334",
+  "config": "kazakh",
+  "split": "test",
+  "released_count": 799,
+  "evaluated_count": 797,
+  "excluded": [
+    {
+      "split": "test",
+      "row_index": 362,
+      "reason": "invalid choices"
+    },
+    {
+      "split": "test",
+      "row_index": 390,
+      "reason": "invalid choices"
+    }
+  ],
+  "input_sha256": {
+    "dev": "cd73f20ccd71b24c37114410868ba9db9aafcd8f488456885d11ec561618560a",
+    "test": "015331251fb36819de4468909acc2d1517ffd620e46af22f9de928120ae411c2"
+  },
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "weights_sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+  "tokenizer_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+  "tokenizer_config_sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+  "device": "mps",
+  "dtype": "float16",
+  "torch": "2.10.0",
+  "transformers": "5.3.0",
+  "instruction": "Select the correct option. Reply with only its letter.",
+  "prompt_sha256": "775f6f5ea99f15095adb8eed5748d93b841a81d7899e35ea5d3ef477fcffe9c4",
+  "scoring": "Zero-shot chat template; next-token log probability of single-token A/B/C/D; forced choice; no EOS or answer-text scoring; no generation",
+  "candidate_token_ids": [
+    32,
+    33,
+    34,
+    35
+  ],
+  "gold_and_cot_in_prompt": false,
+  "dev_examples_in_prompt": false,
+  "tuning": false,
+  "truncation": false,
+  "max_input_tokens": 393,
+  "overall": {
+    "n": 797,
+    "correct": 226,
+    "accuracy": 0.2835633626097867,
+    "wilson95": [
+      0.25336747405070886,
+      0.31583564824013594
+    ],
+    "uniform_random_expected_accuracy": 0.25
+  },
+  "subjects": {
+    "Biology": {
+      "n": 100,
+      "correct": 28,
+      "accuracy": 0.28,
+      "wilson95": [
+        0.20139685211186212,
+        0.3748802870992116
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "Chemistry": {
+      "n": 100,
+      "correct": 28,
+      "accuracy": 0.28,
+      "wilson95": [
+        0.20139685211186212,
+        0.3748802870992116
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "Geography": {
+      "n": 100,
+      "correct": 33,
+      "accuracy": 0.33,
+      "wilson95": [
+        0.24563122734128034,
+        0.4269465620490947
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "History": {
+      "n": 100,
+      "correct": 30,
+      "accuracy": 0.3,
+      "wilson95": [
+        0.2189488529493276,
+        0.3958485463334666
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "Logic": {
+      "n": 97,
+      "correct": 19,
+      "accuracy": 0.1958762886597938,
+      "wilson95": [
+        0.12913940356821546,
+        0.2857837769372578
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "Maths": {
+      "n": 100,
+      "correct": 25,
+      "accuracy": 0.25,
+      "wilson95": [
+        0.17545211362287672,
+        0.34304463548061603
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "Native L&L": {
+      "n": 100,
+      "correct": 36,
+      "accuracy": 0.36,
+      "wilson95": [
+        0.2727122040140433,
+        0.4576459754839126
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    },
+    "Physics": {
+      "n": 100,
+      "correct": 27,
+      "accuracy": 0.27,
+      "wilson95": [
+        0.1926958414957634,
+        0.36432116767944994
+      ],
+      "uniform_random_expected_accuracy": 0.25
+    }
+  },
+  "median_letter_probability_mass": 0.9651986360549927,
+  "seconds": 171.20541524887085,
+  "contamination_audit_completed": false,
+  "predictions_sha256": "b7e28303b52b6f6d3451595b53e9c2679610af557aa8faa8c9dc548b2763dae7",
+  "dev_majority_baseline": {
+    "letter": "D",
+    "dev_counts": {
+      "B": 7,
+      "C": 9,
+      "D": 16,
+      "A": 8
+    },
+    "test": {
+      "n": 797,
+      "correct": 304,
+      "accuracy": 0.38143036386449186
+    }
+  },
+  "gold_letter_counts": {
+    "D": 304,
+    "A": 175,
+    "B": 170,
+    "C": 148
+  },
+  "predicted_letter_counts": {
+    "B": 326,
+    "A": 260,
+    "C": 143,
+    "D": 68
+  }
+}

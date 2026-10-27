@@ -1,0 +1,78 @@
+{
+ "outputs": {
+  "core": "archives verified: sherpa-onnx-whisper-small.tar.bz2, vits-piper-kk_KZ-issai-high.tar.bz2, vits-piper-tr_TR-dfki-medium.tar.bz2\n",
+  "ex1": "X-WMT en-kk test: 700 Kazakh sentences; the first 60 with 5-20 words and no digits are used\nsynthetic audio: 7.0 min, 1.8-10.6 s per item; audio digest 421f2be7f3ba781d\ndecoding: 289 s on 2 CPU threads, real-time factor 0.69\nWhisper small, language token kk, greedy:  raw WER  96.2%  CER  58.3%   normalised WER  93.4%  CER  56.4%\nhypotheses shorter than half their reference (normalised characters): 19 of 60\nnormalised CER by voice:\n  speaker 0: CER  57.5%  WER  92.6%  (10 items)\n  speaker 1: CER  51.2%  WER  90.4%  (10 items)\n  speaker 2: CER  61.6%  WER  97.1%  (10 items)\n  speaker 3: CER  55.3%  WER  92.5%  (10 items)\n  speaker 4: CER  56.6%  WER  92.9%  (10 items)\n  speaker 5: CER  56.1%  WER  94.8%  (10 items)\nbest item (CER  31.2%):\n  REF Сан-Франциско мэрі Лондон Брид Трампты саясаттан басқа себепсіз өз қаласын сынауға айналдырды\n  HYP Сан Франсиска Мері Лондон-Брит Трамты сая саттам басқа севепсіз уезаласынсы\nmedian item (CER  57.4%):\n  REF Оны қорғаушы «ойынды мерзімінен бұрын аяқтауға тырыспады» деп айыптады.\n  HYP Оны қорауша оындым ежеменен брын ая\nworst item (CER  94.6%):\n  REF Дж. Ло, Shakira’s Super Bowl брейк-шоуындағы өнерлері үшін.\n  HYP лііііііі\n",
+  "ex2": "30 items; duration and median-F0 ratios measured on the first 6 (one per voice)\ncondition      duration     F0     SNR     WER     CER\nclean              1.00   1.00          93.5%  54.4%\nspeed x0.9         1.11   0.90          93.2%  50.9%\nspeed x1.1         0.91   1.10          94.2%  58.0%\nstretch x0.9       1.11   1.00          97.6%  60.5%\nstretch x1.1       0.91   1.00          98.8%  71.1%\npitch -2 st        1.00   0.89          97.1%  67.2%\npitch +2 st        1.00   1.13          97.3%  65.3%\nnoise 20 dB        1.00   1.00    20.0  93.7%  55.0%\nnoise 10 dB        1.00   1.00    10.0  95.7%  61.6%\nnoise 5 dB         1.00   1.00     5.0  98.3%  64.4%\nSpecAugment (LD policy, time masks capped at 20% of 444 frames): 45.8% of the 80 x 444 log-mel cells masked; duration and pitch of the waveform are untouched\n",
+  "ex3": "ASR-based intelligibility proxy: Whisper small (kk) on the same 20 sentences from each Piper voice\n  speaker 0: normalised CER  55.5%  WER  93.8%\n  speaker 1: normalised CER  48.8%  WER  93.8%\n  speaker 2: normalised CER  58.5%  WER  95.8%\n  speaker 3: normalised CER  53.4%  WER  92.0%\n  speaker 4: normalised CER  55.1%  WER  92.7%\n  speaker 5: normalised CER  57.3%  WER  96.2%\n  spread between voices:   9.7% CER\nSampling variation: speaker 0, the first 10 sentences, three independent draws and one with noise 0\n  draw 0: CER  55.4%\n  draw 1: CER  56.8%\n  draw 2: CER  56.5%\n  noise 0 : CER  59.8%\nlistening plan: 12 listeners x 12 trials; each listener hears every system 2 times and every sentence once; each of 72 cells rated 2 times; systems in first position: {0: 2, 1: 3, 2: 1, 3: 2, 4: 1, 5: 3}\nlistener 0 playlist: 983371f5 eaa668f0 ef112614 76875930 5f106211 c8e0a1cc 31b72bd9 6543d9af 4c68c4bc 0f3a2669 62b58df5 c0f0f146\n",
+  "ex4": "language token accepted: tr=yes az=yes uz=yes kk=yes tt=yes tk=yes ba=yes ky=no ug=no sah=no cv=no\nKazakh synthetic speech, 30 items (references in Cyrillic):\n  token      WER     CER  Cyrillic  detected\n  kk      93.5%  54.4%      100%  \n  tt     102.7%  83.1%       29%  \n  ba     103.4%  91.4%        7%  \n  uz     103.6%  92.4%        0%  \n  tr     105.1%  94.2%        0%  \n  ru     105.8%  61.0%      100%  \n  auto    95.9%  70.9%       53%  {'kk': 16, 'az': 5, 'hy': 6, 'mn': 3}\n  item 0 with uz: Maxsat lang ki sterge, suwarqal ienu debkosta akhparat tqag\n  reference    : Мақсат - лаңкестерге су арқылы ену, деп қосты ақпараттық агенттік.\nTurkish synthetic speech (one voice), 20 items:\n  tr     WER  24.4%  CER   5.9%  \n  az     WER  66.2%  CER  23.6%  \n  kk     WER  97.1%  CER  90.3%  \n  auto   WER  24.4%  CER   5.9%  {'tr': 20}\n"
+ },
+ "runs": {
+  "core": {
+   "date_utc": "2026-10-19T19:01+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "numpy": "2.4.6",
+   "fetched_sha256": {
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.tar.bz2": "486a46afbb7ba798507190ffe02fea2dd726049af212e774537efac6afb210a6",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-kk_KZ-issai-high.tar.bz2": "6c59955f7f5e3fc50b130ced59a430eb4ef62d69155af4ce836db0dde4a42682",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-dfki-medium.tar.bz2": "b63babaefcdd63202c7079aba25b72a2013825ad5895e2aeff03d1ae5a5b3bbf"
+   }
+  },
+  "ex1": {
+   "date_utc": "2026-10-19T19:01+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "numpy": "2.4.6",
+   "fetched_sha256": {
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.tar.bz2": "486a46afbb7ba798507190ffe02fea2dd726049af212e774537efac6afb210a6",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-kk_KZ-issai-high.tar.bz2": "6c59955f7f5e3fc50b130ced59a430eb4ef62d69155af4ce836db0dde4a42682",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-dfki-medium.tar.bz2": "b63babaefcdd63202c7079aba25b72a2013825ad5895e2aeff03d1ae5a5b3bbf",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-kk/en-kk.kk": "b2a777a4b2e319089945b4f5732d8fd89e1ac6b78386e3a16608c32bb9f1d351"
+   }
+  },
+  "ex2": {
+   "date_utc": "2026-10-19T19:02+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "librosa": "0.11.0",
+   "numpy": "2.4.6",
+   "soundfile": "0.14.0",
+   "fetched_sha256": {
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.tar.bz2": "486a46afbb7ba798507190ffe02fea2dd726049af212e774537efac6afb210a6",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-kk_KZ-issai-high.tar.bz2": "6c59955f7f5e3fc50b130ced59a430eb4ef62d69155af4ce836db0dde4a42682",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-dfki-medium.tar.bz2": "b63babaefcdd63202c7079aba25b72a2013825ad5895e2aeff03d1ae5a5b3bbf",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-kk/en-kk.kk": "b2a777a4b2e319089945b4f5732d8fd89e1ac6b78386e3a16608c32bb9f1d351"
+   }
+  },
+  "ex3": {
+   "date_utc": "2026-10-19T19:02+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "librosa": "0.11.0",
+   "numpy": "2.4.6",
+   "soundfile": "0.14.0",
+   "fetched_sha256": {
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.tar.bz2": "486a46afbb7ba798507190ffe02fea2dd726049af212e774537efac6afb210a6",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-kk_KZ-issai-high.tar.bz2": "6c59955f7f5e3fc50b130ced59a430eb4ef62d69155af4ce836db0dde4a42682",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-dfki-medium.tar.bz2": "b63babaefcdd63202c7079aba25b72a2013825ad5895e2aeff03d1ae5a5b3bbf",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-kk/en-kk.kk": "b2a777a4b2e319089945b4f5732d8fd89e1ac6b78386e3a16608c32bb9f1d351"
+   }
+  },
+  "ex4": {
+   "date_utc": "2026-10-19T19:15+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "sherpa_onnx": "1.13.8",
+   "librosa": "0.11.0",
+   "numpy": "2.4.6",
+   "soundfile": "0.14.0",
+   "fetched_sha256": {
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.tar.bz2": "486a46afbb7ba798507190ffe02fea2dd726049af212e774537efac6afb210a6",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-kk_KZ-issai-high.tar.bz2": "6c59955f7f5e3fc50b130ced59a430eb4ef62d69155af4ce836db0dde4a42682",
+    "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-tr_TR-dfki-medium.tar.bz2": "b63babaefcdd63202c7079aba25b72a2013825ad5895e2aeff03d1ae5a5b3bbf",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-kk/en-kk.kk": "b2a777a4b2e319089945b4f5732d8fd89e1ac6b78386e3a16608c32bb9f1d351",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.tr": "5a6193f4d194b31e0b5d2ad1580d3b13ab11e9a281f248da972e8735d81d56d5"
+   }
+  }
+ }
+}

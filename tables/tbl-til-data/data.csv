@@ -1,0 +1,14 @@
+pair,language_pair,training_sentence_pairs,source
+en-tr,English–Turkish,35879592,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+ru-tr,Russian–Turkish,15092464,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+kk-ru,Kazakh–Russian,4403385,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-kk,English–Kazakh,564760,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-az,English–Azerbaijani,548901,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-uz,English–Uzbek,529574,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-ky,English–Kyrgyz,312644,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-ug,English–Uyghur,96898,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+tr-az,Turkish–Azerbaijani,410140,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+kk-ky,Kazakh–Kyrgyz,12216,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+ru-kjh,Russian–Khakas,60295,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-tyv,English–Tuvan,11482,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large
+en-krc,English–Karachay-Balkar,8220,til-mt@7d988cc til_corpus/README.md (Training size); release of mirzakhalov2021large

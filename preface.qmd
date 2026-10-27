@@ -1,0 +1,23 @@
+# Preface {.unnumbered}
+
+Turkic languages are spoken from the Balkans and Anatolia to Central Asia, western China and north-eastern Siberia. They share much of their grammar, yet the data, tools and evaluations available for them differ greatly from one language and task to the next. This book explains how to build and assess language technology with both facts in view.
+
+General NLP is treated briefly, with Jurafsky and Martin's *Speech and Language Processing* as the companion text. The chapters concentrate on what is specific to the family: agglutinative morphology and vowel harmony, the Latin, Cyrillic and Perso-Arabic scripts in which the languages are written, transfer between related languages, and the construction of corpora, treebanks and benchmarks where few exist. Johanson's *Turkic* is the linguistic reference throughout. Three questions recur: how morphology affects a task, what changes when the script changes, and which knowledge transfers between related languages.
+
+The book is written for NLP researchers and practitioners, graduate students and members of Turkic language communities. The programming sections assume intermediate Python and basic machine learning; linguistic concepts are introduced as they are needed. @sec-organization describes how the parts fit together.
+
+Each chapter combines linguistic analysis with a practical section, most of them using TurkicNLP (version 0.5.0), an open toolkit that brings components for Turkic languages into one interface.
+
+AI tools were used in preparing this book: for drafting and editing the text, reviewing code, checking the bibliography against publisher and index records, and style passes over the manuscript. The cover artwork was generated with an AI image tool and then edited by hand. All AI-assisted material was reviewed, corrected and checked manually.
+
+The resources described here will change faster than the methods. The book aims to help its readers check what exists, measure what works, and build what their language communities need.
+
+```{=latex}
+\cleardoublepage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\cleardoublepage
+\listoftables
+\cleardoublepage
+\listoffigures
+```

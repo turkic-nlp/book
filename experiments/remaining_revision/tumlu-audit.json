@@ -1,0 +1,34 @@
+{
+  "dataset": "jafarisbarov/TUMLU-mini",
+  "revision": "3523de73e1d1d784118d328f40b49d53afd6f334",
+  "config": "kazakh",
+  "counts": {
+    "dev": 40,
+    "test": 797
+  },
+  "duplicate_questions": 0,
+  "dev_test_overlap": 0,
+  "choice_counts": [
+    4
+  ],
+  "released_counts": {
+    "dev": 40,
+    "test": 799
+  },
+  "invalid_rows": [
+    {
+      "split": "test",
+      "row_index": 362,
+      "id": "3b6665906cc460edddec1713afbc5ce4c28d11f821c2f3e13b4654776bd7f380",
+      "reason": "invalid choices"
+    },
+    {
+      "split": "test",
+      "row_index": 390,
+      "id": "c0f1caacfe2312725ef6a5e22cec2248c68cf3e36ef00a131ba0de469e7d572a",
+      "reason": "invalid choices"
+    }
+  ],
+  "gold_explanations_used": false,
+  "inference_run": false
+}

@@ -1,0 +1,100 @@
+{
+ "outputs": {
+  "core": "UD files: tr_imst-ud-train.conllu, tr_imst-ud-test.conllu, kk_ktb-ud-train.conllu, kk_ktb-ud-test.conllu\n",
+  "ex1": "treebank        words sents   UPOS  feat R  feat P  bundle  lemma lem+bun sent exact if indep.\nKazakh-KTB     10,007  1047  98.7%   98.8%   98.9%   98.2%  98.7%   97.4%      89.0%     84.0%\n   sentence-exact by length: {'1-5': '173/198 = 87% (indep. 95%)', '6-10': '469/523 = 90% (indep. 86%)', '11-20': '253/287 = 88% (indep. 76%)', '21+': '37/39 = 95% (indep. 62%)'}\n   most frequent feature errors (feature, gold, predicted): [(('Case', None, 'Nom'), 23), (('Case', 'Nom', None), 17), (('Number', 'Plur', 'Sing'), 11), (('Polite', 'Form', None), 8), (('Voice', 'Rcp', None), 8)]\nTurkish-IMST   10,032  1100  95.2%   95.0%   95.6%   91.3%  96.0%   88.9%      50.7%     50.3%\n   sentence-exact by length: {'1-5': '275/394 = 70% (indep. 76%)', '6-10': '235/429 = 55% (indep. 48%)', '11-20': '43/187 = 23% (indep. 25%)', '21+': '5/90 = 6% (indep. 9%)'}\n   most frequent feature errors (feature, gold, predicted): [(('Number', 'Sing', None), 137), (('Person', '3', None), 136), (('Person', None, '3'), 131), (('Number', None, 'Sing'), 127), (('Case', 'Nom', None), 117)]\n\nthe chapter's example: gold Case=Acc|Number=Sing, predicted Case=Nom|Number=Sing -> feature accuracy 0.5 | exact bundle False\n",
+  "ex2": "Turkish-IMST: training vocabulary 12,345 surface forms and 4,684 lemmas from 3,435 sentences\n  cell                            words  UPOS err feats err lemma err\n  seen surface / seen lemma       5,395      4.8%      6.3%      1.1%\n  unseen surface / seen lemma     1,874      5.7%     20.5%      8.2%\n  seen surface / unseen lemma        12     58.3%     75.0%     83.3%\n  unseen surface / unseen lemma     818     13.6%     17.0%     16.1%\n  surface OOV 33.2%; lemma OOV 10.2% of 8,099 non-punctuation words\nKazakh-KTB: training vocabulary 319 surface forms and 252 lemmas from 31 sentences\n  cell                            words  UPOS err feats err lemma err\n  seen surface / seen lemma       1,043      2.8%      2.2%      0.7%\n  unseen surface / seen lemma     1,226      1.6%      3.5%      1.5%\n  seen surface / unseen lemma        18     11.1%      5.6%     22.2%\n  unseen surface / unseen lemma   5,738      1.3%      2.1%      1.7%\n  surface OOV 86.8%; lemma OOV 71.7% of 8,025 non-punctuation words\n",
+  "ex3": "X-WMT en-tr test: 700 sentences; each edit applied to one word of up to 100 sentences (reference = original)\nedit              n  sent chrF  sent BLEU   example\nword dropped    100       92.3       85.3   teröristlerin -> (deleted)\nnegation        100       97.7       89.3   söyledi -> söylemedi\nperson          100       98.9       89.7   söyledi -> söyledim\ncase            100       96.8       85.1   olayda -> olaydan\nNLLB greedy: BLEU 11.6  chrF 49.1\nNLLB beam 4: BLEU 12.3  chrF 50.9\nsignatures: nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0 | nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0\noutputs differ for 46 of 50 sentences -> blinded A/B sheet (key kept separately); first item:\n  source: The intention would also be to infiltrate terrorists through the waters, IB officials further note.\n  A: IB yetkilileri ayrıca, teröristlerin sulardan geçmesi de amaçlanacağını belirtti.\n  B: IB yetkilileri ayrıca, teröristlerin sular üzerinden sızması da amaçlanacağını belirtiyorlar.\n",
+  "ex5": "GlotLID on 3,000 human Kazakh news sentences (KazNERD), by length in words:\n    1-2:    34 sentences, labelled kaz_Cyrl 76.5%, other labels {'bak_Cyrl': 3, 'kir_Cyrl': 2, 'mhr_Cyrl': 2}\n    3-5:   445 sentences, labelled kaz_Cyrl 96.4%, other labels {'kaa_Cyrl': 5, 'kir_Cyrl': 3, 'bak_Cyrl': 2}\n   6-10:  1475 sentences, labelled kaz_Cyrl 99.8%, other labels {'rus_Cyrl': 1, 'kaa_Cyrl': 1, 'kir_Cyrl': 1}\n    11+:  1046 sentences, labelled kaz_Cyrl 100.0%, other labels {}\n5th percentile of the kaz_Cyrl probability on correctly labelled human text: 0.99 (abstain below)\n\nQwen2.5-1.5B-Instruct answers (whole answer labelled; abstain below 0.99):\n  short      {'Kazakh': 13, 'indeterminate (low confidence)': 5, 'other Turkic': 2}\n  explain    {'Kazakh': 9, 'other Turkic': 8, 'indeterminate (low confidence)': 3}\n  technical  {'Kazakh': 10, 'other Turkic': 9, 'indeterminate (low confidence)': 1}\nanswers containing a Latin-script word of 3+ letters: 1 of 60\nstratified audit sheet for a fluent reviewer (one per category):\n  [indeterminate (low confidence)] Қазақ әліпбиінде неше әріп бар?\n     -> Қазақ әліпбиінде өзгөчө әріптер бар:\n\n1. Өзгөчө өзгөчө әріптер:\n   - Өзгөчө өзгөчө әріптер\n   - Өзгөчө өзгөч\n  [other Turkic] Неге таза ауа маңызды? Екі сөйлеммен.\n     -> Бул сөздөрдүн таза ауа маңызды:\n\n1. \"Бул сөздөрдүн таза ауа маңызды\" - бул сөздөрдүн таза ауа маңызды деп аталат. Бул сөздөрдүн таза ауа\n  [Kazakh] Неге тамақты дұрыс ішу керек? Екі сөйлеммен.\n     -> Бұл сөздердің бірінде \"тамақты\" - бұл \"тамақ\" (тамақ - тақырып) және бірінде \"дұрыс\" - бұл \"дұрыс\" (дұрыс - дұрыс). Бұл сөздерд\n",
+  "ex4": "{'dev': '40 valid of 40', 'test': '797 valid of 799'}\ndev accuracy by rotation: [12, 18, 15, 11] of 40; same option content chosen under all four rotations: 4/40\npredicted letters over the 160 dev prompts: {'A': 41, 'B': 80, 'C': 29, 'D': 10}\ndev: original order 12/40, rotation-averaged 9/40 -> frozen policy: original order\ntest (original order): 230/797 = 28.9% (95% CI 25.8%-32.1%); always 'D' (dev majority): 304/797 = 38.1%; uniform chance 25%\ngold letters: {'A': 175, 'B': 170, 'C': 148, 'D': 304} | predicted: {'A': 247, 'B': 351, 'C': 132, 'D': 67}\n"
+ },
+ "runs": {
+  "core": {
+   "date_utc": "2026-10-20T14:03+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "stanza": "1.11.0",
+   "sacrebleu": "2.6.0",
+   "torch": "2.14.1",
+   "transformers": "5.20.2",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex1": {
+   "date_utc": "2026-10-20T13:20+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "stanza": "1.11.0",
+   "sacrebleu": null,
+   "torch": "2.14.1",
+   "transformers": "5.20.2",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex2": {
+   "date_utc": "2026-10-20T13:20+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "stanza": "1.11.0",
+   "sacrebleu": null,
+   "torch": "2.14.1",
+   "transformers": "5.20.2",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex3": {
+   "date_utc": "2026-10-20T14:03+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "stanza": "1.11.0",
+   "sacrebleu": "2.6.0",
+   "torch": "2.14.1",
+   "transformers": "5.20.2",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.en": "ed9d42b09c946e4cab6acd52d2f86a8fff8d1a9d2d4af813f32090db9cf87da2",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.tr": "5a6193f4d194b31e0b5d2ad1580d3b13ab11e9a281f248da972e8735d81d56d5"
+   }
+  },
+  "ex5": {
+   "date_utc": "2026-10-20T14:03+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "stanza": "1.11.0",
+   "sacrebleu": "2.6.0",
+   "torch": "2.14.1",
+   "transformers": "5.20.2",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.en": "ed9d42b09c946e4cab6acd52d2f86a8fff8d1a9d2d4af813f32090db9cf87da2",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.tr": "5a6193f4d194b31e0b5d2ad1580d3b13ab11e9a281f248da972e8735d81d56d5",
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_test.txt": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a"
+   }
+  },
+  "ex4": {
+   "date_utc": "2026-10-20T14:17+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "stanza": "1.11.0",
+   "sacrebleu": "2.6.0",
+   "torch": "2.14.1",
+   "transformers": "5.20.2",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.en": "ed9d42b09c946e4cab6acd52d2f86a8fff8d1a9d2d4af813f32090db9cf87da2",
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/xwmt/test/en-tr/en-tr.tr": "5a6193f4d194b31e0b5d2ad1580d3b13ab11e9a281f248da972e8735d81d56d5"
+   }
+  }
+ }
+}

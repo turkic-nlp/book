@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-14",
+  "python": "3.10.19",
+  "hfst": "3.16.0.1",
+  "paradigm_cells_checked_both_directions": 24,
+  "rejected_forms": [
+    "evlar",
+    "arabaler",
+    "evlarda",
+    "kitapda",
+    "arabade"
+  ],
+  "source_hashes": {
+    "build_and_test.py": "331ec9cadcdc5db4f0cfee2b7775f5d51523940b4f724ac6c77c15f45fd5b457",
+    "tr-toy.lexc": "bfaafbf9bc7042eb95a90ca1491e85be16c63f23f58c854f2548d1026a262159",
+    "tr-toy.twolc": "71d0edde64c28040c0001e45cffae382578d869d8c40083d56a3ca1afd07bfe2"
+  }
+}

@@ -1,0 +1,519 @@
+---
+short-title: "Glossary"
+---
+
+# Glossary {#sec-book-appendix-d}
+
+
+This glossary defines technical terms used throughout the book.
+Entries are listed alphabetically. *See:* names the chapter or section where a term is explained in depth; *See also:* points to related entries. Gloss abbreviations come first.
+
+## Gloss Abbreviations {#sec-gloss-abbreviations .unnumbered}
+
+Interlinear glosses follow the Leipzig Glossing Rules: hyphens separate morphs and their glosses, and a dot joins several meanings expressed by one form (*POSS.3SG*). Numbers mark person (1, 2, 3).
+
+| Label | Meaning | Label | Meaning |
+|---|---|---|---|
+| ABIL | ability | LOC | locative |
+| ABL | ablative | NEG | negation |
+| ACC | accusative | NMLZ | nominaliser |
+| ATTR | attributive (Kazakh *-ГІ*, Uyghur *-diki*) | NOM | nominative |
+| AUX | auxiliary | PASS | passive |
+| CAUS | causative | PL | plural |
+| COM | comitative | POSS | possessive |
+| COP | copula | PROG | progressive |
+| CVB | converb | PRS | present |
+| DAT | dative | PST | past |
+| GEN | genitive | PTCP | participle |
+| INS | instrumental | Q | question particle |
+|  |  | SG | singular |
+
+: Abbreviations used in the book's interlinear glosses. {#tbl-gloss-abbreviations}
+
+## A {.unnumbered .unlisted}
+
+[Ablative case]{#glossary-ablative-case}
+: A grammatical case marking a noun as the source, origin, or point of departure of an action
+  (e.g., "from the city"). In Turkic languages the ablative also encodes comparison
+  ("bigger than the city"). It is marked with *-dan/-den/-tan/-ten* in Turkish and *-дан/-ден*, *-тан/-тен*, *-нан/-нен* in Kazakh.
+  *See also: [Case (grammatical)](#glossary-case-grammatical), [Dative case](#glossary-dative-case).*
+
+[Accusative case]{#glossary-accusative-case}
+: A grammatical case that marks the direct object of a transitive verb.
+  Many Turkic languages have differential object marking. In Turkish, specific objects, including specific indefinites, usually take
+  an overt accusative suffix (*-(y)ı/i/u/ü*), while non-specific objects usually
+  appear unmarked. The conditions vary across languages (@sec-cross-lang).
+  *See also: [Case (grammatical)](#glossary-case-grammatical), [Nominative case](#glossary-nominative-case).*
+
+[Agglutination]{#glossary-agglutination}
+: A morphological strategy in which words are formed by appending a sequence of
+  largely segmentable morphemes, often with identifiable grammatical or derivational functions. Surface shapes can alternate, and form–function mappings are not always one-to-one.
+  Turkic languages are strongly agglutinative: a single verb form may carry tense, aspect,
+  mood, and person agreement through a chain of suffixes.
+  *See also: [Concatenative morphology](#glossary-concatenative-morphology), [Productive morphology](#glossary-productive-morphology), [Suffix template](#glossary-suffix-template).*
+
+[Allomorph]{#glossary-allomorph}
+: One of two or more phonological variants of the same morpheme. In Turkic languages,
+  allomorphy is principally driven by vowel harmony and consonant assimilation.
+  For example, the Turkish plural morpheme has the allomorphs *-lar* and *-ler* depending
+  on the backness of the preceding vowel.
+  *See also: [Vowel harmony](#glossary-vowel-harmony), [Morpheme](#glossary-morpheme).*
+
+[Adapter]{#glossary-adapter}
+: A small set of trainable parameters inserted into a frozen pretrained model and trained for a task, language or script. Bottleneck adapters and LoRA are different parameterisations; report the trainable modules and save the adapter with its task head.
+  *See:* @sec-multilingual.
+
+[Annotation projection]{#glossary-annotation-projection}
+: Transferring labels from annotated source sentences to aligned target sentences through word alignments. The result is silver annotation; measure it against gold labels on the same target sentences and report unaligned words.
+  *See:* @sec-crosslingual.
+
+[Annotator agreement (Kappa)]{#glossary-annotator-agreement-kappa}
+: A statistical measure of the degree to which two or more human annotators assign the
+  same label to the same item, corrected for chance agreement.
+  Cohen's kappa and Fleiss's kappa are the most common variants.
+  Interpretation depends on the task, label prevalence and chance model; report raw agreement and label counts as well. There is no universal adequacy threshold.
+  *See also: [Inter-annotator agreement](#glossary-inter-annotator-agreement).*
+
+[Attention mechanism]{#glossary-attention-mechanism}
+: A mechanism that combines information from permitted positions using weights computed from their compatibility with a query.
+  Self-attention relates positions within one sequence; cross-attention draws on another sequence, such as encoder outputs.
+  The transformer uses scaled dot-product attention to combine value vectors, with masks controlling which positions are available [@vaswani2017attention].
+  *See also: [Multi-head attention](#glossary-multi-head-attention), [Encoder-decoder](#glossary-encoder-decoder).*
+
+## B {.unnumbered .unlisted}
+
+[Back-translation]{#glossary-back-translation}
+: A data augmentation technique for machine translation in which a target-language
+  monolingual corpus is translated into the source language by a reverse MT system,
+  generating synthetic source-target sentence pairs for training.
+  Its value for a Turkic pair is an empirical question that depends on the reverse system's quality (@sec-book-10-machine-translation).
+  *See also: [Transfer learning](#glossary-transfer-learning).*
+
+[BIO tagging]{#glossary-bio-tagging}
+: A sequence labelling scheme used for span-level tasks such as named entity recognition.
+  Each token is assigned a tag indicating whether it is at the Beginning of a span (B-),
+  Inside a span (I-), or Outside any span (O).
+  Extended variants include BIOES (End, Single) and BILOU.
+  *See also: [Named entity recognition (NER)](#glossary-named-entity-recognition-ner), [POS tagging](#glossary-pos-tagging).*
+
+[BLEU]{#glossary-bleu}
+: A machine-translation metric combining modified token n-gram precision with a brevity penalty against reference translations. It is sensitive to tokenisation and to alternative word forms, which matters for agglutinative languages; report it with its SacreBLEU signature.
+  *See also:* [chrF](#glossary-chrf). *See:* @sec-neural-mt.
+
+[Byte-Pair Encoding (BPE)]{#glossary-byte-pair-encoding-bpe}
+: A subword tokenisation algorithm that iteratively merges the most frequent adjacent
+  pair of symbols in the training representation (characters or bytes, depending on the tokeniser), producing a vocabulary of variable-length subword units.
+  Originally proposed for data compression and adapted for NLP by @sennrich2016bpe.
+  BPE is used by many Turkic language models and MT systems.
+  *See also: [Subword tokenisation](#glossary-subword-tokenisation), [Fertility (tokeniser)](#glossary-fertility-tokeniser), [SentencePiece](#glossary-sentencepiece).*
+
+## C {.unnumbered .unlisted}
+
+[Calibration]{#glossary-calibration}
+: The correspondence between predicted confidence and observed outcome frequency under a specified evaluation distribution. Low entropy is not evidence of good calibration.
+
+[CARE principles]{#glossary-care-principles}
+: Collective benefit, Authority to control, Responsibility and Ethics: principles for Indigenous data governance [@carroll2020care]. They pose questions for collaboration with language communities rather than a checklist that settles them.
+  *See:* @sec-ethics.
+
+[Case (grammatical)]{#glossary-case-grammatical}
+: A grammatical category that encodes the syntactic or semantic role of a noun phrase
+  in a clause. Turkic languages use suffixal case marking; case inventories depend on the language and grammatical analysis; see @sec-book-05-morphological-structure.
+  *See also: [Nominative case](#glossary-nominative-case), [Accusative case](#glossary-accusative-case), [Dative case](#glossary-dative-case), [Genitive case](#glossary-genitive-case), [Ablative case](#glossary-ablative-case).*
+
+[chrF]{#glossary-chrf}
+: A machine-translation metric based on character n-gram overlap with reference translations; chrF++ adds word n-grams. It is less sensitive than BLEU to suffix variation, but a meaning-changing suffix such as negation can leave it almost unchanged.
+  *See also:* [BLEU](#glossary-bleu). *See:* @sec-neural-mt and @sec-eval-challenges.
+
+[Code-switching]{#glossary-code-switching}
+: The alternation between two or more languages within a conversation, sentence, or
+  word, e.g. Kazakh–Russian or Turkish–German mixing.
+  *See:* @sec-code-switching.
+
+[Common Turkic Alphabet and Common Turkic Script (CTS)]{#glossary-common-turkic-alphabet-cts}
+: A 34-letter Latin alphabet proposed in 1991; a revised version was agreed in 2024
+  by the Turkic World Common Alphabet Commission as a recommendation to the member
+  states. In this book, CTS names TurkicNLP's versioned common-script mapping, used
+  as a shared representation for text processing.
+  *See:* @sec-cts.
+
+[Complementiser]{#glossary-complementizer}
+: A functional morpheme that introduces a complement clause.
+  Turkic languages often express complementiser-like functions through nominalised or participial verb forms. Finite subordination also uses elements such as Turkish *ki* and *diye*.
+
+[Concatenative morphology]{#glossary-concatenative-morphology}
+: Building forms by joining morphemes in a linear sequence. Their surface shapes may alternate.
+  Turkic languages rely heavily on suffixation, alongside alternations, reduplication and other processes.
+  *See also: [Agglutination](#glossary-agglutination).*
+
+[CoNLL-U]{#glossary-conll-u}
+: The tab-separated file format of Universal Dependencies: one word per line with ID, form, lemma, UPOS, XPOS, features, head, relation, enhanced dependencies and miscellaneous fields. Range IDs mark multiword tokens; decimal-style IDs mark empty nodes in enhanced dependencies.
+  *See:* @sec-ud-framework.
+
+[Contamination (benchmark)]{#glossary-contamination-benchmark}
+: Evaluation items, or close variants of them, appearing in a model's training data, so that a score can reflect exposure rather than ability. High scores are not proof of it; an independent check is needed.
+  *See:* @sec-benchmarks. *See also:* [Data leakage](#glossary-data-leakage).
+
+[Contextual embedding]{#glossary-contextual-embedding}
+: A vector representation of a word or token that is computed in the context of the
+  surrounding sentence, as opposed to a fixed lookup-table embedding.
+  Contextual embeddings are the output of each layer of a transformer encoder;
+  they capture disambiguation information that static word vectors cannot represent.
+  *See also: [Masked language model (MLM)](#glossary-masked-language-model-mlm), [Fine-tuning](#glossary-fine-tuning).*
+
+[Converb]{#glossary-converb}
+: A non-finite verb form used in adverbial clauses, for example to express time or manner.
+  Turkic converbs also occur in clause chains and auxiliary constructions; their syntax depends on the form and construction.
+  *See:* @sec-nonfinite.
+
+[Cross-entropy]{#glossary-cross-entropy}
+: A loss function used to train classification and language models, measuring the
+  expected negative log probability assigned by a model $Q$ to outcomes distributed as $P$: $H(P,Q)=H(P)+D_{KL}(P\|Q)$. It is not itself a divergence.
+  In language modelling, cross-entropy over a test set can be converted to perplexity
+  by exponentiation with the matching log base (@sec-appa-probability).
+
+## D {.unnumbered .unlisted}
+
+[Data leakage]{#glossary-data-leakage}
+: Test data influencing model training, fitted preprocessing or model selection, so that the test evaluation is no longer independent.
+  Examples include duplicates across splits, translated test items in training, and fitting a tokeniser on the test corpus. Applying a fixed preprocessing rule to test input is ordinary inference.
+
+[Dative case]{#glossary-dative-case}
+: A grammatical case marking the indirect object or goal of an action (e.g., "to the city").
+  Turkic dative suffixes take the form *-(y)a/-(y)e* in Turkish and *-ға/-ге/-қа/-ке* in Kazakh,
+  with allomorphs selected by vowel harmony and by the stem-final consonant.
+  *See also: [Case (grammatical)](#glossary-case-grammatical), [Ablative case](#glossary-ablative-case).*
+
+[Dependency parsing]{#glossary-dependency-parsing}
+: A syntactic analysis task that assigns a head word to each word in a sentence and
+  labels the directed arc between them with a grammatical relation (subject, object, etc.).
+  The Universal Dependencies framework provides a cross-linguistically consistent
+  annotation scheme used across the Turkic UD treebanks.
+  *See:* @sec-book-08-syntax-ud.
+
+[Derivational morphology]{#glossary-derivational-morphology}
+: The branch of morphology concerned with forming new lexical items from existing ones,
+  typically by adding derivational affixes that change the word's part of speech or
+  core meaning (e.g., Turkish *göz* 'eye' → *göz-lük* 'glasses').
+  Turkic languages have extensive derivational morphology.
+  *See also: [Inflectional morphology](#glossary-inflectional-morphology), [Agglutination](#glossary-agglutination).*
+
+[Disambiguation (morphological)]{#glossary-disambiguation-morphological}
+: The task of selecting the correct morphological analysis for a word form given its
+  sentential context, when multiple analyses are possible.
+  Agglutinative languages like Turkish and Kazakh frequently produce highly ambiguous
+  surface forms, making disambiguation a non-trivial component of NLP pipelines.
+  *See also: [Morphological analysis](#glossary-morphological-analysis), [FST (finite-state transducer)](#glossary-fst-finite-state-transducer).*
+
+[Distribution shift]{#glossary-distribution-shift}
+: A mismatch between the statistical distribution of the data used to train a model
+  and the data it is applied to at inference time.
+  For Turkic NLP, distribution shift is common when models trained on literary or
+  news text are applied to social media, SMS, or spoken transcripts.
+
+[Dropout]{#glossary-dropout}
+: A regularisation technique for neural networks in which a random subset of activations
+  is set to zero during training. It can reduce co-adaptation between units; its effect on generalisation must be evaluated.
+
+## E {.unnumbered .unlisted}
+
+[Embedding]{#glossary-embedding}
+: A learned vector representation of a token, word, sentence or other object. Vectors of equal dimension need not be semantically aligned across languages.
+
+[Encoder-decoder]{#glossary-encoder-decoder}
+: A neural architecture consisting of an encoder that maps an input sequence to a
+  latent representation and a decoder that generates an output sequence from that
+  representation.
+  The architecture is standard for sequence-to-sequence tasks including machine translation,
+  text summarisation, and morphological generation.
+  *See also: [Attention mechanism](#glossary-attention-mechanism), [Masked language model (MLM)](#glossary-masked-language-model-mlm).*
+
+[Evidential]{#glossary-evidential}
+: A grammatical category marking the source of information, such as indirect or reported knowledge. Turkish *-mIş* has evidential readings (UD `Evident=Nfh`); translation must choose how to render them.
+  *See:* @sec-morpheme-inventory.
+
+## F {.unnumbered .unlisted}
+
+[Fertility (tokeniser)]{#glossary-fertility-tokeniser}
+: The number of subword tokens divided by the number of words under a declared word definition and tokenisation protocol. Corpus-total ratios differ from averages of sentence ratios. Report whether words were encoded separately or as running text, and whether special tokens count. High fertility describes fragmentation; neither its cause nor the benefit of script conversion follows from it.
+  *See also: [Byte-Pair Encoding (BPE)](#glossary-byte-pair-encoding-bpe), [Subword tokenisation](#glossary-subword-tokenisation).*
+
+[Fine-tuning]{#glossary-fine-tuning}
+: The process of continuing the training of a pretrained model on additional data for a task or language objective, with or without manual labels, updating all or a subset of model parameters.
+  Fine-tuning is the dominant paradigm for adapting BERT-class models to downstream
+  Turkic NLP tasks.
+  *See also: [Transfer learning](#glossary-transfer-learning), LoRA, [Parameter-efficient fine-tuning (PEFT)](#glossary-parameter-efficient-fine-tuning-peft).*
+
+[FST (finite-state transducer)]{#glossary-fst-finite-state-transducer}
+: A computational device that maps one string to another through a finite set of states
+  and transitions, with transitions that may consume or emit epsilon (the empty string). It can define multiple outputs per input and attach weights to paths.
+  FSTs are the core technology of rule-based Turkic analysers such as the Apertium modules
+  and TRmorph.
+  *See:* @sec-book-06-finite-state-morphology.
+
+## G {.unnumbered .unlisted}
+
+[Genitive case]{#glossary-genitive-case}
+: A grammatical case marking possession or modification.
+  In Turkic languages, the genitive-possessive construction is a two-part structure:
+  the possessor noun takes a genitive suffix and the possessed noun takes a possessive
+  agreement suffix cross-referencing the possessor's person and number.
+  *See also: [Case (grammatical)](#glossary-case-grammatical).*
+
+[GlotLID]{#glossary-glotlid}
+: An open language identifier with more than 2,000 language-and-script labels, used by TurkicNLP [@kargaran-etal-2023-glotlid]. It can confuse closely related languages, especially in short texts. Evaluate its accuracy for the intended languages and input lengths.
+  *See:* @sec-lid.
+
+## I {.unnumbered .unlisted}
+
+[Inflectional morphology]{#glossary-inflectional-morphology}
+: The branch of morphology concerned with grammatical forms of a lexical item, expressing categories such as
+  tense, aspect, mood, number, person and case. The boundary between inflection and derivation depends partly on the analysis.
+  Turkic languages have rich inflectional paradigms, particularly on verbs and nouns.
+  *See also: [Derivational morphology](#glossary-derivational-morphology), [Agglutination](#glossary-agglutination).*
+
+[Inter-annotator agreement]{#glossary-inter-annotator-agreement}
+: The degree to which independent annotators produce consistent labels for the same data.
+  *See: Annotator agreement (Kappa).*
+
+## L {.unnumbered .unlisted}
+
+[Labial harmony (rounding harmony)]{#glossary-labial-harmony-rounding-harmony}
+: A subtype of vowel harmony in which the feature [round] spreads from a vowel to
+  subsequent vowels in the word.
+  Turkish rounds high suffix vowels; Kyrgyz also rounds low vowels and writes it, while Kazakh
+  rounding is pronounced but not written (@sec-vowel-harmony).
+  *See also: [Vowel harmony](#glossary-vowel-harmony), [Palatal harmony](#glossary-palatal-harmony).*
+
+[Language identification (LID)]{#glossary-language-identification-lid}
+: Automatically determining the language of a text. Closely related Turkic languages
+  written in the same script are frequently confused with each other.
+  *See:* @sec-lid.
+
+[Lemma]{#glossary-lemma}
+: The canonical dictionary form of a word, abstracting away from inflectional variation.
+  The citation convention depends on the resource: a verbal stem and an infinitive may be different lemma conventions. Match the dataset's scheme before scoring.
+  *See also: [Morphological analysis](#glossary-morphological-analysis), [Inflectional morphology](#glossary-inflectional-morphology).*
+
+[Light-verb construction]{#glossary-light-verb-construction}
+: A complex predicate formed by a nominal and a semantically light verb, such as Turkish *yardım et-* 'help' (lit. 'do help'). UD labels the relation `compound:lvc`, but released Turkic treebanks differ in which word is the head.
+  *See:* @sec-ud-framework.
+
+[LoRA (Low-Rank Adaptation)]{#glossary-lora-low-rank-adaptation}
+: A parameter-efficient fine-tuning method that learns an additive weight update as the product of two smaller matrices while keeping the original weight matrix frozen.
+  The chosen rank and adapted modules determine the number of trainable parameters.
+  QLoRA combines it with a quantised base model. The book's LoRA results are in
+  @sec-book-12-pretrained-lms.
+  *See also: [Parameter-efficient fine-tuning (PEFT)](#glossary-parameter-efficient-fine-tuning-peft), [Fine-tuning](#glossary-fine-tuning).*
+
+## M {.unnumbered .unlisted}
+
+[Macro-F1]{#glossary-macro-f1}
+: The unweighted mean of per-class F1 scores, so that small classes count as much as large ones; micro-F1 pools all decisions instead. State which one is reported, and for NER whether spans are scored strictly.
+  *See:* @sec-ner.
+
+[Masked language model (MLM)]{#glossary-masked-language-model-mlm}
+: A pretraining objective in which selected input positions are prediction targets; depending on the recipe, they may be masked, replaced or left unchanged. The model predicts their original tokens.
+  MLM is the pretraining objective of BERT-class models such as BERTurk, XLM-R and Glot500
+  (@sec-book-12-pretrained-lms).
+  *See also: [Contextual embedding](#glossary-contextual-embedding), [Fine-tuning](#glossary-fine-tuning).*
+
+[Morpheme]{#glossary-morpheme}
+: The minimal unit of meaning or grammatical function. Roots and affixes are both morphemes. Turkic affixation is predominantly suffixal, and a single word may contain five or more morphemes.
+  *See also: [Agglutination](#glossary-agglutination), [Allomorph](#glossary-allomorph).*
+
+[Morphological analysis]{#glossary-morphological-analysis}
+: Identifying a word form's lemma, part of speech and morphological features, often with alternative readings.
+  Some analysers also provide morpheme segmentation; a UD feature bundle does not itself specify morpheme boundaries.
+  Explicit analysis can support downstream tasks, but end-to-end models need not call a separate analyser.
+  *See also: [FST (finite-state transducer)](#glossary-fst-finite-state-transducer), [Disambiguation (morphological)](#glossary-disambiguation-morphological).*
+
+[Morphological generation]{#glossary-morphological-generation}
+: The inverse of morphological analysis: producing a surface word form from a lemma
+  and a specification of morphological features.
+  An explicit generator is useful in rule-based MT and controlled form production; neural MT and TTS need not contain a separate morphological generator.
+  *See also: [Encoder-decoder](#glossary-encoder-decoder), [FST (finite-state transducer)](#glossary-fst-finite-state-transducer).*
+
+[Multi-head attention]{#glossary-multi-head-attention}
+: An extension of the attention mechanism in which multiple attention functions are
+  computed in parallel on linearly projected versions of the input, allowing the model
+  to attend to different aspects of the input simultaneously.
+  The transformer's self-attention layers use multi-head attention.
+  *See also: [Attention mechanism](#glossary-attention-mechanism).*
+
+## N {.unnumbered .unlisted}
+
+[Named entity recognition (NER)]{#glossary-named-entity-recognition-ner}
+: A sequence labelling task that identifies and classifies mentions of named entities
+  (persons, organisations, locations, etc.) in text.
+  Turkic NER resources include KazNERD (Kazakh, 25 entity classes), KyrgyzNER and WikiANN
+  (multilingual silver-standard NER).
+  *See:* @sec-ner.
+
+[Nominative case]{#glossary-nominative-case}
+: The default, unmarked case in Turkic noun paradigms, used for subjects of sentences
+  and predicate nominals.
+  Because the nominative is often zero-marked, it doubles as the citation form of nouns.
+  *See also: [Case (grammatical)](#glossary-case-grammatical), [Accusative case](#glossary-accusative-case).*
+
+## O {.unnumbered .unlisted}
+
+[Out-of-vocabulary (OOV)]{#glossary-out-of-vocabulary-oov}
+: A word or other unit absent from a declared vocabulary. A surface form can be unseen even when its lemma is familiar.
+  Productive morphology creates many possible forms, but observed OOV rates also depend on corpus size, domain and tokenisation.
+  Distinguish unseen word forms from unknown subword tokens (@sec-eval-challenges).
+  *See also: [Subword tokenisation](#glossary-subword-tokenisation), [Fertility (tokeniser)](#glossary-fertility-tokeniser).*
+
+## P {.unnumbered .unlisted}
+
+[Palatal harmony]{#glossary-palatal-harmony}
+: A subtype of vowel harmony in which the feature [back] (or [front]) spreads
+  within a defined harmonic domain. Which vowels participate and which suffixes alternate depends on the language, construction and exceptions.
+  Palatal harmony is the most pervasive form of vowel harmony in Turkic, present in
+  Turkish, Kazakh, Kyrgyz, and most other members of the family.
+  *See also: [Vowel harmony](#glossary-vowel-harmony), Labial harmony.*
+
+[Parameter-efficient fine-tuning (PEFT)]{#glossary-parameter-efficient-fine-tuning-peft}
+: A family of methods for adapting pretrained language models to new tasks or languages
+  by updating only a small subset of parameters or adding a small number of new parameters,
+  leaving the bulk of the pretrained weights frozen.
+  They reduce the memory and storage needed to adapt large models; @sec-book-12-pretrained-lms
+  compares LoRA with full fine-tuning.
+  *See also: LoRA, [Fine-tuning](#glossary-fine-tuning).*
+
+[Participial clause]{#glossary-participial-clause}
+: A clause built around a participial verb form, with a syntactic role that depends on the language and construction.
+  Turkic languages commonly place participial relatives before a noun, alongside finite and other relative strategies. Participial clauses can also serve other functions.
+  *See also: [Converb](#glossary-converb), [Dependency parsing](#glossary-dependency-parsing).*
+
+[Pivot translation]{#glossary-pivot-translation}
+: Translating through an intermediate language (source → pivot → target) when a direct system or data are lacking. Each leg must be supported, and errors can accumulate or be repaired along the way; compare it with direct translation on the same test set.
+  *See:* @sec-intra-family.
+
+[POS tagging]{#glossary-pos-tagging}
+: The task of assigning a part-of-speech label to each token in a text.
+  Universal Dependencies defines a set of 17 universal POS tags (UPOS) used across
+  all Turkic treebanks.
+  *See also: [UPOS (Universal POS)](#glossary-upos-universal-pos), [Dependency parsing](#glossary-dependency-parsing), [BIO tagging](#glossary-bio-tagging).*
+
+[Pro-drop]{#glossary-pro-drop}
+: A grammatical property of languages in which overt pronoun subjects are omitted when
+  they can be recovered from verb morphology or context.
+  Null subjects are common in Turkic; their licensing depends on grammar and discourse. Person/number agreement can help identify a subject, but Turkic subject agreement does not encode grammatical gender.
+  *See also: [SOV](#glossary-sov).*
+
+[Productive morphology]{#glossary-productive-morphology}
+: Morphological processes that apply freely to new or nonce words, generating valid forms
+  according to the rules of the language.
+  Turkic inflection and derivation can produce many forms absent from a training corpus.
+  Productivity varies by process and does not mean that any suffix can attach to any stem.
+  *See also: [Agglutination](#glossary-agglutination), [Inflectional morphology](#glossary-inflectional-morphology).*
+
+[Proxy language]{#glossary-proxy-language}
+: A language selected as a model routing code, language embedding or transfer source for a target with limited task supervision. This operational choice does not reveal an internal representation learned by the model.
+  *See:* @sec-book-16-cross-lingual-transfer; also @sec-book-07-neural-morphology and @sec-book-08-syntax-ud.
+
+## R {.unnumbered .unlisted}
+
+[Retrieval-augmented generation (RAG)]{#glossary-retrieval-augmented-generation-rag}
+: Generation conditioned on retrieved evidence. Evaluate retrieval relevance, answer correctness, citation support, language fidelity and abstention separately.
+
+[Romanisation]{#glossary-romanisation}
+: The representation of a text written in a non-Latin script using Latin characters.
+  For Turkic NLP, transliteration arises in Cyrillic-to-Latin conversion (Kazakh, Uzbek)
+  and Arabic-to-Latin conversion (Uyghur, Ottoman Turkish).
+  *See:* @sec-transliteration.
+
+[Round trip (transliteration)]{#glossary-round-trip}
+: Converting text into another script and back and checking whether the original is recovered. It tests reversibility, not correctness of the intermediate text: a lossy mapping fails it, and a consistent error can pass it.
+  *See:* @sec-transliteration.
+
+## S {.unnumbered .unlisted}
+
+[Scrambling (word order)]{#glossary-scrambling-word-order}
+: The syntactic phenomenon in which arguments of a verb can appear in multiple linear
+  orders without changing the basic propositional meaning, though information structure
+  (topic, focus) typically changes.
+  Turkic languages allow considerable word-order variation around an SOV base;
+  this flexibility complicates dependency parsing and semantic role labelling.
+  *See also: [SOV](#glossary-sov), [Pro-drop](#glossary-pro-drop).*
+
+[SentencePiece]{#glossary-sentencepiece}
+: A tokeniser framework supporting BPE and unigram language-model algorithms. It is not a synonym for the unigram algorithm. Record the algorithm and normalisation configuration.
+
+[Silver data]{#glossary-silver-data}
+: Automatically produced annotation, for example from a tagger or annotation projection.
+  It may supplement manually checked gold data or be used where gold training data are unavailable.
+  *See:* @sec-crosslingual.
+
+[SOV]{#glossary-sov}
+: Subject-Object-Verb: a typological label for languages in which the canonical
+  order of major clause constituents places the subject first, the object second,
+  and the verb last.
+  SOV is the usual base order in Turkic, with contact-induced exceptions as well as discourse and construction effects
+  (@sec-syntax-sketch). *See also:* [Scrambling (word order)](#glossary-scrambling-word-order).
+
+[Subword tokenisation]{#glossary-subword-tokenisation}
+: A tokenisation strategy whose vocabulary can contain whole words, word parts and individual characters or bytes, depending on the method.
+  BPE, WordPiece and unigram language-model tokenisation can represent unseen words as sequences of known units.
+  Unknown-token behaviour depends on character coverage and fallback rules. Subword tokenisation does not change whether a whole word was seen in training (@sec-eval-challenges).
+  *See also: [Byte-Pair Encoding (BPE)](#glossary-byte-pair-encoding-bpe), [Fertility (tokeniser)](#glossary-fertility-tokeniser), [Out-of-vocabulary (OOV)](#glossary-out-of-vocabulary-oov).*
+
+[Suffix template]{#glossary-suffix-template}
+: The ordered slot-structure specifying the sequence of morphological categories that
+  can be realised as suffixes on a word stem.
+  A common Turkic verbal order is stem → derivation → voice → ability → negation →
+  tense/aspect/mood → person agreement (*konuş-tur-a-ma-dı* 'could not make speak',
+  @sec-agglutination). Templates are construction-specific generalisations, not fixed slots
+  in every word (@sec-morpheme-inventory).
+  *See also: [Agglutination](#glossary-agglutination), [FST (finite-state transducer)](#glossary-fst-finite-state-transducer).*
+
+## T {.unnumbered .unlisted}
+
+[Temperature sampling]{#glossary-temperature-sampling}
+: Sampling training languages with probability proportional to $n_i^{1/T}$, where $n_i$ is the data size of language $i$. $T=1$ follows the data sizes, larger $T$ moves towards uniform; small languages then repeat their few examples more often.
+  *See:* @sec-multilingual.
+
+[Transfer learning]{#glossary-transfer-learning}
+: A machine learning paradigm in which a model trained on one task or dataset is
+  adapted to a different (often related) task or dataset, exploiting shared structure.
+  In Turkic NLP, cross-lingual transfer from well-resourced languages (Turkish,
+  Kazakh) to lower-resourced relatives (Kyrgyz, Uzbek) is a primary strategy for
+  building systems with limited annotated data.
+  *See also: [Fine-tuning](#glossary-fine-tuning), [Zero-shot transfer](#glossary-zero-shot-transfer).*
+
+[Transliteration]{#glossary-transliteration}
+: Conversion between writing systems under a declared mapping. Romanisation specifically targets Latin script. Mappings may be lossy or context-sensitive; preserve originals and offsets.
+
+[Treebank]{#glossary-treebank}
+: A corpus of sentences annotated with syntactic structure, such as constituency trees or dependency graphs.
+  The release-specific inventory in @sec-book-08-syntax-ud lists the Turkic UD resources, including
+  the UD-Turkic parallel treebanks.
+  *See also: [Dependency parsing](#glossary-dependency-parsing), [UPOS (Universal POS)](#glossary-upos-universal-pos).*
+
+## U {.unnumbered .unlisted}
+
+[UPOS (Universal POS)]{#glossary-upos-universal-pos}
+: The set of 17 coarse-grained, cross-linguistically applicable part-of-speech tags
+  defined by the Universal Dependencies framework: `NOUN`, `VERB`, `ADJ`, `ADV`,
+  `PRON`, `DET`, `ADP`, `AUX`, `CCONJ`, `SCONJ`, `PART`, `INTJ`, `NUM`, `PUNCT`,
+  `SYM`, `X`, and `PROPN`.
+  *See also: [POS tagging](#glossary-pos-tagging), [Treebank](#glossary-treebank).*
+
+## V {.unnumbered .unlisted}
+
+[Vowel harmony]{#glossary-vowel-harmony}
+: A phonological process in which participating vowels within a harmonic domain are constrained by one or more
+  phonological features, most commonly frontness/backness (palatal harmony) and/or
+  rounding (labial harmony).
+  Harmony is widespread in Turkic, but its domains, strength, exceptions and spelling vary; standard written Uzbek has largely fixed suffix vowels (@sec-vowel-harmony).
+  *See also: [Palatal harmony](#glossary-palatal-harmony), Labial harmony, [Allomorph](#glossary-allomorph).*
+
+## Z {.unnumbered .unlisted}
+
+[Zero-shot transfer]{#glossary-zero-shot-transfer}
+: The application of a model trained on one language (or task) to a different language
+  (or task) without any task-specific fine-tuning on the target language.
+  The model may still have seen target-language text during pretraining (@sec-why-transfer);
+  zero-shot here means no target task-labelled training.
+  *See also: [Transfer learning](#glossary-transfer-learning), [Fine-tuning](#glossary-fine-tuning).*

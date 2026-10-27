@@ -1,0 +1,599 @@
+---
+short-title: "Finite-State Morphology"
+---
+
+# Finite-State Morphology: The Rule-Based Approach {#sec-book-06-finite-state-morphology}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Explain why finite-state transducers suit Turkic morphological analysis, and where they fall short
+- Describe the two-level morphology formalism, and compile and test a small lexc/twolc grammar with HFST
+- Use the Apertium Turkic analysers via the HFST Python interface
+- Interpret diagnostic evaluations of the Apertium Turkic analysers, and design an evaluation that measures coverage and accuracy
+- Use the TurkicNLP toolkit to run rule-based morphological analysis (20 languages) and neural analysis (22 languages), and Apertium generators for generation
+- Explain morphological generation and its role in data augmentation for low-resource NLP
+:::
+
+@sec-book-05-morphological-structure described Turkic morphology. This chapter implements part of it with finite-state transducers, following work such as Oflazer's Turkish analyser [@oflazer1994two] and the Apertium Turkic modules [@washington2014finite]. A small grammar shows how to encode suffix order, vowel harmony and consonant alternation.
+
+Finite-state morphology is a practical option when explicit linguistic knowledge is available and labelled data are scarce. Multilingual neural and hybrid approaches (@sec-book-07-neural-morphology) are alternatives, and their costs and errors should be compared on the language at hand.
+
+
+## Why Finite-State Methods for Turkic {#sec-why-fst}
+
+### The Transparency Argument
+
+A finite-state transducer (FST) relates two string representations. A morphological transducer maps surface forms to analyses and can be inverted for generation. Its source lexicon and rules can be inspected and tested when a form is missing or has an unwanted analysis. Tracing a compiled path back to a source rule may still take work.
+
+For a language without annotated training data, a linguist can build a transducer from grammars and speaker consultation. When it fails, the analysis can be traced to a rule or lexicon entry. Error analysis also helps with learned models, although it rarely identifies an explicit rule in the same way.
+
+### The Reversibility Argument
+
+An FST relates two sets of strings. Inverting it swaps input and output, allowing the same relation to support analysis and generation. Ambiguity survives the swap: one analysis may have several surface forms, and one surface form may have several analyses. Composing the relation with its inverse therefore need not give the identity relation. In practice:
+
+- **Analysis**: surface form *ev-ler-imiz-den* → `ev<n><pl><px1pl><abl>`
+- **Generation**: `ev<n><pl><px1pl><abl>` → surface form *evlerimizden*
+
+This chapter writes analyses in the Apertium tag format, as the Turkish transducer returns them.
+
+Generation supports spell-checking, data augmentation and machine translation. Acceptance means that a form is licensed by the implemented grammar; the spelling or the choice of word can still be wrong in context (@sec-normalisation).
+
+### The Low-Data Argument
+
+Neural morphological analysers require training data: annotated word forms with their morphological analyses. For Turkish, Kazakh, and a few others, such data exists (Universal Dependencies treebanks provide morphological annotation). For a new target language, inspect separately the available treebanks, labelled paradigms and unannotated text; absence of a treebank does not imply absence of every kind of morphological supervision.
+
+Building an FST draws on linguistic knowledge: the suffix inventory, harmony rules and lexicon. Grammar descriptions, fieldwork and speaker consultation can supply it without an annotated training corpus. The work still takes time, and independent test data are needed to assess the resulting rules and coverage.
+
+### The Coverage Argument
+
+An FST generalises to every combination licensed by its lexicon and rules, including forms absent from the development texts. That behaviour is inspectable. Missing stems and constructions cause failures; overly permissive rules can admit forms speakers would reject. A neural model may handle the test distribution well while making less predictable errors on unusual forms.
+
+
+## Two-Level Morphology: The Core Formalism {#sec-two-level}
+
+A widely used formalism for finite-state morphology in Turkic NLP is **two-level morphology**, introduced by Koskenniemi [-@koskenniemi1983] and applied to Turkish by Oflazer [-@oflazer1994two]. The name refers to the two levels of representation:
+
+1. **Lexical level**: the canonical, underlying form (morphemes listed in the lexicon)
+2. **Surface level**: the realised form (what appears in actual text)
+
+The two levels are related by **two-level rules** that map lexical sequences to surface sequences, encoding phonological alternations.
+
+### The Lexicon (lexc)
+
+The lexicon file (written in the `lexc` formalism) defines:
+
+- **Lexemes**: root morphemes with their lexical representation and continuation class
+- **Continuation classes** (also called *sublexica*): the sets of suffixes that can follow a given form
+- **Morpheme entries**: individual suffix morphemes, each with its lexical representation, surface representation (if different), and next continuation class
+
+The following schematic notation explains the architecture; it is not a compilable HFST grammar (a complete, tested one follows below). A simplified excerpt of a Turkish noun lexicon:
+
+```
+LEXICON NounRoot
+ev    NounInfl;    ! "house", continues to noun inflection
+araba NounInfl;    ! "car"
+göz   NounInfl;    ! "eye"
+
+LEXICON NounInfl
+<PL>:ler  NounCase;   ! plural suffix (front), continues to case
+<PL>:lar  NounCase;   ! plural suffix (back)
+          NounCase;   ! singular (empty suffix)
+
+LEXICON NounCase
+<LOC>:de  #;          ! locative (front voiced)
+<LOC>:da  #;          ! locative (back voiced)
+<LOC>:te  #;          ! locative (front voiceless)
+<LOC>:ta  #;          ! locative (back voiceless)
+<ABL>:den #;          ! ablative ...
+...
+```
+
+The `#` symbol marks the end of a word. The continuation class mechanism encodes the suffix template: `NounRoot` continues to `NounInfl`, which continues to `NounCase`, which terminates. A suffix from `NounCase` cannot appear before one from `NounInfl` because the continuation classes do not allow it.
+
+### Phonological Rules (twolc)
+
+The `twolc` component constrains pairs of lexical and surface symbols in context. For example, an abstract suffix vowel can surface as *a* or *e* according to harmony, and an abstract suffix consonant as *d* or *t* according to voicing.
+
+The schematic lexicon above lists the allomorphs separately. The complete grammar below instead writes each suffix once with **archiphonemes**, symbols that stand for its alternating sounds. The two-level rules select the permitted surface forms.
+
+### A Complete Toy Grammar
+
+The following grammar compiles with HFST and is small enough to read in full. It has four stems, the plural and two cases. The lexicon writes the harmonising vowel as `{A}` and the suffix-initial *d/t* as `{D}`; two rules choose their surface forms. The files are in `code/ch06-toy-fst/` of the book repository.
+
+```
+! tr-toy.lexc — upper side = analysis (lemma + tags), lower side = morphophonemic form
+! {A} = harmonising vowel a/e;  {D} = suffix-initial d/t
+
+Multichar_Symbols
+%<n%> %<pl%> %<loc%> %<abl%> %{A%} %{D%}
+
+LEXICON Root
+Nouns ;
+
+LEXICON Nouns
+ev%<n%>:ev         Number ;   ! house
+araba%<n%>:araba   Number ;   ! car
+göz%<n%>:göz       Number ;   ! eye
+kitap%<n%>:kitap   Number ;   ! book
+
+LEXICON Number
+%<pl%>:l%{A%}r     Case ;     ! plural -lAr
+                   Case ;     ! singular: no suffix
+
+LEXICON Case
+                       # ;    ! nominative: no suffix
+%<loc%>:%{D%}%{A%}     # ;    ! locative -DA
+%<abl%>:%{D%}%{A%}n    # ;    ! ablative -DAn
+```
+
+```
+! tr-toy.twolc — backness harmony of {A} and voicing of {D}
+
+Alphabet
+a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z
+%{A%}:a %{A%}:e %{D%}:d %{D%}:t ;
+
+Sets
+FrontV = e i ö ü ;
+Cons = b c ç d f g ğ h j k l m n p r s ş t v y z ;
+Voiceless = ç f h k p s ş t ;
+
+Rules
+
+"{A} is e after a front vowel, otherwise a"
+%{A%}:e <=> :FrontV [ :Cons ]* _ ;
+
+"{D} is t after a voiceless consonant, otherwise d"
+%{D%}:t <=> :Voiceless _ ;
+```
+
+The harmony rule looks back over any number of consonants to the nearest vowel; because the surface vowel of a preceding `{A}` counts, *ev-l{A}r-{D}{A}* becomes *evlerde* in one pass. The Python bindings compile and test the grammar (`pip install hfst`; tested with HFST 3.16.0.1). Run this inline block from `code/ch06-toy-fst/`:
+
+```python
+import hfst
+
+lexicon = hfst.compile_lexc_file("tr-toy.lexc")              # analysis:morphophonemic
+hfst.compile_twolc_file("tr-toy.twolc", "tr-toy.twol.hfst")
+stream = hfst.HfstInputStream("tr-toy.twol.hfst")
+rules = []
+while not stream.is_eof():
+    rules.append(stream.read())
+stream.close()
+
+generator = hfst.HfstTransducer(lexicon)
+generator.compose_intersect(tuple(rules))                    # analysis:surface
+generator.minimize()
+analyser = hfst.HfstTransducer(generator)
+analyser.invert()                                            # surface:analysis
+analyser.minimize()
+# Optimized-lookup format, the format of Apertium's .automorf/.autogen files
+analyser.convert(hfst.ImplementationType.HFST_OLW_TYPE)
+generator.convert(hfst.ImplementationType.HFST_OLW_TYPE)
+
+def analyse(word):
+    return sorted(a for a, _ in analyser.lookup(word))
+
+def generate(analysis):
+    return sorted(s for s, _ in generator.lookup(analysis))
+
+accept = {"evler": "ev<n><pl>", "arabalar": "araba<n><pl>", "evlerde": "ev<n><pl><loc>",
+          "arabalarda": "araba<n><pl><loc>", "gözden": "göz<n><abl>", "kitapta": "kitap<n><loc>",
+          "kitaplardan": "kitap<n><pl><abl>"}
+reject = ["evlar", "arabaler", "evlarda", "kitapda", "arabade"]
+for word, gold in accept.items():
+    assert analyse(word) == [gold], (word, analyse(word))      # the analysis, not just acceptance
+for word in reject:
+    assert analyse(word) == [], (word, analyse(word))
+assert generate("göz<n><pl><loc>") == ["gözlerde"]
+print("all tests passed")
+```
+
+The displayed checks cover representative cases. From any working directory, `python code/ch06-toy-fst/build_and_test.py` verifies all 24 cells of the four-stem paradigm in both directions. Accepted forms must receive the expected analysis; harmony and voicing errors must be rejected. The grammar leaves out the *kitap/kitab-* alternation before vowels. Exercise 2 adds it with an accusative suffix.
+
+Apertium grammars extend this design with larger lexicons and language-specific rules. Throughput depends on transducer format and hardware, so measure it on your own text when speed matters. As checked on 19 October 2026, PyPI's `hfst` package had wheels for Python 3.11 but none for Python 3.13. The pure-Python `pyhfst` can read compiled transducers; it cannot compile lexc or twolc.
+
+### The Analysis Operation
+
+Given the compiled FST, analysis works by **composition**: input the surface string and read out all lexical paths that the transducer accepts. For *evlerimizden*:
+
+1. The FST traverses the transitions that match *e-v-l-e-r-i-m-i-z-d-e-n*
+2. At each step, valid continuation classes constrain which transitions are available
+3. All accepting paths (paths that reach a final state after consuming all input characters) are returned as analyses
+
+The output is a set of analysis strings from accepting paths; multiple paths can yield the same string. The Apertium Turkish transducer returns two (shown in @sec-apertium):
+```
+ev<n><pl><px1pl><abl>
+ev<n><pl><px1pl><abl>+i<cop><aor><p3><sg>
+```
+
+If the word is unrecognised (no accepting path), the FST returns an empty set. The word may be a loanword or a typo, or it may use a suffix or root missing from the lexicon.
+
+### The Generation Operation
+
+Generation uses the inverse relation: swap the input and output labels, then look up the lexical analysis to obtain its surface form(s). This preserves string order; it does not reverse the transitions or the spelling. For `ev<n><pl><px1pl><abl>`:
+
+1. The harmony rules select *-ler* (front plural, since *ev* has a front vowel) and *-imiz* (front unrounded, after *-ler*)
+2. The voicing rule selects *-den*, because *-imiz* ends in the voiced consonant *z*
+3. The transducer returns *evlerimizden*
+
+A fully specified lexical analysis often has one standard surface realisation, although the relation can encode variants (spelling variants, or optional forms that the grammar allows), in which case generation returns several surface forms.
+
+
+## The Apertium Turkic Project {#sec-apertium}
+
+### Overview
+
+Apertium is an open-source rule-based machine translation platform that includes, as one of its core components, a collection of morphological analysers and generators implemented as FSTs [@forcada2011apertium; @khanna2021apertium]. TurkicNLP loads Apertium transducers for **20 Turkic languages** [@hakimov2025turkicnlp].
+
+The analysers use the `lexc/twolc` formalism compiled with HFST. Each language module consists of:
+
+- A language-specific lexicon file (*apertium-tur.tur.lexc*, *apertium-kaz.kaz.lexc*, etc.)
+- A phonological rule file (*apertium-tur.tur.twolc*, etc.)
+- Depending on the module, disambiguation rules and test suites
+
+Bilingual dictionaries and transfer rules for machine translation live in separate *pair* modules (e.g., *apertium-kaz-tat*). Although every language has its own lexicon and rules, the Turkic modules follow common formalisms and tag conventions, and several were developed together [@washington2014finite]; @washington2020multiscript describe multi-script transducers and transcribers for seven of them. This shared design is what makes it realistic to start a new language from the module of a close relative.
+
+### How Good Are the Analysers?
+
+The 20 analysers differ widely in lexicon size and maturity. Because gold morphological annotation is missing for most Turkic languages, the TurkicNLP evaluation uses a parallel challenge set: the same 20 sentences translated into 20 languages, each targeting one phenomenon (five cases; past, progressive, future, negation, question, imperative, conditional, evidential, passive; plural, possessive, pronoun, reciprocal, numeral, converb). It compares the Apertium analysers with the toolkit's multilingual neural analyser [@hakimov2025turkicnlp].
+
+{{< include ../tables/tbl-apertium-quality/output.md >}}
+
+Each metric answers a narrow question. Det% records whether the target feature appears anywhere in a sentence. Feat% records any non-empty feature bundle, regardless of correctness. Assess full-analysis accuracy on representative running text separately, along with coverage, recall of the gold reading among candidates and contextual disambiguation.
+
+On this diagnostic, mean target-feature detection is 74% for the transducers and 67% for the neural analyser; the corresponding non-empty-feature rates are 65% and 88%. The ordering varies by language (@tbl-apertium-quality). Analyser maturity, correct disambiguation and the reasons for a cross-language gap all lie beyond what these measures can show. A full evaluation of an analyser would annotate tokens in held-out natural sentences per language, retain legitimate alternative readings, and report unknown-word rate, gold-candidate recall and selected-reading accuracy.
+
+The Kazakh and Kyrgyz transducers were developed by the community that also produced the Kazakh UD treebank and its UD feature mapping [@washington2014finite; @tyers2015ud_kazakh; @washington2016kyrgyz]; TurkicNLP converts module tags into UD-shaped feature strings. This does not guarantee agreement with every treebank's annotation conventions; audit the mapping before scoring.
+
+### Using Apertium FSTs via HFST Python Bindings
+
+The HFST toolkit [@linden2011hfst] provides Python bindings that allow Apertium FST binaries to be loaded and queried without a system-level Apertium installation (`pip install turkicnlp[hfst]`). The TurkicNLP toolkit wraps these bindings with a unified API, downloads the GPL-licensed transducers separately at run time, converts input to the script each transducer expects, and scores competing readings with transducer weights and heuristics [@hakimov2025turkicnlp].
+
+#### Direct HFST Access
+
+For users who want direct control over the FST:
+
+```python
+import hfst
+from turkicnlp.resources.registry import ModelRegistry
+
+# Folder of the Apertium Turkish transducers fetched by turkicnlp.download("tur")
+tur_dir = ModelRegistry.get_model_path("tur", "morph", "apertium", script="Latn")
+
+def load(path):
+    stream = hfst.HfstInputStream(str(path))
+    fst = stream.read()
+    stream.close()
+    return fst
+
+analyser = load(tur_dir / "tur.automorf.hfst")
+print(hfst.__version__ if hasattr(hfst, "__version__") else "", tur_dir)
+
+for word in ["evlerimizden", "yüzü", "xyzqw"]:
+    for analysis, weight in analyser.lookup(word):     # (output string, weight) pairs
+        print(f"{word}\t{analysis}\t{weight}")
+
+# evlerimizden  ev<n><pl><px1pl><abl>                      0.0
+# evlerimizden  ev<n><pl><px1pl><abl>+i<cop><aor><p3><sg>  0.0
+# yüzü          yüz<n><acc>                                0.0
+# yüzü          yüz<n><px3sp><nom>                         0.0
+# yüzü          yüz<num><subst><acc>                       0.0
+# ...           (six readings in total)
+# xyzqw         (no output: unknown word)
+```
+
+`lookup()` returns each analysis with its weight; the input is already known. *evlerimizden* has two readings: the noun 'from our houses', and the same noun followed by the copula, 'it is from our houses'. *yüzü* has six: 'face' or the numeral 'hundred', each as an accusative, a third-person possessive, or a possessive plus copula. An unknown word returns nothing. Choosing between readings is the disambiguation problem of @sec-book-07-neural-morphology. The output above was produced with HFST 3.16.0.1 and the Apertium Turkish transducer distributed with TurkicNLP 0.5.0.
+
+#### Via TurkicNLP
+
+The TurkicNLP pipeline routes morphological analysis through the Apertium backend automatically, converting the Apertium-native tag format to Universal Dependencies features:
+
+```python
+from turkicnlp import Pipeline
+
+# Kazakh morphological analysis with UD feature output
+pipeline = Pipeline("kaz", processors=["tokenize", "morph"], tokenize_backend="rule", morph_backend="apertium")   # "morph" = Apertium FST
+
+doc = pipeline("Ол кітабымды оқып жатыр.")
+
+for word in doc.words:
+    print(f"{word.text:<12} {word.lemma or '_':<8} {word.upos or '_':<6} {word.feats or '_'}")
+```
+
+Output (TurkicNLP 0.5.0):
+```
+Ол           ол       PRON   Case=Nom|PronType=Dem
+кітабымды    кітап    NOUN   Case=Acc|Number[psor]=Sing|Person[psor]=1
+оқып         оқы      VERB   VerbForm=Conv
+жатыр        жат      AUX    Number=Plur|Person=3|Tense=Pres
+.            .        PUNCT  _
+```
+
+The analyser correctly recognises *оқып жатыр* 'is reading' as a converb followed by auxiliary *жат-* 'lie'. Its selected `Number=Plur` is wrong for the subject *Ол* 'he/she'. Kazakh third-person forms do not distinguish singular from plural here, so the transducer returns both `жат<vaux><pres><p3><sg>` and `жат<vaux><pres><p3><pl>`. The toolkit chooses the plural reading. Compare this decision with Stanza or Glot500 (@sec-book-07-neural-morphology) and check the feature mapping against the intended treebank.
+
+### Extending Coverage to a New Language
+
+The common formalism and tag conventions make it feasible to extend Apertium Turkic coverage to new languages. The process, documented in the Apertium developer documentation and described practically for Kypchak languages by @washington2014finite, involves:
+
+1. **Create a new language directory** following the Apertium naming convention.
+2. **Write a new lexicon file** with the target language's root morphemes. For Kipchak languages, many roots are shared with Kazakh or Kyrgyz, reducing the lexicographic work.
+3. **Model the suffix inventory on a close relative's lexicon** (continuation classes and tags), then replace the allomorphs with the target language's own.
+4. **Write or adapt the phonological rules** for the target language's harmony system.
+5. **Compile and test** against known forms. The test suite (a list of surface forms with expected analyses) is the primary quality assurance mechanism.
+
+The work includes lexicon building, grammatical description, implementation and speaker validation. Which part takes most time depends on the available resources.
+
+
+## Language-Specific Tools {#sec-language-tools}
+
+Beyond Apertium, several language-specific morphological tools exist for the best-resourced Turkic languages.
+
+### Zemberek-NLP (Turkish)
+
+Zemberek-NLP [@akin2007zemberek] is a Java library for Turkish NLP; the 2007 paper describes the earlier Zemberek framework from which it developed. Its [repository](https://github.com/ahmetaa/zemberek-nlp) states that the project "is now in slow maintenance mode" (checked 19 October 2026). It provides:
+
+- **Morphological analysis**: a Java-native implementation of Turkish morphology that implements Turkish suffix rules and includes a contextual disambiguator
+- **Morphological generation**: generates forms from a dictionary item and requested morphological tags
+- **Spell-checking**: based on morphological analysis rather than dictionary lookup
+- **Tokenisation**: handles Turkish-specific patterns including acronyms, numbers, and clitic punctuation
+
+Zemberek operates independently of Apertium and uses its own internal rule representation rather than `lexc/twolc`. It is written in Java; a separate project provides a [Python implementation](https://github.com/Loodos/zemberek-python).
+
+Zemberek integrates **morphological disambiguation**, selecting an analysis in sentence context. Evaluate candidate generation and contextual selection separately; having a disambiguator says nothing yet about its accuracy on a new domain.
+
+### TRmorph (Turkish)
+
+TRmorph [@coltekin2010trmorph] is an open-source finite-state morphological analyser for Turkish. The 2010 paper describes an implementation in SFST; the current [repository](https://github.com/coltekin/TRmorph) is a rewrite in lexc/xfst developed with foma, with a new lexicon, a revised tag set, a stemmer, a segmenter and an unknown-word guesser (README, checked 19 October 2026). Results reported for one version do not carry over to the other.
+
+### Google's Turkish Morphological Analyser
+
+@ozturel2019turkish describe a "syntactically expressive" finite-state analyser for Turkish developed at Google and released as open source (`google-research/turkish-morphology`). Its analyses are designed to be compatible with Universal Dependencies-style syntactic annotation, which makes it a useful companion to UD parsers.
+
+### Analysers for Other Turkic Languages
+
+Kazakh has published work on morphological disambiguation, including a voted-perceptron approach [@tolegen2020voted]. Check tool availability against a dated resource inventory; a language's size is a poor guide. Apertium and TurkicNLP provide useful starting points, but this overview is not an exhaustive list of analysers.
+
+### Comparison of Available Turkish Analysers
+
+| Analyser | Language | Interface | Disambiguation | Licence |
+|----------|----------|-----------|----------------|---------|
+| Apertium + HFST | Turkish | Python (via TurkicNLP) | Weights + heuristics in TurkicNLP | GPL-3.0 |
+| TRmorph | Turkish | foma / command line | None built-in | [MIT](https://github.com/coltekin/TRmorph/blob/master/LICENSE) (current rewrite) |
+| Google Turkish morphology | Turkish | Python | None built-in | [Apache 2.0](https://github.com/google-research/turkish-morphology/blob/master/LICENSE) (original code) |
+| Zemberek-NLP | Turkish | Java (+ Python port) | Statistical | [Apache 2.0](https://github.com/ahmetaa/zemberek-nlp/blob/master/LICENSE) |
+| TurkishDelightNLP | Turkish | Python / web | Neural | Component-specific; see repositories linked in @alecakir2022turkishdelightnlp |
+| VNLP | Turkish | Python | Neural | [AGPL-3.0](https://github.com/vngrs-ai/vnlp/blob/main/LICENSE) |
+
+: Selected Turkish morphological tools; repository code licences checked 14 October 2026 and again 19 October 2026. Model and data licences require separate inspection. Google's repository is archived. {#tbl-analysers}
+
+
+## Morphological Generation and Data Augmentation {#sec-generation}
+
+### Generation Mode
+
+The FST analysers described above are bidirectional: Apertium builds a generator transducer from the same sources as the analyser, mapping an analysis string (lemma plus Apertium tags) to surface forms. TurkicNLP uses these generators internally [@hakimov2025turkicnlp]; the example below calls the Turkish generator directly through HFST, reusing `load()` and `tur_dir` from @sec-apertium, which makes the mechanism visible.
+
+```python
+gen = load(tur_dir / "tur.autogen.hfst")          # Apertium Turkish generator
+
+def generate(analysis: str) -> list[str]:
+    return sorted({form for form, _ in gen.lookup(analysis)})
+
+for case in ["nom", "acc", "dat", "loc", "abl", "gen"]:
+    print(case, generate(f"ev<n><{case}>"))
+```
+
+Output:
+```
+nom ['ev']
+acc ['evi']
+dat ['eve']
+loc ['evde']
+abl ['evden']
+gen ['evin']
+```
+
+TurkicNLP exposes the same generator through its Apertium processor, which also converts the script where the transducer expects a different one:
+
+```python
+from turkicnlp.processors.morphology import ApertiumMorphProcessor
+
+kaz_dir = ModelRegistry.get_model_path("kaz", "morph", "apertium", script="Cyrl")
+kaz = ApertiumMorphProcessor(lang="kaz")
+kaz.load(kaz_dir)
+print([kaz.generate("мектеп", ["n", case]) for case in ["nom", "acc", "dat", "loc", "abl", "gen"]])
+# ['мектеп', 'мектепті', 'мектепке', 'мектепте', 'мектептен', 'мектептің']
+```
+
+### Data Augmentation via Morphological Generation
+
+One practically useful application of generation is **morphological data augmentation**. For low-resource Turkic languages where labelled training data is scarce, generating inflected forms of known lemmas expands the variety of surface forms a model sees.
+
+Changing an entity's case can change its role or make a sentence ungrammatical. *Мен Алматыдан келдім* means 'I came from Almaty'; replacing *Алматыдан* with *Алматыға* gives 'I came to Almaty', a grammatical sentence with a different meaning. For entity substitution, keep the original case and number and generate a different entity of the same type in that form. The resulting sentence still needs contextual checking:
+
+```python
+gen_kaz = load(kaz_dir / "kaz.autogen.hfst")      # Apertium Kazakh generator
+ana_kaz = load(kaz_dir / "kaz.automorf.hfst")
+
+def substitute_entity(tokens, labels, idx, new_lemma, allowed_lemmas, ana=None, gen=None):
+    """Conservative single-token B-LOC replacement; None means abstain."""
+    ana, gen = ana or ana_kaz, gen or gen_kaz       # Kazakh transducers by default
+    if len(tokens) != len(labels) or not 0 <= idx < len(tokens):
+        raise ValueError("unaligned tokens/labels or invalid index")
+    if labels[idx] != "B-LOC" or (idx + 1 < len(labels) and labels[idx + 1] == "I-LOC"):
+        return None                                  # no partial replacement of an entity
+    if new_lemma not in allowed_lemmas or any(c.isspace() for c in new_lemma):
+        return None                                  # require an independently checked gazetteer
+    readings = {a for a, _ in ana.lookup(tokens[idx]) if "<np><top>" in a and "+" not in a}
+    if len(readings) != 1:
+        return None
+    _, tags = readings.pop().split("<", 1)
+    requested = f"{new_lemma}<{tags}"
+    forms = {f for f, _ in gen.lookup(requested)}
+    if len(forms) != 1:
+        return None
+    form = forms.pop()
+    if not form or any(c.isspace() for c in form):
+        return None
+    if requested not in {a for a, _ in ana.lookup(form)}:
+        return None                                  # generator/analyser round-trip check
+    new_tokens = list(tokens); new_tokens[idx] = form
+    return new_tokens, list(labels)
+
+tokens = ["Мен", "Алматыдан", "келдім", "."]
+labels = ["O", "B-LOC", "O", "O"]
+# Demonstration candidates; a production gazetteer needs independent validation.
+cities = {"Астана", "Шымкент", "Тараз"}
+for city in ["Астана", "Шымкент", "Тараз", "Париж"]:
+    print(substitute_entity(tokens, labels, 1, city, cities))
+# Inspect the accepted forms; Париж is rejected because it is not in cities.
+
+```
+
+The same function works for Turkmen with the Apertium Turkmen transducers (beta quality):
+
+```python
+tuk_dir = ModelRegistry.get_model_path("tuk", "morph", "apertium", script="Latn")
+gen_tuk = load(tuk_dir / "tuk.autogen.hfst")
+ana_tuk = load(tuk_dir / "tuk.automorf.hfst")
+
+tokens = ["Men", "Aşgabatdan", "geldim", "."]     # 'I came from Ashgabat'
+labels = ["O", "B-LOC", "O", "O"]
+cities = {"Mary", "Daşoguz", "Türkmenabat"}
+for city in ["Mary", "Daşoguz", "Türkmenabat", "Parij"]:
+    print(substitute_entity(tokens, labels, 1, city, cities, ana=ana_tuk, gen=gen_tuk))
+```
+
+Output (18 October 2026):
+```
+(['Men', 'Marydan', 'geldim', '.'], ['O', 'B-LOC', 'O', 'O'])
+(['Men', 'Daşoguzdan', 'geldim', '.'], ['O', 'B-LOC', 'O', 'O'])
+(['Men', 'Türkmenabatdan', 'geldim', '.'], ['O', 'B-LOC', 'O', 'O'])
+None
+```
+
+*Parij* 'Paris' is rejected because it is not in the vetted list (the transducer does not know it either). The Turkmen transducer is incomplete in other places: asked for the past participle of *oka-* 'read', it produces *okaen* where the standard form is *okan*, which is exactly why generated forms need checking.
+
+A well-formed request can still yield a questionable word. Re-analysis tests consistency with the generator's own grammar. Independent linguistic checks are needed to judge that grammar.
+
+Keep the original analyser's tag sequence, reject ambiguity and require a vetted replacement lexicon. This example handles pretokenised, single-token location entities only. If converting the result back to raw text, rebuild character offsets and verify tokenisation before attaching spans; equal token counts do not preserve character offsets. Split source documents into train, development and test sets before augmenting, and augment training data only. Report manual grammaticality checks and performance on unchanged held-out text. Enumerating a lemma's cases demonstrates the paradigm. It does not produce training sentences that can stand in for one another.
+
+### Back-Off Strategies
+
+FST analysers fail to recognise words that are not in their lexicon: loanwords, proper nouns not in the gazetteer, neologisms, and misspellings. Three back-off strategies are used in practice:
+
+**Heuristic morphological guessing.** When the analyser returns no analysis, one can strip final characters and re-analyse the remainder, guessing that the stripped characters are suffixes. Such heuristics can produce wrong guesses and need evaluation on the target language; mark their output as low-confidence and allow the system to abstain. Guesser transducers, below, are a more principled version of the same idea.
+
+**Morphological guesser FSTs.** A guesser transducer matches unknown words against suffix patterns without a lexicon entry and returns the identified suffixes with an unknown stem. TRmorph ships such a guesser [@coltekin2010trmorph]; for Apertium languages, check whether the module provides one.
+
+**Neural fall-back.** For words the FST cannot analyse, a neural analyser can be used as a fall-back. TurkicNLP's morpheme segmenter takes this hybrid approach: the Apertium reading that accounts for the whole word is preferred, and the neural analyser breaks ties and handles unknown words. On a constructed 483-word set covering 20 Turkic languages and 13 morphological categories, the hybrid reaches 89% exact segmentation, versus 79% for Apertium alone and 68% for the neural analyser alone [@hakimov2025turkicnlp, Appendix E]. These are diagnostic results: the gold segmentations are rated high, medium or low confidence by language, and the words are constructed test items, not an independent natural-text benchmark.
+
+### Generation for Machine Translation
+
+Translation into Turkish requires both a suitable lemma and its inflected form. Case, number and the appropriate accusative allomorph all depend on the sentence. Morphological generation can supply the surface form once those choices have been made.
+
+This morphological realisation step can be decomposed into two sub-tasks: (1) determine the required feature bundle from the source-side and target-side context; (2) generate the correct surface form from the lemma and features using the FST generator. This decomposition is used in the Apertium rule-based MT system [@forcada2011apertium]. For neural MT, @tamchyna2017modeling train a system to output lemmas and morphological tags and generate the inflected forms in a separate deterministic step, for Czech and German targets.
+
+
+## Limitations of the Finite-State Approach {#sec-fst-limits}
+
+The finite-state approach is powerful but has known limitations that motivate the neural methods in @sec-book-07-neural-morphology.
+
+**Lexicon coverage.** A lexicon-based FST without guessing generally requires a licensed stem; productive compound rules and unknown-word guessers can extend that coverage. Loanwords, proper nouns, neologisms, and highly technical vocabulary are frequently unrecognised, and lexicon size varies greatly across the Turkic modules. A low feature-fill rate in @tbl-apertium-quality could also reflect tag mapping or annotation choices, so diagnose failures before attributing them to lexicon size.
+
+**Lexicon maintenance.** Keeping the lexicon current requires ongoing manual effort, since new loanwords and names keep entering the written language. A static FST lexicon becomes increasingly incomplete over time without active maintenance.
+
+**Disambiguation is separate.** The FST returns the analyses licensed by its implemented grammar for an ambiguous form; it does not choose among them. Disambiguation requires additional components (constraint-grammar rules, statistical taggers or neural rerankers) and, for the learned ones, training data. TurkicNLP falls back on transducer weights and heuristic scores (syntactic position, part-of-speech priority, question particles) where no trained disambiguator exists [@hakimov2025turkicnlp].
+
+**Limited contextual information.** The morphological grammars described here do not by themselves model sentence-level semantic plausibility. A statistical or neural disambiguator can use context to choose among their analyses.
+
+**Cross-lingual reuse is partial.** While the suffix template is shared, each language still requires a new lexicon file and careful adjustment of phonological rules. For a completely new, undocumented language, building an FST requires substantial linguistic fieldwork.
+
+Despite these limitations, finite-state morphology remains a foundation of Turkic morphological processing, particularly for languages with no annotated data. The two approaches can be combined, as in the TurkicNLP segmenter described above, where the transducer and the neural analyser cover different failures.
+
+
+## Hands-On: A Procedure for Comparing Rule-Based and Neural Analysis {#sec-ch06-hands-on}
+
+**Question.** How do rule-based and neural analyses differ on the same input?
+
+**Inputs.** The three sentences below, both morphological backends and the Turkish generator.
+
+**Compute.** CPU inference is possible; the neural checkpoint requires a separate model download and more memory than the FST.
+
+**Output.** Side-by-side analyses and generated Turkish forms.
+
+**Interpretation.** Check disagreements against a linguistic analysis; use generated paradigms to inspect alternations.
+
+This example analyses the same sentence in Turkish, Kazakh, and Kyrgyz with both of TurkicNLP's morphological backends, the Apertium transducers (`morph`) and the multilingual neural analyser (`morph_neural`). It then generates Turkish forms with the Apertium generator.
+
+```python
+# pip install "turkicnlp[hfst,transformers]==0.5.0"   # Apertium and neural backends
+import turkicnlp
+
+sentences = {
+    "tur": "Kitaplarımızdan birini okuyamadı.",
+    "kaz": "Кітаптарымыздың бірін оқи алмады.",
+    "kir": "Китептерибизден бирин окуй алган жок.",
+}
+
+for lang, sentence in sentences.items():
+    turkicnlp.download(lang, processors=["tokenize", "morph", "morph_neural"])
+    for proc in ["morph", "morph_neural"]:
+        nlp = turkicnlp.Pipeline(lang, processors=["tokenize", proc], tokenize_backend="rule")
+        doc = nlp(sentence)
+        print(f"\n--- {lang} / {proc} ---")
+        for w in doc.words:
+            print(f"  {w.text:<28} {w.lemma or '_':<14} {w.upos or '_':<6} {w.feats or '_'}")
+```
+
+Compare the two backends word by word. Where do they agree? Which words does the transducer leave unanalysed, and which features does the neural analyser assign that are wrong? Repeat with a language that has only a prototype transducer (e.g., `alt` or `kjh`) and relate what you see to @tbl-apertium-quality.
+
+Then generate with the Turkish generator, using `generate()` from @sec-generation:
+
+```python
+for tags in ["<n><nom>", "<n><acc>", "<n><px1sg><nom>", "<n><px1sg><abl>"]:
+    print(tags, generate("kitap" + tags))
+# <n><nom> ['kitap']
+# <n><acc> ['kitabı']
+# <n><px1sg><nom> ['kitabım']
+# <n><px1sg><abl> ['kitabımdan']
+```
+
+Note the consonant alternation: *kitap* (bare) vs. *kitab-* before the vowel-initial suffixes shown here. (Tag names follow Apertium conventions; inspect the analyser's output for a word to see the exact tag sequence the generator expects.)
+
+
+**Status: procedure only.** The full three-language comparison is not reported here. Exercises 4 and 5 record related generation and backend comparisons.
+
+## What to Take Forward {#sec-ch06-synthesis .unnumbered}
+
+A finite-state analyser combines a lexicon, allowed morph sequences and spelling rules. Inverting the relation supports generation. On the TurkicNLP diagnostic, transducers detect the target feature more often than the neural analyser (74% against 67%), while supplying non-empty feature bundles less often (65% against 88%). Coverage and correctness need separate measures: use lookup failures to find gaps, annotated examples to assess readings, and regression tests after rule changes. @sec-book-07-neural-morphology turns to neural tokenisation and tagging.
+
+## Further Reading {#sec-ch06-further-reading .unnumbered}
+
+- **Two-level morphology (foundational)**: @koskenniemi1983 is the original thesis introducing the formalism; required reading for anyone implementing a morphological analyser from scratch.
+- **Turkish two-level morphology**: @oflazer1994two is the landmark application of Koskenniemi's formalism to Turkish, an early computational treatment of Turkish morphology.
+- **HFST toolkit**: @linden2011hfst describes the Helsinki Finite-State Toolkit that compiles and runs the `lexc/twolc` formalism used in Apertium.
+- **Apertium platform**: @forcada2011apertium introduces Apertium as an open-source rule-based MT platform, with morphological processing as a core component; @khanna2021apertium provides a later platform update.
+- **Apertium Turkic coverage**: @washington2014finite describe the finite-state transducers for three Kipchak languages, one from each Kipchak sub-branch (Kazakh, Tatar, Kumyk); @washington2016kyrgyz describe the Kyrgyz transducer.
+- **Kazakh FST and UD**: the Kazakh transducer is described with its Tatar and Kumyk siblings in @washington2014finite; @tyers2015ud_kazakh relate it to the Kazakh Universal Dependencies treebank.
+- **Other Turkish analysers**: @coltekin2010trmorph (TRmorph) and @ozturel2019turkish (Google's open-source analyser).
+- **Rule-based vs. neural analysis across 20 Turkic languages**: @hakimov2025turkicnlp.
+- **Zemberek-NLP**: @akin2007zemberek introduces the Turkish-specific library; practical documentation is available at [github.com/ahmetaa/zemberek-nlp](https://github.com/ahmetaa/zemberek-nlp).
+- **Turkish NLP**: @oflazer2018turkish_nlp [chapters 2–3] covers Turkish morphological processing and disambiguation.
+
+
+## Exercises {#sec-ch06-exercises .unnumbered}
+
+1. **FST architecture.** Draw a state diagram for a transducer that analyses Turkish nouns with singular/plural number and nominative/dative case: four cells per root (*ev*, *ev-ler*, *ev-e*, *ev-ler-e*), one of which is the bare root. Fix your assumptions first (alphabet, whether tags are separate symbols, one stem or a lexicon of stems). Under those assumptions, how many states do you need, and which transitions? How does the diagram change if the suffixes contain the archiphoneme `{A}` of the toy grammar?
+
+2. **Extending the toy grammar.** Add the accusative *-(y)I* to `code/ch06-toy-fst/`: a new archiphoneme for the four-way vowel, a buffer *y* after vowel-final stems (*arabayı*), and the *kitap/kitab-* alternation before vowels (*kitabı*). Add accepted and rejected test forms for each change, and run the tests.
+
+3. **Coverage comparison.** Run the TurkicNLP Apertium analyser on 20 words of your choice in Turkish and in Altai. Count how many words receive at least one analysis vs. how many return empty (with HFST, `analyser.lookup(word)` returns an empty tuple; in a `morph` pipeline, unknown words get `upos == "X"`). Compare the results. What types of words does the Altai analyser fail on most often? Does the neural analyser (`morph_neural`) fill these gaps correctly?
+
+4. **Generation.** With the Apertium Turkish generator, generate the six case forms of *kitap* in singular and plural, and explain the final-consonant alternation. Then generate the case forms of the place name *Ankara* (tag `<np><top>`): how does vowel-final attachment work, and does the generator write the apostrophe that Turkish spelling requires after proper names (*Ankara'da*)? Finally, use `substitute_entity()` (adapted to Turkish) on three sentences, and check every generated sentence by hand.
+
+5. **Comparing rule-based and neural analysis.** Use both the TurkicNLP Apertium analyser and a neural morphological tagger (e.g., Stanza for Turkish via `Pipeline("tur", processors=["tokenize","pos","lemma"])`) to analyse the sentence *Gidebilseydik ne güzel olurdu*. Compare the analyses: where do they agree? Where do they differ? What does this tell you about the respective strengths and failure modes of each approach?

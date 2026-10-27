@@ -1,0 +1,69 @@
+---
+short-title: "Turkic Language Reference"
+---
+
+# Turkic Language Reference {#sec-book-appendix-c}
+
+
+::: {.callout-note appearance="simple"}
+## What This Appendix Covers {.unnumbered}
+
+This appendix separates language identifiers, writing systems and computational evidence: identifiers and scope (@sec-appc-identifiers), the evidence needed before calling a resource available (@sec-appc-resources), a script reference (@sec-appc-scripts) and the typological properties the chapters use (@sec-appc-typology).
+:::
+
+The language table lists **23** contemporary languages. It differs from the 24 entries of TurkicNLP 0.5.0 (@sec-book-01-turkic-world): the table adds Shor (`cjs`) and Chulym (`clc`), which the toolkit does not cover, and leaves out the toolkit's historical Ottoman Turkish (`ota`) and Old Turkic (`otk`) and its separate South Azerbaijani entry (`azb`). For toolkit coverage, use its versioned registry; for corpus or model labels, use a resource-specific crosswalk.
+
+## Language Identifiers and Scope {#sec-appc-identifiers}
+
+{{< include ../tables/tbl-language-reference/output.md >}}
+
+`aze` (Azerbaijani) and `uzb` (Uzbek) are macrolanguage identifiers; resources may instead use North/South Azerbaijani (`azj`/`azb`) or Northern/Southern Uzbek (`uzn`/`uzs`). `alt` denotes Southern Altai, not every variety called Altai. Do not join corpus labels, Wikipedia editions, Hub tags and toolkit codes by string substitution. Record a many-to-one or one-to-many mapping explicitly.
+
+Speaker estimates need a source table or page, reference year, geography and a definition such as first language, self-reported ability or total speakers. Estimates with different definitions cannot support a single ranking, so this table omits them. Glottocodes also await individual verification. Consult the [ISO 639-3 registry](https://iso639-3.sil.org/code_tables/639/data) and [Glottolog](https://glottolog.org/) for identifiers. The codes here were checked against an installed ISO dataset, rather than a fresh registry snapshot.
+
+## NLP Resource Evidence {#sec-appc-resources}
+
+| Question | Versioned evidence | What it does not establish |
+|---|---|---|
+| Is a treebank officially released? | UD 2.17 inventory in @sec-book-08-syntax-ud | A local silver file is not a released gold treebank |
+| Is an analyser registered? | Toolkit/Apertium module and revision in @sec-book-06-finite-state-morphology | Nonempty features are not accuracy |
+| Are model weights released? | Pinned entries in @tbl-verified-models | Availability is not target-domain quality |
+| Is evaluation available? | Dataset release, labels and splits in @sec-book-09-sequence-labeling through @sec-book-15-evaluation-benchmarks | Software support is not benchmark coverage |
+
+: Resource evidence must retain task, source, release and evaluation status. Unknown and search failure are not "No". {#tbl-nlp-resources}
+
+MMS, for example, releases Chuvash and Crimean Tatar TTS checkpoints (@sec-book-11-speech-technologies); their suitability for production needs separate testing. The five-language audit in @sec-ch17-hands-on records availability, unknowns and failed queries separately. Verify model architecture before assigning a label such as "BERT-class", and retain each resource's licence and task type.
+
+## Script Reference {#sec-appc-scripts}
+
+### Latin Characters and Letter Marks
+
+Turkish dotted `İ/i` and dotless `I/ı` need locale-aware casing. Azerbaijani Latin `ə`/`Ə` (U+0259/U+018F) must not be confused with Cyrillic `ә`/`Ә` (U+04D9/U+04D8). Similar appearance does not imply identical code points or script.
+
+Uzbek *oʻ/gʻ* and the tutuq sign appear with several digital apostrophe-like characters. Choose a declared encoding convention for a derived copy, retaining the original; using U+0027 does not by itself prove that every tokeniser will segment incorrectly. The context-sensitive search-key helper in @sec-corpora-pipeline only normalises *o/g* letter marks and leaves other punctuation alone.
+
+Kazakh Latin schemes are versioned proposals and orthographic conventions, not interchangeable transliterations. Use the dated sources in @sec-book-03-scripts-orthography and record the chosen converter instead of combining apostrophe, acute and later diacritic inventories into one "current alphabet".
+
+### Cyrillic Characters
+
+{{< include ../tables/tbl-unicode-reference/output.md >}}
+
+The table gives no single IPA value per character: pronunciation and phonemic analysis depend on the language. Kazakh `қ/ғ` are not letters of the Kyrgyz alphabet. @sec-book-02-computational-phenotype's source-specific vowel table and @sec-book-05-morphological-structure's harmony descriptions provide the linguistic context.
+
+### Perso-Arabic Uyghur
+
+Distinguish vowel letters from sequences that include an initial hamza carrier; strings such as `ئو` contain more than one Unicode code point. Preserve right-to-left text logically, including joining behaviour and meaningful controls. Inspect NFC, code points and rendered output separately. Removing every invisible control as "noise" can damage text. Conversion to ULY or a Cyrillic convention needs a declared scheme and loss report (@sec-book-03-scripts-orthography). The recurring Uyghur sentence (@tbl-recurring-examples) shows one text in three views: the original, the treebank's ULY transliteration and the toolkit's CTS rendering (@sec-cts).
+
+## Typology and Computational Interpretation {#sec-appc-typology}
+
+| Property | Interpretation for this book |
+|---|---|
+| Vowel inventories and harmony | Use source-specific analyses in @sec-book-02-computational-phenotype and @sec-book-05-morphological-structure; avoid a binary strict/partial scale |
+| Constituent order | SOV is the usual base order; contact varieties and discourse patterns require separate treatment (@sec-syntax-sketch) |
+| Null subjects | Grammar and context may license an absent subject; agreement is not gender marking |
+| Case and morphology | Specify the grammatical/annotation scheme instead of ranking languages by raw case counts |
+| Morphological density | Measure a defined corpus statistic; “high/moderate” is not an observed morpheme ratio |
+
+: Typological interpretation replaces unsupported numerical rankings. {#tbl-typological-features}
+
+These properties suggest what to test; they guarantee no particular NLP outcome. SOV order does not by itself imply longer dependencies, and morphological richness alone does not explain every model error. See @sec-book-05-morphological-structure and @sec-book-08-syntax-ud for constructions, annotation choices and controlled comparisons [@Johanson_2021].

@@ -1,0 +1,14 @@
+language,hplt_code,script,row_type,characters,gemma3_tokens,source,chars_per_token
+Turkish,tur_Latn,Latn,primary,512610667130,149976628858,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",3.417937
+Azerbaijani (North),azj_Latn,Latn,primary,41256582266,15956420654,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.585579
+South Azerbaijani,azb_Arab,Arab,primary,296100565,134706798,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.198112
+Turkmen,tuk_Latn,Latn,primary,902751404,370579218,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.436055
+Kazakh,kaz_Cyrl,Cyrl,primary,17212906937,7341101241,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.344731
+Kyrgyz,kir_Cyrl,Cyrl,primary,3801224753,1535488291,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.475580
+Tatar,tat_Cyrl,Cyrl,primary,3691342054,1583307054,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.331413
+Bashkir,bak_Cyrl,Cyrl,primary,803720251,393321489,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.043418
+Crimean Tatar,crh_Latn,Latn,primary,315926019,128098883,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.466267
+Uzbek,uzn_Latn,Latn,primary,6511347341,2336418080,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",2.786893
+Uyghur,uig_Arab,Arab,primary,2158126239,1197346332,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",1.802424
+Russian (reference),rus_Cyrl,Cyrl,reference,15949995348865,4402594990316,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",3.622862
+English (reference),eng_Latn,Latn,reference,72336992072141,16280215973612,"hplt2025v3: HPLT v3.0 manifest (sha256 eb82cccd…, accessed 2026-10-12) via experiments/n1_corpora/fetch_hplt_v3.py",4.443245

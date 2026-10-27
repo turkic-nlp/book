@@ -1,0 +1,63 @@
+{
+ "outputs": {
+  "core": "generator: qwen2.5-1.5b-instruct-q8_0.gguf | sha256 ac06a00fd4d83d92\n",
+  "ex1": "outcomes of 12 Kazakh Taboo games (Qwen2.5-1.5B-Instruct as describer and guesser, at most 3 rounds):\n  surface  checker: {'invalid': 3, 'turn_limit': 9}\n  lemma    checker: {'invalid': 3, 'turn_limit': 9}\nclues produced under the surface checker: 30; with a surface hit: 3; with only an inflected forbidden word (missed by the surface checker): 0\ntokens without any analyser reading (left to a human): 72 of 246, e.g. ['бул', 'сөздөрдүн', 'аныктаныктын', 'жазуу', 'өзгөчөлік', 'білімдік', 'салымты', 'білімдік']\nlanguage of each clue (GlotLID): {'kir_Cyrl': 4, 'kaz_Cyrl': 26}\nclue language by round: {1: {'kir_Cyrl': 2, 'kaz_Cyrl': 10}, 2: {'kaz_Cyrl': 8, 'kir_Cyrl': 1}, 3: {'kaz_Cyrl': 8, 'kir_Cyrl': 1}}\nguesses: 27; {'one word': 24, 'several words': 3}; examples: [('мектеп', 'Бұлар'), ('мектеп', 'Бұлар'), ('мектеп', 'Бұлар'), ('нан', 'Көңіл'), ('нан', 'Көңілді'), ('нан', 'Көңілдің'), ('су', 'Бұл құрылым.'), ('су', 'Бұл құрылым.')]\nmean Cyrillic share of clue letters: 95.0%; clues below 90% Cyrillic: 3\nexample game (lemma checker, target кітап):\n  round 1: clue: Кітап - бул сөздөрдүн аныктаныктын жазуу.\n           rule: invalid  guess: -\n  outcome: invalid\n",
+  "ex2": "kaz: 25 answers, 66 sentences; sentence labels {'kaz_Cyrl': 44, 'kir_Cyrl': 20, 'kaa_Cyrl': 1, 'udm_Cyrl': 1}\n     answers with every sentence labelled kaz_Cyrl: 13/25; answers below 95% Cyrl letters: 0; analyser coverage 475/809 = 58.7%\nuzb: 25 answers, 84 sentences; sentence labels {'uzn_Latn': 83, 'crh_Latn': 1}\n     answers with every sentence labelled uzn_Latn: 24/25; answers below 95% Latn letters: 1; analyser coverage 867/1103 = 78.6%\n\n[kaz 1] Наурыз мейрамы қашан және қалай тойланады?\n  Наурыз - бул Кыргызстандын айырмашылык және көбүнчө көп жөнүндө қалай тойланып, қашан және қалай тойланып келетін өзгөчө өзгөрүлүштүрү. Бул айы 1997-жылы Кыргызстандын өлкөлөрүнө өткөрүлөрдүн өзгөчө өзгөрүлүштүрүлөрдүн өзгөчө өзгөрүлүштүрүлөрдүн өзгөчө өзгөрүлүштүрүлөр\n  sentence labels: ['kir_Cyrl', 'kir_Cyrl']\n\n[kaz 4] Абай Құнанбайұлы кім болған?\n  Абай Құнанбайұлы - бұл Казақстандың көп қалаларынын бірі, бірақ білімді және таңдаған жерлерге қолданылған. Бұл Казақстандың көп қалаларынын бірі, бірақ білімді және таңдаған жерлерге қолданылған. Абай Құнанбайұлы - білімді және таңдаған жерлерге қолданылған.\n  sentence labels: ['kaz_Cyrl', 'kaz_Cyrl', 'kaz_Cyrl']\n\n[kaz 15] Қазақ тілінде үлкен кісіге қалай сыпайы жүгінеді?\n  Бул кісіге жүгінүү жөнүндө қазақ тілінде үлкен кісігі қалай сыпайы жүгінүп, бірақ білім берүү жөнүндө өзгөрүлөрдің өзгөрүлүшүнүн жүгүртүү үчүн өзгөрүлөрдің өзгөрүлүшүн жүгүртүү үчүн өзгөрүлөрдің өзгөрүлүшүн жүгүртүү үчүн өзгөрүлөрдің өзгөрүлүшүн жүг\n  sentence labels: ['kir_Cyrl']\n\n[uzb 1] Navro‘z bayrami qachon va qanday nishonlanadi?\n  Navro‘z bayrami 15-16 декабря. Navro‘z bayrami qayrag'asi 15 декабря, qanday 16 декабря qilinadi. Navro‘z bayrami qayrag'asi 15 декабря, qanday 16 декабря qilinadi. Navro‘z bayrami 15-16 декабря.\n  sentence labels: ['uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn']\n\n[uzb 4] Alisher Navoiy kim bo‘lgan?\n  Alisher Navoiy, qaysi o‘zbek poet va literaturniy tili yaratuvchi bo‘lgan? Navoiy, qaysi o‘zbek literaturniy tili yaratuvchi bo‘lgan? Navoiy, qaysi o‘zbek poet va literaturniy tili yaratuvchi bo‘lgan? Navoiy, qaysi o‘zbek poet va literaturniy tili yaratuvchi bo‘lgan? Navoiy, qaysi o‘zbek poet va literaturniy tili yaratuvchi bo‘lgan? Navoiy, qaysi o‘zbek poet va literaturniy tili yaratuvchi bo‘lgan\n  sentence labels: ['uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn']\n\n[uzb 15] O‘zbek tilida kattalarga qanday hurmat bilan murojaat qilinadi?\n  O‘zbek tilida kattalarga qanday hurmat bilan murojaat qilinadi:\n\n1. O‘zbek tilida kattalarga qanday hurmat bilan murojaat qilinadi, o‘zbek tilida kattalarga qanday qanday hurmat bilan murojaat qilinadi. \n\n2. O‘zbek tilida kattalarga qanday hurmat bilan murojaat qilinadi, o‘zbek tilida kattalarga qanday qanday hurmat bilan murojaat qilinadi. \n\n3. O‘zbek tilida kattalarga qanday hurmat bilan murojaa\n  sentence labels: ['uzn_Latn', 'uzn_Latn', 'uzn_Latn', 'uzn_Latn']\n",
+  "ex3": "human: 1000 KazNERD sentences; model: 668 sentences from 200 prompts\nhuman: analyser coverage 8,798/9,309 = 94.5%; GlotLID kaz_Cyrl 99.0%, other labels {'rus_Cyrl': 3, 'kir_Cyrl': 3, 'kaa_Cyrl': 2}; coverage within kaz_Cyrl sentences 94.6%\nmodel: analyser coverage 5,562/6,611 = 84.1%; GlotLID kaz_Cyrl 93.7%, other labels {'kir_Cyrl': 18, 'kaa_Cyrl': 9, 'anp_Deva': 9}; coverage within kaz_Cyrl sentences 84.7%\nmost frequent unanalysed words, human: і (38), іі (27), нші (16), ыы (13), ншы (7), көпбалалы (7), ке (6), еуі (5), ы (4), панельдік (4), аффинаж (3), депозиттік (3), Даже (3), нетпесе (3), пәленбай (3), халге (3), уже (3), қолжетімді (3), нарқына (3), атсалысты (3), Қарабалық (3), інен (3), акиматтан (2), қоластындағы (2), с (2)\nmost frequent unanalysed words, model: Берилген (171), құрылышы (66), өзгөрүшү (50), өзгөрүшүн (47), Бул (40), сөйлемдің (37), өзгөрүлөрдү (34), өзгөрүші (23), Аныктаңыз (18), өзгөрдік (15), өнүк (15), қ (14), хабардын (14), өзгөрүлдіктерінің (14), өзгөрүлөрдің (13), өзгөрүлүштерінің (13), өзгөрді (12), цифрландыру (12), қорытындықтардың (11), хабартардың (11), Аны (10), өзгөрүлүштерін (10), құрылуу (10), құрылышынан (9), жөнүндө (8)\n",
+  "ex4": "pairs per error type: {'harmony': 25, 'Russian word': 25, 'Kyrgyz word': 25, 'Latin script': 25}\n  harmony       [('қайықтар', 'қайықтер')]\n  Russian word  [('және', 'и')]\n  Kyrgyz word   [('емес', 'эмес')]\n  Latin script  [('басталғаннан', 'bastalğannan')]\n\njudge: Qwen2.5-1.5B-Instruct; correct sentence shown first in 37 of 100 pairs\nprompt in English: answers {'A': 91, 'B': 4, '?': 5}; correct choice by error type: harmony 9/25, Russian word 11/25, Kyrgyz word 8/25, Latin script 6/25; total 34/100\nprompt in Kazakh: answers {'A': 88, '?': 12}; correct choice by error type: harmony 6/25, Russian word 12/25, Kyrgyz word 9/25, Latin script 5/25; total 32/100\n"
+ },
+ "runs": {
+  "core": {
+   "date_utc": "2026-10-20T11:47+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex1": {
+   "date_utc": "2026-10-20T11:47+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex2": {
+   "date_utc": "2026-10-20T10:42+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex3": {
+   "date_utc": "2026-10-20T11:42+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_test.txt": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a"
+   }
+  },
+  "ex4": {
+   "date_utc": "2026-10-20T11:46+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "llama_cpp_python": "0.3.16",
+   "fasttext-wheel": "0.9.2",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_test.txt": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a",
+    "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/kaz_Cyrl/train.tsv": "d255220ff5d40cb940d8c94b8702a547da2d30c45bc81dd650c06ba4e490a405",
+    "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/kaz_Cyrl/dev.tsv": "1733d8af3453c426187dae8a88f2622a8de71338b7c4c50fe29e5ce13f4c6116",
+    "https://raw.githubusercontent.com/dadelani/sib-200/efad32e0fc601cfbfdf5ca80672f29697f6f401f/data/annotated/kaz_Cyrl/test.tsv": "45324ab9e4fac4496fd1c15bd7a8e5804532f54d0037f7a4d01ea21bfaa52b7d"
+   }
+  }
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "outputs": {
+  "core": "helpers loaded from code/ch17-resources/resources.py: observation hub_count\n",
+  "ex1": "audit date (UTC): 2026-10-20\n\nKazakh (kaz)\n  UD 2.17       1 tb, 10,536 w\n  Apertium      repo 95c6dd0\n  TIL corpus    19 pairs, max 4,403,385 (kk-ru)\n  X-WMT test    yes\n  SIB-200       yes\n  NLLB-200      yes\n  GlotLID       yes\n  Hub models    ERROR\n  Common Voice  not checked\n\nKyrgyz (kir)\n  UD 2.17       2 tb, 25,378 w\n  Apertium      repo c5d15a1\n  TIL corpus    20 pairs, max 312,644 (ky-en)\n  X-WMT test    yes\n  SIB-200       yes\n  NLLB-200      yes\n  GlotLID       yes\n  Hub models    ERROR\n  Common Voice  not checked\n\nNogai (nog)\n  UD 2.17       0\n  Apertium      repo 09fdef0\n  TIL corpus    not found\n  X-WMT test    not found\n  SIB-200       not found\n  NLLB-200      not found\n  GlotLID       yes\n  Hub models    ERROR\n  Common Voice  not checked\n\nTuvan (tyv)\n  UD 2.17       0\n  Apertium      repo 038f717\n  TIL corpus    10 pairs, max 12,531 (tyv-ba)\n  X-WMT test    not found\n  SIB-200       not found\n  NLLB-200      not found\n  GlotLID       yes\n  Hub models    ERROR\n  Common Voice  not checked\n\nShor (cjs)\n  UD 2.17       0\n  Apertium      not found\n  TIL corpus    1 pairs, max 2,294 (cjs-ru)\n  X-WMT test    not found\n  SIB-200       not found\n  NLLB-200      not found\n  GlotLID       yes\n  Hub models    ERROR\n  Common Voice  not checked\n\n5 cells are errors, e.g.: [('Kazakh', 'Hub models', '403 Forbidden')]\nfull observations (query, status, error, timestamp) written to BOOK_DATA_DIR/ch17-resource-audit.json\n",
+  "ex2": "\n=== KazNERD README (38 non-empty lines)\n- C: who benefits, and how was the use case chosen?\n    not documented in this file\n- A: who decided on collection and release?\n    not documented in this file\n- A: source rights and licence of the text\n    line 11: KazNERD contains 112,702 sentences, extracted from the television news text, and 136,333 annotations for 25 en…\n- R: who annotated, how were they trained and paid?\n    line 12: All sentences in the dataset were manually annotated by two native Kazakh-speaking linguists, supervised by an…\n- R: maintenance and contact for corrections\n    not documented in this file\n- E: personal data, consent and withdrawal\n    not documented in this file\n\n=== KyrgyzNER README (59 non-empty lines)\n- C: who benefits, and how was the use case chosen?\n    line 7: This project provides both the dataset and baseline models, aiming to advance NLP research for low-resource Tu…\n    line 50: We welcome contributions from the **NLP community**. Please open issues or pull requests if you’d like to impr…\n- A: who decided on collection and release?\n    line 18: - High-quality dataset with **κ = 0.89 inter-annotator agreement**\n- A: source rights and licence of the text\n    line 6: It consists of **1,499 news articles** (10,900 sentences, 140k tokens) from the [24.kg](https://24.kg) news po…\n    line 55: ## License\n    line 56: - Dataset: **CC BY-NC-SA 4.0**\n    (+1 more lines)\n- R: who annotated, how were they trained and paid?\n    line 16: - Annotated by 59 trained Kyrgyz linguists and students\n    line 18: - High-quality dataset with **κ = 0.89 inter-annotator agreement**\n    line 47: - **59 volunteers** (mainly students of KSTU) who annotated the dataset\n    (+1 more lines)\n- R: maintenance and contact for corrections\n    line 50: We welcome contributions from the **NLP community**. Please open issues or pull requests if you’d like to impr…\n- E: personal data, consent and withdrawal\n    not documented in this file\n",
+  "ex3": "analyser: TurkicNLP Apertium kaz (sha256 902af879f588)\nrule check on 100 known place names: 584/600 generated forms receive the expected reading; mismatches e.g. ['Беларусьтың', 'Беларусьты', 'Беларусьқа', 'Беларусьта', 'Беларусьтан', 'Ирак']\nthe same names with wrong-harmony endings, as read by the analyser: {'flagged <err_orth>': 194, 'rejected': 306}\nextension: 149 unknown place names seen at least 3 times as single-word GPE/LOCATION mentions in training (14 more set aside as inflected forms of another candidate, e.g. ['Қордайдағы', 'Шамалғаннан', 'Қаскелеңдегі']), 894 surface forms; e.g. ['Мұнайлы', 'Ухань', 'Қазалы', 'Шардара', 'Қордай', 'Қосшы', 'Қармақшы', 'Қиғаш']\ntest tokens: coverage 85.75% -> 85.88%; GPE/LOCATION tokens 85.20% -> 89.52%\npreviously analysed test word types whose readings changed: 0 of 16,470, e.g. []\nnewly covered test word types: 64, e.g. ['Іле', 'Анталия', 'Арқа', 'Арқаның', 'Астрахань', 'Бейбітшілік', 'Бейбітшілікті', 'Ботай', 'Бәйтерек', 'Зерделі']\nwrong-harmony forms of the new stems accepted by the extended analyser: 0 of 745\nmachine time (s): {'load analyser': 0.02, 'find candidates': 0.06, 'compile extension': 6.02, 'union and convert': 0.93, 'evaluate': 1.37}\n",
+  "ex5": "19 open items in the draft:\n  - partners: who represents the community for this project, and how was that agreed\n  - deliverable 'searchable recording archive': who asked for it\n  - deliverable 'searchable recording archive': withdrawal: what changes, what cannot be recalled\n  - deliverable 'searchable recording archive': maintenance: who, how long\n  - deliverable 'searchable recording archive': pilot evidence for the effort\n  - deliverable 'speech recogniser': who asked for it\n  - deliverable 'speech recogniser': owner\n  - deliverable 'speech recogniser': permission basis\n  - deliverable 'speech recogniser': public/restricted/withheld\n  - deliverable 'speech recogniser': withdrawal: what changes, what cannot be recalled\n  - deliverable 'speech recogniser': maintenance: who, how long\n  - deliverable 'speech recogniser': pilot evidence for the effort\n  - budget: recruitment and permissions\n  - budget: annotation and adjudication\n  - budget: development\n  - budget: device testing\n  - budget: maintenance after the project\n  - decision points: when the plan can change\n  - decision points: who decides\n",
+  "ex4": "UD 2.17 TueCL test files: tr 148, az 148, uz 148, ky 173 sentences; aligned through parallel_id\n\nTurkish -> Azerbaijani: 148 parallel sentences, 912 target words; majority tag NOUN = 26.6%\n  string+position      aligned  63.5% of target words; projected UPOS correct on aligned  95.9%, on all  60.9% (unaligned = no label)\n                       unaligned by gold tag: {'NOUN': 118, 'VERB': 87, 'ADJ': 26, 'ADV': 25}; top confusions (projected, gold): [(('AUX', 'VERB'), 5), (('PROPN', 'NOUN'), 4), (('ADV', 'NOUN'), 2)]\n  XLM-R mutual argmax  aligned  74.2% of target words; projected UPOS correct on aligned  93.4%, on all  69.3% (unaligned = no label)\n                       unaligned by gold tag: {'NOUN': 79, 'VERB': 63, 'ADJ': 17, 'ADV': 17}; top confusions (projected, gold): [(('AUX', 'VERB'), 10), (('PROPN', 'NOUN'), 4), (('VERB', 'NOUN'), 3)]\n\nTurkish -> Uzbek: 148 parallel sentences, 939 target words; majority tag NOUN = 22.8%\n  string+position      aligned  42.0% of target words; projected UPOS correct on aligned  95.7%, on all  40.1% (unaligned = no label)\n                       unaligned by gold tag: {'VERB': 172, 'NOUN': 146, 'ADJ': 49, 'AUX': 36}; top confusions (projected, gold): [(('AUX', 'VERB'), 6), (('VERB', 'NOUN'), 3), (('PROPN', 'NOUN'), 2)]\n  XLM-R mutual argmax  aligned  48.6% of target words; projected UPOS correct on aligned  90.8%, on all  44.1% (unaligned = no label)\n                       unaligned by gold tag: {'VERB': 154, 'NOUN': 114, 'ADJ': 44, 'PUNCT': 41}; top confusions (projected, gold): [(('PROPN', 'NOUN'), 3), (('PRON', 'NOUN'), 3), (('VERB', 'NOUN'), 3)]\n\nTurkish -> Kyrgyz: 129 parallel sentences, 901 target words; majority tag NOUN = 21.1%\n  string+position      aligned  39.2% of target words; projected UPOS correct on aligned  96.9%, on all  38.0% (unaligned = no label)\n                       unaligned by gold tag: {'NOUN': 144, 'VERB': 136, 'AUX': 72, 'ADV': 48}; top confusions (projected, gold): [(('AUX', 'PART'), 3), (('NOUN', 'VERB'), 2), (('NOUN', 'PRON'), 1)]\n  XLM-R mutual argmax  aligned  60.6% of target words; projected UPOS correct on aligned  88.5%, on all  53.6% (unaligned = no label)\n                       unaligned by gold tag: {'VERB': 78, 'NOUN': 59, 'AUX': 52, 'PROPN': 40}; top confusions (projected, gold): [(('AUX', 'ADV'), 9), (('AUX', 'PART'), 8), (('AUX', 'VERB'), 8)]\n"
+ },
+ "runs": {
+  "core": {
+   "date_utc": "2026-10-20T15:12+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "requests": "2.34.2",
+   "huggingface_hub": "2.2.0",
+   "fasttext-wheel": "0.9.2",
+   "transformers": "5.20.2",
+   "torch": "2.14.1",
+   "hfst": "3.16.0.1",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {}
+  },
+  "ex1": {
+   "date_utc": "2026-10-20T15:12+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "requests": "2.34.2",
+   "huggingface_hub": "2.2.0",
+   "fasttext-wheel": "0.9.2",
+   "transformers": "5.20.2",
+   "torch": "2.14.1",
+   "hfst": "3.16.0.1",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/til_corpus/README.md": "da88f81cc7a23fb46425dcf236f7c89ad0f63663d2141d8fb7165ea8015308d8"
+   }
+  },
+  "ex2": {
+   "date_utc": "2026-10-20T15:01+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "requests": "2.34.2",
+   "huggingface_hub": "2.2.0",
+   "fasttext-wheel": "0.9.2",
+   "transformers": "5.20.2",
+   "torch": "2.14.1",
+   "hfst": "3.16.0.1",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/README.md": "2d56859aa35eadafb8bc560b375d5128627e3bab3517bc74377c7818905e3614",
+    "https://raw.githubusercontent.com/Akyl-AI/KyrgyzNER/b76b9c9c9c4f5d681c25308cc0d8dd9f0bd6569c/README.md": "c5beec0dd94156f5cdae4c5f7ffafeb23704f6fd1024ed4cb505cc8ef498a46c"
+   }
+  },
+  "ex3": {
+   "date_utc": "2026-10-20T15:02+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "requests": "2.34.2",
+   "huggingface_hub": "2.2.0",
+   "fasttext-wheel": "0.9.2",
+   "transformers": "5.20.2",
+   "torch": "2.14.1",
+   "hfst": "3.16.0.1",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_train.txt": "e5a80f6d4bbff499a4bf7cbf96a169feb761411151fb45abebeaae06995ff647",
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_test.txt": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a"
+   }
+  },
+  "ex5": {
+   "date_utc": "2026-10-20T15:01+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "requests": "2.34.2",
+   "huggingface_hub": "2.2.0",
+   "fasttext-wheel": "0.9.2",
+   "transformers": "5.20.2",
+   "torch": "2.14.1",
+   "hfst": "3.16.0.1",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/turkic-interlingua/til-mt/7d988cc47dba889d02262d893bf9a46e43a6bb36/til_corpus/README.md": "da88f81cc7a23fb46425dcf236f7c89ad0f63663d2141d8fb7165ea8015308d8",
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/README.md": "2d56859aa35eadafb8bc560b375d5128627e3bab3517bc74377c7818905e3614",
+    "https://raw.githubusercontent.com/Akyl-AI/KyrgyzNER/b76b9c9c9c4f5d681c25308cc0d8dd9f0bd6569c/README.md": "c5beec0dd94156f5cdae4c5f7ffafeb23704f6fd1024ed4cb505cc8ef498a46c",
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_train.txt": "e5a80f6d4bbff499a4bf7cbf96a169feb761411151fb45abebeaae06995ff647",
+    "https://raw.githubusercontent.com/IS2AI/KazNERD/bd4333d0f5952b9fafb2ef2ac2fefa0ad3c0333f/KazNERD/IOB2_test.txt": "359a1f61f6a21280c6c47b4fde9a5adcd07411d62015aa6e32d940c51f163b7a"
+   }
+  },
+  "ex4": {
+   "date_utc": "2026-10-20T15:09+00:00",
+   "python": "3.11.17",
+   "machine": "x86_64",
+   "requests": "2.34.2",
+   "huggingface_hub": "2.2.0",
+   "fasttext-wheel": "0.9.2",
+   "transformers": "5.20.2",
+   "torch": "2.14.1",
+   "hfst": "3.16.0.1",
+   "turkicnlp": "0.5.0",
+   "fetched_sha256": {
+    "https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-TueCL/r2.17/tr_tuecl-ud-test.conllu": "2508f47e57b9b6a1d7241d0ab4a918d84c5cbb0455bbd961ac5231e31a1d311e",
+    "https://raw.githubusercontent.com/UniversalDependencies/UD_Azerbaijani-TueCL/r2.17/az_tuecl-ud-test.conllu": "8b315f8b065f094e38482465706ba44a9caf1b082fc8bbc94908f6fdeee8c3b5",
+    "https://raw.githubusercontent.com/UniversalDependencies/UD_Uzbek-TueCL/r2.17/uz_tuecl-ud-test.conllu": "23257711196df0bbfaf5b25397d7c6102fbc8800ed83b15eb77342929ee0e469",
+    "https://raw.githubusercontent.com/UniversalDependencies/UD_Kyrgyz-TueCL/r2.17/ky_tuecl-ud-test.conllu": "08224be6b74346f582234f54527412dd6265c8d8b42e7d6ef463aade85bdcd9b"
+   }
+  }
+ }
+}

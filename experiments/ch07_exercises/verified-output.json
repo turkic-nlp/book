@@ -1,0 +1,21 @@
+{
+ "meta": {
+  "date_utc": "2026-10-19T10:35+00:00",
+  "python": "3.11.17",
+  "machine": "x86_64",
+  "turkicnlp": "0.5.0",
+  "hfst": "3.16.0.1"
+ },
+ "outputs": {
+  "core": "",
+  "ex1": "623 whitespace tokens, 516 words (alphanumeric runs), 4069 characters\ntokeniser       isolated  running  single   p95\nBERTurk 32K    not available here (OSError)\nBERTurk 128K   not available here (OSError)\nXLM-R base     not available here (OSError)\nGlot500 base        1.56     1.91   58.1%   3.0\nNLLB-200            1.75     2.11   50.8%   3.0\n",
+  "ex2": "  ↓ Downloading cis-lmu/glot500-base backbone...\n  ↓ Downloading cis-lmu/glot500-base backbone...\nsegmenter backends: hfst True | neural False\n100 nouns; 100 with a segmentation that reproduces the word; 41 with at least one internal morph boundary\nBERTurk 32K: not available here (OSError)\nGlot500 base: tokens spanning a morph boundary 39/118 = 33.1%; morphs split by a token boundary 13/148 = 8.8%\nNLLB-200: tokens spanning a morph boundary 39/122 = 32.0%; morphs split by a token boundary 14/148 = 9.5%\nexamples: {'zaman': ['zaman'], 'şey': ['şey'], 'gün': ['gün'], 'bilim': ['bilim'], 'ev': ['ev'], 'yerine': ['yerin', 'e'], 'çocuk': ['çocuk'], 'annem': ['anne', 'm']}\n",
+  "ex3_data": "bare 'yüz' by gold UPOS: Counter({'NUM': 114, 'NOUN': 86, 'AUX': 3})\n",
+  "ex3_model": "train 162 (Counter({'NUM': 94, 'NOUN': 68})), test 38 (Counter({'NUM': 20, 'NOUN': 18})) from 28 held-out documents\naccuracy 0.816; majority class (NUM) 0.526\nstrongest cues for NOUN ['next=yüze', 'next_suffix=ze', 'prev=bir', 'prev=güler', 'prev=ters', 'prev=,']\nstrongest cues for NUM ['next=seksen', 'prev=yüzde', 'prev=dokuz', 'prev=<s>', 'next=bin', 'next_suffix=in']\n",
+  "ex4_setup": "train: 31009 words, 26684 with candidates; candidate recall 0.736; mean candidates 2.05\ntest: 8099 words, 6990 with candidates; candidate recall 0.728; mean candidates 2.03\n",
+  "ex4_rerank": "test words with candidates: 6990\nfirst candidate 0.462 | learned reranker 0.670 | candidate recall (upper bound) 0.728\n",
+  "ex4_neural": "Stanza IMST tagger (trained on IMST train), core-bundle accuracy on all 8099 non-punctuation test words: 0.890\n",
+  "ex5": "  → Loading Stanza models for tur (tr) from /root/.turkicnlp/models/stanza/tr\nNeural analyser not available here: LocalEntryNotFoundError An error happened while trying to locate the file on the Hub and we cannot find the requested files in the local cache. \n",
+  "ex6": "IMST train (the model's training data): NOUN with Person 100%, VERB with Polarity=Pos 90%, VERB with Evident 6%\nTurkish TueCL: NOUN with Person 0%, VERB with Polarity=Pos 0%, VERB with Evident 69%\nAzerbaijani TueCL: NOUN with Person 4%, VERB with Polarity=Pos 0%, VERB with Evident 9%\nTurkish TueCL (in-language reference): 148 sentences, 736 words; UPOS 0.807; full FEATS 0.159; core bundle 0.628\n   per feature (accuracy, words with the feature in gold or prediction): {'Case': (0.914, 409), 'Number': (0.858, 598), 'Person': (0.347, 551), 'Number[psor]': (0.75, 92), 'Person[psor]': (0.804, 92), 'Tense': (0.695, 246), 'Aspect': (0.573, 246), 'Mood': (0.598, 246), 'VerbForm': (0.662, 80), 'Voice': (0.474, 19), 'Polarity': (0.142, 212), 'Evident': (0.124, 153)}\nAzerbaijani TueCL (zero-shot): 148 sentences, 730 words; UPOS 0.585; full FEATS 0.099; core bundle 0.399\n   per feature (accuracy, words with the feature in gold or prediction): {'Case': (0.635, 485), 'Number': (0.766, 644), 'Person': (0.25, 624), 'Number[psor]': (0.49, 96), 'Person[psor]': (0.478, 92), 'Tense': (0.544, 217), 'Aspect': (0.282, 202), 'Mood': (0.462, 210), 'VerbForm': (0.206, 68), 'Voice': (0.133, 15), 'Polarity': (0.053, 171), 'Evident': (0.2, 30)}\nfeatures used in Azerbaijani gold but not in Turkish gold: ['Degree']\nfeatures used in Turkish gold but not in Azerbaijani gold: ['Reflex']\n"
+ }
+}

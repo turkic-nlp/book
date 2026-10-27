@@ -1,0 +1,55 @@
+{
+  "stanza_version": "1.11.0",
+  "preparation_module": "stanza.utils.datasets.prepare_tokenizer_treebank",
+  "function": "process_partial_ud_treebank",
+  "source_sha256": "547bd8e776389be24df0eb538d7170d227425f9e4c543dbae4a0cd2783524f9d",
+  "source_url": "https://github.com/stanfordnlp/stanza/blob/v1.11.0/stanza/utils/datasets/prepare_tokenizer_treebank.py",
+  "rule": "For a treebank lacking dev, swap train/test when train <=1000 words and test >5000; split the new training file for dev.",
+  "historical_checkpoint_training_membership_reconstructed": false,
+  "runs": [
+    {
+      "language": "kk",
+      "treebank": "Kazakh-KTB",
+      "training_words_as_counted_by_stanza": 538,
+      "test_words_as_counted_by_stanza": 10039,
+      "has_official_dev": false,
+      "standard_preparation_swaps_train_test": true,
+      "checkpoint_train_basename": "kk_ktb.train.in.conllu",
+      "checkpoint_dev_basename": "kk_ktb.dev.in.conllu",
+      "interpretation": "Replay/exposure-risk diagnostic, not held-out accuracy"
+    },
+    {
+      "language": "ky",
+      "treebank": "Kyrgyz-KTMU",
+      "training_words_as_counted_by_stanza": 12357,
+      "test_words_as_counted_by_stanza": 11771,
+      "has_official_dev": false,
+      "standard_preparation_swaps_train_test": false,
+      "checkpoint_train_basename": "ky_ktmu.train.in.conllu",
+      "checkpoint_dev_basename": "ky_ktmu.dev.in.conllu",
+      "interpretation": "Official test evaluation; historical training membership not independently audited"
+    },
+    {
+      "language": "tr",
+      "treebank": "Turkish-IMST",
+      "training_words_as_counted_by_stanza": 38604,
+      "test_words_as_counted_by_stanza": 10310,
+      "has_official_dev": true,
+      "standard_preparation_swaps_train_test": false,
+      "checkpoint_train_basename": "tr_imst.train.in.conllu",
+      "checkpoint_dev_basename": "tr_imst.dev.in.conllu",
+      "interpretation": "Official test evaluation; historical training membership not independently audited"
+    },
+    {
+      "language": "ug",
+      "treebank": "Uyghur-UDT",
+      "training_words_as_counted_by_stanza": 19262,
+      "test_words_as_counted_by_stanza": 10330,
+      "has_official_dev": true,
+      "standard_preparation_swaps_train_test": false,
+      "checkpoint_train_basename": "ug_udt.train.in.conllu",
+      "checkpoint_dev_basename": "ug_udt.dev.in.conllu",
+      "interpretation": "Official test evaluation; historical training membership not independently audited"
+    }
+  ]
+}

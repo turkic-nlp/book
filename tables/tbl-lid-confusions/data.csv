@@ -1,0 +1,9 @@
+language,iso,sentences,correct,accuracy,top_wrong_label,wrong_count,source
+Gagauz,gag,20,2,0.1,tur_Latn,18,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Crimean Tatar,crh,20,9,0.45,tur_Latn,9,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Karakalpak (2016 Latin),kaa,20,0,0.0,tur_Latn,11,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Nogai,nog,20,7,0.35,kir_Cyrl,8,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Altai,alt,20,11,0.55,kir_Cyrl,8,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Tuvan,tyv,20,9,0.45,kir_Cyrl,6,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Khakas,kjh,20,7,0.35,kaz_Cyrl,9,hakimov2025turkicnlp; langid.json challenge.turkic; source.json
+Kumyk,kum,20,5,0.25,krc_Cyrl,7,hakimov2025turkicnlp; langid.json challenge.turkic; source.json

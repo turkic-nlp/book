@@ -1,0 +1,36 @@
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\renewcommand{\maketitle}{}
+% Multilingual glyph coverage. DejaVu is bundled under its redistribution licence.
+\directlua{luaotfload.add_fallback("bookfallback", {"[fonts/DejaVuSans.ttf]:mode=node;"})}
+\defaultfontfeatures{RawFeature={fallback=bookfallback}}
+\setmainfont{DejaVuSerif}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic,RawFeature={fallback=bookfallback}]
+\setsansfont{DejaVuSans}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,RawFeature={fallback=bookfallback}]
+\setmonofont{DejaVuSansMono}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,RawFeature={fallback=bookfallback}]
+\emergencystretch=2em
+% Wrap code at the printable width without changing copied source files.
+\usepackage{fvextra}
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},breaklines,breakanywhere,fontsize=\footnotesize}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\footnotesize}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small}
+\DeclareRobustCommand{\BookCodeBreak}{\allowbreak}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere,fontsize=\footnotesize}
+\DefineVerbatimEnvironment{BookVerbatim}{Verbatim}{breaklines,breakanywhere,fontsize=\footnotesize}
+% Apply script direction and Arabic shaping only to Arabic-script spans.
+\usepackage[english,bidi=basic]{babel}
+\babelprovide[import]{arabic}
+\babelfont[arabic]{rm}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,Renderer=HarfBuzz]{DejaVuSans}
+\babelfont[arabic]{sf}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,Renderer=HarfBuzz]{DejaVuSans}
+\babelfont[arabic]{tt}[Path=fonts/,Extension=.ttf,UprightFont=*,BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,Renderer=HarfBuzz]{DejaVuSans}
+
+\DeclareRobustCommand{\BookArabic}[1]{\foreignlanguage{arabic}{#1}}
+% Three-digit page numbers need more room in the contents.
+\makeatletter
+\renewcommand{\@pnumwidth}{3em}
+\renewcommand{\@tocrmarg}{4em}
+\makeatother
+
+% Keep multi-digit table and figure numbers clear of list captions.
+\DeclareTOCStyleEntry[numwidth=3.5em]{tocline}{table}
+\DeclareTOCStyleEntry[numwidth=3.5em]{tocline}{figure}

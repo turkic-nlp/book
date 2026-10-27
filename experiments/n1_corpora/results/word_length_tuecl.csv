@@ -1,0 +1,1538 @@
+lang,sent_id,n_words,mean_word_len,max_word_len,n_long_words,source
+aze,cairo-1,4,5.25,9,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-2,4,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-3.1,9,4.444444444444445,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-3.2,7,5.714285714285714,10,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-4.1,3,7.0,12,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-4.2,2,9.0,12,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-5,3,4.666666666666667,9,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-6.1,4,5.0,8,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-6.2,3,6.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-7,5,6.8,8,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-8,4,7.0,11,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-9,7,5.0,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-10,6,5.0,9,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-11,10,4.0,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-12.1,4,6.75,9,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-12.2,3,7.666666666666667,9,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-13.1,3,5.333333333333333,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-13.2,2,6.5,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-14.1,7,4.428571428571429,8,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-14.2,6,4.666666666666667,8,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-15.1,8,4.25,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-15.2,7,4.714285714285714,7,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-16,7,6.857142857142857,13,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-17.1,10,5.0,12,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-17.2,9,5.444444444444445,12,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-18,8,4.375,8,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-19,6,5.666666666666667,11,1,TueCL az_tuecl-ud-test.conllu
+aze,cairo-20.1,5,6.4,10,0,TueCL az_tuecl-ud-test.conllu
+aze,cairo-20.2,4,7.75,10,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-1,10,8.2,16,4,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-2,11,7.0,11,1,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-3,18,5.444444444444445,11,1,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-4,3,4.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-5,12,6.0,11,2,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-6,3,7.333333333333333,11,1,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-7,4,7.0,16,1,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-8,10,4.2,8,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-9,6,4.666666666666667,7,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-10,5,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-11,3,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-12,13,4.538461538461538,8,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-13,3,5.333333333333333,7,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-14,4,6.5,8,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-15,4,6.0,9,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-16,5,5.0,8,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-17,7,5.571428571428571,7,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-18,4,9.0,14,2,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-19,7,5.714285714285714,8,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-20,5,8.8,12,2,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-21,5,6.2,9,0,TueCL az_tuecl-ud-test.conllu
+aze,udtw23-22,5,6.4,9,0,TueCL az_tuecl-ud-test.conllu
+aze,1,2,6.0,7,0,TueCL az_tuecl-ud-test.conllu
+aze,2,3,4.666666666666667,5,0,TueCL az_tuecl-ud-test.conllu
+aze,3,5,5.2,8,0,TueCL az_tuecl-ud-test.conllu
+aze,4,4,6.25,9,0,TueCL az_tuecl-ud-test.conllu
+aze,5,4,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,6,4,6.0,8,0,TueCL az_tuecl-ud-test.conllu
+aze,7,6,5.0,9,0,TueCL az_tuecl-ud-test.conllu
+aze,8,3,7.666666666666667,11,1,TueCL az_tuecl-ud-test.conllu
+aze,9,4,7.5,14,1,TueCL az_tuecl-ud-test.conllu
+aze,10,3,5.333333333333333,6,0,TueCL az_tuecl-ud-test.conllu
+aze,11,7,6.428571428571429,10,0,TueCL az_tuecl-ud-test.conllu
+aze,12,4,4.5,7,0,TueCL az_tuecl-ud-test.conllu
+aze,13,3,5.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,14,2,8.0,11,1,TueCL az_tuecl-ud-test.conllu
+aze,16,3,5.666666666666667,6,0,TueCL az_tuecl-ud-test.conllu
+aze,17,2,4.5,5,0,TueCL az_tuecl-ud-test.conllu
+aze,18,2,6.5,8,0,TueCL az_tuecl-ud-test.conllu
+aze,19,3,4.333333333333333,5,0,TueCL az_tuecl-ud-test.conllu
+aze,20,3,5.666666666666667,6,0,TueCL az_tuecl-ud-test.conllu
+aze,21,2,6.5,8,0,TueCL az_tuecl-ud-test.conllu
+aze,22,3,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,23,3,5.666666666666667,6,0,TueCL az_tuecl-ud-test.conllu
+aze,24,8,6.5,10,0,TueCL az_tuecl-ud-test.conllu
+aze,25,9,6.333333333333333,9,0,TueCL az_tuecl-ud-test.conllu
+aze,26,7,5.142857142857143,10,0,TueCL az_tuecl-ud-test.conllu
+aze,27,4,4.75,7,0,TueCL az_tuecl-ud-test.conllu
+aze,28,3,5.333333333333333,7,0,TueCL az_tuecl-ud-test.conllu
+aze,29,3,6.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,30,3,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,31,4,6.25,8,0,TueCL az_tuecl-ud-test.conllu
+aze,32,3,6.0,7,0,TueCL az_tuecl-ud-test.conllu
+aze,34,4,6.25,8,0,TueCL az_tuecl-ud-test.conllu
+aze,35,2,10.5,12,1,TueCL az_tuecl-ud-test.conllu
+aze,36,2,10.5,12,1,TueCL az_tuecl-ud-test.conllu
+aze,37,2,10.5,12,1,TueCL az_tuecl-ud-test.conllu
+aze,38,5,5.8,7,0,TueCL az_tuecl-ud-test.conllu
+aze,39,3,6.0,7,0,TueCL az_tuecl-ud-test.conllu
+aze,40,4,4.25,6,0,TueCL az_tuecl-ud-test.conllu
+aze,41,4,5.75,7,0,TueCL az_tuecl-ud-test.conllu
+aze,42,4,5.75,7,0,TueCL az_tuecl-ud-test.conllu
+aze,43,6,6.333333333333333,9,0,TueCL az_tuecl-ud-test.conllu
+aze,44,4,5.25,6,0,TueCL az_tuecl-ud-test.conllu
+aze,45,6,8.5,13,2,TueCL az_tuecl-ud-test.conllu
+aze,46,6,8.0,14,2,TueCL az_tuecl-ud-test.conllu
+aze,47,4,6.5,10,0,TueCL az_tuecl-ud-test.conllu
+aze,48,7,7.285714285714286,9,0,TueCL az_tuecl-ud-test.conllu
+aze,49,9,7.111111111111111,9,0,TueCL az_tuecl-ud-test.conllu
+aze,50,5,5.8,9,0,TueCL az_tuecl-ud-test.conllu
+aze,51,6,5.333333333333333,9,0,TueCL az_tuecl-ud-test.conllu
+aze,52,4,7.0,11,1,TueCL az_tuecl-ud-test.conllu
+aze,53,10,5.3,9,0,TueCL az_tuecl-ud-test.conllu
+aze,54,1,5.0,5,0,TueCL az_tuecl-ud-test.conllu
+aze,55,1,5.0,5,0,TueCL az_tuecl-ud-test.conllu
+aze,56,6,4.333333333333333,7,0,TueCL az_tuecl-ud-test.conllu
+aze,57,4,6.5,11,1,TueCL az_tuecl-ud-test.conllu
+aze,58,3,9.666666666666666,13,1,TueCL az_tuecl-ud-test.conllu
+aze,59,4,7.75,9,0,TueCL az_tuecl-ud-test.conllu
+aze,60,5,4.8,6,0,TueCL az_tuecl-ud-test.conllu
+aze,61,4,5.0,6,0,TueCL az_tuecl-ud-test.conllu
+aze,62,8,7.125,11,1,TueCL az_tuecl-ud-test.conllu
+aze,63,4,7.0,9,0,TueCL az_tuecl-ud-test.conllu
+aze,64,7,4.857142857142857,9,0,TueCL az_tuecl-ud-test.conllu
+aze,65,6,5.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,66,7,6.142857142857143,9,0,TueCL az_tuecl-ud-test.conllu
+aze,67,3,4.333333333333333,5,0,TueCL az_tuecl-ud-test.conllu
+aze,68,3,5.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,69,2,4.5,5,0,TueCL az_tuecl-ud-test.conllu
+aze,70,2,6.0,7,0,TueCL az_tuecl-ud-test.conllu
+aze,71,3,4.333333333333333,5,0,TueCL az_tuecl-ud-test.conllu
+aze,72,3,5.333333333333333,7,0,TueCL az_tuecl-ud-test.conllu
+aze,73,4,3.75,5,0,TueCL az_tuecl-ud-test.conllu
+aze,74,3,4.0,5,0,TueCL az_tuecl-ud-test.conllu
+aze,75,3,4.0,5,0,TueCL az_tuecl-ud-test.conllu
+aze,76,3,4.0,5,0,TueCL az_tuecl-ud-test.conllu
+aze,77,2,9.5,10,0,TueCL az_tuecl-ud-test.conllu
+aze,78,5,5.2,6,0,TueCL az_tuecl-ud-test.conllu
+aze,79,5,5.2,6,0,TueCL az_tuecl-ud-test.conllu
+aze,80,5,5.2,6,0,TueCL az_tuecl-ud-test.conllu
+aze,81,5,5.2,6,0,TueCL az_tuecl-ud-test.conllu
+aze,82,5,5.2,6,0,TueCL az_tuecl-ud-test.conllu
+aze,83,3,6.333333333333333,8,0,TueCL az_tuecl-ud-test.conllu
+aze,84,4,5.5,8,0,TueCL az_tuecl-ud-test.conllu
+aze,85,4,7.25,12,1,TueCL az_tuecl-ud-test.conllu
+aze,86,2,5.5,6,0,TueCL az_tuecl-ud-test.conllu
+aze,87,4,8.75,13,2,TueCL az_tuecl-ud-test.conllu
+aze,88,2,7.5,10,0,TueCL az_tuecl-ud-test.conllu
+aze,89,2,4.5,5,0,TueCL az_tuecl-ud-test.conllu
+aze,90,2,3.0,5,0,TueCL az_tuecl-ud-test.conllu
+aze,91,8,5.5,8,0,TueCL az_tuecl-ud-test.conllu
+aze,92,6,4.5,7,0,TueCL az_tuecl-ud-test.conllu
+aze,93,13,4.230769230769231,8,0,TueCL az_tuecl-ud-test.conllu
+aze,94,8,5.0,11,1,TueCL az_tuecl-ud-test.conllu
+aze,95,7,6.571428571428571,10,0,TueCL az_tuecl-ud-test.conllu
+aze,96,5,5.0,8,0,TueCL az_tuecl-ud-test.conllu
+aze,97,9,6.666666666666667,10,0,TueCL az_tuecl-ud-test.conllu
+bak,cairo-1,4,4.25,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-2,4,4.5,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-3.1,8,5.5,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-3.2,6,5.666666666666667,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-4.1,3,6.666666666666667,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-4.2,3,6.666666666666667,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-5,3,3.3333333333333335,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-6.1,4,5.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-6.2,3,7.333333333333333,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-7,5,6.6,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-8,5,6.4,11,1,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-9,7,4.857142857142857,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-10,6,4.666666666666667,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-11,8,4.25,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-12.1,5,6.8,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-12.2,4,7.5,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-13.1,3,5.666666666666667,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-13.2,2,7.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-14.1,6,5.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-14.2,5,5.4,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-15.1,8,4.25,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-15.2,8,4.25,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-16,11,5.7272727272727275,13,1,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-17.1,10,4.8,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-17.2,10,5.5,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-18,8,4.25,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-19,6,4.833333333333333,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-20.1,5,6.4,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,cairo-20.2,4,6.75,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-4,2,4.5,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-6,3,7.333333333333333,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-7,4,6.25,16,1,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-8,10,4.4,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-9,6,4.666666666666667,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-10,5,5.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-11,4,5.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-12,9,6.111111111111111,11,1,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-13,4,5.25,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-14,4,4.25,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-15,5,6.2,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-16,5,5.4,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-18,5,5.6,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-19,7,6.714285714285714,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-21,5,6.4,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,udtw23-22,5,6.4,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,1,3,5.333333333333333,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,2,3,4.666666666666667,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,3,5,5.2,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,4,4,7.25,11,1,TueCL ba_tuecl-ud-test.conllu
+bak,5,5,5.2,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,6,4,7.0,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,7,5,4.6,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,8,4,6.0,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,9,3,8.0,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,10,4,6.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,11,7,5.857142857142857,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,12,4,4.75,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,13,3,4.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,14,2,6.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,15,2,6.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,16,3,6.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,17,2,5.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,18,3,4.0,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,19,3,4.0,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,20,4,4.25,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,21,3,5.666666666666667,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,22,4,5.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,23,4,5.5,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,24,7,5.428571428571429,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,25,7,7.0,13,1,TueCL ba_tuecl-ud-test.conllu
+bak,26,8,4.75,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,27,5,4.2,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,28,3,5.333333333333333,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,29,3,7.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,30,3,5.333333333333333,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,31,5,6.4,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,32,4,6.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,33,3,6.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,34,4,6.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,35,3,5.666666666666667,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,36,4,4.25,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,37,3,5.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,38,5,5.6,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,39,4,4.25,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,40,4,4.25,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,41,4,5.25,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,42,4,5.25,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,43,7,5.285714285714286,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,44,4,5.75,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,45,6,7.333333333333333,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,46,7,5.571428571428571,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,47,4,5.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,48,7,5.428571428571429,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,49,8,6.125,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,50,6,5.166666666666667,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,51,6,5.666666666666667,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,52,7,4.857142857142857,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,54,2,3.0,3,0,TueCL ba_tuecl-ud-test.conllu
+bak,55,2,3.0,3,0,TueCL ba_tuecl-ud-test.conllu
+bak,56,4,7.25,11,1,TueCL ba_tuecl-ud-test.conllu
+bak,57,4,6.5,12,1,TueCL ba_tuecl-ud-test.conllu
+bak,58,4,7.25,11,1,TueCL ba_tuecl-ud-test.conllu
+bak,59,6,6.666666666666667,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,60,5,4.4,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,61,4,5.0,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,62,8,5.375,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,63,7,6.0,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,65,5,4.6,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,66,6,5.666666666666667,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,67,3,5.666666666666667,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,68,4,5.25,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,69,2,6.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,70,2,5.5,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,71,3,5.333333333333333,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,72,3,5.666666666666667,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,73,3,4.666666666666667,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,74,3,4.666666666666667,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,75,3,4.666666666666667,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,76,3,4.666666666666667,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,77,5,4.0,6,0,TueCL ba_tuecl-ud-test.conllu
+bak,78,5,6.8,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,79,5,6.8,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,80,5,6.8,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,81,5,6.8,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,82,5,6.4,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,83,3,7.333333333333333,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,84,4,6.0,8,0,TueCL ba_tuecl-ud-test.conllu
+bak,85,5,6.4,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,86,2,5.0,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,87,4,7.5,11,1,TueCL ba_tuecl-ud-test.conllu
+bak,88,2,8.0,10,0,TueCL ba_tuecl-ud-test.conllu
+bak,89,2,4.5,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,90,2,3.5,5,0,TueCL ba_tuecl-ud-test.conllu
+bak,91,9,4.888888888888889,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,92,7,4.428571428571429,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,94,7,6.857142857142857,9,0,TueCL ba_tuecl-ud-test.conllu
+bak,95,8,4.875,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,96,5,5.6,7,0,TueCL ba_tuecl-ud-test.conllu
+bak,97,10,5.5,9,0,TueCL ba_tuecl-ud-test.conllu
+kaa,cairo-1,4,4.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-2,5,5.0,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-2.1,4,5.5,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-3.1,7,5.857142857142857,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-3.2,6,6.5,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-4.1,4,5.0,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-4.2,3,5.666666666666667,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-5,3,4.0,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-6.1,4,7.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-6.2,3,8.666666666666666,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-7,6,6.666666666666667,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-7.1,5,7.4,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-8,4,6.25,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-9,8,4.625,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-9.1,7,4.714285714285714,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-10,6,5.5,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-11,8,4.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-12.1,4,6.5,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-12.2,3,6.333333333333333,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-13.1,5,4.2,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-13.2,4,4.5,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-14.1,6,5.0,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-14.2,5,5.4,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-15.1,10,4.7,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-15.2,9,5.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-16,8,5.5,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-16.1,10,5.5,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-17.1,11,5.181818181818182,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-17.2,10,5.5,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-18,9,4.444444444444445,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-19,7,4.142857142857143,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-20.1,5,6.6,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-20.2,4,7.75,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-20.3,5,7.2,11,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,cairo-20.4,4,8.5,11,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-4,2,5.0,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-5,13,5.769230769230769,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-5.1,13,5.769230769230769,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-5.2,13,5.923076923076923,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-6,5,4.2,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-7,6,6.166666666666667,15,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-8,13,4.076923076923077,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-9,6,4.833333333333333,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-10,5,4.8,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-11,4,4.75,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-12,15,6.266666666666667,12,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-13,3,6.333333333333333,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-13.1,4,6.25,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-14,4,5.25,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-15,4,6.75,13,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-16,5,4.8,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-16.1,6,4.833333333333333,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-17,8,5.875,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-18,8,6.0,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-19,8,6.25,15,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-20,7,7.857142857142857,13,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-21,5,6.2,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,udtw23-22,5,6.2,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,1,2,5.5,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,2,4,4.75,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,3,5,5.2,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,4,4,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,5,5,5.2,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,6,4,6.0,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,7,5,5.0,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,8,4,5.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,8.1,4,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,9,3,7.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,9.1,5,6.6,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,10,3,5.0,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,11,7,5.428571428571429,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,12,4,4.25,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,13,3,4.333333333333333,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,14,2,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,14.1,3,5.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,15,2,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,16,3,5.333333333333333,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,17,2,4.5,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,18,3,4.666666666666667,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,19,3,4.0,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,20,4,4.75,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,21,3,5.333333333333333,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,22,4,4.75,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,23,3,5.666666666666667,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,24,7,6.0,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,25,7,7.285714285714286,12,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,26,7,4.571428571428571,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,26.1,8,5.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,27,5,4.4,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,28,4,4.0,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,29,4,5.75,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,30,4,5.0,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,31,6,5.333333333333333,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,32,4,5.5,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,33,5,5.0,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,34,5,5.2,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,35,3,8.0,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,36,4,6.75,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,37,4,7.0,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,38,6,6.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,39,4,4.75,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,40,4,4.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,41,5,6.0,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,42,4,5.75,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,43,8,5.5,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,44,7,4.714285714285714,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,45,6,7.166666666666667,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,46,9,5.888888888888889,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,47,5,5.0,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,48,6,6.666666666666667,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,49,8,6.5,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,49.1,8,6.75,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,50,6,5.333333333333333,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,51,6,5.666666666666667,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,51.1,6,4.833333333333333,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,52,5,4.6,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,53,11,5.909090909090909,12,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,54,2,5.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,55,2,5.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,56,6,4.5,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,56.1,5,5.6,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,57,5,4.8,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,58,6,6.333333333333333,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,59,4,6.5,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,60,6,4.5,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,61,5,4.6,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,62,8,6.0,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,63,4,7.25,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,64,8,5.25,11,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,65,5,4.6,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,65.1,6,4.833333333333333,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,66,6,5.833333333333333,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,66.1,5,6.4,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,67,3,5.333333333333333,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,68,4,4.75,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,69,2,5.5,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,70,4,4.75,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,71,3,4.333333333333333,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,72,4,4.25,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,73,3,4.666666666666667,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,74,3,4.0,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,75,3,4.0,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,76,3,4.0,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,77,3,9.666666666666666,12,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,78,6,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,79,6,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,80,6,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,81,6,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,82,6,6.0,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,83,3,6.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,84,3,6.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,85,4,6.5,12,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,86,3,5.333333333333333,6,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,87,4,8.25,11,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,88,2,7.0,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,89,2,4.5,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,89.1,2,5.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,90,2,3.5,5,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,91,9,5.222222222222222,13,1,TueCL kaa_tuecl-ud-test.conllu
+kaa,92,6,4.5,7,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,93,17,5.235294117647059,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,94,7,5.857142857142857,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,95,9,7.222222222222222,11,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,95.1,9,7.222222222222222,11,2,TueCL kaa_tuecl-ud-test.conllu
+kaa,96,6,5.833333333333333,10,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,97,8,6.5,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,97.1,7,6.428571428571429,8,0,TueCL kaa_tuecl-ud-test.conllu
+kaa,97.2,9,6.222222222222222,9,0,TueCL kaa_tuecl-ud-test.conllu
+kaz,cairo-1,4,4.25,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-2,5,5.4,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-3.1,7,5.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-3.2,8,5.625,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-4.1,4,3.75,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-4.2,4,3.75,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-5,3,4.333333333333333,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-6.1,4,6.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-6.2,3,7.333333333333333,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-7,5,7.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-8,5,5.4,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-9,8,5.375,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-10,7,4.285714285714286,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-12.1,5,6.4,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-12.2,5,6.2,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-13.1,4,4.5,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-14.1,6,4.833333333333333,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-14.2,4,6.75,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-15.1,9,4.777777777777778,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-15.2,8,4.75,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-16,11,5.090909090909091,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-18,9,5.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-19,6,5.333333333333333,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-20.1,5,6.2,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,cairo-20.2,4,7.25,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-4,2,5.5,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-6,3,6.666666666666667,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-7,4,6.5,16,1,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-8,12,4.083333333333333,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-9,6,4.833333333333333,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-10,5,5.2,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-11,4,5.25,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-12,8,6.5,13,1,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-13,5,4.2,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-14,5,4.8,11,1,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-15,4,6.0,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-16,5,5.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-17,7,5.571428571428571,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-18,5,7.2,11,2,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-19,8,4.875,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-20,9,6.666666666666667,12,1,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-21,5,6.2,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,udtw23-22,4,7.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,1,2,6.5,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,2,4,4.75,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,3,5,5.4,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,4,4,6.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,5,5,5.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,6,4,6.5,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,7,5,5.0,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,8,3,7.333333333333333,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,9,4,7.5,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,10,3,5.666666666666667,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,11,7,6.0,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,12,4,5.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,13,3,4.666666666666667,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,14,2,6.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,15,2,6.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,16,3,6.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,17,2,4.5,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,18,3,4.0,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,19,3,4.666666666666667,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,20,4,5.0,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,21,4,5.25,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,22,4,5.25,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,23,4,5.75,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,24,7,6.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,25,6,7.166666666666667,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,26,6,5.333333333333333,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,27,4,5.5,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,28,4,3.75,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,29,3,8.333333333333334,11,1,TueCL kk_tuecl-ud-test.conllu
+kaz,30,3,6.333333333333333,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,31,5,6.6,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,32,4,6.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,33,4,6.0,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,34,5,5.2,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,35,2,9.0,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,36,2,9.0,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,37,5,5.4,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,38,5,5.4,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,39,4,4.5,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,40,4,4.5,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,41,4,5.75,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,42,4,5.5,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,43,6,5.833333333333333,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,44,4,6.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,45,6,7.5,11,1,TueCL kk_tuecl-ud-test.conllu
+kaz,46,7,5.714285714285714,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,47,5,5.2,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,48,6,6.5,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,49,8,6.375,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,50,5,6.4,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,51,5,6.4,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,52,8,5.125,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,53,11,5.090909090909091,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,54,2,3.0,3,0,TueCL kk_tuecl-ud-test.conllu
+kaz,55,1,6.0,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,56,4,7.75,12,1,TueCL kk_tuecl-ud-test.conllu
+kaz,57,5,4.8,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,58,3,6.333333333333333,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,59,5,7.4,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,60,6,4.833333333333333,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,61,5,5.0,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,62,8,6.25,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,63,6,6.5,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,64,8,5.125,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,65,5,4.8,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,66,6,6.5,10,0,TueCL kk_tuecl-ud-test.conllu
+kaz,67,4,4.0,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,68,5,4.0,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,69,3,3.6666666666666665,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,70,3,3.6666666666666665,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,71,4,3.5,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,72,5,3.4,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,73,4,3.5,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,74,4,3.0,4,0,TueCL kk_tuecl-ud-test.conllu
+kaz,75,4,3.0,4,0,TueCL kk_tuecl-ud-test.conllu
+kaz,76,4,3.0,4,0,TueCL kk_tuecl-ud-test.conllu
+kaz,77,3,8.0,12,1,TueCL kk_tuecl-ud-test.conllu
+kaz,78,6,5.666666666666667,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,79,6,5.666666666666667,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,80,7,4.714285714285714,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,81,6,5.666666666666667,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,82,6,5.666666666666667,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,83,5,4.4,6,0,TueCL kk_tuecl-ud-test.conllu
+kaz,84,3,5.666666666666667,8,0,TueCL kk_tuecl-ud-test.conllu
+kaz,85,4,8.25,12,1,TueCL kk_tuecl-ud-test.conllu
+kaz,86,2,6.0,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,87,4,7.75,11,1,TueCL kk_tuecl-ud-test.conllu
+kaz,88,2,8.0,11,1,TueCL kk_tuecl-ud-test.conllu
+kaz,89,2,4.5,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,90,2,3.5,5,0,TueCL kk_tuecl-ud-test.conllu
+kaz,91,9,4.888888888888889,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,92,7,4.285714285714286,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,93,10,5.5,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,94,7,6.0,9,0,TueCL kk_tuecl-ud-test.conllu
+kaz,95,7,8.0,11,2,TueCL kk_tuecl-ud-test.conllu
+kaz,96,5,5.8,7,0,TueCL kk_tuecl-ud-test.conllu
+kaz,97,9,6.555555555555555,11,1,TueCL kk_tuecl-ud-test.conllu
+kum,1,5,6.0,10,0,TueCL kum_tuecl-ud-test.conllu
+kum,2,5,4.0,5,0,TueCL kum_tuecl-ud-test.conllu
+kum,3,9,5.111111111111111,10,0,TueCL kum_tuecl-ud-test.conllu
+kum,4,3,6.0,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,5,3,4.333333333333333,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,6,4,5.75,9,0,TueCL kum_tuecl-ud-test.conllu
+kum,7,6,6.0,7,0,TueCL kum_tuecl-ud-test.conllu
+kum,8,4,6.0,10,0,TueCL kum_tuecl-ud-test.conllu
+kum,9,8,5.25,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,10,5,5.0,7,0,TueCL kum_tuecl-ud-test.conllu
+kum,11,9,4.111111111111111,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,12,6,5.5,11,1,TueCL kum_tuecl-ud-test.conllu
+kum,13,3,5.666666666666667,9,0,TueCL kum_tuecl-ud-test.conllu
+kum,14,5,6.2,9,0,TueCL kum_tuecl-ud-test.conllu
+kum,15,8,5.5,12,1,TueCL kum_tuecl-ud-test.conllu
+kum,16,8,5.875,15,1,TueCL kum_tuecl-ud-test.conllu
+kum,17,11,4.181818181818182,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,18,11,4.181818181818182,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,19,6,5.166666666666667,8,0,TueCL kum_tuecl-ud-test.conllu
+kum,20,5,7.4,13,1,TueCL kum_tuecl-ud-test.conllu
+kir,cairo-1,4,4.25,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-2,5,4.8,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-2.1,4,5.25,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-3.1,9,5.555555555555555,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-3.2,8,6.0,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-4.1,4,5.0,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-4.2,3,5.666666666666667,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-5,3,4.333333333333333,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-6.1,4,6.25,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-6.2,3,7.666666666666667,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-7,6,6.333333333333333,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-7.1,5,7.0,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-8,4,7.0,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-9,7,4.571428571428571,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-9.1,7,4.571428571428571,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-10,5,5.8,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-11,9,3.888888888888889,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-12.1,5,5.8,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-12.2,4,6.25,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-12.3,8,5.0,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-12.4,7,5.142857142857143,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-13.1,4,5.25,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-13.2,3,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-14.1,6,4.5,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-14.2,5,4.8,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-15.1,10,4.5,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-15.2,9,4.777777777777778,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-16,11,5.545454545454546,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-16.1,9,5.777777777777778,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-17.1,12,5.416666666666667,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-17.2,11,5.7272727272727275,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-18,9,4.888888888888889,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-19,7,4.285714285714286,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-20.1,5,6.6,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-20.2,4,7.75,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-20.3,5,7.2,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,cairo-20.4,4,8.5,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-1,11,7.454545454545454,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-2,16,5.3125,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-3,22,5.363636363636363,13,2,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-4,2,5.0,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-5,13,5.769230769230769,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-5.1,13,5.769230769230769,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-5.2,13,5.923076923076923,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-6,5,4.2,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-7,6,6.166666666666667,15,1,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-8,13,4.076923076923077,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-9,6,4.833333333333333,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-10,5,4.8,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-11,4,4.75,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-12,15,6.266666666666667,12,1,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-13,3,6.333333333333333,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-13.1,4,6.25,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-14,4,5.25,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-15,4,6.75,13,1,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-16,5,4.8,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-16.1,6,4.833333333333333,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-17,8,5.875,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-18,8,6.0,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-19,8,6.25,15,1,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-20,7,7.857142857142857,13,2,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-21,5,6.2,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,udtw23-22,5,6.2,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,1,2,5.5,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,2,4,4.75,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,3,5,5.2,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,4,4,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,5,5,5.2,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,6,4,6.0,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,7,5,5.0,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,8,4,5.5,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,8.1,4,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,9,3,7.0,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,9.1,5,6.6,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,10,3,5.0,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,11,7,5.428571428571429,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,12,4,4.25,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,13,3,4.333333333333333,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,14,2,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,14.1,3,5.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,15,2,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,16,3,5.333333333333333,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,17,2,4.5,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,18,3,4.666666666666667,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,19,3,4.0,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,20,4,4.75,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,21,3,5.333333333333333,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,22,4,4.75,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,23,3,5.666666666666667,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,24,7,6.0,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,25,7,7.285714285714286,12,1,TueCL ky_tuecl-ud-test.conllu
+kir,26,7,4.571428571428571,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,26.1,8,5.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,27,5,4.4,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,28,4,4.0,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,29,4,5.75,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,30,4,5.0,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,31,6,5.333333333333333,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,32,4,5.5,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,33,5,5.0,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,34,5,5.2,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,35,3,8.0,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,36,4,6.75,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,37,4,7.0,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,38,6,6.0,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,39,4,4.75,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,40,4,4.5,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,41,5,6.0,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,42,4,5.75,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,43,8,5.5,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,44,7,4.714285714285714,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,45,6,7.166666666666667,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,46,9,5.888888888888889,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,47,5,5.0,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,48,6,6.666666666666667,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,49,8,6.5,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,49.1,8,6.75,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,50,6,5.333333333333333,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,51,6,5.666666666666667,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,51.1,6,4.833333333333333,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,52,5,4.6,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,53,11,5.909090909090909,12,2,TueCL ky_tuecl-ud-test.conllu
+kir,54,2,5.5,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,55,2,5.5,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,56,6,4.5,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,56.1,5,5.6,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,57,5,4.8,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,58,6,6.333333333333333,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,59,4,6.5,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,60,6,4.5,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,61,5,4.6,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,62,8,6.0,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,63,4,7.25,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,64,8,5.25,11,1,TueCL ky_tuecl-ud-test.conllu
+kir,65,5,4.6,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,65.1,6,4.833333333333333,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,66,6,5.833333333333333,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,66.1,5,6.4,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,67,3,5.333333333333333,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,68,4,4.75,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,69,2,5.5,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,70,4,4.75,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,71,3,4.333333333333333,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,72,4,4.25,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,73,3,4.666666666666667,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,74,3,4.0,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,75,3,4.0,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,76,3,4.0,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,77,3,9.666666666666666,12,1,TueCL ky_tuecl-ud-test.conllu
+kir,78,6,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,79,6,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,80,6,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,81,6,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,82,6,6.0,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,83,3,6.0,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,84,3,6.0,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,85,4,6.5,12,1,TueCL ky_tuecl-ud-test.conllu
+kir,86,3,5.333333333333333,6,0,TueCL ky_tuecl-ud-test.conllu
+kir,87,4,8.25,11,2,TueCL ky_tuecl-ud-test.conllu
+kir,88,2,7.0,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,89,2,4.5,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,89.1,2,5.5,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,90,2,3.5,5,0,TueCL ky_tuecl-ud-test.conllu
+kir,91,9,5.222222222222222,13,1,TueCL ky_tuecl-ud-test.conllu
+kir,92,6,4.5,7,0,TueCL ky_tuecl-ud-test.conllu
+kir,93,17,5.235294117647059,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,94,7,5.857142857142857,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,95,9,7.222222222222222,11,2,TueCL ky_tuecl-ud-test.conllu
+kir,95.1,9,7.222222222222222,11,2,TueCL ky_tuecl-ud-test.conllu
+kir,96,6,5.833333333333333,10,0,TueCL ky_tuecl-ud-test.conllu
+kir,97,8,6.5,9,0,TueCL ky_tuecl-ud-test.conllu
+kir,97.1,7,6.428571428571429,8,0,TueCL ky_tuecl-ud-test.conllu
+kir,97.2,9,6.222222222222222,9,0,TueCL ky_tuecl-ud-test.conllu
+sah,cairo-1,4,7.5,12,1,TueCL sah_tuecl-ud-test.conllu
+sah,cairo-2,5,5.0,8,0,TueCL sah_tuecl-ud-test.conllu
+sah,udtw23-6,4,5.25,9,0,TueCL sah_tuecl-ud-test.conllu
+tuk,cairo-1,5,4.8,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-2,3,6.333333333333333,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-3.1,8,5.5,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-3.2,8,5.5,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-4.1,3,7.0,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-4.2,2,10.0,14,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-5,3,4.666666666666667,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-6.1,4,7.0,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-6.2,3,8.666666666666666,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-7,5,6.2,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-9,7,4.714285714285714,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-10,6,4.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-11,9,4.222222222222222,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-12.1,5,7.0,11,2,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-12.2,4,7.75,11,2,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-13.1,3,6.0,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-13.2,2,7.5,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-14.1,5,6.8,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-14.2,4,7.75,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-15.1,8,5.25,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-15.2,8,5.25,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-16,11,5.454545454545454,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-17.1,10,4.9,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-17.2,10,4.7,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-18,8,5.0,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-19,6,4.666666666666667,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-20.1,5,6.8,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,cairo-20.2,4,8.0,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-3,17,6.529411764705882,13,3,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-4,2,5.0,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-5,10,6.2,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-6,4,5.75,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-7,4,7.25,16,1,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-9,6,4.333333333333333,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-10,4,4.75,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-11,2,6.5,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-12,11,6.454545454545454,13,1,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-13,2,6.5,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-14,4,5.0,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-15,4,6.75,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-16,6,5.333333333333333,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-17,7,5.571428571428571,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-18,10,5.6,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-19,7,5.714285714285714,10,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-20,5,8.8,14,1,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-21,5,6.0,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,udtw23-22,4,6.75,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,1,2,5.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,2,3,5.333333333333333,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,3,5,5.8,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,4,4,6.25,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,5,4,5.0,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,6,4,6.5,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,7,6,4.833333333333333,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,8,4,5.75,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,9,3,8.666666666666666,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,10,3,4.333333333333333,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,11,7,6.285714285714286,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,12,4,4.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,13,3,4.333333333333333,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,14,2,5.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,16,3,5.333333333333333,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,17,2,4.5,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,18,2,5.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,19,3,4.0,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,20,3,5.666666666666667,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,21,2,6.5,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,22,2,6.5,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,23,3,5.0,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,24,6,7.166666666666667,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,25,6,8.166666666666666,16,1,TueCL tk_tuecl-ud-test.conllu
+tuk,26,7,4.714285714285714,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,27,4,4.75,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,28,3,4.666666666666667,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,29,3,7.333333333333333,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,30,3,6.0,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,31,4,6.0,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,32,4,5.75,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,33,3,6.333333333333333,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,34,4,6.25,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,35,2,11.0,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,36,4,6.75,10,0,TueCL tk_tuecl-ud-test.conllu
+tuk,37,5,7.6,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,38,5,5.8,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,39,3,5.333333333333333,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,40,3,5.333333333333333,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,41,4,5.75,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,42,4,5.75,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,43,6,6.333333333333333,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,44,5,5.4,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,45,6,8.5,14,1,TueCL tk_tuecl-ud-test.conllu
+tuk,46,7,6.0,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,47,5,4.8,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,48,10,6.0,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,50,6,4.666666666666667,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,51,6,4.666666666666667,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,52,5,5.2,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,53,11,5.545454545454546,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,54,2,3.0,3,0,TueCL tk_tuecl-ud-test.conllu
+tuk,55,2,3.0,3,0,TueCL tk_tuecl-ud-test.conllu
+tuk,56,5,6.6,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,57,3,7.333333333333333,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,58,4,8.0,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,59,4,7.75,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,60,5,4.8,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,61,4,5.0,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,62,8,5.875,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,63,5,7.4,10,0,TueCL tk_tuecl-ud-test.conllu
+tuk,64,7,4.857142857142857,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,65,5,5.6,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,66,6,5.333333333333333,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,67,4,3.75,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,68,3,5.666666666666667,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,69,2,5.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,70,2,5.5,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,71,3,5.333333333333333,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,72,3,5.333333333333333,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,73,3,4.666666666666667,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,74,3,4.666666666666667,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,75,3,4.666666666666667,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,76,3,4.666666666666667,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,77,2,12.0,15,1,TueCL tk_tuecl-ud-test.conllu
+tuk,78,5,5.8,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,79,6,4.833333333333333,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,80,5,5.8,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,81,5,5.8,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,82,7,4.428571428571429,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,83,4,6.0,10,0,TueCL tk_tuecl-ud-test.conllu
+tuk,84,4,5.0,6,0,TueCL tk_tuecl-ud-test.conllu
+tuk,85,4,8.5,13,1,TueCL tk_tuecl-ud-test.conllu
+tuk,86,2,6.0,7,0,TueCL tk_tuecl-ud-test.conllu
+tuk,87,4,7.25,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,88,2,7.0,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,89,2,6.0,8,0,TueCL tk_tuecl-ud-test.conllu
+tuk,90,2,3.5,5,0,TueCL tk_tuecl-ud-test.conllu
+tuk,91,8,6.125,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,92,6,5.333333333333333,9,0,TueCL tk_tuecl-ud-test.conllu
+tuk,94,8,6.125,12,1,TueCL tk_tuecl-ud-test.conllu
+tuk,95,10,5.9,11,1,TueCL tk_tuecl-ud-test.conllu
+tuk,96,4,6.25,10,0,TueCL tk_tuecl-ud-test.conllu
+tuk,97,9,5.888888888888889,9,0,TueCL tk_tuecl-ud-test.conllu
+tur,cairo-1,4,6.0,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-2,3,9.0,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-3.1,7,5.0,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-3.2,6,5.666666666666667,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-4.1,4,5.25,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-4.2,3,6.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-5,3,4.666666666666667,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-6.1,4,6.5,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-6.2,3,8.333333333333334,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-7,6,5.166666666666667,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-8,5,6.2,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-9,7,5.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-10,8,4.0,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-11,8,4.5,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-12.1,5,6.6,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-12.2,4,7.0,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-13.1,3,5.666666666666667,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-13.2,2,7.0,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-14.1,5,7.4,14,2,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-14.2,4,8.5,14,2,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-15.1,8,4.875,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-15.2,7,5.428571428571429,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-16,10,6.1,12,2,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-17.1,9,4.888888888888889,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-17.2,8,5.375,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-18,6,5.833333333333333,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-19,7,4.142857142857143,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-20.1,6,5.166666666666667,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,cairo-20.2,5,6.0,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-1,10,8.3,14,3,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-2,10,7.4,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-3,18,6.166666666666667,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-4,3,4.333333333333333,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-5,9,6.666666666666667,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-6,2,10.0,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-7,4,7.0,15,1,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-8,9,4.777777777777778,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-9,6,4.833333333333333,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-10,5,5.0,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-11,3,4.666666666666667,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-12,9,5.888888888888889,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-13,3,5.333333333333333,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-14,4,6.0,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-15,4,6.25,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-16,5,5.0,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-17,7,6.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-18,4,10.0,14,2,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-19,8,5.0,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-20,6,8.666666666666666,12,2,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-21,5,5.6,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,udtw23-22,4,6.5,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,1,2,5.0,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,2,3,5.333333333333333,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,3,5,5.4,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,4,4,6.25,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,5,4,5.25,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,6,4,6.5,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,7,5,5.4,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,8,3,7.333333333333333,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,9,3,9.666666666666666,15,1,TueCL tr_tuecl-ud-test.conllu
+tur,10,3,6.0,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,11,7,6.142857142857143,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,12,4,4.0,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,13,3,4.333333333333333,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,14,2,6.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,15,2,7.5,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,16,3,5.666666666666667,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,17,2,4.5,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,18,2,6.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,19,3,4.0,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,20,3,5.666666666666667,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,21,2,6.5,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,22,3,4.666666666666667,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,23,3,5.666666666666667,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,24,8,5.5,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,25,8,6.625,17,1,TueCL tr_tuecl-ud-test.conllu
+tur,26,6,5.0,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,27,5,3.8,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,28,3,5.333333333333333,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,29,3,7.333333333333333,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,30,2,7.5,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,31,3,9.333333333333334,14,1,TueCL tr_tuecl-ud-test.conllu
+tur,32,4,6.25,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,33,4,6.25,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,34,4,6.75,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,35,2,10.5,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,36,3,8.0,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,37,3,8.666666666666666,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,38,5,6.2,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,39,3,5.666666666666667,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,40,3,5.0,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,41,4,5.75,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,42,4,6.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,43,6,7.333333333333333,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,44,5,6.0,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,45,7,7.428571428571429,15,1,TueCL tr_tuecl-ud-test.conllu
+tur,46,6,6.833333333333333,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,47,4,6.0,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,48,6,5.833333333333333,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,49,8,6.0,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,50,6,4.5,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,51,6,4.833333333333333,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,52,5,6.8,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,53,8,7.375,12,2,TueCL tr_tuecl-ud-test.conllu
+tur,54,2,3.0,3,0,TueCL tr_tuecl-ud-test.conllu
+tur,55,1,6.0,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,56,4,8.75,12,2,TueCL tr_tuecl-ud-test.conllu
+tur,57,4,7.0,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,58,3,6.333333333333333,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,59,4,7.25,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,60,5,5.4,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,61,4,5.5,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,62,8,6.875,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,63,5,7.8,14,1,TueCL tr_tuecl-ud-test.conllu
+tur,64,7,4.428571428571429,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,65,5,5.0,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,66,6,5.666666666666667,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,67,4,3.75,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,68,4,4.75,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,69,3,3.6666666666666665,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,70,3,4.666666666666667,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,71,3,4.666666666666667,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,72,4,4.75,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,73,4,3.5,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,74,4,3.5,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,75,4,3.5,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,76,4,3.5,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,77,3,8.666666666666666,11,1,TueCL tr_tuecl-ud-test.conllu
+tur,78,7,4.142857142857143,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,79,7,4.142857142857143,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,80,7,4.142857142857143,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,81,7,4.142857142857143,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,82,7,4.142857142857143,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,83,4,5.0,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,84,4,5.0,6,0,TueCL tr_tuecl-ud-test.conllu
+tur,85,5,5.8,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,86,2,6.5,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,87,4,8.0,13,1,TueCL tr_tuecl-ud-test.conllu
+tur,88,2,6.5,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,89,2,5.0,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,90,2,3.0,5,0,TueCL tr_tuecl-ud-test.conllu
+tur,91,8,5.625,12,1,TueCL tr_tuecl-ud-test.conllu
+tur,92,6,4.833333333333333,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,93,12,4.25,7,0,TueCL tr_tuecl-ud-test.conllu
+tur,94,7,5.428571428571429,10,0,TueCL tr_tuecl-ud-test.conllu
+tur,95,8,5.5,9,0,TueCL tr_tuecl-ud-test.conllu
+tur,96,5,5.6,8,0,TueCL tr_tuecl-ud-test.conllu
+tur,97,9,6.444444444444445,10,0,TueCL tr_tuecl-ud-test.conllu
+tat,cairo-1,4,4.25,7,0,TueCL tt_tuecl-ud-test.conllu
+tat,cairo-2,4,4.25,6,0,TueCL tt_tuecl-ud-test.conllu
+tat,cairo-2.1,3,4.333333333333333,5,0,TueCL tt_tuecl-ud-test.conllu
+tat,cairo-3.1,7,5.428571428571429,8,0,TueCL tt_tuecl-ud-test.conllu
+tat,cairo-3.2,6,6.0,8,0,TueCL tt_tuecl-ud-test.conllu
+uig,cairo-1,5,4.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-2,4,7.0,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-3.1,7,5.571428571428571,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-4.1,3,6.0,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-4.2,3,6.0,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-5,3,4.666666666666667,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-6.1,4,5.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-6.2,5,5.2,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-7,6,6.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-8,5,6.6,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-9,8,4.875,6,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-10,5,5.8,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-11,6,6.333333333333333,13,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-12.1,5,6.8,12,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-12.2,4,7.25,12,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-13.1,3,6.666666666666667,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-13.2,2,8.5,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-14.1,5,6.0,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-14.2,4,6.75,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-15.1,8,5.375,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-15.2,8,5.375,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-16,10,5.7,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-18,8,5.25,12,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-19,7,5.571428571428571,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-20.1,6,6.166666666666667,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,cairo-20.2,6,6.166666666666667,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-4,3,4.666666666666667,6,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-6,5,5.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-9,6,5.333333333333333,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-10,5,5.0,6,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-11,3,6.666666666666667,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-13,3,6.333333333333333,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-14,4,7.0,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-15,4,7.5,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-16,5,5.8,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-17,9,6.222222222222222,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-18,5,9.0,16,2,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-19,7,5.857142857142857,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-21,5,6.8,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,udtw23-22,5,6.8,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,1,2,6.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,2,3,6.666666666666667,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,3,5,5.8,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,4,4,6.25,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,5,5,5.4,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,6,4,6.75,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,7,5,5.8,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,8,4,6.5,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,9,4,8.25,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,10,3,6.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,11,7,6.571428571428571,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,12,4,5.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,13,3,3.6666666666666665,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,14,2,6.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,15,2,6.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,16,3,5.666666666666667,6,0,TueCL ug_tuecl-ud-test.conllu
+uig,17,2,5.0,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,18,3,4.666666666666667,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,19,3,4.666666666666667,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,20,4,5.0,6,0,TueCL ug_tuecl-ud-test.conllu
+uig,21,3,6.666666666666667,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,22,3,6.666666666666667,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,23,4,5.75,6,0,TueCL ug_tuecl-ud-test.conllu
+uig,24,7,6.714285714285714,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,25,6,9.5,17,2,TueCL ug_tuecl-ud-test.conllu
+uig,26,5,6.0,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,27,4,6.5,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,28,4,4.25,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,29,3,7.333333333333333,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,30,2,9.0,13,1,TueCL ug_tuecl-ud-test.conllu
+uig,31,4,8.25,15,1,TueCL ug_tuecl-ud-test.conllu
+uig,32,4,6.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,33,3,6.666666666666667,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,34,4,6.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,35,3,8.333333333333334,13,1,TueCL ug_tuecl-ud-test.conllu
+uig,36,3,8.333333333333334,13,1,TueCL ug_tuecl-ud-test.conllu
+uig,37,5,7.0,13,1,TueCL ug_tuecl-ud-test.conllu
+uig,38,6,5.833333333333333,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,39,4,4.25,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,40,4,4.25,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,41,3,6.333333333333333,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,42,4,6.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,43,7,6.428571428571429,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,44,6,5.5,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,45,6,8.5,14,1,TueCL ug_tuecl-ud-test.conllu
+uig,46,7,6.142857142857143,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,47,4,6.5,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,48,6,7.0,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,49,7,6.571428571428571,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,50,6,6.0,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,51,6,5.333333333333333,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,52,7,5.285714285714286,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,54,1,7.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,55,1,7.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,56,4,9.75,17,1,TueCL ug_tuecl-ud-test.conllu
+uig,57,3,8.666666666666666,12,1,TueCL ug_tuecl-ud-test.conllu
+uig,58,4,8.25,11,2,TueCL ug_tuecl-ud-test.conllu
+uig,59,4,9.0,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,60,5,5.8,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,61,4,5.5,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,62,8,6.0,12,1,TueCL ug_tuecl-ud-test.conllu
+uig,63,5,6.2,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,64,7,5.857142857142857,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,65,4,6.75,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,66,6,6.333333333333333,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,67,3,5.666666666666667,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,68,3,6.666666666666667,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,69,2,6.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,70,2,6.0,7,0,TueCL ug_tuecl-ud-test.conllu
+uig,71,3,5.0,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,72,4,4.75,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,73,3,5.0,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,74,3,4.333333333333333,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,75,3,4.333333333333333,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,76,3,4.333333333333333,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,77,2,12.5,13,2,TueCL ug_tuecl-ud-test.conllu
+uig,78,5,7.2,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,79,5,7.2,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,80,5,7.2,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,81,5,7.2,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,82,5,7.2,9,0,TueCL ug_tuecl-ud-test.conllu
+uig,83,4,5.75,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,84,4,5.75,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,86,2,7.5,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,87,4,8.0,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,88,2,7.5,10,0,TueCL ug_tuecl-ud-test.conllu
+uig,89,2,5.0,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,90,2,3.5,5,0,TueCL ug_tuecl-ud-test.conllu
+uig,91,8,5.625,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,92,6,5.5,8,0,TueCL ug_tuecl-ud-test.conllu
+uig,94,8,6.875,11,1,TueCL ug_tuecl-ud-test.conllu
+uig,95,7,8.714285714285714,12,1,TueCL ug_tuecl-ud-test.conllu
+uig,96,6,7.0,15,1,TueCL ug_tuecl-ud-test.conllu
+uig,97,10,5.5,9,0,TueCL ug_tuecl-ud-test.conllu
+uzb,cairo-1,5,3.6,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-2,5,4.4,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-3.1,7,5.714285714285714,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-3.2,6,6.5,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-4.1,3,7.0,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-4.2,2,9.0,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-5,3,4.666666666666667,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-6.1,4,5.75,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-6.2,3,7.333333333333333,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-7,7,5.571428571428571,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-8,5,5.2,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-9,10,4.9,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-10,5,6.2,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-11,8,4.75,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-12.1,4,6.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-12.2,3,6.666666666666667,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-13.1,3,6.333333333333333,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-13.2,2,8.0,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-14.1,7,5.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-14.2,6,5.333333333333333,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-15.1,8,5.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-15.2,7,5.571428571428571,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-16,12,5.416666666666667,13,1,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-17.1,11,5.363636363636363,12,2,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-17.2,10,5.8,12,2,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-18,7,4.714285714285714,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-19,7,3.7142857142857144,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-20.1,6,4.833333333333333,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,cairo-20.2,5,5.6,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-1,14,6.214285714285714,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-2,13,6.538461538461538,19,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-3,23,5.6521739130434785,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-4,2,6.5,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-5,15,4.933333333333334,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-6,4,5.5,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-7,5,5.2,12,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-8,13,4.076923076923077,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-9,6,5.166666666666667,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-10,7,3.857142857142857,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-11,3,4.666666666666667,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-12,15,4.6,14,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-13,3,6.666666666666667,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-14,4,4.75,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-15,6,5.666666666666667,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-16,6,4.333333333333333,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-17,10,4.9,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-18,8,6.0,14,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-19,9,4.888888888888889,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-20,8,7.75,14,2,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-21,6,5.5,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,udtw23-22,6,5.5,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,1,2,5.5,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,2,4,4.5,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,3,6,5.0,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,4,4,6.0,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,5,5,5.2,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,6,5,5.4,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,7,6,4.333333333333333,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,8,4,5.75,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,9,5,5.8,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,10,3,6.0,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,11,8,5.625,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,12,4,4.5,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,13,3,5.333333333333333,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,14,2,5.5,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,15,2,7.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,16,4,4.75,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,17,2,4.5,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,18,3,4.0,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,19,4,4.25,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,20,5,3.6,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,21,2,7.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,22,3,5.0,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,23,4,4.5,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,24,8,5.875,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,25,8,7.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,26,10,3.6,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,27,6,4.666666666666667,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,28,3,5.0,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,29,3,7.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,30,3,5.666666666666667,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,31,5,6.4,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,32,5,4.6,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,33,5,4.8,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,34,5,5.0,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,35,3,7.666666666666667,11,2,TueCL uz_tuecl-ud-test.conllu
+uzb,36,4,6.5,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,37,4,6.75,11,2,TueCL uz_tuecl-ud-test.conllu
+uzb,38,8,4.5,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,39,3,5.666666666666667,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,40,5,3.4,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,41,4,4.75,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,42,5,5.0,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,43,7,5.714285714285714,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,44,11,3.272727272727273,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,45,7,7.428571428571429,14,1,TueCL uz_tuecl-ud-test.conllu
+uzb,46,8,6.5,12,1,TueCL uz_tuecl-ud-test.conllu
+uzb,47,5,4.6,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,48,7,5.714285714285714,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,49,9,5.888888888888889,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,50,5,6.4,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,51,6,5.5,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,52,8,4.5,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,53,12,5.5,12,1,TueCL uz_tuecl-ud-test.conllu
+uzb,54,2,6.0,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,55,3,5.0,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,56,4,5.75,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,57,4,6.75,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,58,5,6.4,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,59,4,8.75,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,60,6,4.666666666666667,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,61,5,4.8,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,62,8,7.125,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,63,7,6.714285714285714,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,64,8,5.5,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,65,5,5.6,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,66,6,6.666666666666667,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,67,3,5.333333333333333,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,68,3,6.333333333333333,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,69,2,5.5,6,0,TueCL uz_tuecl-ud-test.conllu
+uzb,70,2,7.0,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,71,3,4.666666666666667,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,72,3,5.666666666666667,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,73,4,3.5,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,74,3,4.0,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,75,3,4.0,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,76,3,4.0,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,77,3,9.0,14,2,TueCL uz_tuecl-ud-test.conllu
+uzb,78,5,6.6,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,79,5,6.6,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,80,5,6.6,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,81,5,6.6,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,82,5,6.6,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,83,5,4.4,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,84,5,5.0,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,85,5,6.2,13,1,TueCL uz_tuecl-ud-test.conllu
+uzb,86,3,4.666666666666667,8,0,TueCL uz_tuecl-ud-test.conllu
+uzb,87,5,6.2,11,1,TueCL uz_tuecl-ud-test.conllu
+uzb,88,2,8.5,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,89,2,4.5,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,90,2,3.0,5,0,TueCL uz_tuecl-ud-test.conllu
+uzb,91,11,3.909090909090909,10,0,TueCL uz_tuecl-ud-test.conllu
+uzb,92,7,3.5714285714285716,7,0,TueCL uz_tuecl-ud-test.conllu
+uzb,93,11,5.2727272727272725,9,0,TueCL uz_tuecl-ud-test.conllu
+uzb,94,6,6.333333333333333,12,1,TueCL uz_tuecl-ud-test.conllu
+uzb,95,8,7.625,13,2,TueCL uz_tuecl-ud-test.conllu
+uzb,96,6,6.0,14,1,TueCL uz_tuecl-ud-test.conllu
+uzb,97,9,5.777777777777778,11,1,TueCL uz_tuecl-ud-test.conllu
+eng,cairo-1,8,3.75,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-2,6,3.5,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-3.1,8,4.0,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-3.2,8,4.0,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-4.1,5,2.6,4,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-4.2,5,2.6,4,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-5,4,4.0,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-6.1,7,3.857142857142857,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-6.2,7,3.857142857142857,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-7,7,4.571428571428571,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-8,6,3.6666666666666665,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-9,8,4.375,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-10,8,3.375,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-11,9,4.888888888888889,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-12.1,7,3.4285714285714284,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-12.2,7,3.4285714285714284,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-13.1,5,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-13.2,5,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-14.1,7,3.4285714285714284,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-14.2,7,3.4285714285714284,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-15.1,10,3.4,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-15.2,10,3.4,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-16,11,4.090909090909091,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-17.1,16,3.875,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-17.2,16,3.875,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-18,12,3.0833333333333335,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-19,10,4.7,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-20.1,9,3.7777777777777777,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-20.2,9,3.7777777777777777,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-1,22,4.090909090909091,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-2,19,3.6315789473684212,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-3,26,4.269230769230769,10,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-4,4,3.5,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-6,6,4.333333333333333,11,1,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-7,8,4.0,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-8,15,3.6,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-9,11,3.4545454545454546,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-10,9,3.4444444444444446,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-11,3,4.666666666666667,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-12,20,3.85,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-13,5,3.8,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-14,7,3.2857142857142856,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-15,8,4.625,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-16,12,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-17,10,3.3,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-18,13,3.076923076923077,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-19,14,3.642857142857143,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-20,8,5.25,12,1,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-21,9,4.111111111111111,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-22,7,4.142857142857143,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,1,2,5.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,2,5,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,3,6,4.666666666666667,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,4,9,4.111111111111111,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,5,5,4.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,6,5,5.8,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,7,8,3.875,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,8,7,4.857142857142857,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,9,7,5.0,11,1,TueCL # text[en] (deduplicated by sent_id)
+eng,10,3,5.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,11,12,4.0,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,12,5,4.6,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,13,4,3.75,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,14,4,3.75,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,16,5,4.4,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,17,4,3.25,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,18,4,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,19,4,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,20,5,4.2,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,21,3,4.333333333333333,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,22,3,4.333333333333333,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,23,4,4.75,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,24,14,3.5,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,25,14,4.0,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,26,11,4.090909090909091,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,27,6,4.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,28,5,3.4,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,29,6,3.8333333333333335,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,30,3,5.333333333333333,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,31,9,3.3333333333333335,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,32,11,3.727272727272727,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,34,4,6.75,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,35,9,3.7777777777777777,10,0,TueCL # text[en] (deduplicated by sent_id)
+eng,36,9,3.7777777777777777,10,0,TueCL # text[en] (deduplicated by sent_id)
+eng,37,9,3.7777777777777777,10,0,TueCL # text[en] (deduplicated by sent_id)
+eng,38,8,3.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,39,6,3.3333333333333335,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,40,6,3.3333333333333335,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,41,5,4.2,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,42,5,4.2,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,43,11,3.5454545454545454,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,44,7,4.285714285714286,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,45,12,4.25,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,46,8,6.0,11,1,TueCL # text[en] (deduplicated by sent_id)
+eng,47,9,4.888888888888889,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,48,14,4.928571428571429,12,1,TueCL # text[en] (deduplicated by sent_id)
+eng,49,19,4.473684210526316,12,1,TueCL # text[en] (deduplicated by sent_id)
+eng,50,9,3.4444444444444446,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,51,9,3.3333333333333335,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,52,10,3.7,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,53,16,3.625,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,54,1,9.0,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,55,1,9.0,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,56,8,4.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,57,5,4.6,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,58,6,4.5,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,59,8,4.75,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,60,10,3.5,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,61,10,3.5,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,62,22,3.3181818181818183,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,63,8,4.375,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,64,12,3.75,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,65,6,5.666666666666667,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,66,11,4.2727272727272725,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,67,4,4.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,68,4,4.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,69,4,3.25,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,70,4,3.25,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,71,4,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,72,5,3.4,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,73,5,3.2,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,74,6,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,75,6,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,76,6,3.5,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,77,6,5.166666666666667,13,1,TueCL # text[en] (deduplicated by sent_id)
+eng,78,10,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,79,10,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,80,10,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,81,10,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,82,10,3.8,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,83,7,3.142857142857143,4,0,TueCL # text[en] (deduplicated by sent_id)
+eng,84,7,3.857142857142857,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,85,9,3.2222222222222223,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,86,5,3.6,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,87,14,3.2142857142857144,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,88,5,3.8,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,89,5,3.8,4,0,TueCL # text[en] (deduplicated by sent_id)
+eng,90,7,2.2857142857142856,4,0,TueCL # text[en] (deduplicated by sent_id)
+eng,91,13,3.3846153846153846,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,93,23,3.347826086956522,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,94,11,4.636363636363637,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,95,7,5.285714285714286,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,96,6,4.5,10,0,TueCL # text[en] (deduplicated by sent_id)
+eng,97,10,5.5,13,1,TueCL # text[en] (deduplicated by sent_id)
+eng,15,4,3.75,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,33,11,3.727272727272727,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,92,8,3.25,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-2.1,6,3.5,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-7.1,7,4.714285714285714,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-9.1,8,4.375,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-16.1,11,4.090909090909091,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-20.3,10,3.6,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-20.4,10,3.6,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-5.1,19,3.9473684210526314,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-5.2,19,3.9473684210526314,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-13.1,13,2.8461538461538463,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,udtw23-16.1,19,3.3684210526315788,4,0,TueCL # text[en] (deduplicated by sent_id)
+eng,8.1,8,4.625,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,9.1,8,5.125,11,1,TueCL # text[en] (deduplicated by sent_id)
+eng,14.1,4,3.75,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,26.1,11,4.090909090909091,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,49.1,19,4.473684210526316,12,1,TueCL # text[en] (deduplicated by sent_id)
+eng,51.1,9,3.5555555555555554,6,0,TueCL # text[en] (deduplicated by sent_id)
+eng,56.1,8,4.0,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,65.1,8,5.125,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,66.1,11,4.2727272727272725,7,0,TueCL # text[en] (deduplicated by sent_id)
+eng,89.1,7,5.0,8,0,TueCL # text[en] (deduplicated by sent_id)
+eng,95.1,7,5.285714285714286,9,0,TueCL # text[en] (deduplicated by sent_id)
+eng,97.1,10,5.5,13,1,TueCL # text[en] (deduplicated by sent_id)
+eng,97.2,10,5.6,13,1,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-12.3,7,3.4285714285714284,5,0,TueCL # text[en] (deduplicated by sent_id)
+eng,cairo-12.4,7,3.4285714285714284,5,0,TueCL # text[en] (deduplicated by sent_id)

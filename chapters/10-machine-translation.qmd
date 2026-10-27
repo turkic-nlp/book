@@ -1,0 +1,328 @@
+---
+short-title: "Machine Translation"
+---
+
+# Machine Translation: Within and Beyond the Family {#sec-book-10-machine-translation}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Explain how morphology, constituent order and data availability affect translation into Turkic languages
+- Describe the Apertium rule-based MT architecture and distinguish released language pairs from measured translation quality
+- Characterise the TIL corpus and NLLB-200's coverage of Turkic languages, including data sizes and quality variation
+- Compare the signals and limitations of BLEU, chrF and COMET for morphologically rich targets
+- Describe intra-family translation strategies (pivot routing, multilingual NMT and zero-shot transfer) and reason about when each is appropriate
+- Choose and compare low-resource strategies (back-translation, NLLB-200 fine-tuning, transfer from Turkish) for a new or under-resourced Turkic language pair
+:::
+
+Machine translation brings together morphological generation, syntactic reordering, lexical choice and discourse interpretation. English→Turkish translation must interpret the English source and generate Turkish with appropriate inflection and constituent order. Translation between Turkic languages can exploit related vocabulary and constructions, but must still handle language-specific meanings, scripts and unequal resources.
+
+The chapter covers Apertium's rule-based pipeline (@sec-rbmt-apertium), multilingual neural models and evaluation (@sec-neural-mt), direct and pivot translation (@sec-intra-family), and low-resource adaptation (@sec-low-resource-mt). The hands-on provides a Kazakh→Kyrgyz fine-tuning recipe.
+
+
+## The Challenges of Turkic MT {#sec-mt-challenges}
+
+### Target-Side Morphological Richness
+
+Translation maps between different grammatical distinctions. English "she came" can be translated as Turkish *geldi*: the verb marks past tense and third-person singular agreement, while the subject's gender is not encoded. Related forms such as *gelmedi* "did not come", *gelmiş* (an indirect/evidential reading in context), *gelecek* "will come", and *geldiler* "they came" illustrate choices a translator must make. Features need not each have an independent overt suffix.
+
+Russian also has rich inflection. Translation must map between grammatical systems with different distinctions and forms. An incorrect case or agreement marker can change the meaning even when most characters match the reference.
+
+### SOV–SVO Reordering
+
+English has a relatively fixed SVO order, while Russian permits substantial reordering. Turkic languages commonly have SOV order, prenominal modifiers and postpositions, with variation across constructions and languages [@Johanson_2021, §§56.3–56.4]. English→Turkish translation may therefore require moving whole constituents.
+
+Relative clauses illustrate the reordering. English commonly places them after the noun, sometimes with an overt marker: *the book that I read yesterday*. Turkish places a participial clause before it: *dün okuduğum kitap*, literally "yesterday-read-my book". Translation must produce the correct participial form and make the clause modify the intended noun. Both deserve checking even when the output reads fluently.
+
+### Data Scarcity
+
+The TIL corpus [@mirzakhalov2021large] contains sharply unequal amounts of training data across pairs. The following table is generated from a frozen release README; its counts are training sentence pairs, not the aggregate language totals in the paper.
+
+{{< include ../tables/tbl-til-data/output.md >}}
+
+Karachay-Balkar, Khakas and Tuvan are included in this release. Nogai is outside its coverage; other parallel resources may still exist. Corpus size alone cannot define a universal threshold for usable MT: domain, duplication, alignment quality, pretraining and the evaluation criterion all matter. The TIL paper reports merging the original Tatoeba training, development and test portions during corpus construction [@mirzakhalov2021large, §3.1]. Audit overlap with any intended evaluation set before using the corpus for training.
+
+### Script Mismatch Within the Family
+
+Intra-family MT must identify the scripts actually present in each corpus. Uzbek occurs in both Latin and Cyrillic; Kazakh script reform does not imply that a corpus has already switched scripts. Uyghur also has more than one writing tradition (@sec-book-03-scripts-orthography). Compare native-script training with a documented conversion if useful, retain the original text, and audit lossy mappings. Translation does not require script conversion. Whether to convert is an experimental choice.
+
+## Rule-Based MT: Apertium {#sec-rbmt-apertium}
+
+### Architecture
+
+Apertium is an open-source rule-based machine translation platform originally designed for related language pairs [@forcada2011apertium; @khanna2021apertium]. Its pipeline for a Turkic source–target pair can be understood through five stages (the precise modules depend on the pair):
+
+1. **Morphological analysis**: the source-side text is processed by the source language's FST analyser (@sec-book-06-finite-state-morphology), producing candidate lemma and morphological-feature analyses for each recognised word.
+2. **Disambiguation and selection**: choose among competing source morphological readings in context; pair-specific lexical-selection modules may also select among translation candidates.
+3. **Lexical transfer**: the source lemma is mapped to the corresponding target lemma using a bilingual dictionary. Morphological features are passed through unchanged where they apply; category-specific transfer rules handle feature mismatches between languages.
+4. **Structural transfer**: chunk-level reordering rules handle systematic constituent order differences. For a Turkish–English system, relative-clause placement and verb order are examples of differences that transfer rules would need to address; coverage depends on the implemented pair.
+5. **Morphological generation**: the target lemma and morphological feature bundle are passed to the target language's FST generator, which produces a surface form licensed by the grammar.
+
+The generator restricts output to forms licensed by its transducer. Errors can still enter through an incomplete lexicon or grammar, a wrong source analysis or a mistaken target choice. Define how the system handles unknown words and failed generation.
+
+### Turkic Pairs in Apertium
+
+Apertium has released Turkic pairs as well as development repositories [@khanna2021apertium]. The wiki groups pairs by development stage; this is not a quality ranking:
+
+| Pair | Relationship | Wiki stage |
+|------|--------------|---------|
+| Kazakh ↔ Tatar | Both Kipchak | Trunk |
+| Crimean Tatar ↔ Turkish | Kipchak ↔ Oghuz | Trunk |
+| Kazakh ↔ Russian, English ↔ Kazakh | Cross-family | Trunk |
+| Kazakh ↔ Kyrgyz, Tatar ↔ Bashkir, Turkish → Azerbaijani, Turkish ↔ Kyrgyz, Turkish ↔ Tatar, Turkish ↔ Uzbek, Kazakh → Kumyk | Within the family | In development (nursery) |
+| Further pairs with Chuvash, Kyrgyz, Karakalpak, Sakha, Tuvan, Uyghur, Uzbek and others | — | Early development (incubator) |
+
+: Apertium MT pairs with a Turkic language, by the release stage in Apertium's [list of language pairs](https://wiki.apertium.org/wiki/List_of_language_pairs) (checked October 2026). The page was generated in April 2020, and its arrows describe planned directions. Check each repository's release and supported directions before installation; a trunk listing is no guarantee of current support in both directions. {#tbl-apertium-pairs}
+
+Shared vocabulary and morphology can reduce dictionary and transfer-rule work, while leaving ambiguity to resolve. Evaluate translation in the intended domain for both within-branch and cross-branch pairs; genealogy is no guarantee of quality.
+
+### Strengths and Limitations
+
+Apertium provides inspectable intermediate analyses and can be built without a sentence-aligned training corpus, though it requires dictionaries, rules and linguistic work. Errors may arise in analysis, disambiguation, lexical selection, transfer or generation. Trace the entire pipeline before deciding which component to repair.
+
+Missing lexical entries require unknown-word handling: depending on the pipeline, a word may be copied or marked rather than translated. Even a well-formed generated word can have the wrong meaning if the chosen analysis or target lemma is wrong. Domain-specific accuracy claims require a held-out comparison.
+
+Apertium output can also supply synthetic parallel data for a neural system; @sec-low-resource-mt discusses how to test its contribution.
+
+
+## Neural MT for Turkic Languages {#sec-neural-mt}
+
+### The TIL Corpus
+
+The Turkic Interlingua (TIL) corpus [@mirzakhalov2021large] is a broad parallel resource for the Turkic family. It covers 22 Turkic languages and more than 400 translation directions, with English and Russian included as hub languages (@tbl-til-data). The corpus was assembled from publicly available parallel data and cleaned and deduplicated for each language pair.
+
+The TIL release includes the **X-WMT evaluation sets**: human-post-edited test sets of at least 300 sentences for 88 translation directions among eight Turkic languages (Azerbaijani, Bashkir, Karakalpak, Kazakh, Kyrgyz, Sakha, Turkish and Uzbek) plus English and Russian. X-WMT supports comparison on common sentence content. The corpus paper reports bilingual baselines [@mirzakhalov2021large]; the separate multilingual study evaluates multiway systems [@mirzakhalov-etal-2021-evaluating]. Do not attribute the multilingual experiment to the corpus paper or treat every release split as independent of every training collection.
+
+### NLLB-200
+
+Meta's No Language Left Behind (NLLB-200) model [@costa2022nllb] is a multilingual sequence-to-sequence model covering 200 languages and built with both human-translated and automatically constructed parallel data. It covers eleven Turkic language/script varieties, including separate North and South Azerbaijani entries. FLORES-200 codes combine an ISO 639-3 code with a script subtag:
+
+| Language | NLLB code | Language | NLLB code |
+|----------|-----------|----------|-----------|
+| Turkish | `tur_Latn` | Kyrgyz | `kir_Cyrl` |
+| North Azerbaijani | `azj_Latn` | Tatar | `tat_Cyrl` |
+| South Azerbaijani | `azb_Arab` | Bashkir | `bak_Cyrl` |
+| Northern Uzbek | `uzn_Latn` | Crimean Tatar | `crh_Latn` |
+| Kazakh | `kaz_Cyrl` | Turkmen | `tuk_Latn` |
+| Uyghur | `uig_Arab` | | |
+
+: Turkic varieties in NLLB-200 and their language/script codes. Note `uzn_Latn` and `azj_Latn`, not `uzb_Latn` or `aze_Latn`. {#tbl-nllb-codes}
+
+NLLB's language list excludes Karakalpak, Gagauz, Chuvash and Sakha. For Karakalpak, @mamasaidov-shopulatov-2024-open created a FLORES+ devtest translation and 100,000-pair parallel corpora with Uzbek, Russian and English for the WMT 2024 Open Language Data Initiative, then fine-tuned NLLB-200.
+
+For supported varieties, specify the full language code, including its script subtag. The target-language token controls what the model generates: a wrong valid code requests a different language, while an unsupported code can fail during tokenisation or generation. Test quality for each direction and domain. TurkicNLP's `translate` and `embeddings` processors wrap the distilled 600M-parameter model [@hakimov2025turkicnlp], whose [model card](https://huggingface.co/facebook/nllb-200-distilled-600M) specifies a CC BY-NC 4.0 licence.
+
+### Evaluation Metrics
+
+Use complementary metrics, state their configurations and inspect linguistic errors. **BLEU** [@papineni2002bleu] measures word n-gram overlap with references and is sensitive to tokenisation and alternative word forms. A correct paraphrase can receive less credit, but a wrong case or tense can also change meaning: it should not automatically be excused as a morphological variant.
+
+**chrF** [@popovic2015chrf] measures character n-gram overlap. It gives partial credit to shared stems and suffixes, but can also reward a fluent or closely spelled mistranslation. **chrF++** [@popovic2017chrfpp] adds word n-grams; the tutorial uses `CHRF(word_order=2)`. Its score is not numerically comparable with BLEU even though both are conventionally reported on a 0–100 scale.
+
+**COMET** [@rei2020comet] is a learned metric; reference-based checkpoints use the source, hypothesis and reference. Reliability depends on the checkpoint, training distribution, language and domain. That a language is covered by the encoder tells us nothing about how well the metric correlates with human judgements in it. Record the exact checkpoint and validate it against human judgements when using it to support quality claims.
+
+| Metric | Signal | Limitation to inspect |
+|--------|--------|-----------------------|
+| BLEU | Word n-gram overlap | Tokenisation and legitimate alternative wording |
+| chrF / chrF++ | Character overlap / character plus word overlap | High overlap despite wrong inflection or meaning |
+| COMET | Learned quality estimate | Language/domain shift and checkpoint-specific behaviour |
+
+: Complementary MT evaluation signals; no universal language-specific correlation ranking is assumed. {#tbl-mt-metrics}
+
+Report corpus BLEU and chrF++ with [SacreBLEU signatures](https://github.com/mjpost/sacrebleu) [@post2018sacrebleu], the test-set revision and sentence count, and human error analysis where possible. Compare systems using the same metric and references.
+
+### Measured greedy translation baseline
+
+The October suite runs the pinned **NLLB-200 distilled 600M** checkpoint in both Turkish–Kazakh directions on all 1,012 original FLORES-200 devtest rows [@costa2022nllb]. Source and target language tokens are explicit. Decoding is greedy (one beam, no sampling), with a 256-token generation ceiling and no source truncation. This fixed pretrained baseline does not reproduce the published NLLB beam-search configuration.
+
+{{< include ../tables/tbl-nllb-pretrained-probe/output.md >}}
+
+Corpus BLEU uses SacreBLEU's `13a` tokeniser. chrF uses character order six and $\beta=2$; chrF++ additionally uses word order two. The suite saves exact SacreBLEU signatures, every translation, input/model hashes and end-of-sequence audits. **One output in each direction reaches the generation ceiling without a terminating EOS token; none is empty.** Those outputs remain in the corpus scores and are not silently excluded. These automatic scores do not substitute for a human adequacy and morphology review. There is no fine-tuning or independent pretraining-overlap audit.
+
+### ISSAI Tilmash
+
+The [ISSAI Tilmash model card](https://huggingface.co/issai/tilmash) describes a system fine-tuned from NLLB-200 (distilled 1.3B) for Kazakh, Russian, English and Turkish, using Kazakh-centred parallel data including KazParC [@yeshpanov2024kazparc]. The model is gated: access requires agreeing to share contact information. The page lists FLORES in its dataset metadata and reports FLORES test scores, but does not identify the training split there. This leaves overlap unresolved; verify the training records before treating those scores as an independent comparison with NLLB. The existence of a release is not a benchmark result for every direction.
+
+### General-Purpose LLMs as Translators
+
+General-purpose LLMs can also be tested as translators. Evaluate the intended language and domain, and check whether the output is in the requested language. Unrestricted language-ID predictions (@sec-lid) can flag possible mistakes, but need manual checking. A classifier restricted to Turkic labels cannot reject an English answer. Higher token fertility increases token usage for a fixed text; runtime and cost also depend on the model and output length (@sec-subword-tok).
+
+TurkicNLP puts both kinds of system behind the same `translate` processor: NLLB-200 for the varieties above, and an LLM backend that accepts all 24 toolkit language labels. A label that the model accepts may still produce poor translations. The following example compares outputs and language-ID predictions:
+
+```python
+import turkicnlp
+
+lid = turkicnlp.LanguageDetection()
+text = "Алматы — Қазақстанның ең ірі қаласы."
+
+nllb = turkicnlp.Pipeline("kaz", processors=["translate"], translate_tgt_lang="kir")
+llm = turkicnlp.Pipeline("kaz", processors=["tokenize", "translate"], translate_backend="llm",
+                         translate_tgt_lang="kir",
+                         llm_model="qwen2.5:7b", llm_base_url="http://localhost:11434/v1",
+                         llm_api_key="ollama")
+for name, nlp in [("NLLB", nllb), ("LLM", llm)]:
+    out = nlp(text).translation
+    print(name, out, lid.model.predict(out.replace("\n", " "), k=3))  # unrestricted labels
+    # Expected language is kir_Cyrl; these scores are diagnostics, not proof of correctness.
+```
+
+`translate_tgt_lang` accepts an ISO 639-3 code (`kir`), a FLORES-200 code (`kir_Cyrl`), or, for the LLM backend, a language name; with `translate_tgt_script` the LLM backend can also be asked for a specific script (e.g. Uzbek in Cyrillic).
+
+
+## Intra-Family Translation {#sec-intra-family}
+
+### Closely Related Pairs
+
+Related languages share vocabulary and constructions that a model may exploit. Whether this improves translation over an equally resourced cross-family pair is a controlled empirical question. False cognates, different loanwords, language-specific auxiliary constructions and suffix allomorphy can still prevent correct copying or transfer.
+
+An exploratory all-pairs comparison is available in the recorded Exercise 6. NLLB-200 600M with greedy decoding was applied to the first 15 X-WMT sentences per direction for six languages. chrF ranges from 31.3 (Turkish→Bashkir) to 56.6 (Bashkir→Kyrgyz). The mean is 44.3 for eight same-branch, same-script directions, 43.5 for four cross-branch, same-script directions, and 40.3 for eighteen cross-branch, cross-script directions. There are no same-branch, cross-script directions in this sample. Directions also use different sentence content. The groups are small and unbalanced. They cannot isolate script or genealogical effects, let alone rank language pairs.
+
+### Pivot Strategies
+
+When direct parallel data is limited, **pivot translation** routes the translation through an intermediate language. How limited depends on the pair: the TIL release has 12,216 Kazakh–Kyrgyz training pairs but 119,946 Uzbek–Kyrgyz ones, and NLLB-200 was trained on its own collection. Two possible routes for Uzbek→Kyrgyz are illustrated below.
+
+**Turkish pivot:** Uzbek→Turkish→Kyrgyz. A larger English–Turkish corpus is no evidence that both legs of this route beat direct Uzbek→Kyrgyz translation. Inspect pair-specific data and compare outputs on the same held-out sentences.
+
+**Russian pivot:** Uzbek→Russian→Kyrgyz provides another route. Shared terminology may help in some domains, but each decoding step can introduce errors. Exercise 4 compares both pivots with direct NLLB-200 translation on the same 50 X-WMT Uzbek–Kyrgyz sentences. Direct translation scores chrF++ 41.2, the Russian pivot 40.3 and the Turkish pivot 36.5. The Turkish route takes about twice as long in that run. In one sentence, its first leg enters a repetition loop and the second translates the repetitions. Record such error propagation alongside scores and latency, using fixed decoding settings.
+
+### Multilingual NMT
+
+A multilingual model shares parameters across directions and uses language tags to specify the requested output. The multiway TIL study evaluates this approach [@mirzakhalov-etal-2021-evaluating]. Results depend on the directions, sampling strategy, model capacity and domains; parameter sharing does not guarantee an improvement for every pair.
+
+A useful experiment compares bilingual and multilingual systems with matched architectures, evaluation data and reported training budgets. Target-language tags must follow the model's own convention: an illustrative `<2kaz>` prefix is not interchangeable with NLLB's `kaz_Cyrl` token.
+
+### Zero-Shot Intra-Family Transfer
+
+Zero-shot translation means evaluating a direction without its task-specific parallel training data. A multilingual model that represents both languages is a different starting point from a Turkish–Kazakh-only model fed Azerbaijani input. Related vocabulary may permit some transfer, but neither genealogy nor transliteration guarantees it. Compare native-script and converted input on the same held-out set, and check output language as well as adequacy.
+
+## Low-Resource Neural MT Strategies {#sec-low-resource-mt}
+
+### Back-Translation
+
+Back-translation is a widely used data augmentation strategy for low-resource MT [@sennrich2016backtranslation]. Given a monolingual corpus in the target language (e.g., Kyrgyz news articles), an existing MT system translates this corpus in the reverse direction (Kyrgyz→Turkish) to produce synthetic source sentences. The resulting synthetic parallel corpus (synthetic Turkish, real Kyrgyz) is then combined with real parallel data to train the final system.
+
+Back-translation depends on the backward system's output. A Kyrgyz→Turkish Apertium system or small TIL baseline may generate noisy synthetic source sentences; test whether adding them helps. Source-side perplexity can flag some disfluency but can miss fluent mistranslations. Also inspect a sample for language, alignment, duplication and adequacy.
+
+For Uyghur and other very low-resource Turkic languages, back-translation from a monolingual corpus offers a way to bootstrap: a reverse-direction system, where one exists, can generate candidate training pairs whose usefulness must be evaluated.
+
+### Fine-Tuning NLLB-200
+
+NLLB-200 [@costa2022nllb] provides a pretrained starting point for the varieties in @tbl-nllb-codes. Compare fine-tuning on a language pair or domain with the unadapted model and a bilingual system trained from scratch. Adaptation may improve the target task, but can also overfit or reduce performance elsewhere.
+
+The tutorial uses `facebook/nllb-200-distilled-600M`. Memory requirements depend on sequence length, batch size, optimiser and precision; a single GPU is not guaranteed to suffice. The [model card](https://huggingface.co/facebook/nllb-200-distilled-600M) describes research use and a CC BY-NC 4.0 licence. Check suitability and licence terms before deployment; a large model is not automatically ready for production.
+
+### Transfer Learning from Turkish
+
+Turkish-trained weights are one possible initialisation for an under-resourced language. Their value relative to a multilingual checkpoint must be tested. Kyrgyz and Tatar already have NLLB language codes, so they are not examples of missing NLLB coverage.
+
+Adapting NLLB to a language outside its inventory requires training data and a policy for language tokens and vocabulary. For Karakalpak, @mamasaidov-shopulatov-2024-open trained a SentencePiece model, added 13,195 tokens to the distilled 600M model and initialised them from their subword embeddings. They used 100,000 sentence pairs each with Uzbek, Russian and English. Their baselines assigned Karakalpak the Kazakh or Uzbek code; that code substitution alone leaves the model without language-specific adaptation.
+
+### Synthetic Data from Apertium
+
+For a supported translation direction, an Apertium system can generate synthetic parallel sentences from monolingual data (@sec-rbmt-apertium). A neural system can then train on a mixture of these sentence pairs and genuine parallel data. Evaluate whether the synthetic pairs help on held-out data from the intended domain.
+
+
+## Hands-On: A Fine-Tuning Procedure for Kazakh–Kyrgyz Translation with NLLB-200 {#sec-ch10-hands-on}
+
+**Question.** Does adaptation improve Kazakh–Kyrgyz translation over the original checkpoint?
+
+**Inputs.** Prepared disjoint parallel splits and the pinned NLLB checkpoint.
+
+**Compute.** Model downloads and fine-tuning resources; record the actual hardware and elapsed time.
+
+**Output.** Baseline and adapted predictions, BLEU/chrF++ signatures and split manifests.
+
+**Interpretation.** Compare both systems on the same reserved sentences and inspect incomplete outputs.
+
+The executable tutorial is `code/ch10-mt/train.py`, with its input contract in `code/ch10-mt/README.md`. It adapts `facebook/nllb-200-distilled-600M` from Kazakh (`kaz_Cyrl`) to Kyrgyz (`kir_Cyrl`). The code mechanics have been checked with a tiny random model. The book reports no fine-tuned score; the Turkish–Kazakh greedy scores above illustrate baseline reporting but are not a Kazakh–Kyrgyz baseline. The runner evaluates the unadapted model on the prepared Kazakh–Kyrgyz data under the same four-beam decoding policy as the adapted model.
+
+### Prepare independent splits
+
+Prepare `train.tsv`, `validation.tsv` and `test.tsv`, each with the header `document_id`, `src`, `tgt` (tab-separated). Keep original source-document groups together across all corpora and synthetic translations. Use validation for checkpoint selection and reserve the test set for the final fixed comparison. The loader rejects malformed or empty records, duplicate pairs, and cross-split document or normalised source/target text overlap. Unknown source-document provenance is a limitation to resolve, not a reason to invent independent IDs.
+
+The TIL release lists 12,216 Kazakh–Kyrgyz training pairs (@tbl-til-data); an arbitrary tail of that file is not necessarily an independent validation set. Record upstream corpus revisions, licences, grouping and split rules alongside the prepared files. The runner saves their hashes and actual sizes.
+
+### Set and verify both language tokens
+
+The runner uses the explicit `NllbTokenizer` class and pins the model and tokeniser revision. This matters because an automatic tokeniser loader may not preserve language-specific behaviour across library versions. The source encoding must begin with the Kazakh token and target labels with the Kyrgyz token; both must terminate in EOS.
+
+```python
+from transformers import NllbTokenizer
+
+MODEL_NAME = "facebook/nllb-200-distilled-600M"
+REVISION = "f8d333a098d19b4fd9a8b18f94170487ad3f821d"
+tokenizer = NllbTokenizer.from_pretrained(
+    MODEL_NAME, revision=REVISION,
+    src_lang="kaz_Cyrl", tgt_lang="kir_Cyrl", legacy_behaviour=False,
+)
+source_ids = tokenizer("Алматы")["input_ids"]
+target_ids = tokenizer(text_target="Бишкек")["input_ids"]
+assert source_ids[0] == tokenizer.convert_tokens_to_ids("kaz_Cyrl")
+assert target_ids[0] == tokenizer.convert_tokens_to_ids("kir_Cyrl")
+assert source_ids[-1] == target_ids[-1] == tokenizer.eos_token_id
+```
+
+All training and evaluation sentences are encoded without truncation. Examples above the declared token budgets stop the run so that segmentation and reconstruction can be addressed explicitly. Dynamic padding masks target padding with `-100` for the loss.
+
+### Use the same decoding policy throughout
+
+The target token must be set **before development evaluation**, not only during later interactive inference. The runner applies this configuration to both the original and adapted model:
+
+```python
+model.generation_config.forced_bos_token_id = tokenizer.convert_tokens_to_ids("kir_Cyrl")
+model.generation_config.max_length = 256
+model.generation_config.max_new_tokens = None
+model.generation_config.num_beams = 4
+model.generation_config.do_sample = False
+```
+
+The corresponding `Seq2SeqTrainingArguments` use `predict_with_generate=True`, `generation_max_length=256` and `generation_num_beams=4`. They were chosen for the tutorial and have not been tuned. The model is selected by validation **chrF++** (`metric_for_best_model="chrfpp"`), with epoch evaluation and checkpoint saving. Batch size and precision must be chosen for the available hardware.
+
+### Score original references and retain outputs
+
+The metric callback decodes generated token IDs but compares them with the **original reference strings**, avoiding changes caused by decoding tokenised labels. It checks equal sentence counts and reports corpus BLEU (`tokenize="13a"`) and chrF++ (`word_order=2`). The 13a tokeniser gives a reproducible baseline; it knows nothing about Turkic morphology.
+
+Run from the book root in an environment with the versions listed in the companion README:
+
+```bash
+python code/ch10-mt/train.py path/to/prepared-splits --output nllb-kaz-kir
+```
+
+The script first measures the original model's development performance. It then trains, restores and saves the checkpoint with the best development score. Once training choices are fixed, it evaluates both checkpoints on the same test data with identical decoding.
+
+Saved outputs include predictions, SacreBLEU signatures, versions, language-token IDs, split hashes and counts of outputs that reach the generation limit. Inspect those outputs for incomplete translations. Report development and test BLEU and chrF++ for both models, hardware, wall time and a paired analysis of their errors. The adapted model may improve or worsen the baseline.
+
+
+**Status: procedure only.** The full adaptation run is not reported here. The exercise comparisons use their own declared model configurations.
+
+## What to Take Forward {#sec-ch10-synthesis .unnumbered}
+
+Translation experiments need supported language directions, documented parallel data and a reserved test set. Performance varies across the tested directions, but the small all-pairs comparison cannot attribute those differences to relatedness or script. In a separate comparison on 50 Uzbek–Kyrgyz sentences, direct translation outperforms both tested pivots (Exercise 4). Establish the pretrained direct baseline first, then test pivoting, back-translation or adaptation under the same decoding and scoring settings. @sec-book-11-speech-technologies extends the pipeline from written text to speech.
+
+
+## Further Reading {#sec-ch10-further-reading .unnumbered}
+
+The TIL corpus and bilingual baselines are described in @mirzakhalov2021large; multiway multilingual experiments are reported separately in @mirzakhalov-etal-2021-evaluating. @costa2022nllb describes the NLLB-200 model architecture, training data, and evaluation methodology; its supplementary materials include coverage statistics for all 200 languages, including the eleven Turkic varieties.
+
+For Apertium's rule-based approach, @forcada2011apertium provides the architectural overview, while @khanna2021apertium documents Apertium as of that publication. @washington2014finite describes the finite-state morphological transducers for three Kipchak languages (Kazakh, Tatar and Kumyk) on which Apertium's analysis and generation stages for these languages are built.
+
+MT evaluation metrics are introduced in the "Machine Translation" chapter of @jurafsky2024slp. @sennrich2016backtranslation describes back-translation for neural MT. For using NLLB-200 inside a Turkic pipeline (translation and sentence embeddings for the covered Turkic varieties), see @hakimov2025turkicnlp.
+
+
+## Exercises {#sec-ch10-exercises .unnumbered}
+
+1. **Data scarcity analysis.** Using @tbl-til-data as a reference, compute the ratio between English–Turkish and English–Uyghur sentence pair counts. Choose two differently resourced pairs and design a learning-curve experiment. Specify domain, metric and acceptance criteria; do not assume a universal sentence-count threshold.
+
+2. **Metric comparison.** Take 20 English sentences and translate them into Turkish using `facebook/nllb-200-distilled-600M`, with two decoding settings (for example greedy and beam search) as competing systems. Use references written or checked by a competent speaker, such as the human-post-edited X-WMT test sets. Compute corpus BLEU and chrF++, retaining metric signatures. For sentence-level diagnostics, state the BLEU smoothing and effective-order settings. Inspect examples where the two metrics rank competing outputs differently; their raw score magnitudes are not directly comparable. Distinguish legitimate variants from meaning-changing suffix errors.
+
+3. **Apertium pipeline trace.** Install Apertium and the Kazakh–Tatar language pair (or, without an Apertium installation, run its stages by hand with the Kazakh analyser, the pair's bilingual dictionary and the Tatar generator). Translate the Kazakh sentence *Бүгін ауа райы өте жақсы.* ("The weather is very nice today.") and trace each stage of the pipeline: morphological analysis output, lexical transfer output, structural transfer output, and morphological generation output. What does the trace reveal about how each stage handles this sentence?
+
+4. **Pivot translation comparison.** For the language pair Uzbek→Kyrgyz, implement two translation strategies using NLLB-200: (a) direct translation with codes `uzn_Latn → kir_Cyrl`; (b) pivot through Turkish (`uzn_Latn → tur_Latn`, then `tur_Latn → kir_Cyrl`). With TurkicNLP, (a) is `Pipeline("uzb", processors=["translate"], translate_tgt_lang="kir")` and (b) chains a `uzb→tur` and a `tur→kir` pipeline. Translate the same 50 held-out sentences (for example from the X-WMT Uzbek–Kyrgyz test set) under matched decoding settings; evaluate each strategy with chrF++, record added latency and inspect error propagation. Which approach scores higher on this sample? Use paired examples to investigate possible causes rather than treating the score difference as an explanation.
+
+5. **Back-translation experiment.** Configure a separate Kyrgyz→Kazakh NLLB model (`src_lang="kir_Cyrl"`, `tgt_lang="kaz_Cyrl"`, forced target token `kaz_Cyrl`) to back-translate a small training-only monolingual Kyrgyz corpus (1,000 sentences from Wikipedia or news, disjoint from development/test source documents) into Kazakh, producing synthetic Kazakh. Combine this synthetic data with the available real training pairs and retrain the model. Tune the synthetic-data amount on validation, then compare fixed systems on the same untouched test set. Does adding back-translated data improve chrF++? How sensitive is the gain to the size of the back-translated corpus?
+
+6. **An intra-Turkic quality matrix.** Load the FLORES-200 devtest sentences for the eleven NLLB Turkic varieties (@tbl-nllb-codes), or the X-WMT test sets for the six languages that X-WMT and NLLB share. Align by documented sentence IDs or verify correspondence from the release; do not assume that independently filtered files remain row-aligned. For an exploratory subset, select and record the sentence IDs (for example 200) and translate between distinct-language pairs with `facebook/nllb-200-distilled-600M` (one TurkicNLP `translate` pipeline per source language, with `translate_tgt_lang` set to each target) and compute chrF against the references. Plot the matrix as a heatmap. Label the matrix as a subset experiment, exclude identity directions, and tune choices only on development data. Do within-branch pairs score higher than cross-branch pairs? Do same-script pairs score higher than cross-script pairs with similar genealogical distance?
+
+7. **Beyond NLLB's languages.** NLLB-200 does not cover Nogai, Kumyk or Sakha, but TurkicNLP's LLM backend accepts all 24 toolkit language labels. Take 20 Nogai (or Sakha) sentences with reference translations into Russian, written or checked by a native speaker. Translate them with `Pipeline("nog", processors=["tokenize", "translate"], translate_backend="llm", translate_tgt_lang="rus", ...)` using two models of different sizes, and compute chrF against the references. Then reverse the task with a short prompt to the same models (Russian → Nogai) and use the unrestricted `lid.model.predict(...)` method of `turkicnlp.LanguageDetection()` on the outputs. How often does it assign another language label (@sec-lid)? Have a competent speaker check those cases: an LID label is not a verified language annotation.

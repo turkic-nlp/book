@@ -1,0 +1,45 @@
+{
+  "dataset": "facebook/belebele",
+  "revision": "7899cdfa4e1e0d733fd77c848e2c273cb1d32be2",
+  "license": "CC-BY-SA-4.0",
+  "license_url": "https://raw.githubusercontent.com/facebookresearch/belebele/918890beb2290a8d3ef2d7a90369925959e1bacf/LICENSE_CC-BY-SA4.0",
+  "license_sha256": "1a6412be305196953f3217ce64b4a11c502107efd0910bde13f5c654e740e86d",
+  "files": [
+    {
+      "code": "azj_Latn",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/azj_Latn.jsonl",
+      "sha256": "b5a02d1ab513c7aa59866621a5db9a28640de113879e0e0b0ff0f5b9a11807ac"
+    },
+    {
+      "code": "eng_Latn",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/eng_Latn.jsonl",
+      "sha256": "15af884c2b5994fdc71199e79d553a1864b08ce1b31894aa87f6be925a064a31"
+    },
+    {
+      "code": "kaz_Cyrl",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/kaz_Cyrl.jsonl",
+      "sha256": "3baa165870f64091b0eb9181da3671b36ed4b4262ad0533df76a2b881a931ec9"
+    },
+    {
+      "code": "kir_Cyrl",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/kir_Cyrl.jsonl",
+      "sha256": "88712edc7f96b97c52dbe4960269de129a33a7efacc9532e94580c8916d6aa49"
+    },
+    {
+      "code": "rus_Cyrl",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/rus_Cyrl.jsonl",
+      "sha256": "e8b81853605b97e993af07a34ad2c0a48ccd8dab80956b0650a161e8fea00de5"
+    },
+    {
+      "code": "tur_Latn",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/tur_Latn.jsonl",
+      "sha256": "0a592307498d7999eb7be60b7ac3a037545b6ce400f85c61bdb1b88b790e4567"
+    },
+    {
+      "code": "uzn_Latn",
+      "url": "https://huggingface.co/datasets/facebook/belebele/resolve/7899cdfa4e1e0d733fd77c848e2c273cb1d32be2/data/uzn_Latn.jsonl",
+      "sha256": "4dfc231dbda70767f5e2e7b033cd0fe7ed23e9b9694d560cc1ce248206519202"
+    }
+  ],
+  "unavailable_requested_config": "uig_Arab (404; not included)"
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-26",
+  "python": "3.11.17",
+  "hfst": "3.16.0.1",
+  "script_sha256": "ba55675d7f548c7222af9b0177d984fef44a5311773d5fc590d0b2029e7a8e0a",
+  "source_status": "Official UD 2.17 test files (UD_Turkish-TueCL, UD_Kazakh-KTB; CC BY-SA 4.0); paths are recorded only by file name",
+  "denominator": "integer-ID words excluding PUNCT, NUM, SYM; includes unknowns",
+  "normalization": "NFC; original first; Turkish-aware or ordinary lowercase only when original has no reading",
+  "simple_subset": "excludes every reading containing +",
+  "sources": [
+    {
+      "language": "tur",
+      "corpus": "tr_tuecl-ud-test.conllu",
+      "corpus_sha256": "2508f47e57b9b6a1d7241d0ab4a918d84c5cbb0455bbd961ac5231e31a1d311e",
+      "model": "tur.automorf.hfst",
+      "model_sha256": "5364ebee4a4be151b173440eb1d7f253b35f693eabf8e2d8a65f7aec4607f219"
+    },
+    {
+      "language": "kaz",
+      "corpus": "kk_ktb-ud-test.conllu",
+      "corpus_sha256": "1100846ee50c2f970562a21dca8415a381c470ea06bdb8496ae213d59c3a3c4e",
+      "model": "kaz.automorf.hfst",
+      "model_sha256": "902af879f5884111817e0bf96abf3ef911b1e7cb0522cb3031636334477c3a18"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+iso,language,branch,native_script,dice_native,dice_cts,source
+aze,Azerbaijani,Oghuz,Latn,0.462,0.462,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+tuk,Turkmen,Oghuz,Latn,0.330,0.427,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+gag,Gagauz,Oghuz,Latn,0.773,0.773,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+kaz,Kazakh,Kipchak,Cyrl,0.000,0.275,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+kir,Kyrgyz,Kipchak,Cyrl,0.000,0.354,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+tat,Tatar,Kipchak,Cyrl,0.000,0.211,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+bak,Bashkir,Kipchak,Cyrl,0.000,0.166,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+crh,Crimean Tatar,Kipchak,Latn,0.541,0.541,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+kaa,Karakalpak,Kipchak,Latn,0.330,0.339,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+nog,Nogai,Kipchak,Cyrl,0.000,0.352,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+kum,Kumyk,Kipchak,Cyrl,0.000,0.424,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+krc,Karachay-Balkar,Kipchak,Cyrl,0.000,0.316,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+uzb,Uzbek,Karluk,Latn,0.268,0.273,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+uig,Uyghur,Karluk,Arab,0.000,0.233,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+sah,Sakha,Siberian,Cyrl,0.000,0.192,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+alt,Altai,Siberian,Cyrl,0.000,0.308,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+tyv,Tuvan,Siberian,Cyrl,0.000,0.250,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+kjh,Khakas,Siberian,Cyrl,0.000,0.247,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp
+chv,Chuvash,Oghur,Cyrl,0.000,0.131,TurkicNLP paper results file cts_tokenizers.json (dice_with_turkish); hakimov2025turkicnlp

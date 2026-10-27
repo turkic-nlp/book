@@ -1,0 +1,36 @@
+letters,codepoints,scope,source
+Aa,U+0041 / U+0061,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ää,U+00C4 / U+00E4,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Bb,U+0042 / U+0062,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Cc,U+0043 / U+0063,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Çç,U+00C7 / U+00E7,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Dd,U+0044 / U+0064,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ee,U+0045 / U+0065,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ff,U+0046 / U+0066,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Gg,U+0047 / U+0067,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ğğ,U+011E / U+011F,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Hh,U+0048 / U+0068,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Xx,U+0058 / U+0078,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Iı,U+0049 / U+0131,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+İi,U+0130 / U+0069,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Jj,U+004A / U+006A,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Kk,U+004B / U+006B,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Qq,U+0051 / U+0071,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ll,U+004C / U+006C,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Mm,U+004D / U+006D,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Nn,U+004E / U+006E,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ññ,U+00D1 / U+00F1,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Oo,U+004F / U+006F,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Öö,U+00D6 / U+00F6,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Pp,U+0050 / U+0070,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Rr,U+0052 / U+0072,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ss,U+0053 / U+0073,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Şş,U+015E / U+015F,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Tt,U+0054 / U+0074,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Uu,U+0055 / U+0075,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Üü,U+00DC / U+00FC,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Vv,U+0056 / U+0076,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Ww,U+0057 / U+0077,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Yy,U+0059 / U+0079,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Zz,U+005A / U+007A,base,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2
+Éé,U+00C9 / U+00E9,Uyghur extension,turkicnlp/scripts/transliterator.py; SHA256 f804845db36066ebef645ec799aa4311c4d935731ea96f200e4f3e7347d580d2

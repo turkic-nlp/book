@@ -1,0 +1,4 @@
+system,correct,n,accuracy,source
+Qwen2.5-1.5B-Instruct,226,797,0.2835633626097867,experiments/empirical-2026-10/run_tumlu.py; pinned TUMLU-mini Kazakh valid subset
+Development-majority letter D,304,797,0.38143036386449186,experiments/empirical-2026-10/run_tumlu.py; letter selected from 40 dev questions
+Uniform choice (expectation),,797,0.25,Analytic expectation: four choices per valid question

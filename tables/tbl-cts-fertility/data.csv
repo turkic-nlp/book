@@ -1,0 +1,21 @@
+language,iso,native_script,qwen_native,qwen_cts,llama_native,llama_cts,olmo_native,olmo_cts,openai_native,openai_cts,source
+Turkish,tur,Latn,1.95,1.95,2.03,2.03,2.33,2.33,1.95,1.95,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Azerbaijani,aze,Latn,2.56,2.62,3.05,2.86,3.25,3.08,2.42,2.48,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Turkmen,tuk,Latn,2.21,2.11,2.35,2.29,2.50,2.50,2.16,2.18,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Gagauz,gag,Latn,2.03,2.03,2.12,2.12,2.34,2.34,2.03,2.03,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Kazakh,kaz,Cyrl,2.86,2.28,3.51,2.32,4.05,2.55,2.37,2.29,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Kyrgyz,kir,Cyrl,2.84,2.16,3.48,2.31,3.80,2.59,2.52,2.12,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Tatar,tat,Cyrl,3.13,2.37,4.13,2.59,4.46,2.71,2.51,2.40,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Bashkir,bak,Cyrl,3.35,2.33,4.68,2.57,5.00,2.68,2.54,2.35,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Crimean Tatar,crh,Latn,1.98,1.98,2.03,2.03,2.30,2.30,1.98,1.98,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Karakalpak,kaa,Latn,2.08,2.08,2.21,2.12,2.38,2.36,2.08,2.08,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Nogai,nog,Cyrl,2.92,2.02,3.08,2.08,3.48,2.27,2.65,1.98,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Kumyk,kum,Cyrl,2.76,2.10,3.06,2.23,3.61,2.42,2.56,2.08,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Karachay-Balkar,krc,Cyrl,2.25,1.85,2.52,1.88,2.94,2.01,2.23,1.80,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Uzbek,uzb,Latn,2.12,2.30,2.18,2.38,2.18,2.41,2.11,2.28,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Uyghur,uig,Arab,4.51,2.26,5.62,2.38,6.85,2.64,3.38,2.26,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Sakha,sah,Cyrl,3.65,2.35,4.21,2.43,4.78,2.63,3.48,2.37,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Altai,alt,Cyrl,2.83,2.06,3.08,2.18,3.63,2.38,2.63,1.97,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Tuvan,tyv,Cyrl,2.67,2.11,3.09,2.18,3.59,2.23,2.44,2.02,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Khakas,kjh,Cyrl,2.79,2.13,3.16,2.16,3.94,2.37,2.67,2.10,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167
+Chuvash,chv,Cyrl,3.52,2.03,3.66,2.18,4.09,2.29,3.42,2.03,TurkicNLP paper results file cts_fertility.csv; SHA256 ad83af4643a20df7c0e7c57a634af082ee1c0d8ecd85ff37e9892c159cd81167

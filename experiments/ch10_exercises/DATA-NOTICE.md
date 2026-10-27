@@ -1,0 +1,3 @@
+# Data notice
+
+`nllb-translations.jsonl` stores the source sentences of the X-WMT test sets used in the Chapter 10 exercises, together with NLLB-200 outputs. X-WMT is part of the Turkic Interlingua (TIL) release, commit `7d988cc47dba889d02262d893bf9a46e43a6bb36` (<https://github.com/turkic-interlingua/til-mt>). It is distributed under the MIT License (dataset card: <https://huggingface.co/datasets/turkic-interlingua/turkic_xwmt>, checked 26 October 2026). The X-WMT sentences are reproduced under that licence; cite Mirzakhalov et al. (2021). The model outputs come from `facebook/nllb-200-distilled-600M` (CC BY-NC 4.0 model weights; the weights are not redistributed here).

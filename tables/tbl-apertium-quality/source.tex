@@ -1,0 +1,43 @@
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{4.5pt}
+  \begin{tabular}{@{}ll l  rrr  rrr@{}}
+    \toprule
+    & & & \multicolumn{3}{c}{\textbf{Apertium FST}} & \multicolumn{3}{c}{\textbf{Neural (Glot500)}} \\
+    \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+    \textbf{Language} & \textbf{ISO} & \textbf{Scr} &
+    \textbf{Det\%} & \textbf{Ana\%} & \textbf{Feat\%} &
+    \textbf{Det\%} & \textbf{Ana\%} & \textbf{Feat\%} \\
+    \midrule
+    Turkish          & tur & Latn &  \textbf{90} & 100 &  87 &  80 & 100 & \textbf{90} \\
+    Azerbaijani      & aze & Latn &   50 &  53 &  42 & \textbf{75} & 100 & \textbf{79} \\
+    Turkmen          & tuk & Latn &  \textbf{80} &  69 &  51 &  75 & 100 & \textbf{90} \\
+    Gagauz           & gag & Latn &  \textbf{85} &  90 &  77 &  75 & 100 & \textbf{94} \\
+    \cmidrule(lr){1-9}
+    Kazakh           & kaz & Cyrl &  \textbf{80} & 100 &  78 &  70 & 100 & \textbf{82} \\
+    Kyrgyz           & kir & Cyrl &  \textbf{80} & 100 &  81 &  60 & 100 & \textbf{92} \\
+    Tatar            & tat & Cyrl &   65 &  89 &  50 & \textbf{75} & 100 & \textbf{89} \\
+    Bashkir          & bak & Cyrl &   75 &  98 &  60 &  75 & 100 & \textbf{89} \\
+    Crimean Tatar    & crh & Latn &  \textbf{85} &  95 &  75 &  75 & 100 & \textbf{89} \\
+    Karakalpak$^\dagger$       & kaa & Latn &  \textbf{85} &  78 &  60 &  50 & 100 & \textbf{86} \\
+    Nogai$^\dagger$            & nog & Cyrl &  \textbf{65} &  74 &  61 &  55 & 100 & \textbf{93} \\
+    Kumyk            & kum & Cyrl &   70 &  85 &  74 &  70 & 100 & \textbf{95} \\
+    Karachay-Balkar$^\dagger$  & krc & Cyrl &  \textbf{80} &  92 &  82 &  70 & 100 & \textbf{97} \\
+    \cmidrule(lr){1-9}
+    Uzbek            & uzb & Latn &  \textbf{85} &  98 &  83 &  55 & 100 & \textbf{87} \\
+    Uyghur           & uig & Arab &  \textbf{80} & 100 & \textbf{85} &  55 & 100 &  60 \\
+    \cmidrule(lr){1-9}
+    Sakha            & sah & Cyrl &  \textbf{70} &  74 &  68 &  60 & 100 & \textbf{85} \\
+    Altai            & alt & Cyrl &   40 &  38 &  33 & \textbf{75} & 100 & \textbf{89} \\
+    Tuvan            & tyv & Cyrl &   70 &  94 &  73 & \textbf{75} & 100 & \textbf{89} \\
+    Khakas           & kjh & Cyrl &   55 &  29 &  23 & \textbf{60} & 100 & \textbf{89} \\
+    \cmidrule(lr){1-9}
+    Chuvash          & chv & Cyrl &  \textbf{80} & 100 &  63 &  60 & 100 & \textbf{92} \\
+    \midrule
+    \textbf{Average} & & &  \textbf{74} &  83 &  65 &  67 &  \textbf{100} &  \textbf{88} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Morphological analysis on the 20-sentence parallel challenge set (Appendix~\ref{sec:app-challenge}). \textbf{Det\%}: sentences whose target UD feature is detected. \textbf{Ana\%}: content words with a UPOS other than \texttt{X}. \textbf{Feat\%}: content words with at least one feature. Bold: better backend per language and metric. Groups: Oghuz, Kipchak, Karluk, Siberian, Oghur. $^\dagger$Zero-shot for the neural model (no training data; proxy language embedding).}
+  \label{tab:morph-eval}
+\end{table*}

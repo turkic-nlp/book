@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-14",
+  "python": "3.13.5",
+  "torch": "2.10.0",
+  "transformers": "5.3.0",
+  "checks": [
+    "BIO syntax and orphan repair",
+    "all-word first-subword alignment and overflow rejection",
+    "prediction/gold shape guards",
+    "strict micro/macro distinction",
+    "malformed TSV and document/text overlap rejection",
+    "real NLLB source/target prefixes",
+    "tiny XLM-R Trainer step/predict/save/reload",
+    "tiny M2M100 Seq2SeqTrainer baseline/train/predict/save/reload",
+    "forced Kyrgyz token in baseline and adapted generation",
+    "SacreBLEU signatures"
+  ],
+  "nllb_token_ids": {
+    "kaz_Cyrl": 256089,
+    "kir_Cyrl": 256095
+  },
+  "metric_fixture": {
+    "micro_f1": 0.8,
+    "macro_f1": 0.5
+  },
+  "signatures": {
+    "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.5.1",
+    "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.5.1"
+  },
+  "limitations": "Tiny random models validate mechanics only. No pretrained NER or MT accuracy measurement."
+}

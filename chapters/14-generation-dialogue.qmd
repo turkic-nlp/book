@@ -1,0 +1,207 @@
+---
+short-title: "Generation and Dialogue"
+---
+
+# Generation, Dialogue, and Interactive Evaluation {#sec-book-14-generation-dialogue}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Describe the ways in which language models fail when they write Turkic text: drift into another language, script switching, malformed words, and pragmatic errors
+- Measure language and script fidelity automatically, and use morphological-analyser coverage as a diagnostic requiring human validation
+- Design a validation of an LLM judge against human judgements in the target language
+- Survey the data for generation and dialogue in Turkic languages, and its gaps
+- Adapt dialogue games such as Taboo and Wordle to Turkic languages, including rule checking that respects morphology
+- Measure how language fidelity changes over the turns of an interaction
+:::
+
+@sec-book-13-meaning-retrieval examined how to find supporting text. This chapter asks how to evaluate the answers and conversations a model produces. Multiple-choice scores do not directly test whether an answer stays in the requested language and script, uses appropriate word forms or suits the social context.
+
+The chapter moves from individual answers to extended interaction. Its final section uses dialogue games: structured conversations between models with explicit rules [@chalamalasetti-etal-2023-clembench]. Those rules make comparisons repeatable, once the language-specific word lists and instructions have been validated.
+
+
+## What Goes Wrong When Models Write Turkic Text {#sec-gen-failures}
+
+The following seven categories organise the evaluation. They can occur in other languages too, and their order says nothing about frequency.
+
+1. **Drift into a neighbouring language.** Kazakh output with Kyrgyz or Tatar words; Turkish words in Azerbaijani, Turkmen, or Gagauz output. Turkish has the largest token total among the listed Turkic subsets of HPLT v3 (@tbl-hplt-v3); this does not reveal any particular model's training mixture or prove the cause of drift. In Exercise 2, GlotLID [@kargaran-etal-2023-glotlid] labels 20 of the 66 sentences that Qwen2.5-1.5B-Instruct wrote in answer to Kazakh questions as Kyrgyz.
+2. **Drift into the contact language.** Russian words and phrases in Kazakh, Kyrgyz, Tatar, or Bashkir output; sometimes a switch to Russian after a few sentences. Language confusion of this kind has been documented for many languages [@marchisio2024confusion].
+3. **Script switching.** An Uzbek answer in Cyrillic to a question asked in Latin, or the reverse; Kazakh in a mixture of Cyrillic and one of the Latin alphabets.
+4. **Malformed words.** Vowel-harmony violations (a back-vowel suffix on a front-vowel stem), suffixes in the wrong order, or invented suffix combinations. An annotator must distinguish genuine errors from loanword exceptions, dialectal forms and legitimate allomorphy.
+5. **Wrong level of address.** Languages such as Turkish, Uzbek and Kazakh distinguish a familiar 'you' (Turkish and Uzbek *sen*, Kazakh *сен*) from a polite or plural one (*siz*, *сіз*). The choice depends on age, relationship, and setting, and it shows up in verb agreement and possessive suffixes as well as in the pronoun.
+6. **Evidential meaning.** Some forms can convey indirect evidence or reported information: Turkish *-mIş*, Kazakh *-ған екен*. Evaluate the choice in its discourse context; a past-tense form is not universally a claim of eyewitness knowledge, and a summary need not mechanically copy every source suffix.
+7. **Cultural grounding.** Names, holidays, units, place names or idioms that do not fit the requested context. A foreign name or borrowed expression is not itself an error.
+
+Exercise 2 collects examples of several types from one small open model, Qwen2.5-1.5B-Instruct [@qwen2024qwen25], answering everyday cultural questions:
+
+- *Neighbouring language.* Asked in Kazakh when and how Nauryz is celebrated, the model begins *Наурыз - бул Кыргызстандын …*, with Kyrgyz *бул* 'this' (Kazakh *бұл*) and the Kyrgyz genitive of Kyrgyzstan (Kazakh *Қырғызстанның*), and goes on to talk about Kyrgyzstan.
+- *Contact language and script.* Asked in Latin-script Uzbek about Navroʻz, it answers *Navro‘z bayrami 15-16 декабря*: a Russian month name in Cyrillic inside a Latin-script sentence. Asked about Alisher Navoiy, it writes *literaturniy tili*, a transliterated Russian adjective, instead of Uzbek *adabiy til* 'literary language'.
+- *Cultural grounding.* The Kazakh answer about Abai Qunanbaiuly calls him one of Kazakhstan's cities.
+
+The model did not produce clear cases of the address and evidentiality types in these answers; finding them needs prompts that require them, such as the role plays described below. Repetition loops, which affected several answers, are not specific to Turkic languages.
+
+
+## Measuring Fidelity Automatically {#sec-gen-fidelity}
+
+Three automatic signals help triage output; none establishes correctness alone:
+
+- **Language, per sentence.** Search the full LID label space, including Russian and English. A Turkic-restricted classifier must select a Turkic label even for Russian. Retain the top label, score and text; choose an abstention threshold on development examples from the target and competing languages, then validate it on held-out data. Audit short, mixed and ambiguous spans manually (@sec-lid). Shared words and quotations are not automatically drift.
+- **Script, per word or letter.** Declare the requested script and the denominator. Report mixed and unknown cases separately; names, quotations and code can legitimately use another script.
+- **Raw analyser recognition.** Count alphabetic word tokens with at least one finite, non-failure FST reading. Report numerator, denominator and transducer hash. A pipeline's guessed lemma or `UPOS != "X"` can include heuristic fallback and is not raw transducer acceptance.
+
+An FST can accept a grammatical word used in the wrong context, including a word shared with another language. It can also reject a valid name, loan or dialectal form missing from its lexicon. Use coverage as a diagnostic. Compare matched human-written text and validate against independent error annotations before setting a threshold.
+
+```python
+# Run from the book root; provide a tokenizer and a pinned HFST transducer.
+import sys
+sys.path.insert(0, "code/ch04-corpus")
+from corpus import fst_coverage
+
+def analyser_coverage(text, tokenize, transducer):
+    return fst_coverage(tokenize(text), transducer.lookup)
+# Returns accepted_words, eligible_words and coverage (None if no eligible words).
+```
+
+A handful of illustrative sentences says nothing reliable about the languages as a whole. To validate this diagnostic, measure false alarms and missed errors on held-out examples, including names, shared vocabulary and code-switching. Keep raw recognition and any normalised-lookup variant as separate measurements.
+
+Exercise 3 compares 1,000 KazNERD news sentences [@yeshpanov2022kaznerd] with 668 news-style sentences generated by Qwen2.5-1.5B-Instruct. Apertium accepts 94.5% of the human text's word tokens and 84.1% of the model's. Restricting the model sample to sentences labelled Kazakh by GlotLID raises coverage to 84.7%, though such sentences can still contain mixed-language words.
+
+Frequent rejected model tokens include the Kyrgyz forms *Берилген*, *өзгөрүшү* and *Бул* (Kazakh *берілген*, *өзгеруі*, *бұл*). Rejections in the human text include different cases: *і* and *іі* are Roman numerals typed with Cyrillic *і*; *нші* is an ordinal suffix separated from its numeral (*2-нші*); and *көпбалалы* 'having many children' is a valid word absent from the lexicon. These observations need systematic annotation. The samples differ in content and length, and repeated model phrases affect token counts. Independent judgements are needed to measure false alarms and missed errors.
+
+## Generation Tasks and Data {#sec-gen-data}
+
+**Summarisation.** MLSUM includes Turkish news summaries [@scialom2020mlsum]. XL-Sum's published current repository statistics list Azerbaijani (6,478 train / 809 validation / 809 test), Kyrgyz (2,266 / 500 / 500), Turkish (27,176 / 3,397 / 3,397) and Uzbek (4,728 / 590 / 590) [@hasan2021xlsum]. These are article–summary pairs from BBC; the totals differ from the repository's legacy v1.0 release. See the [maintainers' split table](https://github.com/csebuetnlp/xl-sum#dataset). The four entries show what data exist; other Turkic summarisation resources may be missing from the list.
+
+**Instruction and chat data.** Distinguish native-authored, translated, synthetic and mixed collections. Translation can introduce unsuitable names, units or contexts; native authorship alone does not guarantee factual or linguistic quality. For every selected release record provenance, revision, split sizes, language/script, licence and independent quality checks. Sherkala-Chat's Kazakh instruction data, for example, combine translated sets with an automatically built, manually checked Kazakhstan-specific set (@sec-book-12-pretrained-lms). This chapter does not inventory instruction releases, and no family-wide absence is claimed.
+
+**Dialogue data.** Separate single-turn instruction pairs, open conversation, task-oriented exchanges and spoken dialogue. Their supervision and evaluation units differ. For each release, check native versus translated provenance and redistribution terms, and record what the documentation does not say. A search that finds no resource is not proof that none exists.
+
+
+## Evaluating Generated Text {#sec-gen-eval}
+
+### Metrics against references
+
+For summaries and translations with references, chrF adds character-level overlap to the word-level evidence from BLEU. A wrong suffix affects the whole word match in BLEU and a smaller set of character matches in chrF (@sec-book-10-machine-translation). Neither metric directly measures morphological correctness, and their relative usefulness depends on the task. Open-ended answers, dialogue and pragmatic choices need evaluation beyond reference overlap.
+
+### LLMs as judges
+
+Using a strong LLM to rate generated text is now common [@zheng2023judge]. Validate each judge on the target language and error types. Include language confusion and morphological errors rather than assuming a general rating captures them.
+
+Exercise 4 pairs 100 Kazakh SIB-200 sentences [@adelani2024sib] with automatic changes: 25 each involving vowel harmony, a Russian conjunction, a Kyrgyz cognate or a word in Latin script. Only the harmony change (*қайықтар* → \**қайықтер*) reliably creates an ungrammatical standard form. The other changes may produce acceptable variants. Russian *но* occurs in informal Kazakh–Russian mixing, Latin spelling need not be a grammatical error, and replacing *мен* with *менен* yields an existing Kazakh word: the ablative of *мен* 'I', meaning 'from me'.
+
+The pairs carry labels for the applied changes, without speaker validation of whether each result is wrong. Qwen2.5-1.5B-Instruct chooses "A" in 91 pairs with an English prompt and 88 with a Kazakh prompt. It chooses the original sentence in 34 and 32 pairs; 5 and 12 replies are unparsable. Randomisation leaves the original first in only 37 pairs. These results reveal a strong position preference in this setup, while leaving error-detection ability unresolved.
+
+Before comparing judges, have speakers label errors, acceptable variants and register differences. Drop or relabel substitutions that produce valid words, and present every pair in both orders.
+
+Until such checks have been done for a language, LLM judgements of Turkic text should be validated against at least a small sample of human judgements (@sec-human-eval).
+
+
+## Interactive Evaluation with Dialogue Games {#sec-gen-games}
+
+### Why games
+
+A dialogue game is a short, rule-governed interaction between two players. Here the players are both models, or a model and a program. clembench [@chalamalasetti-etal-2023-clembench] evaluates chat-optimised language models by having them play such games: word guessing, reference games, and others. The program that runs the game checks every move against the rules and scores the outcome. Games have three advantages for comparing Turkic languages:
+
+- **The same game can be run in every language**, but translation alone does not equate difficulty. Match word frequency, ambiguity, clue informativeness, alphabet rules and cultural familiarity, and report remaining differences.
+- **Rule violations are measured, not just success.** A model that wins Taboo by using a forbidden word has broken a rule.
+- **Long interactions show drift.** Language and script fidelity can be measured turn by turn.
+
+### Taboo needs morphology
+
+In Taboo, one player must describe a target word without using it or a few related words, and the other player must guess the target. Exact matching can miss inflected forbidden words, in English as well as Turkic languages. If the target is *ev* 'house', the describer can write *evlerimizden* 'from our houses' and a surface-string check will not notice. Morphological analysis can identify additional candidates, but ambiguous readings and unknown words need an explicit review policy.
+
+Use the rule checker (`code/ch14-generation/turkic_taboo_checker.py`) with a pinned transducer. It reports exact surface hits, lemma candidates and unresolved tokens separately. It considers all analyser readings, so an ambiguous reading can produce a candidate that needs contextual adjudication. There is no prefix fallback: a shared prefix is not evidence of a forbidden lemma, and a retrieval experiment's best truncation length is not a validated game-rule threshold.
+
+```python
+import sys
+sys.path.insert(0, "code/ch14-generation")
+from turkic_taboo_checker import check_tokens
+
+# tokens: output of the declared tokenizer; lookup: pinned HFST lookup callback.
+result = check_tokens(tokens, forbidden=["үй", "пәтер", "тұр"],
+                      lookup=transducer.lookup, lang="kaz")
+# result contains surface_hits, lemma_candidates and unresolved.
+```
+
+The forbidden list must use the selected analyser's lemma convention. Record any infinitive/stem conversion explicitly; do not strip a universal suffix across languages. Freeze whether ambiguous candidates invalidate a turn or trigger human review. Tokenisation and casing must be identical for the surface and morphological comparisons.
+
+### Wordle and other games
+
+Wordle asks a player to find a five-letter word from feedback on each letter. It depends on the alphabet and on what counts as a word. Turkic alphabets differ in size and letter frequencies, and the allowed word list may contain lemmas, inflected forms or both. Specify that choice and whether length counts orthographic letters, grapheme clusters or code points; normalise Unicode and apply language-aware casing consistently. Reference games, where one player describes an item so the other can pick it out, can be localised with culturally familiar content.
+
+### Results
+
+Exercise 1 uses Qwen2.5-1.5B-Instruct as both describer and guesser for twelve Kazakh targets, with at most three rounds. No game is won. Three opening clues contain the target itself (*Кітап*, *Жылқы*, *Балық*), which the surface check catches; the other nine games reach the turn limit. The lemma checker detects no additional violations and leaves the outcomes unchanged. Missed violations remain possible: 72 of the 246 clue words have no analyser reading, and the exercise allows unresolved tokens to pass. GlotLID labels four of the 30 clues Kyrgyz.
+
+The target lists still need speaker review. All twelve targets are frequent concrete nouns, so they cover no range of frequency bands. *Күн* means both 'sun' and 'day', but its forbidden words address only 'sun'. Other forbidden lemmas have homonyms: *іш-* 'drink' and *іш* 'inside, belly'; *жаз-* 'write' and *жаз* 'summer'; *ат* 'horse' and 'name'; *бет* 'page' and 'face'; *мін-* 'ride' and *мін* 'fault'. A lemma-only checker can flag an allowed sense. Record part of speech as well as lemma, and adjudicate remaining ambiguity in context.
+
+The exercise also differs from the Hands-On protocol: unresolved words pass without adjudication, and the guess matcher checks only the first word. It could therefore accept a multiword response despite the one-word instruction. Fix these policies and validate the word list before comparing systems.
+
+### Address and politeness
+
+Test address with role plays written by native speakers. Each should specify a relationship and setting, such as a student speaking to a teacher or two friends talking. Ask speakers which forms are acceptable for that situation and variety. Pronouns and agreement offer clues, but pro-drop may leave the choice unexpressed. Retain ambiguous and omitted cases in the report instead of forcing them into familiar or polite categories.
+
+
+## Language Drift in Ordinary Chat {#sec-gen-drift}
+
+Ask models ordinary questions in a Turkic language and check the language and script of each answer. Short and mixed-language answers need manual review.
+
+Exercise 2 does this for 25 culturally grounded questions each in Kazakh and Uzbek with Qwen2.5-1.5B-Instruct. Only 13 of the 25 Kazakh answers have every sentence labelled Kazakh by GlotLID; 20 of their 66 sentences are labelled Kyrgyz, and Apertium accepts only 58.7% of their words. GlotLID labels 83 of the 84 Uzbek-answer sentences Uzbek, with every sentence so labelled in 24 of the 25 answers. Yet one answer contains Cyrillic Russian month names. The labels help select passages for review; an answer that passes may still mix languages or get the facts wrong.
+
+
+## Spoken Dialogue {#sec-gen-speech}
+
+Voice assistants combine speech recognition (@sec-book-11-speech-technologies), a dialogue model, and speech synthesis. Published MMS checkpoints include Chuvash and Crimean Tatar TTS (@tbl-verified-models); checkpoint availability is not evidence of conversational quality. Audit each component's language, licence, input/output script, latency and held-out quality, then test the combined system with speakers.
+
+## Hands-On: A Procedure for Kazakh Taboo with a Morphological Rule Checker {#sec-ch-gen-hands-on}
+
+**Question.** How well can a Kazakh Taboo game enforce morphological rules?
+
+**Inputs.** Twenty speaker-reviewed targets, forbidden lemmas, two declared model roles and the bounded controller.
+
+**Compute.** Inference for the selected models, plus fluent-speaker adjudication; local controller tests use scripted replies.
+
+**Output.** Turn logs, rule-check outcomes, guesses and language/script diagnostics.
+
+**Interpretation.** Count failed and unresolved games and compare automated checks with human decisions.
+
+This is a protocol for a simplified Kazakh Taboo experiment. Exercise 1 illustrates a simpler version with one small model and twelve targets; the differences are described above.
+
+1. Ask a speaker to select 20 target lemmas across frequency bands, with three related forbidden lemmas each. Record the variety, script and adjudication policy.
+2. Use the bounded controller in `code/ch14-generation/game.py`. Supply separate describer and guesser callbacks, a clue checker and an explicit guess-matching policy. The target and forbidden list belong only in the describer's context.
+3. Allow at most three rounds. Stop on a rejected clue, a correct guess, an unresolved rule check or the turn limit. Save each turn and its outcome; do not drop failed games from denominators.
+4. Record unrestricted language labels, script signals and raw FST recognition for each utterance. Have a speaker adjudicate ambiguous lemma candidates and unresolved tokens before comparing checkers.
+
+The local scripted-reply test verifies controller flow and target secrecy; the model game requires the protocol above.
+
+Questions to answer:
+
+1. How many violations does the surface checker miss?
+2. Do the models drift into Russian or another Turkic language during the game? In which turns?
+3. Are the guesser's answers in the base form, or inflected? How should the game score an inflected correct guess?
+
+
+**Status: procedure only.** The speaker-reviewed twenty-target game is not run here. Exercise 1 records a separate twelve-target diagnostic whose target list remains unchecked.
+
+## What to Take Forward {#sec-ch14-synthesis .unnumbered}
+
+Useful generated text needs more than fluent-looking words. The Kazakh generation exercises produce sentences labelled Kyrgyz by GlotLID and lower analyser recognition than the human news sample. These diagnostics flag passages for review; speaker judgements establish whether they contain language or grammatical errors. Validate automatic judges against human decisions before relying on their scores. @sec-book-15-evaluation-benchmarks combines these checks with task scores, baselines and uncertainty.
+
+
+## Further Reading {#sec-ch14-further-reading .unnumbered}
+
+- @chalamalasetti-etal-2023-clembench introduces clembench and the dialogue-game approach to evaluating chat models.
+- @marchisio2024confusion studies language confusion: models answering in the wrong language or mixing languages.
+- @zheng2023judge studies strong LLMs as judges and discusses their biases.
+- @scialom2020mlsum and @hasan2021xlsum describe the multilingual summarisation datasets that include Turkic languages.
+
+
+## Exercises {#sec-ch14-exercises .unnumbered}
+
+1. **Port a game.** Play Kazakh Taboo with a model as describer and guesser, using the controller and rule checker of the Hands-On. Compare the surface and lemma checkers, track the language of each clue by round, and decide how to score inflected guesses. Then document every language-specific decision needed to port one more clembench game: word lists, morphology in the rule checks, script and cultural content.
+2. **Error collection.** Ask a model 25 culturally grounded questions each in two Turkic languages (holidays, food, place names, proverbs). Measure language, script and analyser coverage automatically, then classify the errors in the answers with the seven types of @sec-gen-failures.
+3. **Coverage baseline.** Compute analyser coverage on 1,000 sentences of human-written news text and on model-written news in the same language. How large is the difference, and what kinds of words account for it?
+4. **Judging a judge.** Create pairs in which the second sentence contains one Turkic-specific error from @sec-gen-failures. Ask an LLM judge which sentence is correct, with the order counterbalanced. Which error types does it miss, and does it prefer one position?

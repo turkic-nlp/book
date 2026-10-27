@@ -1,0 +1,545 @@
+---
+short-title: "Morphological Structure"
+---
+
+# Morphological Structure: A Linguistic Foundation {#sec-book-05-morphological-structure}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Distinguish derivational from inflectional morphology and explain their interaction with suffix ordering
+- Describe the nominal and verbal suffix sequences of Turkic languages, and the restrictions a template diagram leaves out
+- Explain how vowel harmony, consonant assimilation, and stem alternations create allomorphic variation
+- Distinguish surface segmentation, morphological analysis and a UD feature bundle, and read each of them
+- Identify morphological ambiguity and explain why disambiguation requires contextual information
+- Compare the morphological profiles of Turkish, Kazakh, Uzbek, Uyghur, Turkmen and Chuvash and explain key divergences
+:::
+
+Morphological analysis identifies the stem and grammatical information in a word. Turkish *okuyamıyor*, for example, expresses reading, inability and progressive aspect. An NLP system may model this structure explicitly or learn it from data. This chapter explains suffix ordering, alternations and ambiguity; the next two chapters show computational methods.
+
+
+The basic definitions of agglutination, case and harmony are in @sec-book-02-computational-phenotype. Here we use them to read complete analyses, compare suffix sequences and resolve ambiguity.
+
+## The Morpheme Inventory {#sec-morpheme-inventory}
+
+### Derivational vs. Inflectional Morphology
+
+A useful starting distinction is between derivation and inflection.
+
+**Derivational morphemes** change the lexical category or meaning of the base. They create a new word, often with a new part of speech. Examples from Turkish:
+
+| Input | Suffix | Output | Function |
+|-------|--------|--------|----------|
+| *ev* (house, N) | *-li* | *evli* (married, Adj) | denominal adjective |
+| *yaz-* (write, V) | *-ı* | *yazı* (writing, N) | deverbal noun |
+| *güzel* (beautiful, Adj) | *-leş-* | *güzelleş-* (become beautiful, V) | deadjectival verb |
+| *git-* (go, V) | *-mek* | *gitmek* (to go, V→infinitive) | infinitive nominalisation |
+
+: Selected derivational suffixes in Turkish {#tbl-derivational}
+
+In the simple pattern illustrated here, derivational morphemes precede the outer inflection and can be stacked: *güzelleştir-* (to make beautiful) adds a causative to the deadjectival verb. The resulting derived stem behaves as a new root for subsequent affixation.
+
+**Inflectional morphemes** mark grammatical categories such as number, case, tense and agreement. They usually follow derivation in the patterns shown here. The boundary is not absolute: a category change can introduce another inflectional domain, and individual stems or constructions restrict which suffixes can follow.
+
+An analyser often needs lexical entries for derived meanings: composition alone cannot tell it that *ev-li* means 'married'. Inflection is more systematic, so rules can generate many forms without listing each one. Grammars and treebanks draw the boundary differently, especially for infinitive *-mAk*, voice suffixes and copular forms. State which convention the analyser follows.
+
+### The Suffix Template
+
+Turkic suffix ordering follows regular patterns. Johanson [-@Johanson_2021, p. 37] notes that the high degree of synthesis "allows combinations of a large number of bound denominal and deverbal markers to form long sequences". In the common patterns below, derivational material comes before inflectional material, and each suffix applies to the form on its left. For noun inflection, "Common Turkic follows the ordering number-possessive-case"; Chuvash is the exception, with possessive before number [@Johanson_2021, p. 452] (@sec-chuvash).
+
+**Nominal template** (for nouns and adjectives):
+
+$$\text{Root} \rightarrow [\text{Derivation}]^* \rightarrow \text{Number} \rightarrow \text{Possessive} \rightarrow \text{Case} \rightarrow [\text{Copula}]$$
+
+- **Derivation** (optional, repeatable): changes stem meaning or category
+- **Number** (*-lar/-ler* plural): absence of plural marking need not mean singular reference
+- **Possessive** (1sg, 2sg, 3sg, 1pl, 2pl, 3pl): marks possessor agreement
+- **Case** (nominative, accusative, dative, locative, ablative, genitive)
+- **Copula** (optional): predicative forms *-dır/-dir/-dur/-dür* or evidential *-(y)mış*
+
+Example: Turkish *ev-ler-imiz-den* (from our houses):
+
+| Slot | Morpheme | Gloss |
+|------|----------|-------|
+| Root | *ev* | house |
+| Number | *-ler* | PL |
+| Possessive | *-imiz* | POSS.1PL |
+| Case | *-den* | ABL |
+
+**Verbal template** (for verbs):
+
+$$\text{Root} \rightarrow [\text{Derivation}]^* \rightarrow \text{Voice} \rightarrow \text{Ability/Negation} \rightarrow \text{TAM} \rightarrow \text{Person/Number}$$
+
+- **Derivation** (optional): lexical derivation such as *güzel-leş-* 'become beautiful'
+- **Voice** (passive *-Il/-In*, causative *-DIr/-t*, reciprocal *-Iş*, reflexive *-In*). Some grammars treat voice as derivation, because it changes the valency of the stem; this book lists it as a separate slot. Apertium encodes voice with tags, while UD uses features such as `Voice=Cau` and `Voice=Pass`
+- **Potential** (*-(y)a/-(y)e*, the ability marker that precedes negation in *gel-e-me-* "be unable to come"; the positive *-(y)abil/-(y)ebil* "can" goes back to the same marker plus the verb *bil-* "know")
+- **Negation** (*-ma/-me*)
+- **TAM** (tense, aspect, mood: one slot, complex inventory)
+- **Person/Number** (agreement with subject: 1sg, 2sg, 3sg, 1pl, 2pl, 3pl; two paradigms, see below)
+
+Read the diagrams as summaries of common sequences. Which suffix can follow depends on the stem, the construction and the morphology already present. TAM may have several exponents (*gel-iyor-du* 'was coming', progressive + past), agreement has several paradigms, and a nominalised verb takes nominal inflection (*oku-duk-lar-ı-n-dan*). @sec-book-06-finite-state-morphology shows how continuation classes encode the combinations licensed by a language.
+
+![Common nominal and verbal suffix sequences. Ability and negation interact; nominalised verbs enter nominal inflection. Boxes describe morphological domains, not a requirement for an overt suffix in each position.](../figures/fig-suffix-template/output){#fig-suffix-template-ch4 fig-alt="Two-column slot diagram showing the Turkic nominal and verbal suffix templates with example suffixes." width="100%"}
+
+### Nominal Morphology in Detail
+
+**Number.** The plural is marked by *-lar/-ler* (the two forms differ by vowel harmony). The form without a plural suffix is unmarked for number, and its reference can include more than one entity: Turkish *Ali gazete okudu* can mean that Ali read a newspaper or newspapers [@Johanson_2021, p. 945]. In Turkish, a noun after a numeral normally takes no plural suffix: *beş kitap* (five book), not *beş kitaplar*. A system that reads plural marking as a count of referents will therefore be wrong in both directions.
+
+**Possessive.** The Turkish possessive suffixes have different shapes after consonant-final and vowel-final stems. In the abstract notation used here, *I* stands for the four-way harmonising vowel (ı/i/u/ü) and *A* for the two-way one (a/e):
+
+| Possessor | After a consonant | After a vowel | Examples |
+|--------|:-------------|:-----------|:---------|
+| 1sg | *-Im* | *-m* | *ev-im*, *araba-m* 'my house/car' |
+| 2sg | *-In* | *-n* | *ev-in*, *araba-n* |
+| 3sg | *-I* | *-sI* | *ev-i*, *araba-sı* |
+| 1pl | *-ImIz* | *-mIz* | *ev-imiz*, *araba-mız* |
+| 2pl | *-InIz* | *-nIz* | *ev-iniz*, *araba-nız* |
+| 3pl | *-lArI* | *-lArI* | *ev-leri*, *araba-ları* |
+
+: Turkish possessive suffixes after consonant- and vowel-final stems. *I* = four-way harmony (ı/i/u/ü), *A* = two-way harmony (a/e). With a plural noun the plural comes first: *ev-ler-im* 'my houses'. {#tbl-poss}
+
+The third person plural is a source of ambiguity: *evleri* can be *ev-leri* 'their house' (POSS.3PL) or *ev-ler-i* 'his/her houses' or 'their houses' (PL + POSS.3, with a singular or plural possessor), and Turkish does not write a second plural for 'their houses'. Johanson describes the same three-way reading for the type 'horse-PL-POSS3' and notes that a form with two plurals is illicit [-@Johanson_2021, p. 459]. A possessive pronoun resolves it for nouns: *onların evi* only means 'their house', and *onların evleri* only 'their houses' [-@Johanson_2021, p. 459]. The number of the possessed noun and the number of the possessor cannot be read off as independent slots.
+
+Possessive suffixes come between number and case, and a third-person possessive is followed by a buffer *n* before a case suffix: *araba-sı-n-ı* 'his/her car' (ACC), *araba-sı-n-da* 'in his/her car'. For segment counts, this book attaches the buffer to the following suffix, as in @sec-ch02-hands-on: *araba-sı-nı* has three counted pieces. A finer notation, *araba-sı-n-ı*, shows the buffer separately but does not count it as another morpheme.
+
+**Case.** Six commonly compared cases (not present in every language) are introduced in @sec-book-02-computational-phenotype (@sec-case). Their suffixes in Turkish are:
+
+| Case | Suffix | Function |
+|------|--------|----------|
+| Nominative | *∅* | Subject; predicate nominal |
+| Accusative | *-(y)ı/i/u/ü* | Specific direct object |
+| Dative | *-(y)a/e* | Indirect object; goal; experiencer |
+| Locative | *-da/de/ta/te* | Location; point in time |
+| Ablative | *-dan/den/tan/ten* | Source; material; comparison |
+| Genitive | *-(n)ın/in/un/ün* | Possession; complement of some postpositions after pronouns (*benim için* 'for me') |
+
+Note the consonant alternation in locative and ablative: *-da* after voiced consonants and vowels, *-ta* after voiceless consonants. This is consonant assimilation, discussed in @sec-morphophonology.
+
+**Copula.** Nominal predicates in Turkic languages can take a copular suffix directly on the noun: Turkish *doktor-um* (I am a doctor), *doktor-sun* (you are a doctor), *doktor-dur* (he/she is a doctor). Third-person present predication can also be unmarked (*O doktor*, "He/she is a doctor"); *-DIr* is not an obligatory third-person ending and can add assertive or inferential force. Identifying a nominal predicate therefore requires constructional context [@Johanson_2021, chap. 27, pp. 555–571].
+
+### Verbal Morphology in Detail
+
+**Voice.** The following table illustrates an unmarked active stem and four voice-related patterns:
+
+| Voice | Suffix | Example | Gloss |
+|-------|--------|---------|-------|
+| Active | *∅* | *sev-* | love |
+| Passive | *-il/-ın* | *sev-il-* | be loved |
+| Reflexive | *-In* | *yıka-n-* | wash oneself |
+| Reciprocal | *-Iş* | *gör-üş-* | see each other, meet |
+| Causative | *-dir/-tir/-ir/-t* | *sev-dir-* | make (s.o.) love |
+
+: Turkish verbal voice suffixes (allomorphs vary by phonological context) {#tbl-voice}
+
+Voice suffixes can be stacked: *sev-dir-il-* (to be made to love) places passive outside causative, and *öl-dür-t-* ("have someone killed") contains successive causatives. No single exhaustive ordering rule follows from such examples. What can come next depends on the stem, valency and construction. This stacking produces the long verb chains discussed in @sec-book-02-computational-phenotype.
+
+**Negation.** The negation suffix *-ma/-me* follows voice morphemes and the potential marker and precedes TAM in the ordinary synthetic forms illustrated here: *sev-me-* (not love), *sev-il-me-* (not be loved), *sev-dir-me-* (not cause to love). The template covers verbal *-mA-* only; other negative constructions work differently. Its surface shape also varies: before progressive *-Iyor*, its vowel is absent (*gel-m-iyor*).
+
+**Ability and inability.** Turkish expresses these meanings with suffixes; other Turkic languages also use auxiliary constructions:
+
+- *gel-ebil-* (to be able to come): the stem *gel-* + ability suffix *-ebil-* (historically involving *bil-* "know")
+- *gel-e-me-* (to be unable to come): the stem *gel-* + *-e-* + negative *-me-*; the segmentation convention distinguishes the ability component from negation
+
+The sequence *-(y)eme-/-(y)ama-* (potential + negation) is formally distinct from the bare negative *-me-/-ma-*, so inability and simple negation are not confused: *gel-me-di* "did not come" vs. *gel-e-me-di* "could not come".
+
+**Tense, Aspect, and Mood (TAM).** TAM occupies a single slot in the verbal template but with a complex inventory. Turkish distinguishes:
+
+| Category | Suffix | Meaning |
+|----------|--------|---------|
+| Simple past | *-DI* | Past; not restricted to witnessed events |
+| Indirective/perfect | *-mIş* | Inference, report or perfect reading, depending on construction |
+| Aorist | *-Ar/-Ir/-r* (stem-dependent) | Habitual/generic present |
+| Present progressive | *-Iyor* (with stem-vowel adjustments) | Ongoing action now |
+| Future | *-(y)AcAk* | Future tense |
+| Conditional | *-sA* | Conditional mood |
+| Optative | *-(y)A* | Wish/exhortation |
+
+: Selected Turkish TAM suffixes. *A* = a/e, *I* = ı/i/u/ü, *D* = d/t according to voicing; *(y)* appears where required. {#tbl-tam}
+
+Kazakh, Kyrgyz, and other Kipchak languages share many of these distinctions but with different suffix shapes, and many Turkic languages express aspect partly through converb + auxiliary constructions with verbs such as 'lie' (Kazakh *оқып жатыр* 'is reading', Turkmen *okap ýatyr*; @Johanson_2021, p. 646). Some of these have fused into one word (Uzbek *oʻqiyapti* 'is reading', historically from *oʻqi-b yot-*). Analysers must treat them as multi-word or grammaticalised forms.
+
+**Person/Number agreement.** The final slot marks the agreement of the verb with its subject. Turkish has two main agreement paradigms. Suffixes of the "pronominal type" follow the aorist, the progressive, *-mIş*, the future and the necessitative, and also mark nominal predicates; suffixes of the "possessive type" follow the past *-DI* and the conditional *-sA* [@Johanson_2021, pp. 439, 555]:
+
+| Person | After the aorist (*gel-ir-*) | After the past (*gel-di-*) |
+|--------|----------|--------|
+| 1sg | *gelir-im* (*-(y)Im*) | *geldi-m* (*-m*) |
+| 2sg | *gelir-sin* (*-sIn*) | *geldi-n* (*-n*) |
+| 3sg | *gelir* (∅) | *geldi* (∅) |
+| 1pl | *gelir-iz* (*-(y)Iz*) | *geldi-k* (*-k*) |
+| 2pl | *gelir-siniz* (*-sInIz*) | *geldi-niz* (*-nIz*) |
+| 3pl | *gelir-ler* (*-lAr*) | *geldi-ler* (*-lAr*) |
+
+: Turkish verbal agreement: the two main paradigms, shown with *gel-* 'come' [@Johanson_2021, p. 439]. {#tbl-agreement}
+
+In the two paradigms shown, third person singular has no overt agreement suffix, a fact with consequences for pro-drop and coreference (see @sec-word-order and @sec-book-08-syntax-ud).
+
+
+## Morphophonological Alternations {#sec-morphophonology}
+
+The same morpheme appears in multiple surface forms depending on phonological context. Three types of alternation are most important for Turkic NLP: vowel harmony in suffixes, consonant assimilation, and stem alternations.
+
+### Vowel Harmony in Suffixes
+
+Covered in @sec-vowel-harmony, the harmonising vowels of Turkish suffixes commonly alternate in two-way or four-way sets. Invariant suffixes and consonantal alternations require separate rules. The pattern is:
+
+- **2-way suffixes** (back vs. front only): e.g., Turkish plural *-lar/-ler*
+  - *kitap-lar* (books, back vowel root)
+  - *ev-ler* (houses, front vowel root)
+
+- **4-way suffixes** (back/front × round/unround): e.g., Turkish 1sg possessive *-ım/-im/-um/-üm*
+  - *kol-um* (my arm, back round)
+  - *kitab-ım* (my book, back unround)
+  - *göz-üm* (my eye, front round)
+  - *ev-im* (my house, front unround)
+
+For most stems, native or borrowed, the last vowel of the stem determines the harmony class of the suffix, even when earlier syllables mix classes (*kitap-lar*, *telefon-lar*). The exceptions listed in @sec-vowel-harmony must be marked in the lexicon: stems whose final consonant selects front suffixes (*saat-ler* 'hours', *rol-ü* 'role-ACC') and suffixes outside the regular pattern (*-yor*, *-ken*, and usually *-ki*). A regular stem and an exceptional one can look alike: *saat* and *sabah* both have a back vowel in their final syllable, but only *sabah-lar* follows the regular rule.
+
+For morphological analysis, harmony is a strong constraint: if an analyser sees *evlerde*, it can rule out analyses in which the locative should be *-da*, because *ev* is a front-vowel root. Rule-based analysers encode the constraint explicitly; neural analysers can learn it from data.
+
+### Consonant Alternations
+
+Beyond vowel harmony, consonant alternations are common at morpheme boundaries.
+
+**Voicing assimilation.** The Turkish past tense suffix is *-di/-dı/-du/-dü* after voiced consonants and vowels, but *-ti/-tı/-tu/-tü* after voiceless consonants:
+
+| Verb | Past form | Rule |
+|------|-----------|------|
+| *gel-* (come) | *gel-di* | *l* is voiced → *d* |
+| *git-* (go) | *git-ti* | *t* is voiceless → *t* |
+| *oku-* (read) | *oku-du* | *u* is a vowel → *d* |
+| *iç-* (drink) | *iç-ti* | *ç* is voiceless → *t* |
+
+The same assimilation applies to the locative (*-da/-ta*), ablative (*-dan/-tan*), and several other suffixes. For the morphological analyser, this means tracking the voicing of the final consonant of the stem. That information is phonologically transparent in the surface form.
+
+**Buffer consonants.** Turkish uses *y* before vowel-initial accusative and dative suffixes after a vowel-final stem. The *n* following a third-person possessive is a separate pattern: it also occurs before a consonant-initial case suffix, as *ev-i-n-de* shows:
+
+| Form | Analysis |
+|------|---------|
+| *araba-y-ı* | car-(y)-ACC 'the car' (not *araba-ı*) |
+| *araba-sı-n-ı* | car-POSS.3SG-(n)-ACC 'his/her car' (object) |
+| *ev-i-n-de* | house-POSS.3SG-(n)-LOC 'in his/her house' |
+
+**Stem-final consonant alternation.** Turkish *kitap* (book) alternates with *kitab-* before a vowel-initial suffix: *kitab-ı* (book-ACC). This can be represented with an underlying voiced consonant and a devoicing rule, or with stem allomorphs. It is lexically conditioned; not every stem-final obstruent alternates. The *kitap/kitab-* alternation must therefore be tracked in the morphological lexicon as a property of the stem.
+
+**Other stem patterns.** Some stems alternate before suffixes; others remain unchanged:
+
+| Root | Suffixed form | Pattern |
+|------|--------------|---------|
+| *renk* (colour) | *renk-li / reng-in* | *k* → *g* in *rengin* |
+| *yüz* (face) | *yüzü / yüz-de* | no alternation in this root |
+| *ağız* (mouth) | *ağzı* | vowel deletion: underlying /ağız/ + ACC → *ağz-ı* |
+
+The vowel deletion in *ağız → ağz-* is a stem alternation triggered by the attachment of a vowel-initial suffix. An analyser must identify which stems license this alternation; it cannot apply deletion to every matching vowel sequence.
+
+### Why Productive Generalisation Matters
+
+The alternations described above mean that the same morpheme can appear in multiple surface forms, and conversely that similar surface strings can correspond to different underlying morphemes. Consider:
+
+- *kitap-ta* (book-LOC) vs. *kitab-ı* (book-ACC): the same stem surfaces as *kitap-* and *kitab-*
+- *ev-de* (house-LOC) vs. *at-ta* (horse-LOC): the same locative morpheme surfaces as *-de* and *-ta*
+
+A whole-word vocabulary stores these forms separately. Their relationships must be learned from context or supplied as features, and new texts can always contain unlisted forms. Finite-state rules (@sec-book-06-finite-state-morphology) and character or subword representations (@sec-book-07-neural-morphology) offer different ways to generalise. The next chapters evaluate their coverage, handling of ambiguity and usefulness for particular tasks.
+
+
+## What a Full Morphological Analysis Looks Like {#sec-analysis}
+
+### From Surface Form to Feature Bundle
+
+A morphological analysis maps a surface word form to a triple: (lemma, part-of-speech, morphological features). In Universal Dependencies notation:
+
+$$\text{surface form} \rightarrow (\text{lemma, UPOS, FEATS})$$
+
+The FEATS field is a set of attribute-value pairs using the Universal Dependencies morphological feature vocabulary [@demarneffe2021universal]. For Turkic languages, the relevant feature categories include:
+
+- **Number**: `Sing`, `Plur`
+- **Case**: `Nom`, `Acc`, `Dat`, `Loc`, `Abl`, `Gen`
+- **Person**: `1`, `2`, `3`
+- **Tense**: `Past`, `Pres`, `Fut`, `Pqp` (pluperfect, Turkish IMST)
+- **Aspect**: `Perf`, `Imp`, `Prog`, `Hab`, `Prosp`
+- **Mood**: `Ind`, `Cnd`, `Opt`, `Imp`, `Pot` (ability), `Nec`, `Des`, `Gen`
+- **Evident**: `Fh` (firsthand), `Nfh` (non-firsthand; used for *-mIş* in these annotations)
+- **Voice**: `Pass`, `Cau`, `Rcp`, `Rfl`, and combinations such as `CauPass`
+- **Polarity**: `Pos`, `Neg`
+- **VerbForm**: `Fin`, `Part`, `Conv`, `Vnoun` (Turkish), `Ger`, `Inf` (Kazakh KTB)
+- **Person[psor]**, **Number[psor]**: possessor person and number (distinct from `Poss=Yes`)
+- **NumType**, **PronType**, etc.
+
+The values beyond the core set were counted in the Turkish IMST and BOUN training files and the Kazakh KTB test file (UD GitHub master branch, accessed 19 October 2026). Treebanks of the same language do not use the same subset: BOUN uses `Evident=Fh` and `Voice=Rfl`, IMST does not.
+
+### Three Levels of Representation
+
+A UD feature bundle describes selected grammatical properties of a syntactic word. A transducer may additionally expose derivational steps, surface boundaries and competing readings. We will compare three representations: surface segmentation, morphological analysis (lemma and analyser tags), and UD annotation. For *evlerimizden* 'from our houses':
+
+| Surface piece | Analysis (Apertium tag) | UD feature |
+|---|---|---|
+| *ev* | lemma *ev*, noun (`<n>`) | `UPOS=NOUN` |
+| *-ler* | plural (`<pl>`) | `Number=Plur` |
+| *-imiz* | possessor 1st person plural (`<px1pl>`) | `Person[psor]=1`, `Number[psor]=Plur` |
+| *-den* | ablative (`<abl>`) | `Case=Abl` |
+
+: Three levels of representation for *evlerimizden*. The Apertium reading is `ev<n><pl><px1pl><abl>` (TurkicNLP 0.5.0). {#tbl-analysis-example}
+
+The UD line, as TurkicNLP 0.5.0 outputs it:
+
+```
+form:   evlerimizden
+lemma:  ev
+upos:   NOUN
+feats:  Case=Abl|Number=Plur|Number[psor]=Plur|Person[psor]=1
+```
+
+Note `Number[psor]` and `Person[psor]`: UD distinguishes the number of the noun itself (`Number=Plur`, 'houses') from the person and number of the possessor ('our').
+
+### An Advanced Example: Ambiguity in a Long Form
+
+Consider *okuyamadıklarından*, a nominalised verb with several possessive readings. Three levels must be kept apart: the readings the grammar allows, the readings the analyser returns, and the features a treebank records.
+
+*Grammatical readings.* The form is *oku-ya-ma-dık* 'read-ABIL-NEG-NMLZ' followed by possessive agreement and the ablative. The nominal can head a headless relative clause, 'from/among the things that … could not read', or denote the event; an ablative event nominal commonly expresses a cause, 'because … could not read'. The possessive identifies the subject of the clause (@sec-agglutination): *-lar-ın* PL + 2SG ('you', with plural *-lar* marking the things), *-lar-ı* PL + 3 ('he/she' or 'they'), or *-ları* 3PL ('they', with a singular nominal).
+
+*Analyser readings.* The Turkish Apertium transducer returns these three readings (ignoring readings with a copula added):
+
+```
+oku<v><tv><abil><neg><ger_past><pl><px2sg><abl>    -lar-ın   PL + POSS.2SG   'from what you could not read'
+oku<v><tv><abil><neg><ger_past><pl><px3sp><abl>    -lar-ı-n  PL + POSS.3     'from what he/she/they could not read'
+oku<v><tv><abil><neg><ger_past><px3pl><abl>        -ları-n   POSS.3PL        'because they could not read'; 'from what they could not read'
+```
+
+The boundaries differ according to whether *-lar* marks the nominal's plural or belongs to third-person plural agreement, and whether *-n-* is a buffer or part of the second-person possessive. Context narrows the choice. *Senin okuyamadıklarından* selects the second person ('from what you could not read'); *onun okuyamadıklarından* selects a plural nominal with a singular possessor ('from the things he/she could not read'). *Onların okuyamadıklarından* can still mean 'from the things they could not read' or, with *-ları* as third-person plural agreement, 'because they could not read'.
+
+Apertium lists the morphological possibilities but assigns the same analysis to relative-clause and event readings. Its tag `ger_past` names *-DIK*, whose temporal interpretation depends on the construction. Turkish UD treebanks annotate such forms as participles with `Aspect=Perf|Tense=Past|VerbForm=Part`. Their treatment of ability differs: IMST gives *anlayamadığı* (sentence `00006231_29`) `Mood=Pot`, while BOUN gives *damgalayamadığını* (sentence `news_128`) no `Mood` feature (@sec-book-08-syntax-ud). The following illustrates an IMST-style bundle for the POSS.3PL reading:
+
+```
+form:   okuyamadıklarından
+lemma:  oku
+upos:   VERB
+feats:  Aspect=Perf|Case=Abl|Mood=Pot|Number[psor]=Plur|Person[psor]=3|Polarity=Neg|Tense=Past|VerbForm=Part
+```
+
+### The Same Analysis Across Three Languages
+
+To illustrate the shared template, consider the parallel: "from our houses" in Turkish, Kazakh, and Uzbek:
+
+| Language | Form | Morphemes |
+|----------|------|-----------|
+| Turkish | *ev-ler-imiz-den* | house-PL-POSS.1PL-ABL |
+| Kazakh | *үй-лер-іміз-ден* (üi-ler-ımız-den) | house-PL-POSS.1PL-ABL |
+| Uzbek | *uy-lar-imiz-dan* | house-PL-POSS.1PL-ABL |
+
+Latin forms in parentheses use the toolkit's Kazakh transliteration (@sec-transitions). The Apertium analysers for the three languages return the same tag sequence for these forms (`<n><pl><px1pl><abl>`, TurkicNLP 0.5.0).
+
+The order of plural, possessive and case is the same in all three languages, as in Common Turkic generally [@Johanson_2021, p. 452]. The differences are in the surface forms: Kazakh *-іміз* harmonises with front stems, Uzbek *-imiz* is invariant, and the ablative suffix varies. An analyser design for Turkish can therefore be reused for Kazakh and Uzbek by adjusting harmony rules, suffix shapes and lexicon; whether the result works must be validated on the target language, as the next comparison shows.
+
+For a more demanding comparison, consider the Turkish sentence *Kitabı okuyamıyorum* (I cannot read the book), its Kazakh equivalent *Кітапты оқи алмаймын* (Kıtapty oqi almaimyn) and its Turkmen equivalent *Kitaby okap bilmeýärin*:
+
+| | Turkish | Kazakh | Turkmen |
+|---|---------|--------|---------|
+| Object | *kitab-ı* (book-ACC) | *кітап-ты* (kıtap-ty, book-ACC) | *kitab-y* (book-ACC) |
+| Verb | *oku-ya-m-ıyor-um* (read-ABIL-NEG-PROG-1SG) | *оқи ал-ма-й-мын* (*оқы-* 'read' + converb, take-NEG-PRS-1SG; analytic) | *oka-p bil-me-ýär-in* (read-CVB know-NEG-PRS-1SG; analytic) |
+
+Turkish packs inability into *okuyamıyorum*. Kazakh uses a converb and auxiliary *ал-* 'take': *оқи алмаймын*, literally 'reading I do not take'. Turkmen also uses an auxiliary, *bil-* 'know', cognate with Turkish *-(y)Abil-*. Johanson lists 'take', 'know' and 'become' as ability auxiliaries, including Kazakh *žaz-a al-* 'be able to write' and Uzbek *ȯḳi-y-ål-* 'be able to read' [-@Johanson_2021, p. 613].
+
+The Kazakh analyser returns `ал<vaux><neg><aor><p1><sg>` as one of two readings of *алмаймын*. Its tense tag is aorist, where our gloss uses present. Both the word structure and the annotation convention need checking when adapting an analyser across languages.
+
+### Morphological Ambiguity
+
+A single surface form can have multiple valid analyses. This is **morphological ambiguity**, and it is pervasive in Turkic text. Two useful distinctions are:
+
+**Analysis ambiguity**: The same segmentation can carry different features. Turkish *evi* is:
+- *ev-i* = house-ACC ('the house', as a specific object)
+- *ev-i* = house-POSS.3SG ('his/her house')
+
+The boundaries are identical; only the analysis differs. *evleri* has three readings without a `+` continuation in the Turkish Apertium transducer: *ev-ler-i* (house-PL-ACC 'the houses'), *ev-ler-i* (house-PL-POSS.3 'his/her houses' or 'their houses'; Apertium `<px3sp>`), and *ev-leri* (house-POSS.3PL 'their house'). Here the readings also differ in where the boundary falls.
+
+**Category ambiguity**: The same form can belong to different categories. Turkish *yazar* can be:
+- A noun: "author"
+- A verb: *yaz-ar* "writes" (aorist, 3SG)
+
+and *okuma* can be the verbal noun "reading" or the negative imperative "don't read!".
+
+On the Turkish TueCL test file (UD 2.17), 608/730 eligible tokens (83%) receive multiple raw readings; 399/730 (55%) still do after excluding every reading containing a `+` continuation. On the Kazakh-KTB test file (UD 2.17), a different and larger sample of mostly encyclopaedic and literary sentences, the counts are 6,313/7,667 (82%) and 5,071/7,667 (66%). The denominator consists of integer-ID syntactic words except `PUNCT`, `NUM` and `SYM`, including unknown words (41 Turkish and 56 Kazakh). Thus "without `+`" is a reproducible filter, not a linguistic test for copulas alone. Lookup uses NFC surface spelling, then Turkish-aware lowercasing for Turkish or ordinary lowercasing for Kazakh only if the surface has no reading. `code/ch05-ambiguity/` contains the script, exact counts, per-token readings and SHA-256 hashes of the two test files and transducers. Because the samples differ in genre and size, the Turkish–Kazakh difference is not a language comparison; read the figures as properties of these samples. They do not generalise to Turkish or Kazakh text at large. Disambiguation requires context, typically the surrounding words and their likely analyses.
+
+### The Disambiguation Problem
+
+Given a set of possible analyses for each word in a sentence, the disambiguation problem is to select the correct analysis for each word. The constraints are mutual: the analysis of one word affects the analyses of its neighbours. For example, a noun in the accusative makes a following transitive verb more likely.
+
+Classic approaches train statistical models over sequences of morphological tags on manually disambiguated corpora; for Turkish, @hakkanitur2000disambiguation model the tags of each word as a sequence of inflectional groups (see also @oflazer2018turkish_nlp, chapter 3). More recent work uses neural taggers trained on Universal Dependencies data [@qi2020stanza]. Supervised taggers need labelled training data, but those labels can come from manual annotation or automatic methods with different error rates. A target-language learning curve shows how additional annotation affects accuracy. This motivates the cross-lingual transfer strategies discussed in @sec-book-07-neural-morphology.
+
+
+## Cross-Language Morphological Comparison {#sec-cross-lang}
+
+### The Shared Template
+
+Use the templates in @sec-morpheme-inventory to organise comparisons, then check each construction. Chuvash changes nominal suffix order (@sec-chuvash); Kazakh expresses the inability example above analytically. These differences guide what can be reused in the transfer methods of @sec-book-06-finite-state-morphology and @sec-book-16-cross-lingual-transfer.
+
+What differs across languages is:
+
+1. The **inventory** of morphemes in each slot (which suffixes mark which distinctions)
+2. The **allomorphic rules** (how harmony and assimilation apply)
+3. The **productivity** of some slots (which suffixes combine freely and which are restricted to particular stems)
+4. The **degree of analyticity** (how much is expressed by suffixes vs. auxiliary verbs)
+
+### Where Uzbek and Uyghur Diverge
+
+Uzbek and Uyghur (Karluk branch) diverge from the Oghuz-Kipchak norm most visibly in vowel harmony. In standard written Uzbek, suffix vowels are largely fixed: the Uzbek plural is always *-lar* regardless of root vowel (unlike Turkish *-lar/-ler*), and standard Uzbek lacks a clear-cut rounding harmony [@Johanson_2021, p. 313]. The writing understates the pronunciation, however: front/back harmony has not vanished in spoken Uzbek, and Johanson calls the impression that it has ceased to function a "false impression" supported by the orthography [-@Johanson_2021, pp. 245, 307]. For text processing, the written form is what an analyser sees: fewer written vowel alternations, even where pronunciation varies.
+
+Uyghur writes front/back suffix variants (*iš-lar* 'works' vs. *bir-gä* 'to one'; @Johanson_2021, p. 245). Its Perso-Arabic orthography, unlike Arabic or Persian, writes every vowel, which makes conversion into Latin or Cyrillic largely table-driven (@sec-book-03-scripts-orthography). The complication for analysis is rather vowel raising in stems (*bala* 'child' → *balilar* 'children'; cf. *ati-si* 'his/her father' ← *ata*, @Johanson_2021, p. 27), which creates stem alternants an analyser must list or derive. The Apertium Uyghur analyser reads *بالىلار* (*balilar*) as `بالا<n><pl><nom>`.
+
+Uzbek, Uyghur and the Kipchak languages express some verbal categories, particularly aspect and modality, with converb + auxiliary constructions rather than suffix stacking (Kazakh *оқи ал-* 'be able to read', Uzbek *oʻqiy ol-* 'be able to read', Turkmen *okap bil-* 'be able to read'; Uzbek after @Johanson_2021, p. 613). A form that Turkish expresses as a single verb may require two words.
+
+### Selected Cross-Language Differences
+
+@tbl-crosslang lists only contrasts that are illustrated in this chapter or in @sec-book-02-computational-phenotype; each cell refers to the standard written language.
+
+| Feature | Turkish | Kazakh | Uzbek | Turkmen | Kyrgyz |
+|---------|:-------:|:------:|:-----:|:-------:|:------:|
+| Backness harmony in suffixes, written | ✓ | ✓ | largely fixed vowels | ✓ | ✓ |
+| Rounding harmony in suffixes, written | high-vowel classes | generally not represented | no productive alternation | some suffixes (GEN *-üň*), not ACC | broader than Turkish |
+| Plural *-lAr* | ✓ | ✓ (*-лар/-тар/-дар*…) | *-lar* only | ✓ (*-lar/-ler*) | ✓ |
+
+: Selected morphological contrasts across five Turkic languages, as illustrated in @sec-book-02-computational-phenotype and @sec-book-05-morphological-structure. {#tbl-crosslang}
+
+Row sources: backness examples in @tbl-harmony-examples; rounding patterns in @Johanson_2021 [pp. 311–315]; plural harmony in @sec-vowel-harmony.
+
+**Differential object marking** affects parsing and translation. Turkish usually marks specific objects with the accusative (*kitabı okudum* 'I read the book') and leaves non-specific objects bare (*kitap okudum* 'I read a book / I did book-reading'). A specific indefinite can also take the accusative: *bir kitabı okudum* 'I read a certain book'. Kazakh (*кітап оқыдым* vs. *кітапты оқыдым*) and Uzbek (*kitob oʻqidim* vs. *kitobni oʻqidim*) show the same basic contrast.
+
+The conditions depend on language, discourse and construction. For parsing, accusative marking is one cue to objecthood; word order and context help identify bare objects. For translation, preserve the intended reference. English articles cannot be mapped directly onto Turkic case suffixes.
+
+### The Recurring Examples Analysed {#sec-recurring-analysis}
+
+The recurring sentences of @tbl-recurring-examples show several of these contrasts together. Hyphens separate morphs, and glosses follow the Leipzig conventions (abbreviations in @tbl-gloss-abbreviations); ATTR marks the attributive suffix (Kazakh *-ГІ*, Uyghur *-diki*). The Uyghur line uses the treebank's ULY transliteration.
+
+```
+Қазақстан   осы   өңір-де-гі        бейбітшілік-ті  қолда-й-ды
+Kazakhstan  this  region-LOC-ATTR   peace-ACC       support-PRS-3
+
+Мен-ин  машина-м      бар
+I-GEN   car-POSS.1SG  existent
+
+Toshkent-da   dzyudo  boʻyicha  Gran-pri    musobaqa-si         boʻl-ib  oʻt-moqda
+Tashkent-LOC  judo    on        Grand.Prix  competition-POSS.3  be-CVB   pass-PROG.3
+
+u    sheher  sirt-i-diki              bir  at     harwi-si-ni      kör-i-du
+3SG  town    outside-POSS.3-LOC.ATTR  a    horse  cart-POSS.3-ACC  see-PRS-3
+```
+
+- **Locative + attributive.** Kazakh *өңір-де-гі* and Uyghur *sirt-i-diki* turn a locative into a noun modifier with the same suffix order.
+- **Possessive marking in compounds.** Uzbek *Gran-pri musobaqa-si* and Uyghur *at harwi-si* mark the head of a noun compound with the 3rd-person possessive and no genitive. In Kyrgyz *Мен-ин машина-м*, by contrast, a genitive possessor agrees with a 1st-person possessive suffix.
+- **Analytic predicates.** Kyrgyz expresses possession with the existential *бар*, without a verb 'have'; Uzbek *boʻl-ib oʻt-* 'take place' is a converb + verb combination of the kind described above.
+- **Person without number.** Kazakh *-ды* and Uyghur *-du* mark the 3rd person but not number.
+
+The treebank annotations differ from these analyses in places: Kyrgyz-KTMU tags *машинам* as genitive and *бар* as a verb with tense and aspect; Uyghur-UDT tags *sirtidiki* as nominative and *bir* as an ordinal; Kazakh-KTB marks only the locative of *өңірдегі*. A released annotation documents a convention and can contain errors; @sec-ud-framework returns to this point.
+
+### Chuvash: The Exceptional Case {#sec-chuvash}
+
+Chuvash is agglutinative, with phonology and morphotactics that differ from Common Turkic. Oghur sound changes give Chuvash *r* where Common Turkic has *z* (rhotacism) and *l* where Common Turkic has *š* (lambdacism) [@Johanson_2021, p. 25]. Its plural is *-сем* (*-säm*), becoming *-сен* before case suffixes [@Johanson_2021, p. 453]. Possessive marking comes first: *кил-ӗм-сен-чен* 'from my houses' (house-POSS.1SG-PL-ABL), compared with Turkish *ev-ler-im-den* [@Johanson_2021, pp. 452, 455]. A transducer must encode this order along with Chuvash rules and vocabulary.
+
+On the 20-sentence-per-language TurkicNLP challenge set, Apertium detected the target phenomenon in 80% of the Chuvash sentences and the multilingual neural analyser in 60% [@hakimov2025turkicnlp]. The authors suggest that divergent Oghur morphology limits transfer. A comparison this small cannot settle the cause, so test transfer to Chuvash directly.
+
+### Practical Guidance: Starting from a Close Relative
+
+An existing analyser can provide a starting design for a related language. Choose it by documented structural similarities and tool quality, then check the following parts:
+
+1. **Reuse the tag set and the morphotactic design** of the relative's analyser, and check each continuation against the target language.
+2. **Build a new lexicon** for the target language; cognate roots speed this up but must be checked one by one.
+3. **Write the target language's own alternation rules**: harmony dimensions (and whether they are written), consonant assimilation, stem alternations.
+4. **Adjust suffix shapes.** The Kazakh locative *-da/-de/-ta/-te* matches Turkish, but the Kazakh accusative *-ны/-ні/-ды/-ді/-ты/-ті* differs from Turkish *-(y)ı/i/u/ü*.
+5. **Add language-specific morphemes and constructions** not present in the relative.
+
+The Apertium Turkic analysers were built in this spirit: each language has its own lexicon and rule files, but they follow shared formalisms and tag conventions [@washington2014finite]. @sec-book-06-finite-state-morphology develops this architecture in detail.
+
+
+## Hands-On: Walking Through a Morphological Analysis {#sec-ch05-hands-on}
+
+**Question.** How does the analyser represent ambiguity and choose a reading?
+
+**Inputs.** The Turkish and Kazakh sentences below and their Apertium resources.
+
+**Compute.** CPU with TurkicNLP and downloaded transducers.
+
+**Output.** Selected lemmas, parts of speech, feature bundles and alternative readings.
+
+**Interpretation.** Compare each field with the sentence context and inspect processor provenance.
+
+The TurkicNLP toolkit [@hakimov2025turkicnlp] provides rule-based morphological analysis via Apertium transducers for 20 Turkic languages and a multilingual neural analyser for 22. The following example analyses a Turkish and a Kazakh sentence with TurkicNLP 0.5.0 and the Apertium backend (`pip install "turkicnlp[hfst]==0.5.0"`; fetch the transducers with `turkicnlp.download(lang, processors=["morph"])` for each language before running) and prints the selected analysis of each token. Missing values are printed as `_`.
+
+```python
+from turkicnlp import Pipeline
+
+# --- Turkish ---
+tr_pipeline = Pipeline("tur", processors=["tokenize", "morph"], tokenize_backend="rule", morph_backend="apertium")
+doc_tr = tr_pipeline("Evlerimizden çok uzaklaşmıştık.")
+
+print("Turkish morphological analysis:")
+for word in doc_tr.words:
+    print(f"  {word.text:<16} lemma={word.lemma or '_':<10} upos={word.upos or '_':<6} feats={word.feats or '_'}")
+
+# --- Kazakh (Cyrillic) ---
+kz_pipeline = Pipeline("kaz", processors=["tokenize", "morph"], tokenize_backend="rule", morph_backend="apertium")
+doc_kz = kz_pipeline("Үйлерімізден өте алыс кеткенбіз.")
+
+print("\nKazakh morphological analysis:")
+for word in doc_kz.words:
+    print(f"  {word.text:<16} lemma={word.lemma or '_':<10} upos={word.upos or '_':<6} feats={word.feats or '_'}")
+
+# --- All readings of an ambiguous word (private API in 0.5.0) ---
+apertium = next(p for p in tr_pipeline._processors if hasattr(p, "_analyze"))
+for reading in apertium._analyze("evleri"):
+    print(reading["raw"])
+```
+
+Output (local TurkicNLP 0.5.0 checkout and Apertium backend):
+```
+Turkish morphological analysis:
+  Evlerimizden     lemma=ev         upos=NOUN   feats=Case=Abl|Number=Plur|Number[psor]=Plur|Person[psor]=1
+  çok              lemma=çok        upos=ADV    feats=_
+  uzaklaşmıştık    lemma=uzaklaş    upos=VERB   feats=Evident=Nfh|Number=Plur|Person=1|Tense=Past
+  .                lemma=.          upos=PUNCT  feats=_
+
+Kazakh morphological analysis:
+  Үйлерімізден     lemma=үй         upos=NOUN   feats=Case=Abl|Number=Plur|Number[psor]=Plur|Person[psor]=1
+  өте              lemma=өте        upos=ADV    feats=_
+  алыс             lemma=алыс       upos=NOUN   feats=_
+  кеткенбіз        lemma=кет        upos=VERB   feats=Number=Plur|Person=1|Tense=Past
+  .                lemma=.          upos=PUNCT  feats=_
+ev<n><pl><acc>
+ev<n><pl><px3sp><nom>
+ev<n><pl><px3sp><nom>+i<cop><aor><p3><sg>
+ev<n><px3pl><nom>
+ev<n><px3pl><nom>+i<cop><aor><p3><sg>
+```
+
+The pipeline selects one analysis per word using transducer weights and heuristic context. The transducer can offer several: for *evleri*, plural accusative, plural with a third-person possessor, a third-person plural possessor, and copular continuations. Check the selected reading against a manually reviewed reference and discuss mismatches, as the exercises do.
+
+With the PyPI release of TurkicNLP 0.5.0 and the pure-Python `pyhfst` reader, the readings of *evleri* are printed in a different order and *алыс* gets `feats=Case=Nom`; the selected lemmas and parts of speech are the same.
+
+*Evlerimizden* and *Үйлерімізден* receive parallel FEATS bundles for the same structure in different surface forms. Other outputs reveal errors. In *uzaklaş-mış-tı-k*, *-mIş-DI* expresses the pluperfect, 'we had moved far away'. The transducer instead reads *-mIş* as evidential past (`Evident=Nfh|Tense=Past`, @sec-morpheme-inventory); Turkish IMST uses `Tense=Pqp`. Kazakh *алыс* 'far' is tagged NOUN despite its adverbial use here. The toolkit chooses among transducer readings with heuristics, without a trained syntactic disambiguator (@sec-book-07-neural-morphology). Inspect `word._provenance` and `doc._processor_log` to see which processor supplied each field.
+
+
+**Status: demonstration.** The displayed output is recorded and includes the backend and version differences. Exercise 3 develops the ambiguity comparison.
+
+## What to Take Forward {#sec-ch05-synthesis .unnumbered}
+
+A morphological analysis links a stem and its affixes to grammatical functions, and context selects among competing readings. Ambiguity is the normal case: in the UD test samples above, 55% of eligible Turkish tokens and 66% of Kazakh ones keep several readings even after continuation readings are removed. Surface segments, analyser tags and UD features answer different questions, so state which representation a tool produces before comparing it with another. @sec-book-06-finite-state-morphology shows how finite-state analysers produce these readings, and @sec-book-07-neural-morphology how neural models select them.
+
+## Further Reading {#sec-ch05-further-reading .unnumbered}
+
+- **Turkic morphology**: @Johanson_2021, chapter 20 (pp. 431–439), introduces morphology; chapter 22 (pp. 452–478) treats noun inflection, and chapter 27 (pp. 555–571) treats copular devices.
+- **Turkish morphological analysis**: @oflazer1994two is the foundational computational paper on Turkish two-level morphology; @oflazer2018turkish_nlp [chapters 2–3] gives a modern treatment of morphological processing and disambiguation for Turkish, and the rest of the book covers parsing, semantic processing and speech.
+- **Universal Dependencies morphological features**: @demarneffe2021universal defines the UD feature inventory; the UD guidelines for Turkic languages at [universaldependencies.org](https://universaldependencies.org) provide language-specific annotation decisions.
+- **Cross-lingual morphology**: @hakimov2025turkicnlp compares finite-state and multilingual neural analysers on a parallel 20-language challenge set, including languages without training data.
+
+
+## Exercises {#sec-ch05-exercises .unnumbered}
+
+1. **Template exercise.** Analyse *kitaplarımıza* as *kitap-lar-ımız-a*. Write a proposed UD feature bundle, then run the analyser of the Hands-On section and compare. Distinguish the noun's number, the possessor's person and number, and case. Explain any mismatch, and record the toolkit version and backend.
+
+2. **Allomorphy tables.** For the Turkish dative suffix (*-a/-e*) and the locative suffix (*-da/-de/-ta/-te*), fill in the correct allomorph for each of the following roots: *ev* (house), *araba* (car), *göz* (eye), *kapı* (door), *çiçek* (flower), *kuş* (bird). State the rule governing each allomorph choice.
+
+3. **Morphological ambiguity.** List all readings the Turkish transducer returns for *yazar*, *çalışır* and *evleri* (use the readings call of the Hands-On section, or Zemberek). For each word: (a) gloss each reading; (b) write two sentences in which different readings are correct; (c) say which reading the pipeline selects in each sentence, and whether it is right.
+
+4. **Cross-language comparison.** Segment the Kazakh word *кетпегендіктен* 'because (someone) did not leave' as *кет-пе-ген-дік-тен* (leave-NEG-PTCP-NMLZ-ABL): it contains both a participle *-ген* and a nominaliser *-дік*. (a) Give an equivalent Turkish construction and compare the order of the pieces. (b) Propose a UD annotation under the conventions of the Kazakh KTB treebank, and explain which pieces the UD bundle does not show. Compare it with what the Apertium Kazakh analyser returns for the word. (c) Compare Turkmen *gitmedigi üçin* 'because (someone) did not go' (*git-me-dig-i üçin*, go-NEG-PTCP-POSS.3 for), which expresses the cause with a postposition instead of the ablative.
+
+5. **Morphophonological rule writing.** Write a formal rule (in prose or as a conditional) for Turkish consonant alternation in the locative suffix (*-da/-ta*): state the trigger (what phonological property of the preceding consonant) and the two output forms. Then apply your rule to the following stems: *el* (hand), *kap* (lid), *göl* (lake), *at* (horse), *iç* (inside).

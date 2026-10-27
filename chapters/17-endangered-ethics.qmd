@@ -1,0 +1,192 @@
+---
+short-title: "Endangered Languages and Ethics"
+---
+
+# Endangered Languages, Digital Preservation, and Ethics {#sec-book-17-endangered-ethics}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Identify task-specific resource gaps and distinguish them from language vitality and community priorities
+- Compare digitisation, annotation, text creation and speech collection for a community-defined purpose
+- Plan a useful first tool and estimate effort from a pilot
+- Apply the CARE principles to evaluate the ethical dimensions of an endangered-language NLP project
+- Prepare alternative research and development priorities for discussion with community partners
+- Build a dated resource inventory that distinguishes observations, missing information and failed queries
+:::
+
+Turkic languages differ sharply in available resources, and coverage also varies by task. These inventories tell us little about grammatical complexity, language vitality or community priorities. The previous chapters explain evaluation and adaptation (@sec-book-15-evaluation-benchmarks; @sec-book-16-cross-lingual-transfer). Here, the questions are what to build, with whom and under whose control. Resource audits can inform those decisions, but usefulness depends on the people using a tool and evidence from its intended setting.
+
+## What a Resource Gap Means {#sec-zero-resource}
+
+Define "zero-resource" by task, release and search scope. A language might have an FST and parallel text while lacking an independently annotated NER test set. TIL includes Tuvan, Khakas, Karachay-Balkar and Shor [@mirzakhalov2021large], so each has at least some computational resources. Record model input support, released weights and measured task quality separately.
+
+Use the official UD 2.17 inventory in @sec-book-08-syntax-ud, the corpus manifests in @sec-corpora-inventory, the toolkit registry and the verified model entries in Appendix B. Record a missing search result as "not found in this audit", an unchecked field as "not checked", and a failed API call as an error. Do not convert all three to zero.
+
+Endangerment concerns intergenerational transmission and community use, not the number of Hub models. Use dated evidence about transmission and language use when discussing endangerment. Appendix C explains the requirements for population estimates. Community documentation may be valuable even where it produces no machine-learning benchmark.
+
+## Digital Preservation Strategies {#sec-digital-preservation}
+
+### Digitising Print Materials
+
+Preserve page images, stable page/document IDs and provenance alongside OCR. Separate diplomatic transcription (what the source writes) from editorial correction, transliteration and modernisation. Store uncertain readings explicitly and make transformations reversible through the retained original.
+
+Evaluate OCR on document-disjoint pages manually transcribed under a stated policy. Report character and word error rates with the same normalisation, plus error categories for special letters, segmentation and layout. A CER/WER gap alone cannot prove that morphology caused the errors. Train and evaluate layout extraction separately where columns, footnotes or marginalia alter reading order.
+
+### Historical and Heritage Text {#sec-heritage}
+
+Ottoman, Chagatai, Old Turkic runiform and Old Uyghur materials differ in script, period, genre and editorial practice. Old Turkic extends beyond the Orkhon inscriptions. Check access terms for each collection. One released annotation resource is the **Old Turkish–Clausal** UD treebank (@sec-book-08-syntax-ud).
+
+A historical corpus should link every token or segment to its source, editorial reading and transformation history. Keep original spelling and normalised search fields separately. Morphological annotation needs period-specific guidelines and uncertainty labels; a modern-language analyser can propose readings but cannot certify them.
+
+This chapter reports no OCR accuracy: a historical OCR case study needs rights-cleared page images, independent transcriptions and philological review.
+
+### Field Linguistics Tools
+
+[FLEx](https://software.sil.org/fieldworks/) supports dictionaries and interlinear analysis; [ELAN](https://archive.mpi.nl/tla/elan) aligns annotation with audio and video. To use exports for training, map their tiers, speaker/session IDs, time spans and gloss conventions explicitly. Preserve alignment, follow the archive's access rules and exclude restricted fields from public releases. The archive, dictionary or teaching material may itself be the project's main outcome.
+
+### Community Text and Speech Collection
+
+Wikipedia editing, local publishing and speech recording can create useful materials when participants choose those activities. Article counts do not measure clean running text or prove that articles are machine-generated. Measure quality and genre coverage rather than treating volume as the objective.
+
+For speech, agree recording conditions, transcript conventions, speaker permissions and intended uses before collection. A release's total, validated and training hours are different quantities. Common Voice access and release details should be checked through the distribution source described in @sec-book-11-speech-technologies; keep a dated local manifest. Consent to archiving a voice does not automatically include voice cloning.
+
+## Building a Useful First System {#sec-bootstrapping}
+
+### Take Stock and Agree the Use Case
+
+Begin with a community-defined task and the resource audit below. Check existing target-language modules, compatible multilingual models and documented evaluations. Select a small, independently reviewed sample for a pilot. Protect a final test set from all adaptation, including tokeniser training and synthetic-data generation.
+
+### Extend Existing Morphology Where It Helps
+
+An FST can support many tasks, though neural tagging and ASR can also be developed without one. Nogai already has an Apertium module. Extend its lexicon and continuation classes with help from grammars and speakers; a Kazakh module can offer engineering patterns, but its linguistic rules require checking before reuse.
+
+Keep regression tests for accepted and rejected forms, ambiguity and generation. Measure analysis accuracy against gold readings alongside coverage (@sec-evaluation-principles). Record the transducer revision and dictionary rights.
+
+### Projection and Few-Shot Training
+
+Annotation projection uses aligned source and target sentences. Preserve many-to-many alignments and handle unaligned words, conflicting heads, cycles and roots explicitly (@sec-book-08-syntax-ud). The output is silver annotation. Evaluate a held-out sample against gold labels on **those same target sentences**. Tag agreement measures the projected annotation; it does not measure word-alignment accuracy, since an incorrect link can connect two words with the same tag.
+
+Combine suitable silver data with separately identified gold training data and tune their weights on development data. Keep document/source families disjoint. A small hand-corrected collection cannot simultaneously be the adaptation set and an independent final test set. FST features and related-language initialisation are optional conditions to compare.
+
+### Speech and Writing Tools
+
+Use the learning-curve protocol in @sec-book-11-speech-technologies to evaluate speech adaptation on a fixed validation population. Success on news recordings does not carry over automatically to meetings, spontaneous conversation or accessibility captioning: each has its own speaker, acoustic and error-cost requirements.
+
+For spelling assistance, distinguish an analyser-licensed form from a contextually correct form. Test valid rare words and names alongside misspellings, and measure harmful changes. Suggestions with an undo path may be preferable to automatic replacement, depending on the community's use case.
+
+### Budget and Maintenance
+
+Use a timed pilot to estimate recruitment, permissions, annotation, adjudication, development, device testing and maintenance. Partners might choose an archive, keyboard, corpus, evaluation set, morphological tool or transcription assistant. Agree on deliverables and budget together, using staffing and cost evidence to set the schedule.
+
+## Community, Consent, and Data Sovereignty {#sec-ethics}
+
+### Roles and Permissions
+
+Separate individual participant consent, collective governance, source copyright and software/model licences. Record these separately for the people, data and software involved. Community representation must be agreed rather than assumed from one institution or consultant, and individuals retain their own choices about participation.
+
+Before collection, record:
+
+- who can approve new uses and resolve disputes;
+- which recordings, transcripts, annotations and models may be public, restricted or withheld;
+- whether commercial use, redistribution, model training or voice synthesis is permitted;
+- where data is stored, who can access it, and how access is reviewed;
+- how withdrawal changes future collection, releases and training, and what cannot be recalled from already distributed copies;
+- who maintains the tools and how contributors receive payment, credit and usable outputs.
+
+Check software, model and data licences separately, alongside participant permissions. Permission to release software does not by itself authorise release or reuse of recordings.
+
+### CARE in Context
+
+The CARE principles (Collective benefit, Authority to control, Responsibility and Ethics) were developed in Indigenous data governance [@carroll2020care]. They offer questions for collaboration without assuming that all Turkic communities have the same identities, institutions or preferences. Partners should determine how the framework fits their setting.
+
+Collective benefit requires an outcome people want and can use. Authority to control means an agreed process for making decisions before release and afterwards. Responsibility includes maintenance and training. Ethics calls for attention to changing risks and both individual and collective interests. When reviewing a paper, mark unreported consent as **not documented**; silence leaves the question unresolved.
+
+### Risks to Evaluate
+
+Potential harms include unwanted standardisation of a variety, confident incorrect output, unequal speech recognition, and reuse of recordings beyond agreed purposes. Treat these as risks to investigate; do not label an illustrative scenario a documented case or infer hallucination rates from corpus size alone.
+
+Script choice affects who can use the result. Preserve originals, identify conversion schemes and provide alternatives when partners request them. CTS is an experimental model input in this book; decisions about community writing belong to its users. Include diaspora and regional varieties in evaluation when they are part of the intended audience.
+
+Language technology can also support monitoring. Assess likely users, collection sensitivity and release granularity with partners. Offline access can reduce network dependence and exposure of personal text, but it does not by itself resolve governance or misuse concerns. Avoid publishing sensitive location or speaker information merely to make a dataset easier to reproduce.
+
+## Open Problems and Research Priorities {#sec-priorities}
+
+### Evaluation and Corpora
+
+The official release inventory identifies specific treebank gaps; local silver or experimental files must not be counted as official UD releases. Independent target gold data makes transfer measurable even when training relies on a multilingual model. Parallel annotation provides one comparison domain, while natural target text is needed for broader claims.
+
+TUMLU's published coverage leaves many languages outside that particular benchmark. Expansion can use community-authored questions, with provenance and independent review. Native and translated questions differ in content and construction; neither is automatically harder. Public games are also potentially exposed in training (@sec-book-15-evaluation-benchmarks).
+
+### Tokenisation and Model Adaptation
+
+The fertility measurements in @sec-subword-tok suggest model-input experiments. Compare native text, conversion, vocabulary extension and morphology-aware tokenisation using downstream scores as well as token counts. Preserve original text and test loss from ambiguous mappings. Corpus quality and licensing remain separate requirements.
+
+### Community-Defined Roadmaps
+
+For languages with an existing FST, extending coverage may be useful; for another community, searchable recordings or teaching materials may be the priority. For Shor or any other language, establish partners and their aims before assigning documentation, ASR or benchmarking as the "most impactful" intervention. Budget pilot work, compensation, access and maintenance, with explicit points where the plan can change.
+
+SIGTURK, UD-Turkic, Apertium, TIL and toolkit maintainers provide possible coordination channels [@eslami2025parallel; @mirzakhalov2021large; @khanna2021apertium]. Check which language/resource already exists before proposing an extension. A shared registry should record source, version, licence, task and evaluation status. A single maturity score would hide these distinctions.
+
+## Hands-On: Building a Turkic Language Resource Audit {#sec-ch17-hands-on}
+
+**Question.** Which resources support a specified task, and what remains unknown?
+
+**Inputs.** Named release inventories, repository queries and explicit language-tag aliases.
+
+**Compute.** CPU and network access; no model training is required for the inventory.
+
+**Output.** A dated inventory with returned IDs, provenance, unknown fields and query errors.
+
+**Interpretation.** Use the inventory to choose a next investigation and verify resource quality separately.
+
+The [resource-audit script](../code/ch17-resources/resources.py) records the query, timestamp, result status, exact returned IDs and any network error. For model searches it uses the supported `filter` argument; dataset searches use `language`. Language-tag aliases are supplied explicitly and results are deduplicated by repository ID.
+
+```bash
+python code/ch17-resources/resources.py --iso3 kaz --hub-alias kk --hub-alias kaz \
+  --output runs-kazakh-resource-audit.json
+```
+
+Hub tags are self-reported. Searches can miss resources or return adapters, copies and unusable releases, so inspect results before drawing conclusions about task coverage. A zero records the outcome of **this query**. Failed requests retain `value: null, status: error`; unchecked UD, Wikipedia and FST-quality fields retain `not_checked` until a dated source verifies them.
+
+For UD counts, use `tables/tbl-ud217-inventory/` and name the release. For Wikipedia, verify the actual edition code before using MediaWiki statistics; ISO 639-3 is not a reliable URL substitution. For FST quality, record the evaluation task and gold denominator instead of converting feature-coverage percentages into "high/medium/low" tiers. Link tested model observations to @tbl-verified-models.
+
+Exercise 1 combines these helpers with the UD 2.17 inventory, Apertium repository checks, the TIL language-pair table, SIB-200 files and model language lists. The dated snapshot covers Kazakh, Kyrgyz, Nogai, Tuvan and Shor.
+
+On 20 October 2026, the audit found an Apertium repository and a GlotLID label for Nogai, but no Nogai entry in the checked UD, TIL, SIB-200 or NLLB-200 sources. The pinned TIL table lists ten Tuvan pairs, the largest with 12,531 training sentences (Tuvan–Bashkir), and one Shor pair (Shor–Russian, 2,294 sentences). The Apertium lookup for Shor returned no repository. Hub queries failed and remain errors, not zeros. A repository entry and a classifier's language label prove neither working coverage nor quality.
+
+A separate fresh-environment query on 20 October 2026 succeeded. The counts below are deduplicated repository IDs returned by the supplied aliases. They describe Hub metadata at that time; the earlier failed queries remain in the historical exercise output. The follow-up audit records the exact IDs and UTC timestamps.
+
+| Language | Query aliases | Model repositories | Dataset repositories |
+|---|---|---:|---:|
+| Kazakh | `kk`, `kaz` | 2,870 | 743 |
+| Kyrgyz | `ky`, `kir` | 1,496 | 428 |
+| Nogai | `nog` | 120 | 28 |
+| Tuvan | `tyv` | 149 | 106 |
+| Shor | `cjs` | 20 | 18 |
+
+: Follow-up Hub tag queries from an isolated environment; repository counts do not measure usable task coverage. {#tbl-hub-followup}
+
+The remaining exercises connect the inventory to governance review, analyser extension, projected tags and a project plan. Use each output for its stated purpose: regression checks track analyser behaviour, gold tags assess projected labels, and the plan prepares decisions for discussion with community partners.
+
+**Status: completed.** Exercise 1 records the dated five-language inventory above, including the failed Hub queries. A later audit must be stored separately.
+
+## What to Take Forward {#sec-ch17-synthesis .unnumbered}
+
+A resource inventory supports a community-defined decision about what to build. The Nogai audit identifies an existing Apertium module, but the checked data inventories do not supply the annotated task data needed for supervised training. Extending the analyser is one option to discuss with partners, alongside further resource discovery or data collection. Record observations, unknowns and failed queries separately, estimate effort from a pilot, and include benefit, authority, responsibility and ethics in the technical plan. The earlier chapters supply methods for the data handling, models and evaluation that partners choose.
+
+
+## Further Reading {#sec-ch17-further-reading .unnumbered}
+
+@bird2020decolonising and @carroll2020care discuss community governance and research priorities. @Johanson_2021 provides the linguistic reference, while @coltekin2022resources surveys computational resources for Turkish. @sec-book-08-syntax-ud, @sec-book-11-speech-technologies and @sec-book-16-cross-lingual-transfer give the evaluation and adaptation protocols needed to turn a resource inventory into evidence about a system.
+
+## Exercises {#sec-ch17-exercises .unnumbered}
+
+1. Audit five languages with explicit language-tag aliases and a dated UD release. Show unknown and error values distinctly. Explain why repository-count ratios cannot be converted into person-hours of development.
+2. Review a published project against CARE. Separate documented decisions, missing reporting and your own recommendations; do not infer absent consent from silence in a paper.
+3. Time a small extension to an existing FST. Include linguistic review, ambiguity tests and maintenance in the effort estimate, not only dictionary entry counts.
+4. Project tags onto aligned target sentences and compare with independent gold on those exact sentences. Report unaligned cases and keep the evaluation sentences out of training.
+5. Draft a community-led preservation project with alternative deliverables, budget, individual and collective permissions, withdrawal limits and maintenance. This is a desk exercise; contacting or recording a vulnerable community is not required.

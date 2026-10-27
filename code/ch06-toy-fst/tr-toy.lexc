@@ -1,0 +1,24 @@
+! A complete toy Turkish noun lexicon: four stems, plural, locative and ablative.
+! Upper side = analysis (lemma + tags), lower side = morphophonemic form.
+! {A} = harmonising vowel a/e;  {D} = suffix-initial d/t.
+
+Multichar_Symbols
+%<n%> %<pl%> %<loc%> %<abl%> %{A%} %{D%}
+
+LEXICON Root
+Nouns ;
+
+LEXICON Nouns
+ev%<n%>:ev         Number ;   ! house
+araba%<n%>:araba   Number ;   ! car
+göz%<n%>:göz       Number ;   ! eye
+kitap%<n%>:kitap   Number ;   ! book
+
+LEXICON Number
+%<pl%>:l%{A%}r     Case ;     ! plural -lAr
+                   Case ;     ! singular: no suffix
+
+LEXICON Case
+                       # ;    ! nominative: no suffix
+%<loc%>:%{D%}%{A%}     # ;    ! locative -DA
+%<abl%>:%{D%}%{A%}n    # ;    ! ablative -DAn

@@ -1,0 +1,8 @@
+iso	language	tokens_B	pages_M	mt5_sampling_pct
+tr	Turkish	71	88	1.93
+az	Azerbaijani	4.4	5.3	0.82
+kk	Kazakh	3.1	2.4	0.65
+ky	Kyrgyz	1.0	1.0	0.50
+uz	Uzbek	0.9	0.8	0.46
+ru	Russian	713	756	3.71
+en	English	2733	3067	5.67

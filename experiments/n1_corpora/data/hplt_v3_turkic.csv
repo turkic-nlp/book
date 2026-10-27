@@ -1,0 +1,39 @@
+iso639_3,language,branch,hplt_code,script,row_type,present,files,bytes_compressed,documents,segments,gemma3_tokens,characters,tokens_per_doc,chars_per_token,sample_docs,sample_words_per_char,est_words,est_words_M,top_bins_8_10_share_bytes
+tur,Turkish,Oghuz,tur_Latn,Latn,primary,1,14,228895020920,159466598,3114426920,149976628858,512610667130,940.5,3.418,12,0.1271,65150806916,65150.8,0.560
+aze,Azerbaijani (North),Oghuz,azj_Latn,Latn,primary,1,6,15142099416,11068894,244045345,15956420654,41256582266,1441.6,2.586,12,0.1276,5266283688,5266.3,0.724
+aze,Azerbaijani (North),Oghuz,aze_Latn,Latn,script_variant,0,,,,,,,,,,,,,
+azb,South Azerbaijani,Oghuz,azb_Arab,Arab,primary,1,6,183504948,94756,2584969,134706798,296100565,1421.6,2.198,12,0.1380,40861592,40.9,0.477
+tuk,Turkmen,Oghuz,tuk_Latn,Latn,primary,1,6,382448719,378448,4863724,370579218,902751404,979.2,2.436,12,0.1189,107375986,107.4,0.601
+tuk,Turkmen,Oghuz,tuk_Cyrl,Cyrl,script_variant,0,,,,,,,,,,,,,
+gag,Gagauz,Oghuz,gag_Latn,Latn,primary,0,,,,,,,,,,,,,
+gag,Gagauz,Oghuz,gag_Cyrl,Cyrl,script_variant,0,,,,,,,,,,,,,
+ota,Ottoman Turkish,Oghuz (historical),ota_Arab,Arab,primary,0,,,,,,,,,,,,,
+kaz,Kazakh,Kipchak,kaz_Cyrl,Cyrl,primary,1,6,8758657930,5119572,100638823,7341101241,17212906937,1433.9,2.345,12,0.1260,2168648603,2168.6,0.690
+kaz,Kazakh,Kipchak,kaz_Latn,Latn,script_variant,0,,,,,,,,,,,,,
+kir,Kyrgyz,Kipchak,kir_Cyrl,Cyrl,primary,1,6,2020295633,1489065,20265594,1535488291,3801224753,1031.2,2.476,12,0.1254,476697002,476.7,0.666
+tat,Tatar,Kipchak,tat_Cyrl,Cyrl,primary,1,6,1726485175,1259059,22924479,1583307054,3691342054,1257.5,2.331,12,0.1306,482229231,482.2,0.671
+tat,Tatar,Kipchak,tat_Latn,Latn,script_variant,0,,,,,,,,,,,,,
+bak,Bashkir,Kipchak,bak_Cyrl,Cyrl,primary,1,6,417520926,275718,3969838,393321489,803720251,1426.5,2.043,12,0.1252,100653547,100.7,0.650
+crh,Crimean Tatar,Kipchak,crh_Latn,Latn,primary,1,6,144888491,120315,1528443,128098883,315926019,1064.7,2.466,12,0.1245,39322862,39.3,0.615
+crh,Crimean Tatar,Kipchak,crh_Cyrl,Cyrl,script_variant,0,,,,,,,,,,,,,
+kaa,Karakalpak,Kipchak,kaa_Latn,Latn,primary,0,,,,,,,,,,,,,
+kaa,Karakalpak,Kipchak,kaa_Cyrl,Cyrl,script_variant,0,,,,,,,,,,,,,
+nog,Nogai,Kipchak,nog_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+kum,Kumyk,Kipchak,kum_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+krc,Karachay-Balkar,Kipchak,krc_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+uzb,Uzbek,Karluk,uzn_Latn,Latn,primary,1,6,2748335790,1882814,32944765,2336418080,6511347341,1240.9,2.787,12,0.1379,898226052,898.2,0.622
+uzb,Uzbek,Karluk,uzn_Cyrl,Cyrl,script_variant,0,,,,,,,,,,,,,
+uzb,Uzbek,Karluk,uzb_Latn,Latn,script_variant,0,,,,,,,,,,,,,
+uzb,Uzbek,Karluk,uzs_Arab,Arab,script_variant,0,,,,,,,,,,,,,
+uig,Uyghur,Karluk,uig_Arab,Arab,primary,1,6,1045565786,645397,10477602,1197346332,2158126239,1855.2,1.802,12,0.1166,251680669,251.7,0.012
+uig,Uyghur,Karluk,uig_Latn,Latn,script_variant,0,,,,,,,,,,,,,
+uig,Uyghur,Karluk,uig_Cyrl,Cyrl,script_variant,0,,,,,,,,,,,,,
+sah,Sakha,Siberian,sah_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+alt,Altai,Siberian,alt_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+tyv,Tuvan,Siberian,tyv_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+kjh,Khakas,Siberian,kjh_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+chv,Chuvash,Oghur,chv_Cyrl,Cyrl,primary,0,,,,,,,,,,,,,
+klj,Khalaj,Arghu,klj_Arab,Arab,primary,0,,,,,,,,,,,,,
+otk,Old Turkic,Old Turkic (historical),otk_Orkh,Orkh,primary,0,,,,,,,,,,,,,
+rus,Russian (reference),—,rus_Cyrl,Cyrl,reference,1,286,8593066469523,3304961393,100231133107,4402594990316,15949995348865,1332.1,3.623,12,0.1317,2100788873894,2100788.9,
+eng,English (reference),—,eng_Latn,Latn,reference,1,1294,32582719089391,18057789751,435227946529,16280215973612,72336992072141,901.6,4.443,12,0.1759,12723523980034,12723524.0,

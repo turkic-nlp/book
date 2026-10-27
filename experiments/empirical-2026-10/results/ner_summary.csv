@@ -1,0 +1,27 @@
+entity_type,gold_entities,predicted_entities,correct_entities,precision,recall,f1,source
+ALL,13508,13501,12821,0.9496333604918155,0.949141249629849,0.9493872412899403,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+ADAGE,19,8,5,0.625,0.2631578947368421,0.37037037037037035,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+ART,229,241,218,0.9045643153526971,0.9519650655021834,0.9276595744680851,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+CARDINAL,2824,2852,2766,0.9698457223001402,0.9794617563739377,0.9746300211416491,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+CONTACT,20,20,17,0.85,0.85,0.85,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+DATE,2611,2624,2528,0.9634146341463414,0.9682114132516277,0.9658070678127985,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+DISEASE,123,117,110,0.9401709401709402,0.8943089430894309,0.9166666666666666,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+EVENT,156,150,129,0.86,0.8269230769230769,0.8431372549019608,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+FACILITY,198,187,139,0.7433155080213903,0.702020202020202,0.7220779220779221,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+GPE,1742,1723,1672,0.9704004643064422,0.9598163030998852,0.9650793650793651,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+LANGUAGE,46,43,43,1.0,0.9347826086956522,0.9662921348314607,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+LAW,55,54,34,0.6296296296296297,0.6181818181818182,0.6238532110091743,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+LOCATION,212,213,179,0.8403755868544601,0.8443396226415094,0.8423529411764706,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+MISCELLANEOUS,26,22,20,0.9090909090909091,0.7692307692307693,0.8333333333333334,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+MONEY,441,442,435,0.9841628959276018,0.9863945578231292,0.9852774631936579,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+NON_HUMAN,1,0,0,0,0.0,0.0,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+NORP,372,337,329,0.9762611275964391,0.8844086021505376,0.9280677009873061,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+ORDINAL,386,375,363,0.968,0.9404145077720207,0.9540078843626807,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+ORGANISATION,735,774,657,0.8488372093023255,0.8938775510204081,0.8707753479125249,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+PERCENTAGE,456,456,448,0.9824561403508771,0.9824561403508771,0.9824561403508771,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+PERSON,1332,1350,1306,0.9674074074074074,0.9804804804804805,0.9739000745712155,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+POSITION,603,606,584,0.9636963696369637,0.9684908789386402,0.9660876757650951,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+PRODUCT,73,63,50,0.7936507936507936,0.684931506849315,0.7352941176470589,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+PROJECT,211,211,192,0.909952606635071,0.909952606635071,0.909952606635071,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+QUANTITY,407,405,385,0.9506172839506173,0.9459459459459459,0.9482758620689655,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD
+TIME,230,228,212,0.9298245614035088,0.9217391304347826,0.925764192139738,experiments/empirical-2026-10/run_ner.py; KazNERD bd4333d test; cached Stanza kazNERD

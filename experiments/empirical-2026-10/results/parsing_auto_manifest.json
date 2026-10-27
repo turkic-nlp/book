@@ -1,0 +1,104 @@
+{
+  "release": "UD 2.17",
+  "stanza": "1.11.0",
+  "torch": "2.10.0",
+  "device": "cpu",
+  "protocol": "Gold sentence boundaries only; automatic tokenization/MWT, POS, lemmas, features and heads. Official alignment-aware UD scorer. No training or tuning.",
+  "runs": {
+    "kk": {
+      "gold_sha256": "1100846ee50c2f970562a21dca8415a381c470ea06bdb8496ae213d59c3a3c4e",
+      "predicted_sha256": "07291adc33985d24f908a5fbdb88ce11b167481916479e92ddbfee924a870f33",
+      "packages": {
+        "tokenize": "ktb",
+        "pos": "ktb_charlm",
+        "lemma": "ktb_nocharlm",
+        "depparse": "ktb_charlm",
+        "mwt": "ktb"
+      },
+      "model_files": {
+        "kk/mwt/ktb.pt": "391f6998e7000c7ad1c8faffb5d461941f8f69559a4a0bfcac7f3f2d3825d7a5",
+        "kk/depparse/ktb_charlm.pt": "a74322151e2caee7e97c481240e51ab472ec7d6e6aca618dc923e3e22617f053",
+        "kk/pos/ktb_charlm.pt": "d84790a02671880c4cba6449fd4e71ec5200309a4cf973dc8119d2bf657b73c3",
+        "kk/pretrain/fasttext157.pt": "bf0ff72ec12e88b6ba36b786aee33b058683f3c790c8c8adbccbf738f808d3f4",
+        "kk/lemma/ktb_nocharlm.pt": "0fc9f1ea1e0390659ac619790852f78ee108d472e18d02ff47122731d42ace0b",
+        "kk/backward_charlm/oscar.pt": "7a9d868a678c624fb5d5972aa8d34e22e360bcd2183ae5aa924a69078cc61dfa",
+        "kk/forward_charlm/oscar.pt": "512b8698ce69066b7c01ed056d2bbeb6a26d61fe8310c7eeef6be978b31f51e2",
+        "kk/tokenize/ktb.pt": "34f73cee9b595273522151499403d0e34dcf5112f5d00cb9a9c055ae39234499",
+        "kk/tokenize/ktb_nocharlm.pt": "ec106b8bea5217384da816027b6ec0fbd255b940c68fad1b87ba08973052d528"
+      },
+      "seconds": 27.52549910545349
+    },
+    "ky": {
+      "gold_sha256": "843061f0ad2204d5d65ee77edf2e576fa54887415ec8e1bb0cd928fd7b23877b",
+      "predicted_sha256": "2bac90a23d751c5b86e98319461e1f3a331a2c4d4b5c7d42244139564df7e5e3",
+      "packages": {
+        "tokenize": "ktmu",
+        "pos": "ktmu_nocharlm",
+        "lemma": "ktmu_nocharlm",
+        "depparse": "ktmu_nocharlm"
+      },
+      "model_files": {
+        "ky/depparse/ktmu_nocharlm.pt": "72b766c44db4de5cebab83b42bfd473d9ddf6d6486845142e63327b424dd21d9",
+        "ky/pos/ktmu_nocharlm.pt": "d8724b8ffa14f16f2be590ed14ca9247e6d19725047585a764f9b9ad850e3010",
+        "ky/pretrain/fasttext157.pt": "e806d7dd4376d7984b0e5f35f2de02e393d209de347a674281c9073d9f6d9c66",
+        "ky/lemma/ktmu_nocharlm.pt": "e0caf22acfda2925d92a8f11fd121b80f214a3c8829f21644d4ac1b6f303c0b2",
+        "ky/tokenize/ktmu.pt": "9d3de6e64fb80d03786c426f61b4eebbbedc74a46217e337ea734a1b2e6e2c44",
+        "ky/tokenize/ktmu_nocharlm.pt": "9f5c1afafba1897395cfbd10cd1fd5c21f17876e0f6e44241be9f7a36a4df145"
+      },
+      "seconds": 11.258955001831055
+    },
+    "tr": {
+      "gold_sha256": "fc9269bd598489b942a025b678779557266ce0c054a843e47c7db386d76d6459",
+      "predicted_sha256": "deefe8e6574ab9a2aacf832b69a65ecdd46c6887df5abfd4c899c8592857487c",
+      "packages": {
+        "tokenize": "imst",
+        "pos": "imst_charlm",
+        "lemma": "imst_nocharlm",
+        "depparse": "imst_charlm",
+        "mwt": "imst"
+      },
+      "model_files": {
+        "tr/mwt/imst.pt": "47072881dde81bc7d548b72522e5d651313ed55029e5ee1dc40a2dd15fb9018c",
+        "tr/depparse/imst_charlm.pt": "5ad250e20066070b3370f5c956d44f8eebd492dfd8cf7edaf48ee6ec5155a9ca",
+        "tr/pos/imst_charlm.pt": "b18321a16c8de4037f733ded987152c170a1912b359fff77830bb273870203e4",
+        "tr/pretrain/conll17.pt": "b4b624484e7488d76357217f4dbea0d3cd2c214118ebd5034cc0272ea0a3622e",
+        "tr/lemma/imst_nocharlm.pt": "becd426e2e6d3334f6df03b9095b2536a462d43b5ed13ef4d4ec1d594263a708",
+        "tr/backward_charlm/conll17.pt": "75edf73fee18c9e0cfbf3f9f8630aa5df5da2f2ce44f6e88b7e3fef6c83ae8cc",
+        "tr/forward_charlm/conll17.pt": "c20679a2bc639968120525a708255caf29b13d93d8310491da1a2602f2a3f0c8",
+        "tr/tokenize/imst.pt": "cf40b90d1796281960359a9cfb007783155161e6125551611b2996f85296360b",
+        "tr/tokenize/imst_nocharlm.pt": "7e8a874439c3a76fb8df461eaa6c81b3c375be86928c9f05589c7163633c9f51"
+      },
+      "seconds": 32.49156618118286,
+      "imst_text_redaction": {
+        "licence": "UD Turkish-IMST is CC BY-NC-SA 4.0; forms, predicted lemmas and # text are removed from the distributed file (imst_text.py)",
+        "original_predicted_sha256": "deefe8e6574ab9a2aacf832b69a65ecdd46c6887df5abfd4c899c8592857487c",
+        "redacted_sha256": "cf0f1329fd42fe3ddbf78209030239fc70dd0cb87be1ad49b537c341b700244a",
+        "restored_sha256": "3c5550326dba504289baf246beeeb79c2d7ed34d959f0b81041710049903cde4",
+        "not_rescored_after_restoration": [
+          "Lemmas",
+          "BLEX"
+        ]
+      }
+    },
+    "ug": {
+      "gold_sha256": "e0884a71a6e01ca24e175fce25f2e47a4ae750d734cae24fe974598b3aafd293",
+      "predicted_sha256": "a2a9671cb52a1d5a5ec4673e160c62482d10d83c58c1364e4845e6fe2d0e69b5",
+      "packages": {
+        "tokenize": "udt",
+        "pos": "udt_nocharlm",
+        "lemma": "udt_nocharlm",
+        "depparse": "udt_nocharlm"
+      },
+      "model_files": {
+        "ug/depparse/udt_nocharlm.pt": "b6bfa54ecf405b146da1e4671eb92310369a86b95829c2672b4184e5249150c0",
+        "ug/pos/udt_nocharlm.pt": "d3ca64c412b0afd83030b65b03c163302ffdb21d5f811cce484c437603fc50d4",
+        "ug/pretrain/conll17.pt": "dbd9f32d1cc3eaae031239db5fe5b4647525d8db7ab3696289f6dfb9797a8c0c",
+        "ug/lemma/udt_nocharlm.pt": "e051434f92fb90592c55a266eccf481bcad5d450327548d128c6c59ad372b741",
+        "ug/tokenize/udt.pt": "a37c32fed1f61f01fe08f815d70e23e46a9ceac0b93d3b257fa6589573e8f81a"
+      },
+      "seconds": 7.250864267349243
+    }
+  },
+  "split_exposure_audit": "stanza_split_audit.json",
+  "kazakh_interpretation": "Replay/exposure-risk diagnostic, not held-out accuracy"
+}

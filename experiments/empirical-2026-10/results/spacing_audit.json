@@ -1,0 +1,58 @@
+{
+  "archive_sha256": "b8b0b76783024b85797e5cc75064eb83fc5288b41e9654dabc7be6ae944011f6",
+  "threshold": "one whitespace unit OR sentence mean >30 letters per letter-bearing whitespace unit; diagnostic only, no exclusions",
+  "counts": {
+    "eng_Latn": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "rus_Cyrl": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "tur_Latn": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "azj_Latn": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "azb_Arab": {
+      "one_whitespace_unit": 83,
+      "mean_over30": 128
+    },
+    "tuk_Latn": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "kaz_Cyrl": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "kir_Cyrl": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "tat_Cyrl": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "bak_Cyrl": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "crh_Latn": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "uzn_Latn": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    },
+    "uig_Arab": {
+      "one_whitespace_unit": 0,
+      "mean_over30": 0
+    }
+  }
+}

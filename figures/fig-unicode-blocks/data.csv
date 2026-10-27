@@ -1,0 +1,9 @@
+block,start,end,codepoints,examples,source
+Latin Extended-A,0100,017F,0130 0131 011F 015F,İ  ı  ğ  ş,https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+Latin Extended-B,0180,024F,018F,Ə (U+018F),https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+IPA Extensions,0250,02AF,0259,ə (U+0259),https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+Spacing Modifier Letters,02B0,02FF,02BB 02BC,"ʻ (U+02BB),  ʼ (U+02BC)",https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+Cyrillic,0400,04FF,04D8 04D9 04A2,Ә  ә  Ң,https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+Arabic,0600,06FF,06AD 06C7,U+06AD; U+06C7,https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+General Punctuation,2000,206F,200C,ZWNJ (U+200C; invisible),https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+Old Turkic,10C00,10C4F,10C00,Old Turkic letters,https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt

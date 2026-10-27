@@ -1,0 +1,223 @@
+---
+short-title: "Speech Technologies"
+---
+
+# Speech Technologies {#sec-book-11-speech-technologies}
+
+
+::: {.callout-note appearance="simple"}
+## Learning Objectives {.unnumbered}
+
+After reading this chapter, you will be able to:
+
+- Describe the phonological characteristics of Turkic languages (vowel systems, consonant inventories and prosodic patterns) and explain how they affect speech technology design
+- Explain the three main end-to-end ASR architectures (CTC, attention encoder-decoder, RNN-T) at the level needed to evaluate system choices for Turkic languages
+- Characterise the Turkic ASR ecosystem: Whisper coverage, TurkicASR, Söyle, massively multilingual models, and the open datasets Common Voice and FLEURS
+- Explain how written vowel distinctions, pronunciation and prosody affect text-to-speech synthesis
+- Audit released TTS coverage separately from evaluated quality and identify evidence gaps
+- Design a first ASR experiment using cross-lingual acoustic transfer and data augmentation for a low-resource Turkic language
+:::
+
+Speech systems connect recordings with written text. They must handle the target language's sounds, spelling and pronunciation. Related languages may offer useful training data, but performance also depends on speakers, recording conditions and domain.
+
+This chapter covers the phonological foundations relevant to speech processing (@sec-phonology), automatic speech recognition (@sec-asr), text-to-speech synthesis (@sec-tts), and the specific low-resource strategies applicable to Turkic speech (@sec-low-resource-speech). The hands-on provides a Whisper fine-tuning recipe for Kazakh ASR using the Hugging Face ecosystem.
+
+
+## Phonological Sketch of Turkic Languages {#sec-phonology}
+
+### Vowel Systems and Orthography
+
+The grammar-based inventory in @tbl-vowel-inventories distinguishes phoneme analyses from alphabet letters. Use that inventory and the harmony discussion in @sec-book-05-morphological-structure when designing a pronunciation lexicon; a single family-wide vowel count is inappropriate. Johanson treats sound types and vowel systems in Chapters 12–18 and word accents in Chapter 50 [@Johanson_2021]. Standard Uzbek and harmony-preserving Uzbek varieties must be distinguished.
+
+A speech system maps between acoustic realisations and a particular transcription convention. Surface suffix vowels are normally already written: the abstract morphophoneme *A* in a morphological rule is not an unspecified vowel in ordinary Turkish input. Pronunciation modelling must still handle allophony, loans, abbreviations and variety-specific spelling–sound correspondences.
+
+### Consonants and Transfer
+
+Transliteration can obscure sound differences. Standard Turkish *ğ* usually lengthens the preceding vowel or surfaces as a glide; Kazakh *ғ* is a voiced back fricative. An acoustic encoder may nevertheless transfer useful features to sounds absent from its source language. Evaluate that transfer on held-out target speech and inspect the confusions, rather than predicting accuracy from shared letters.
+
+### Prosody
+
+Stress, phrase boundaries, duration and intonation depend on the language, variety and construction. A blanket final-stress rule is insufficient. A morphological analyser can supply candidate features, but selecting the reading and predicting prosody require contextual modelling. Evaluate an analyser-assisted front end against the same model without those features, with fluent listeners and matched recordings.
+
+**A Turkmen example.** Turkmen retains primary long vowels [@gokcur2016longvowels]. Its spelling usually leaves length unmarked. The exception is ‹üý› for /yː/ (Johanson's /üː/), as in *süýt* 'milk' and *güýç* 'strength' [@Johanson_2021, pp. 257–258]. Thus *at* can represent /at/ 'horse' or /aːt/ 'name', and *ot* /ot/ 'grass' or /oːt/ 'fire' [@Johanson_2021, pp. 248, 258]. Before a vowel-initial suffix, the consonant following the long vowel becomes voiced: compare *ady* 'his/her name' with *aty* 'his/her horse'.
+
+The Apertium analyser gives both *at* nouns the same `at<n>` analysis, alongside a verb reading, and both *ot* nouns the same `ot<n>`. A TTS front end therefore needs lexical and contextual information beyond these analyses to choose a pronunciation.
+
+Turkmen also differs from Turkish in its consonants. In native words, ‹s› and ‹z› represent /θ/ and /ð/: *süýt* /θyːt/ 'milk', *duz* /duːð/ 'salt'. Plain /s/ and /z/ occur in loans [@Johanson_2021, pp. 258, 262]. Turkish letter-to-sound rules would miss this distinction. These transcriptions use IPA; Johanson writes the same sounds as /üː/, /θ/ and /δ/ in Turkological notation.
+
+## Automatic Speech Recognition {#sec-asr}
+
+### End-to-End Architectures
+
+Three widely used end-to-end ASR architectures provide the background for the Turkic systems discussed here. For algorithmic details see the chapter on automatic speech recognition in @jurafsky2024slp.
+
+**CTC (Connectionist Temporal Classification)** [@graves2006ctc] trains an encoder to predict a probability distribution over output units (such as characters or subwords) and a blank symbol at each encoder time step, then uses the CTC loss to align the predicted sequence with the target text without requiring explicit frame-to-phoneme alignment. Its frame-level predictions are conditionally independent given the encoded audio. Greedy decoding needs no autoregressive decoder, while beam search may incorporate an external language model; MMS and the Omnilingual CTC models below use this design.
+
+**Attention encoder-decoder** uses an encoder (typically a convolutional front-end followed by transformer layers) to produce a sequence of audio representations, and a decoder that attends over these representations to generate output tokens autoregressively. This architecture is the basis of Whisper [@radford2023whisper]. The decoder uses preceding output tokens as well as the audio.
+
+**RNN-T (Recurrent Neural Network Transducer)** [@graves2012sequence] combines an acoustic encoder with a prediction network that encodes the preceding output labels. A joint network uses both representations to predict the next label or blank. RNN-T supports streaming when the acoustic encoder and decoding policy are causal. Compare latency and recognition error on the intended workload; architecture by itself decides little about suitability for deployment.
+
+### Whisper
+
+The original Whisper models [@radford2023whisper] were trained by OpenAI on 680,000 hours of weakly supervised web audio; 117,000 of those hours cover 96 languages other than English. Their tokeniser has 99 language tokens. The later `large-v3` model added Cantonese, bringing the count to 100 in its [generation configuration](https://huggingface.co/openai/whisper-large-v3/blob/main/generation_config.json). Whisper uses an attention encoder-decoder architecture with a log-mel spectrogram front end and a transformer encoder and decoder. The original release had five sizes (tiny, base, small, medium, large), with the large model having 1,550 million parameters.
+
+Whisper has dedicated tokens for seven Turkic languages: Turkish (`tr`), Azerbaijani (`az`), Uzbek (`uz`), Kazakh (`kk`), Tatar (`tt`), Turkmen (`tk`) and Bashkir (`ba`). **Kyrgyz and Uyghur have no dedicated Whisper language tokens.** Training audio varies widely by language; the paper notes that most languages have less than 1,000 hours. Its FLEURS and Common Voice word error rates provide per-language reference baselines.
+
+Exercise 4 tests an int8 ONNX export of Whisper small with greedy decoding on Piper-synthesised speech: 20 Turkish items from one voice and 30 Kazakh items from six voices. Normalised CER is 5.9% and 54.4%, respectively. Different texts and voices prevent attributing this gap to language alone. Within the Kazakh sample, the Kazakh token outperforms each tested alternative language token and automatic language detection. These synthetic-audio diagnostics leave performance on real recordings unmeasured.
+
+Evaluate Whisper on the intended domain for every language, including Turkish; for Kyrgyz and Uyghur, start from a model that covers them (TurkicASR, Söyle, MMS, or Omnilingual ASR) instead. The `whisper-small` (244 million parameters) and `whisper-medium` (769 million) checkpoints are common starting points for fine-tuning; measure memory and runtime on the hardware at hand.
+
+### TurkicASR
+
+TurkicASR [@mussakhojayeva2023turkicasr] is a multilingual ASR system developed at ISSAI that covers 10 Turkic languages: Azerbaijani, Bashkir, Chuvash, Kazakh, Kyrgyz, Sakha, Turkish, Tatar, Uzbek, and Uyghur. A single model is trained jointly on data from all ten languages; the work also released a 218.2-hour Turkish speech corpus.
+
+**Kazakh Speech Corpus 2 (KSC2)** contains over a thousand hours of transcribed Kazakh speech, combining the earlier KSC and KazakhTTS2 recordings with television and radio, parliamentary speeches and podcasts, and including Kazakh–Russian code-switching [@mussakhojayeva2022ksc2].
+
+TurkicASR's best jointly trained model reduced character and word error rates by 56.7% and 54.3% relative, on average, compared with monolingual models. Adding related Turkic language data helped more than adding English or Russian [@mussakhojayeva2023turkicasr]. These results support the tested multilingual recipe. A controlled comparison would be needed to separate the contributions of shared phonology, vocabulary and other factors, or to assess the benefit for another language.
+
+**Söyle** [@mussakhojayeva2024soyle] is a Whisper-based system from ISSAI covering 11 Turkic languages and the official languages of the United Nations, released together with the Tatar speech corpus TatSC. It is designed for noisy recording conditions and fine-tunes Whisper on noise-augmented speech, with improvements reported on the paper's evaluation conditions. Deployment on a new microphone, domain or speaker population still requires a separate test.
+
+### Open Speech Datasets: Common Voice and FLEURS
+
+**Mozilla Common Voice** [@ardila2020commonvoice] is a crowd-sourced speech dataset collected through volunteer recording. Several Turkic languages have Common Voice datasets, and their sizes do not follow the general resource hierarchy. In the release statistics for Common Voice 27.0 (11 September 2026), Uyghur has 462 validated hours and Bashkir 259, against 130 for Turkish, 102 for Uzbek, 39 for Kyrgyz, 33 for Tatar, 25 for Chuvash, 16 for Sakha, 3 each for Kazakh and Turkmen and 1 for Azerbaijani (`datasets/scripted-speech/cv-corpus-27.0-2026-09-11.json` in the `common-voice/cv-dataset` repository, commit `65ca246`). These counts describe validated audio, not all submitted recordings. Check the current release statistics for each language before planning an experiment. [Mozilla's distribution notice](https://huggingface.co/mozilla-foundation) directs downloads to Mozilla Data Collective from October 2025, so older loading code may no longer work.
+
+**FLEURS** [@conneau2023fleurs] provides about 12 hours of read speech per language for 102 languages, recorded for FLORES sentences, with fixed train/dev/test splits; its Turkic languages are Turkish, Azerbaijani, Kazakh, Kyrgyz and Uzbek. Its shared source-sentence design supports comparisons, but recordings, retained items and speakers differ across languages. Check prompt IDs and split contents when constructing a matched comparison; the approximate hours describe the whole dataset per language, not the training split alone.
+
+## Text-to-Speech {#sec-tts}
+
+### Text and Pronunciation in Turkic TTS
+
+A grapheme-based TTS system receives the written surface form, including the selected suffix vowels. A phoneme-based system needs a pronunciation front end that respects the target variety. Suffix vowels use the language's vowel inventory; each grammatical suffix does not need its own phoneme symbol. Morphological features may help disambiguation or prosody, but their benefit is an experimental question.
+
+Keep text normalisation (numbers, abbreviations and names), grapheme-to-phoneme conversion and prosodic prediction separate in error analysis. Test both frequent forms and productive unseen inflections. For synthesis, report intelligibility separately from naturalness and speaker similarity.
+
+### KazakhTTS2 and TurkicTTS
+
+**KazakhTTS2** [@mussakhojayeva2022kazakhtts2] contains 271 hours of studio-recorded Kazakh speech from five speakers (three female, two male), up from 93 hours and two speakers in the first release, with subjective mean opinion scores of 3.6 to 4.2 across the speakers. Its repository releases Tacotron 2 models with Parallel WaveGAN vocoders for each speaker. Emotional speech is covered by the separate **KazEmoTTS** dataset: 74.85 hours from three narrators in six emotions [@abilbekov2024kazemotts]. The open Piper voice `kk_KZ-issai-high`, a VITS model trained on the ISSAI data with six speakers, is used in this chapter's exercises.
+
+**TurkicTTS** [@yeshpanov2023turkictts] tests transliteration-based synthesis for ten languages, including Kazakh, its training language. The other nine are zero-shot targets. Letters are mapped through IPA to Kazakh letters before a Kazakh-trained Tacotron 2 model synthesises the text. The authors report subjective evaluations of this procedure. Mapping target sounds to Kazakh letters can approximate or merge distinctions, so a shared representation does not guarantee faithful target-language pronunciation.
+
+### Neural TTS Architectures
+
+The released systems discussed here use Tacotron 2 and VITS. Codec language modelling provides a further architectural comparison:
+
+**Tacotron 2** [@shen2018natural] uses a sequence-to-sequence architecture with attention to convert grapheme or phoneme sequences to mel spectrogram frames, followed by a separate neural vocoder (WaveNet in the original paper, Parallel WaveGAN in the KazakhTTS2 release) to convert spectrograms to audio. KazakhTTS2 and TurkicTTS both use it.
+
+**VITS (Variational Inference with adversarial learning for end-to-end TTS)** [@kim2021conditional] is an end-to-end architecture that combines the acoustic model and vocoder in a single network trained with a generative adversarial loss. Its inference procedure can sample durations and latent variables. Repeated output therefore depends on the random seed and noise settings (Exercise 3 measures this for the selected Piper implementation). The MMS and Piper Turkic voices are VITS models. Its relative quality depends on data, training and the listener evaluation.
+
+**VALL-E style codec language modelling** [@wang2023neural] treats TTS as a language modelling problem over discrete speech codec tokens. The cited work studies voice-conditioned synthesis; its quality on Turkic languages is untested. Data and compute requirements depend on the checkpoint and adaptation protocol. Voice-cloning experiments additionally require explicit permission for the intended voice use.
+
+### Availability and Evaluated Quality
+
+Public VITS checkpoints exist for [MMS Chuvash TTS](https://huggingface.co/facebook/mms-tts-chv) and [MMS Crimean Tatar TTS](https://huggingface.co/facebook/mms-tts-crh), both under CC BY-NC 4.0. The pinned entries in @tbl-verified-models document their availability. Assess naturalness, dialect coverage and suitability for the intended use separately.
+
+For each candidate, check its tokeniser's expected script, training domain, speaker coverage and licence, then run a shared prompt set. Use blinded, counterbalanced listener judgements with the same prompts, listening conditions and evaluation scale for competing systems. Do not compare a new MOS directly with a historical score collected from different listeners.
+
+## Speech for Low-Resource Languages {#sec-low-resource-speech}
+
+### Cross-Lingual Acoustic Model Transfer
+
+Start with a checkpoint whose input/output conventions and language coverage fit the task. Compare its unadapted output with full fine-tuning and a declared partial-freezing policy. Build learning curves by increasing **training** hours while keeping validation speakers and transcripts fixed; select the recipe on validation, then evaluate once on the reserved test set. No universal number of hours guarantees useful ASR. Shared phonetic structure motivates transfer but does not identify its cause without controlled comparisons [@mussakhojayeva2023turkicasr].
+
+### Data Augmentation
+
+Apply augmentation to training recordings only, recording its algorithm, probability, seed and parameter distribution. Resampling-based speed perturbation changes pitch and duration together [@ko2015speed]. Pitch-preserving time stretching changes duration separately. Pitch shifting varies a recording's pitch while retaining the same speaker.
+
+Exercise 2 checks these operations on synthetic Kazakh speech. Duration and median fundamental-frequency ratios use six items; ASR errors use 30. A speed factor of 0.9 produces about 1.11 times the duration and 0.90 times the fundamental frequency. The other operations approximately preserve the quantity they are designed to leave fixed.
+
+On this sample, time stretching and pitch shifting increase CER more than the tested speed perturbations or 20 dB noise. This tests recogniser sensitivity at inference. An experiment that trains with augmentation is needed to measure its benefit.
+
+SpecAugment [@park2019specaugment] masks time and frequency regions of the acoustic representation. Additive noise is mixed at a declared signal-to-noise ratio; reverberation is produced by **convolving** audio with a room impulse response. These are separate interventions. Preserve intelligibility and transcript alignment, and compare each intervention at the same update budget before combining them.
+
+### Massively Multilingual Speech Models
+
+Meta's **Massively Multilingual Speech (MMS)** project covers recognition and synthesis in over 1,100 languages, and language identification in about 4,000 [@pratap2024mms]. It uses separate systems: wav2vec 2.0-based models for recognition and identification, and VITS for synthesis. Recordings of religious texts supply much of the data for small languages, limiting domain coverage; recording conditions also need checking.
+
+The later **Omnilingual ASR** system covers more than 1,600 languages with CTC models and models using an LLM-inspired decoder, ranging from about 300 million to 7 billion parameters [@omnilingual2025asr]. TurkicNLP accepts 20 Turkic languages for this backend. Tuvan, Khalaj, Ottoman Turkish and Old Turkic lack an Omnilingual language code (TurkicNLP 0.5.0 README).
+
+MMS and Omnilingual ASR offer further candidates where the earlier systems lack coverage. Compare an unadapted model with fine-tuning on target-domain speech. Evaluate on FLEURS where available, or on held-out recordings from the intended domain.
+
+
+### Speech Recognition with TurkicNLP
+
+TurkicNLP wraps Omnilingual ASR as `SpeechRecognizer`. The wrapper takes TurkicNLP language codes, checks that the model supports them, splits recordings longer than the model's 40-second limit at pauses, and returns transcripts in the language's TurkicNLP script. Where the model writes another script, the toolkit transliterates: Karakalpak and Crimean Tatar come out of the model in Cyrillic and are returned in Latin. Speech recognition needs its own Python environment (`pip install "turkicnlp[all,asr]"` in a fresh environment, because the ASR dependencies pin older versions of PyTorch and NumPy).
+
+```python
+import turkicnlp
+
+print(turkicnlp.list_asr_languages(check_model=True))   # e.g. {'kaz': {'Cyrl': 'kaz_Cyrl'}, ...}
+
+asr = turkicnlp.SpeechRecognizer(model_card="omniASR_LLM_1B", device="cpu")
+texts = asr.transcribe(["kaz_sample.wav", "tat_sample.wav"], lang=["kaz", "tat"], batch_size=2)
+
+res = asr.transcribe("kaz_sample.wav", lang="kaz", return_details=True)
+for seg in res.segments:                       # time-aligned pieces of long recordings
+    print(f"[{seg.start:.2f}-{seg.end:.2f}] {seg.text}")
+print(asr.transcribe("kaz_sample.wav", lang="kaz", script="Latn"))   # 2021 Latin alphabet
+```
+
+The transcript can go straight into the text pipeline:
+
+```python
+nlp = turkicnlp.Pipeline("kaz", processors=["asr", "tokenize", "pos", "lemma", "depparse"],
+                         asr_model_card="omniASR_LLM_1B", asr_device="cpu")
+doc = nlp.from_audio("kaz_sample.wav")
+print(doc.text, doc.audio_segments)
+for w in doc.words:
+    print(w.text, w.upos, w.lemma, w.head, w.deprel)
+```
+
+The wrapper's documented Omnilingual output is lower-case and unpunctuated. This differs from edited training text and can affect tagging and parsing; measure downstream accuracy on checked transcripts rather than assuming the size or direction of the change. Memory use depends on the checkpoint, precision, loader and recording length; measure it in the intended environment.
+
+
+## Hands-On: A Fine-Tuning Procedure for Kazakh ASR with Whisper {#sec-ch11-hands-on}
+
+**Question.** Does Whisper adaptation improve recognition on held-out Kazakh recordings?
+
+**Inputs.** The pinned FLEURS Kazakh release and Whisper-small checkpoint below.
+
+**Compute.** Audio decoding, checkpoint downloads and training memory; a GPU is useful for fine-tuning.
+
+**Output.** Saved predictions, raw and normalised WER/CER, and an experiment manifest.
+
+**Interpretation.** Compare real-recording baseline and adapted output under the same scoring policy.
+
+The executable implementation is [speech.py](../code/ch11-speech/speech.py). It uses `google/fleurs`, configuration `kk_kz`, at revision `70bb2e84b976b7e960aa89f1c648e09c59f894dd`, and the pinned `openai/whisper-small` checkpoint in @tbl-verified-models. The current dataset release has Parquet files; the loader requests undecoded audio and uses SoundFile explicitly rather than assuming an older `datasets.Audio` array interface.
+
+```bash
+python code/ch11-speech/speech.py runs/kazakh-asr --epochs 3 --seed 42
+```
+
+The script keeps official train, validation and test splits separate. It rejects duplicate recording paths and cross-split identical transcripts, reports retained duration per split, and relies on the dataset card's speaker separation because speaker IDs are not exposed in this schema. If these checks fail, investigate the release rather than silently redistributing benchmark items.
+
+Only finite mono 16 kHz recordings of at most 30 seconds enter this short-utterance recipe. Longer audio must be segmented with aligned transcripts in a separately documented experiment. Truncating a recording while retaining its whole transcript teaches the wrong alignment. Overlength decoder targets are also rejected.
+
+The collator removes the leading **decoder-start** token exactly once; Whisper inserts it during label shifting. It retains language/task tokens, supplies the acoustic attention mask, and masks label padding with `-100`. Checkpoint selection uses validation WER. After selection, the baseline and adapted checkpoint are decoded on the **same complete test items** with the same language, task and generation limit.
+
+The scorer compares predictions with the original reference strings. It reports corpus-level raw and conservatively normalised WER/CER, empty-reference counts, recording-ID hashes and per-item transcripts. Its normalisation preserves alphabet distinctions and apostrophes; state that policy when comparing scores. Reference words or characters form the denominator, while insertions against empty references still contribute to the numerator.
+
+The implementation checks exercise the collator, audio guards, metric arithmetic and a tiny randomly initialised Whisper forward/backward pass. The recorded Exercise 1 uses the same scoring functions on synthetic speech, but a different int8 ONNX export and runtime. Its error rates are not the unadapted FLEURS baseline for this training recipe.
+
+For long-recording inference, use a separately validated chunking/stitching procedure. For short recordings, call `model.eval()` and `torch.inference_mode()` and enforce the same sample-rate and duration checks.
+
+**Status: procedure only.** The fine-tuning run on real recordings is not reported here.
+
+## What to Take Forward {#sec-ch11-synthesis .unnumbered}
+
+Speech systems connect written conventions with sounds, timing and speakers. The synthetic-audio probes illustrate recogniser behaviour on specific texts and voices; ranking languages by quality on this basis would overreach. Evaluate ASR on real recordings under a stated normalisation policy and TTS with listeners. Compare cross-language training and augmentation on held-out speech. @sec-book-12-pretrained-lms returns to text and pretrained models.
+
+## Further Reading {#sec-ch11-further-reading .unnumbered}
+
+The TurkicASR system is described in @mussakhojayeva2023turkicasr, the primary reference for ISSAI's multilingual Turkic ASR. @mussakhojayeva2022kazakhtts2 describes KazakhTTS2, and @yeshpanov2023turkictts the zero-shot TurkicTTS approach.
+
+The Whisper paper [@radford2023whisper] describes the training procedure, data filtering methodology, and language coverage of the Whisper model series; its supplementary materials include per-language WER breakdowns that are the primary source for Turkic ASR baselines. For speech processing fundamentals including CTC, attention-based encoder-decoders, and the RNN-T architecture, the speech chapters of @jurafsky2024slp provide a thorough treatment.
+
+For Turkic phonology, @Johanson_2021 (chapters 12–18 and 50) covers vowel systems, consonant inventories, and prosodic patterns with systematic comparison across the family. Use these descriptions when checking pronunciation assumptions in a speech system.
+
+
+## Exercises {#sec-ch11-exercises .unnumbered}
+
+1. Measure the unadapted Whisper baseline on a frozen Kazakh test set: raw and normalised WER and CER, total duration, results per speaker where identifiers are available, and error examples. FLEURS does not expose speaker IDs in the schema used here, so do not invent a speaker breakdown from recording paths. With the Hands-On script, compare it with the adapted checkpoint on the same items, choosing all decoding settings on validation.
+2. Apply resampling speed perturbation, pitch-preserving time stretching, pitch shifting and additive noise separately. Verify what each operation changes (duration, fundamental frequency, signal-to-noise ratio) and measure the recogniser's sensitivity to each before using any of them in training, where they are compared at matched updates and seeds and kept in their source split.
+3. Compare TTS voices with an ASR-based transcription-error diagnostic, measure how much repeated sampling of the same text changes it, and distinguish recogniser errors from synthesis errors. This diagnostic alone cannot rank human intelligibility or naturalness. Use the same prompts for every voice and design a blinded, counterbalanced listening test for fluent, compensated listeners. Obtain permission for any cloned voice.
+4. Decode Kazakh and Turkish speech with the Whisper tokens of related languages and with automatic language detection. Check which Turkic language tokens the model accepts; for Kyrgyz or Uyghur, compare related-language and multilingual initialisations by fine-tuning instead of forcing an unsupported token.

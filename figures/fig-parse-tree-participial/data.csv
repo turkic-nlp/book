@@ -1,0 +1,11 @@
+language,token_id,form,head,deprel,source
+English,1,The,2,det,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+English,2,man,6,nsubj,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+English,3,who,4,nsubj,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+English,4,came,2,acl:relcl,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+English,5,yesterday,4,advmod,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+English,6,left,0,root,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+Turkish,1,Dün,2,advmod,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+Turkish,2,gelen,3,acl,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+Turkish,3,adam,4,nsubj,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
+Turkish,4,gitti,0,root,Author-constructed example; basic UD conventions: https://universaldependencies.org/u/dep/acl-relcl.html
